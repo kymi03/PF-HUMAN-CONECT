@@ -1,4 +1,4 @@
-const articleController = require("../controllers/articleController");
+const articleController = require("../../controllers/getControllers/articleController");
 
 const articleHandles = (req, res) => {
   articleController(req, res);
