@@ -18,7 +18,7 @@ const documentarySchema = new Schema({
     type: String,
   },
   documetaryBody: {
-    type: Text,
+    type: String,
   },
   documetaryAuthor: {
     type: String,

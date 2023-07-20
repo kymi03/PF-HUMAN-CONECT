@@ -30,11 +30,11 @@ const articleSchema = new Schema({
     ],
   },
   articleBody: {
-    type: Text,
+    type: String,
     required: true,
   },
   articleBreaf: {
-    type: Text,
+    type: String,
     required: true,
   },
   articleDate: {
