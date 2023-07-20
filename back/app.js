@@ -2,6 +2,7 @@ const express = require('express')
 const morgan = require('morgan')
 const app = express()
 const cors = require('cors')
+const getArticle = require('./src/routes/getRoutes/getArticles')
 
 app.use(express.json())
 app.use(morgan('dev'))
@@ -20,9 +21,6 @@ app.use((req, res, next) => {
     next();
 });
 
-app.get('/', (req, res) => {
-    res.send('buenas')
-})
-
+app.use(getArticle);
 
 module.exports = app
