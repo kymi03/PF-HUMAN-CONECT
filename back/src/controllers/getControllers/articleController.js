@@ -1,13 +1,12 @@
-const articleController = async (collection, client) => {
+const articleModle = require("../../models/article");
+const articleController = async () => {
   try {
-    await client.connect();
-    const articles = await collection.find({}).toArray();
+    const articles = await articleModle.find({});
     return articles;
   } catch (error) {
     throw new Error(error);
-  } finally {
-    client.close();
   }
-
 };
+
 module.exports = articleController;
+
