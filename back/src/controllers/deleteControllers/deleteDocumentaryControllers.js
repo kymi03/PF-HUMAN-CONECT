@@ -11,18 +11,18 @@ const deleteDocumentaryIdController = async (documentaryId) => {
   }
 };
 
-const deleteDocumentaryNameController = async (documentaryName) => {
-  try {
-    const deleteDocumentary = await Documentary.findOneAndRemove({
-      documentaryName,
-    });
-    return deleteDocumentary;
-  } catch (error) {
-    throw new Error("Error al eliminar el documental por nombre");
-  }
-};
+//const deleteDocumentaryNameController = async (documentaryName) => {
+//  const deleteDocumentary = await Documentary.findOneAndRemove({
+//      try {
+//      documentaryName,
+//    });
+//    return deleteDocumentary;
+//  } catch (error) {
+//    throw new Error("Error al eliminar el documental por nombre");
+//  }
+//};
 
 module.exports = {
   deleteDocumentaryIdController,
-  deleteDocumentaryNameController,
+  //  deleteDocumentaryNameController,
 };

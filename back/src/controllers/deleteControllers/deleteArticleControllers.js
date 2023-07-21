@@ -9,16 +9,16 @@ const deleteArticleIdController = async (articleId) => {
   }
 };
 
-const deleteArticleNameController = async (articleName) => {
-  try {
-    const deleteArticle = await Article.findOneAndRemove({ articleName });
-    return deleteArticle;
-  } catch (error) {
-    throw new Error("Error al eliminar el artículo por nombre");
-  }
-};
+//const deleteArticleNameController = async (articleName) => {
+//  try {
+//    const deleteArticle = await Article.findOneAndRemove({ articleName });
+//    return deleteArticle;
+//  } catch (error) {
+//    throw new Error("Error al eliminar el artículo por nombre");
+//  }
+//};
 
 module.exports = {
   deleteArticleIdController,
-  deleteArticleNameController,
+  // deleteArticleNameController,
 };

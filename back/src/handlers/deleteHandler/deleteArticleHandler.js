@@ -1,6 +1,6 @@
 const {
   deleteArticleIdController,
-  deleteArticleNameController,
+  //deleteArticleNameController,
 } = require("../../controllers/deleteControllers/deleteArticleControllers");
 
 const deleteArticleIdHandler = async (req, res) => {
@@ -13,17 +13,17 @@ const deleteArticleIdHandler = async (req, res) => {
   }
 };
 
-const deleteArticleNameHandler = async (req, res) => {
-  try {
-    const { name } = req.query;
-    const deleteArticle = await deleteArticleNameController(name);
-    return res.status(200).json(deleteArticle);
-  } catch (error) {
-    res.status(400).json({ error: error.message });
-  }
-};
+//const deleteArticleNameHandler = async (req, res) => {
+//  try {
+//    const { name } = req.query;
+//    const deleteArticle = await deleteArticleNameController(name);
+//    return res.status(200).json(deleteArticle);
+//  } catch (error) {
+//    res.status(400).json({ error: error.message });
+//  }
+//};
 
 module.exports = {
-  deleteArticleNameHandler,
+  // deleteArticleNameHandler,
   deleteArticleIdHandler,
 };

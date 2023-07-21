@@ -9,16 +9,16 @@ const deleteProjectIdController = async (projectId) => {
   }
 };
 
-const deleteProjectNameController = async (projectName) => {
-  try {
-    const deleteProject = await Project.findOneAndRemove({ projectName });
-    return deleteProject;
-  } catch (error) {
-    throw new Error("Error al eliminar el proyecto por nombre");
-  }
-};
+//const deleteProjectNameController = async (projectName) => {
+// try {
+//    const deleteProject = await Project.findOneAndRemove({ projectName });
+//    return deleteProject;
+//  } catch (error) {
+//    throw new Error("Error al eliminar el proyecto por nombre");
+//  }
+//};
 
 module.exports = {
   deleteProjectIdController,
-  deleteProjectNameController,
+  // deleteProjectNameController,
 };

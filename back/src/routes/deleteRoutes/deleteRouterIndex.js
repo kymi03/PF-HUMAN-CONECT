@@ -6,10 +6,10 @@ const deleteAdmin = require("./deleteAdmin");
 const deleteUser = require("./deleteUser");
 
 const router = Router();
-router.use("/deleteArticle", deleteArticle);
-router.use("/deleteDocumentary", deleteDocumentary);
-router.use("/deleteProject", deleteProject);
-router.use("/deleteAdmin", deleteAdmin);
-router.use("/deleteUser", deleteUser);
+router.use("/article", deleteArticle);
+router.use("/documentary", deleteDocumentary);
+router.use("/project", deleteProject);
+router.use("/admin", deleteAdmin);
+router.use("/user", deleteUser);
 
 module.exports = router;

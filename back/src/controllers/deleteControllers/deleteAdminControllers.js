@@ -9,16 +9,16 @@ const deleteAdminIdController = async (adminId) => {
   }
 };
 
-const deleteAdminNameController = async (adminName) => {
-  try {
-    const deleteAdmin = await Admin.findOneAndRemove({ adminName });
-    return deleteAdmin;
-  } catch (error) {
-    throw new Error("Error al eliminar el administrador por nombre");
-  }
-};
+//const deleteAdminNameController = async (adminName) => {
+//  try {
+//    const deleteAdmin = await Admin.findOneAndRemove(adminName);
+//    return deleteAdmin;
+//  } catch (error) {
+//    throw new Error("Error al eliminar el administrador por nombre");
+//  }
+//};
 
 module.exports = {
   deleteAdminIdController,
-  deleteAdminNameController,
+  // deleteAdminNameController,
 };
