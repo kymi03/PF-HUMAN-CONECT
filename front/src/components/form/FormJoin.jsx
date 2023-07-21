@@ -1,14 +1,17 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 const FormJoin = ({login}) => {
+  const navigate = useNavigate();
   const [errors, setErrors] = useState({});
   const [userData, setUserData] = useState({
         userName: '',
         userLastName: '',
         userEmail: '',
         userPhone: '',
-        
   });
+  const [password, setPassword] = useState('');
+  const [userNickName, setUserNickName] = useState('')
 
 const hdrSubmit = (event) =>{
   event.preventDefault();
@@ -27,6 +30,8 @@ const hdrChange = (event) => {
   }))
 }
 
+
+
   return (
     <div className=" bg-grey pt-5 pb-1">
       <div>
@@ -36,15 +41,12 @@ const hdrChange = (event) => {
             <h5 className=" pt-5 font-poppins font-semibold">Registrate en un nuestra red</h5>
             <form onSubmit={hdrSubmit} className=" p-8">
               <div className=" flex flex-row">
-                <input type="text" className=" border-2 m-1 w-1/2 h-9" placeholder="Nombre" value={userData.userName} />
-                <input type="text" className=" border-2 m-1 w-1/2 h-9" placeholder="Apellido" value={userData.userLastName}/>
+                <input type="text" className=" border-2 m-1 w-1/2 h-9" placeholder="Nombre" value={userData.userName} onChange={(event) => event.target.value}/>
+                <input type="text" className=" border-2 m-1 w-1/2 h-9" placeholder="Apellido" value={userData.userLastName} onChange={(event) => event.target.value}/>
               </div>
               <div className="flex flex-col">
-                <input type="text" className=" border-2 m-1 h-9" placeholder="Correo electronico" value={userData.userEmail}/>
-                <input type="text" className=" border-2 m-1 h-9" placeholder="Teléfono" value={userData.userPhone} />
-                <select name="" id="" className="border-2 m-1 h-9">
-                  <option value="" disabled selected hidden>País</option>
-                </select>
+                <input type="text" className=" border-2 m-1 h-9" placeholder="Correo electronico" value={userData.userEmail} onChange={(event) => event.target.value}/>
+                <input type="text" className=" border-2 m-1 h-9" placeholder="Teléfono" value={userData.userPhone} onChange={(event) => event.target.value} />
               </div>
               <div className=" flex flex-row">
                 <input type="text" className=" border-2 m-1 w-1/2 h-9" placeholder="Contraseña" />
@@ -55,11 +57,11 @@ const hdrChange = (event) => {
                   <option value="" disabled selected hidden className=" font-ligth"> Como nos conociste?</option>
                 </select>
                 <div className=" text-xs">
-                  <input type="checkbox" className=" mt-1" /> Quiero suscribirme al newsletter
+                  <input type="checkbox" className=""/> Quiero suscribirme al newsletter
                 </div>
               </div>
               <button type="submit" className=" text-white font-medium bg-vividGreen w-full h-10 cursor-pointer rounded-md hover:outline outline-2 outline-offset-2">Registrate</button>
-                <p>Ya tienes una cuenta? <a href="#" className="">Sign in</a></p>
+                <p>Ya tienes una cuenta? <a href="#" className=" text-blue-900 underline">Iniciar sesión</a></p>
             </form>
           </div>
           <div>
