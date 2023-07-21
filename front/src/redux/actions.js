@@ -3,7 +3,7 @@ import axios from "axios";
 export const getAllProjects = ()=>{
 return async function  (dispatch){
     try {
-      const allProjects = await axios.get('http://localhost:3001/get/article')
+      const allProjects = await axios.get('http://localhost:3001/get/projects')
 
 
 

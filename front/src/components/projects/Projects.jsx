@@ -23,7 +23,7 @@ function Projects() {
   }, []);
   
   const currentPAD = useSelector(state => state.allProjects)
-  console.log('projects:' , currentPAD);
+  // console.log('projects:' , currentPAD);
 
   // const currentPAD = [
   //   {
