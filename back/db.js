@@ -1,10 +1,18 @@
-require('dotenv').config()
-const { URL_DB } = process.env
-const mongoose = require('mongoose')
+require("dotenv").config();
+const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
+const connectionString = `mongodb+srv://${DB_USER}:${DB_PASSWORD}@${DB_HOST}.39yam2i.mongodb.net/WebPageInfo?retryWrites=true&w=majority`;
+const mongoose = require("mongoose");
 
-mongoose.connect("mongodb://127.0.0.1:27017/HumanConect")
+mongoose
+  .connect(connectionString, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => {
+    console.log("Database Connected");
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 
-.then(db => console.log('DB is connected'))
-.catch(err => console.error(err))
-
-module.exports = mongoose
+module.exports = mongoose;
