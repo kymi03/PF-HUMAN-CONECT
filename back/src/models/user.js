@@ -19,6 +19,10 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
+  userPassword: {
+    type: String,
+    required: true,
+  },
   userPhone: {
     type: Number,
     required: true,
@@ -28,7 +32,7 @@ const userSchema = new Schema({
       {
         postId: Number,
         body: String,
-        postDate: Date,
+        createdAt: { type: Date, default: Date.now },
       },
     ],
   },
