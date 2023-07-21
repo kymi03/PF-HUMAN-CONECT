@@ -16,7 +16,7 @@ const articleSchema = new Schema({
     default: "Anonimo",
   },
   articleMedia: {
-    imgs: [
+    images: [
       {
         imageName: String,
         imageUrl: String,
