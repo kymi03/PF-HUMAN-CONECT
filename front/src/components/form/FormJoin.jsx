@@ -36,12 +36,12 @@ const hdrChange = (event) => {
             <h5 className=" pt-5 font-poppins font-semibold">Registrate en un nuestra red</h5>
             <form onSubmit={hdrSubmit} className=" p-8">
               <div className=" flex flex-row">
-                <input type="text" className=" border-2 m-1 w-1/2 h-9" placeholder="Nombre" />
-                <input type="text" className=" border-2 m-1 w-1/2 h-9" placeholder="Apellido" />
+                <input type="text" className=" border-2 m-1 w-1/2 h-9" placeholder="Nombre" value={userData.userName} />
+                <input type="text" className=" border-2 m-1 w-1/2 h-9" placeholder="Apellido" value={userData.userLastName}/>
               </div>
               <div className="flex flex-col">
-                <input type="text" className=" border-2 m-1 h-9" placeholder="Correo electronico" />
-                <input type="text" className=" border-2 m-1 h-9" placeholder="Teléfono" />
+                <input type="text" className=" border-2 m-1 h-9" placeholder="Correo electronico" value={userData.userEmail}/>
+                <input type="text" className=" border-2 m-1 h-9" placeholder="Teléfono" value={userData.userPhone} />
                 <select name="" id="" className="border-2 m-1 h-9">
                   <option value="" disabled selected hidden>País</option>
                 </select>
