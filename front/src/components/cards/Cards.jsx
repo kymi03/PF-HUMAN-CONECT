@@ -3,10 +3,9 @@ import Card from '../card/Card.jsx';
 
 function Cards(props) {
   return (
-    <div className="flex">
+    <div className="grid gap-4 grid-cols-3 grid-rows-3">
       {props.currentPAD.map((PAD, index) => (
-        <div key={index} className="mr-4 w-40 h-70">
-          {/* Aquí establecemos el ancho (w-80) y el largo (h-96) de cada Card */}
+        <div key={index} className="mr-10 w-60 "> 
           <Card
             media={PAD.media}
             location={PAD.location}

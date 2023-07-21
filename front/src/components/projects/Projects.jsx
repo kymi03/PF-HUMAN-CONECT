@@ -90,13 +90,14 @@ function Projects() {
 
   return (
     <>
-      <div className="w-500 h-500 bg-green-300 shadow flex space-x-5">
-        <div className="w-500 h-500 bg-gray-300 shadow space-x-5">
+      <div className="flex" >
+        <div >
           <LeftInfo />
         </div>
-        <div className="w-1290 h-670 bg-blue-300 shadow space-x-5">
+        <div >
           <Cards currentPAD={currentPAD} />
         </div>
+        {/* <div className='h-500'>hi</div> */}
       </div>
       <FooterMoreInfo />
     </>
