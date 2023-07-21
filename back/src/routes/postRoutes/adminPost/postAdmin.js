@@ -1,7 +1,7 @@
 const express = require("express");
-const adminHandlers = require("../../../handlers/postHandlers/adminPostHandler");
+const adminPostHandlers = require("../../../handlers/postHandlers/adminPostHandler");
 const postAdmin = express.Router();
 
-postAdmin.post("/", adminHandlers);
+postAdmin.post("/", adminPostHandlers);
 
 module.exports = postAdmin;

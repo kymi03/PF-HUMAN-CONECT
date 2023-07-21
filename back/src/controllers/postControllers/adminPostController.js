@@ -1,7 +1,7 @@
 const admin = require('../../models/admin')
 
 
-const adminPostController = () => {
+const adminPostController = (body) => {
 
     try{
         const newPostAdmin = new admin(body);
