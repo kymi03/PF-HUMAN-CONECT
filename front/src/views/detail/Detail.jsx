@@ -2,7 +2,7 @@ import React from 'react'
 
 function Detail() {
   return (
-    <div>Componente detail</div>
+    <div className='font-bold'>Este es el componente detail</div>
   )
 }
 

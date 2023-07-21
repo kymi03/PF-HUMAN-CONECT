@@ -1,10 +1,12 @@
 import React from 'react';
+import NavBar from '../../components/NavBar/NavBar';
 
 const Home = () => {
   return (
-    <div className="flex items-center justify-center h-screen">
-      <h1 className="text-4xl font-bold text-gray-800">¡Bienvenido a mi aplicación!</h1>
+    <div className='bg-amber-200'>
+      <NavBar/>
     </div>
+    
   );
 };
 
