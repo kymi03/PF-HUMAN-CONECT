@@ -19,6 +19,10 @@ const adminSchema = new Schema({
     type: String,
     required: true,
   },
+  userPassword: {
+    type: String,
+    required: true,
+  },
   adminPhone: {
     type: Number,
     required: true,
