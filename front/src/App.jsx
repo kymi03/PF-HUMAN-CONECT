@@ -4,7 +4,7 @@ import Landing from "./views/landing/Landing"
 import Home from "./views/home/Home"
 import FormJoin from './components/form/FormJoin'
 import Projects from './components/projects/Projects'
-
+import Articles from './components/articles/articles'
 function App() {
   
 
@@ -15,7 +15,7 @@ function App() {
         <Route path="/home" element={<Home/>}/>
         <Route path="/formjoin" element={<FormJoin/>}/>
         <Route path="/projects" element={<Projects />}/>
-        <Route path="/articles" element={<Projects />}/>
+        <Route path="/articles" element={<Articles />}/>
         <Route path="/documentarys" element={<Projects />}/>
       </Routes>
     </div>
