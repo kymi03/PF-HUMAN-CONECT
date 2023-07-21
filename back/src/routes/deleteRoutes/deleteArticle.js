@@ -1,13 +1,13 @@
+const express = require("express");
 const { Router } = require("express");
-
 const {
-  deleteArticleNameHandler,
-  deleteArticleHandler,
-} = require("../handlers/documentarytHandlers");
+  //deleteArticleNameHandler,
+  deleteArticleIdHandler,
+} = require("../../handlers/deleteHandler/deleteArticleHandler");
 
-const articleRoutes = Router();
+const deleteArticle = Router();
 
-articleRoutes.delete("/name", deleteArticleNameHandler);
-articleRoutes.delete("/:id", deleteArticleHandler);
+//deleteArticle.delete("/:name", deleteArticleNameHandler);
+deleteArticle.delete("/:id", deleteArticleIdHandler);
 
-module.exports = articleRoutes;
+module.exports = deleteArticle;

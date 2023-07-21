@@ -1,13 +1,13 @@
+const express = require("express");
 const { Router } = require("express");
-
 const {
-  deleteProjectNameHandler,
-  deleteProjectHandler,
-} = require("../handlers/projectHandlers");
+  //deleteProjectNameHandler,
+  deleteProjecIdHandler,
+} = require("../../handlers/deleteHandler/deleteProjectHandler");
 
-const projectRoutes = Router();
+const deleteProject = Router();
 
-projectRoutes.delete("/name", deleteProjectNameHandler);
-projectRoutes.delete("/:id", deleteProjectHandler);
+//deleteProject.delete("/:name", deleteProjectNameHandler);
+deleteProject.delete("/:id", deleteProjecIdHandler);
 
-module.exports = projectRoutes;
+module.exports = deleteProject;
