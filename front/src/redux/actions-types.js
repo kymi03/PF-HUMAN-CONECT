@@ -1,1 +1,1 @@
-//actions-types a futuro
+export const GET_ALL_PROJECTS = 'GET_ALL_PROJECTS'
