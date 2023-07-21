@@ -1,4 +1,4 @@
-const Project = require ("../../../models/project")
+const Project = require ("../../models/project")
 
 
 const putProjectHandler = async (req, res) => {
