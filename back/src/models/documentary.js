@@ -11,11 +11,19 @@ const documentarySchema = new Schema({
     type: String,
     required: true,
   },
-  documetaryImage: {
-    type: String,
-  },
-  documetaryVideo: {
-    type: String,
+  documentaryMedia: {
+    images: [
+      {
+        imageName: String,
+        imageUrl: String,
+      },
+    ],
+    videos: [
+      {
+        videoName: String,
+        videoUrl: String,
+      },
+    ],
   },
   documetaryBody: {
     type: String,
