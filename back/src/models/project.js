@@ -30,11 +30,11 @@ const projectSchema = new Schema({
     ],
   },
   projectBody: {
-    type: Text,
+    type: String,
     required: true,
   },
   projectBreaf: {
-    type: Text,
+    type: String,
     required: true,
   },
   projectDate: {
