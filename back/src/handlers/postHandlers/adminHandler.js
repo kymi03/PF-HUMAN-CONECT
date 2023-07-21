@@ -7,12 +7,6 @@ const adminHandlers = async (req, res) => {
         return res.status(400).send('Faltan datos para poder crear el administrador');
     }
 
-    const adminObj = {
-        adminName,
-        adminLastName,
-        adminEmail,
-        adminPhone,
-    };
 
     adminController();
 

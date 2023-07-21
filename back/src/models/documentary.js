@@ -24,7 +24,7 @@ const documentarySchema = new Schema({
     type: String,
   },
   documetaryBreaf: {
-    type: Text,
+    type: String,
     required: true,
   },
   documetaryDate: {
