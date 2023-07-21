@@ -1,4 +1,4 @@
-const Article = require ("../../../models/article")
+const Article = require ("../../models/article")
 
 
 const putArticleHandler = async (req, res) => {

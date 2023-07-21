@@ -1,5 +1,4 @@
-const Documentary = require ("../../../models/documentary")
-
+const Documentary = require ("../../models/documentary")
 
 const putDocumentaryHandler = async (req, res) => {
 
