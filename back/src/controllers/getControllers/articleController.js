@@ -1,4 +1,12 @@
-const articleController = (req, res) => {
-  return res.status(200).json({ message: "hello world" });
+const articleModle = require("../../models/article");
+const articleController = async () => {
+  try {
+    const articles = await articleModle.find({});
+    return articles;
+  } catch (error) {
+    throw new Error(error);
+  }
 };
+
 module.exports = articleController;
+
