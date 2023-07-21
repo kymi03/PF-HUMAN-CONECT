@@ -1,23 +1,13 @@
-const adminController = require("../../controllers/postControllers/adminController");
+const adminPostController = require("../../controllers/postControllers/adminPostController");
 
-const adminHandlers = async (req, res) => {
-  try {
-    const { adminName, adminLastName, adminEmail, adminPhone } = req.body;
-    if(!(adminName && adminLastName && adminEmail && adminPhone)) {
-        return res.status(400).send('Faltan datos para poder crear el administrador');
-    }
+const adminPostHandlers = async (req, res) => {
 
+  const fxAdminHandler = adminPostController(req.body);
 
-    adminController();
-
-    res.status(200).json("newAdmin")
-  } catch (error) {
-    res.status(500).json({ error: error.message })
+  if(fxAdminHandler) {
+    return res.status(200).json('Admin creado');
   }
+  res.status(500).json('Error al crear el admin')
 };
 
-
-
-
-
-module.exports = adminHandlers;
+module.exports = adminPostHandlers;

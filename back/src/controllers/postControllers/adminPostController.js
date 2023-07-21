@@ -1,4 +1,17 @@
-const adminController = () => {
-console.log('estoy funcionando');
+const admin = require('../../models/admin')
+
+
+const adminPostController = () => {
+
+    try{
+        const newPostAdmin = new admin(body);
+
+        newPostAdmin.save()
+
+        return newPostAdmin;
+    }catch(error){
+        throw new error(error)
+    }
+
 };
-module.exports = adminController;
+module.exports = adminPostController;
