@@ -1,8 +1,8 @@
 const { Router } = require("express");
 const getArticlesHandler = require("../../controllers/articlesControllers/getArticlesController");
-//const postArticlesController = require("../../handlers/articlesControllers/postArticlesHandler");
-// const putArticlesController = require("../../handlers/articlesControllers/putArticlesController");
-// const deleteArticlesController = require("../../handlers/articlesControllers/deleteArticlesController");
+//const postArticlesController = require("../../controller/articlesControllers/postArticlesController");
+// const putArticlesController = require("../../controller/articlesControllers/putArticlesController");
+// const deleteArticlesController = require("../../controller/articlesControllers/deleteArticlesController");
 
 const articleRoutes = Router();
 //const postArticles = Router();
@@ -10,8 +10,8 @@ const articleRoutes = Router();
 // const deleteArticles = Router();
 
 articleRoutes.get("/", getArticlesHandler);
-//postArticles.use("/", postArticlesController);
-// putArticles.use("/", putArticlesController);
-// deleteArticles.use("/", deleteArticlesController);
+//articleRoutes.post("/", postArticlesController);
+// articleRoutes.put("/", putArticlesController);
+// articleRoutes.delete("/", deleteArticlesController);
 
 module.exports = articleRoutes;
