@@ -1,4 +1,4 @@
-const articleModel = require("../../models/article");
+const { articleSchema } = require("../../models/article");
 
 const getArticlesHandler = async (req, res) => {
   const { name, articleId } = req.query;
@@ -8,11 +8,11 @@ const getArticlesHandler = async (req, res) => {
       query.name = {
         $regex: new RegExp(name, "i"),
       };
-    if (articleId) 
-    query.articleId = {
-      $regex: new RegExp(articleId, "i"),
-    }
-    const articles = await articleModel.find(query);
+    if (articleId)
+      query.articleId = {
+        $regex: new RegExp(articleId, "i"),
+      };
+    const articles = await articleSchema.find(query);
     articles.length
       ? res.status(200).json(articles)
       : res.status(404).json({

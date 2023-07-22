@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const getArticlesHandler = require("../../handlers/articlesHandlers/getArticlesHandler");
+const getArticlesHandler = require("../../controllers/articlesControllers/getArticlesController");
 //const postArticlesHandler = require("../../handlers/articlesHandlers/postArticlesHandler");
 // const putArticlesHandler = require("../../handlers/articlesHandlers/putArticlesHandler");
 // const deleteArticlesHandler = require("../../handlers/articlesHandlers/deleteArticlesHandler");
