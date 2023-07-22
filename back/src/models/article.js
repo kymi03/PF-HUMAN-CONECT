@@ -2,20 +2,15 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const articleSchema = new Schema({
-  articleId: {
-    type: Number,
-    required: true,
-    unique: true,
-  },
-  articleName: {
+  name: {
     type: String,
     required: true,
   },
-  articleAuthor: {
+  author: {
     type: String,
     default: "Anonimo",
   },
-  articleMedia: {
+  media: {
     images: [
       {
         imageName: String,
@@ -29,19 +24,19 @@ const articleSchema = new Schema({
       },
     ],
   },
-  articleBody: {
+  body: {
     type: String,
     required: true,
   },
-  articleBreaf: {
+  breaf: {
     type: String,
     required: true,
   },
-  articleDate: {
+  date: {
     type: Date,
     required: true,
   },
-  articleLocation: {
+  location: {
     type: String,
     required: true,
   },

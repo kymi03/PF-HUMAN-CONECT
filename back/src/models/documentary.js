@@ -2,16 +2,15 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const documentarySchema = new Schema({
-  documetaryId: {
-    type: Number,
-    required: true,
-    unique: true,
-  },
-  documetaryName: {
+  name: {
     type: String,
     required: true,
   },
-  documentaryMedia: {
+  author: {
+    type: String,
+    default: "Anonimo",
+  },
+  media: {
     images: [
       {
         imageName: String,
@@ -25,21 +24,19 @@ const documentarySchema = new Schema({
       },
     ],
   },
-  documetaryBody: {
-    type: String,
-  },
-  documetaryAuthor: {
-    type: String,
-  },
-  documetaryBreaf: {
+  body: {
     type: String,
     required: true,
   },
-  documetaryDate: {
+  breaf: {
+    type: String,
+    required: true,
+  },
+  date: {
     type: Date,
     required: true,
   },
-  documetaryLocation: {
+  location: {
     type: String,
     required: true,
   },

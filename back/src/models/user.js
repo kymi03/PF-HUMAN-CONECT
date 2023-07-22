@@ -2,32 +2,27 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const userSchema = new Schema({
-  userId: {
-    type: Number,
-    required: true,
-    unique: true,
-  },
-  userName: {
+  name: {
     type: String,
     required: true,
   },
-  userLastName: {
+  lastName: {
     type: String,
     required: true,
   },
-  userEmail: {
+  email: {
     type: String,
     required: true,
   },
-  userPassword: {
+  password: {
     type: String,
     required: true,
   },
-  userPhone: {
+  phone: {
     type: Number,
     required: true,
   },
-  userPosts: {
+  posts: {
     post: [
       {
         postId: Number,
