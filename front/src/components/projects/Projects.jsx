@@ -38,7 +38,7 @@ function Projects() {
 <div className=' w-1/5 h-3/5  ml-11'>
 <LeftInfo />
 </div>
-<div className=' / h-3/5 w-4/5  bg-white border border-gray-200 shadow dark:bg-gray-800 dark:border-gray-700'>
+<div className='h-3/5 w-4/5  bg-white border border-gray-200 shadow dark:bg-gray-800 dark:border-gray-700'>
 <Cards currentPAD={currentPAD} />
 
 </div>
