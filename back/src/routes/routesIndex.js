@@ -5,6 +5,6 @@ const userRoutes = require("./userRoutes/userRoutes");
 
 
 mainRoute.use("/articles", articleRoutes)
-mainRoute.use("/articles", userRoutes)
+mainRoute.use("/user", userRoutes)
 
 module.exports = mainRoute;
