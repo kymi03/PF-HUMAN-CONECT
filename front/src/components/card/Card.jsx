@@ -2,7 +2,9 @@ import React from 'react';
 
 function Card(props) {
 
-//   console.log(props.media ? props.media.imgs[0] : null );
+//   console.log(props.media );
+  console.log(props.name , props.media.images[0].imageUrl );
+//   console.log( );
 
   return (
 
@@ -10,7 +12,8 @@ function Card(props) {
   <div class="  bg-white border border-gray-200 shadow dark:bg-gray-800 dark:border-gray-700">
    
     <a href={`/detail/${props.name}`}>
-        <img class="" src={props.media ? props.media.imgs[0].imageUrl : 'https://humanconet.org/wp-content/uploads/2022/09/Cover-Home-Human-Conet-01-1-1536x780.webp' } alt="" />
+        <img class="" src={props.media ? props.media.images[0].imageUrl : 'https://humanconet.org/wp-content/uploads/2022/09/Cover-Home-Human-Conet-01-1-1536x780.webp' } alt="" />
+        {/* <img class="" src={ 'https://humanconet.org/wp-content/uploads/2022/09/Cover-Home-Human-Conet-01-1-1536x780.webp' } alt="" /> */}
     </a>
  
     <div class="p-5">

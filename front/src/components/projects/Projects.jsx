@@ -13,7 +13,8 @@ import Cards from '../cards/Cards.jsx';
 import LeftInfo from '../leftInfo/LeftInfo.jsx';
 import NavBarAle from '../NavBar/NavBar.ale.jsx';
 import { getAllProjects } from '../../redux/actions.js';
-import { Button } from 'flowbite-react';
+
+
 function Projects() {
   const dispatch = useDispatch();
 
@@ -39,17 +40,10 @@ function Projects() {
 </div>
 <div className=' / h-3/5 w-4/5  bg-white border border-gray-200 shadow dark:bg-gray-800 dark:border-gray-700'>
 <Cards currentPAD={currentPAD} />
-{/* hi */}
+
 </div>
 </div>
 
-
-
-{/* <div className="flex" >
-  <div >
-  <Button>Click me</Button>
-  </div>
-</div> */}
 
 <FooterMoreInfo />
 

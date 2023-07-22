@@ -1,7 +1,7 @@
 import React from 'react'
 import { getProjectsByInput } from '../../redux/actions'
 import { useDispatch } from 'react-redux'
-
+import { Dropdown } from 'flowbite-react';
 function LeftInfo() {
     const dispatch = useDispatch()
 
@@ -51,6 +51,24 @@ Conoce nuestras acciones contadas por las comunidade </p>
     </div>
 
    
+    <div class="flex sm:justify-center mb-2">    <Dropdown
+      label="Dropdown button"
+    >
+      <Dropdown.Item>
+        Dashboard
+      </Dropdown.Item>
+      <Dropdown.Item>
+        Settings
+      </Dropdown.Item>
+      <Dropdown.Item>
+        Earnings
+      </Dropdown.Item>
+      <Dropdown.Item>
+        Sign out
+      </Dropdown.Item>
+    </Dropdown>
+    
+    </div>
 
         <div class="flex mt-4 space-x-5 sm:justify-center md:mt-0">
             <a href="#" class="text-gray-400 hover:text-gray-900 dark:hover:text-white">
@@ -71,9 +89,7 @@ Conoce nuestras acciones contadas por las comunidade </p>
                 </svg>
                   <span class="sr-only">Twitter page</span>
               </a>
-
-
-        </div>
+       </div>
     
 </div>
 
