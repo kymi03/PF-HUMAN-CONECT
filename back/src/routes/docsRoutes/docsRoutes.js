@@ -4,11 +4,11 @@ const postDocumentaryHandler = require("../../controllers/documentariesControlle
 const putDocumentaryHandler = require("../../controllers/documentariesControllers/putDocsController");
 const deleteDocumentaryHandler = require("../../controllers/documentariesControllers/deleteDocsController");
 
-const documentaryRoutes = Router();
+const documentariesRoutes = Router();
 
-documentaryRoutes.get("/", getDocumentaryHandler);
-documentaryRoutes.post("/", postDocumentaryHandler);
-documentaryRoutes.put("/", putDocumentaryHandler);
-documentaryRoutes.delete("/", deleteDocumentaryHandler);
+documentariesRoutes.get("/", getDocumentaryHandler);
+documentariesRoutes.post("/", postDocumentaryHandler);
+documentariesRoutes.put("/", putDocumentaryHandler);
+documentariesRoutes.delete("/", deleteDocumentaryHandler);
 
-module.exports = documentaryRoutes;
+module.exports = documentariesRoutes;

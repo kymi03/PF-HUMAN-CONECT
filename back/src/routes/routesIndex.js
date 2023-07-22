@@ -1,11 +1,11 @@
 const { Router } = require("express");
 const mainRoute = Router();
-const getArticles = require("./articlesRoutes/articlesRoutes");
-const getDocumentaries = require("./docsRoutes/docsRoutes");
-const getAdmins = require("./adminsRoutes/adminsRoutes");
+const articleRoutes = require("./articlesRoutes/articlesRoutes");
+const documentariesRoutes = require("./docsRoutes/docsRoutes");
+const adminsRoutes = require("./adminsRoutes/adminsRoutes");
 
-mainRoute.use("/articles", getArticles);
-mainRoute.use("/documentaries", getDocumentaries);
-mainRoute.use("/admins", getAdmins);
+mainRoute.use("/articles", articleRoutes);
+mainRoute.use("/documentaries", documentariesRoutes);
+mainRoute.use("/admins", adminsRoutes);
 
 module.exports = mainRoute;
