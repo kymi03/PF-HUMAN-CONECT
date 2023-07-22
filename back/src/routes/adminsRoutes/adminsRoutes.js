@@ -1,17 +1,14 @@
 const { Router } = require("express");
 const getAdminsHandler = require("../../controllers/adminsControllers/getAdminsController");
-//const postArticlesHandler = require("../../handlers/articlesHandlers/postArticlesHandler");
-// const putArticlesHandler = require("../../handlers/articlesHandlers/putArticlesHandler");
-// const deleteArticlesHandler = require("../../handlers/articlesHandlers/deleteArticlesHandler");
+const postAdminsHandler = require("../../controllers/adminsControllers/postAdminsController");
+const putAAdminsHandler = require("../../controllers/adminsControllers/putAdminsController");
+const deleteAdminsHandler = require("../../controllers/adminsControllers/deleteAdminsController");
 
 const adminRoutes = Router();
-//const postArticles = Router();
-// const putArticles = Router();
-// const deleteArticles = Router();
 
 adminRoutes.get("/", getAdminsHandler);
-//postArticles.use("/", postArticlesHandler);
-// putArticles.use("/", putArticlesHandler);
-// deleteArticles.use("/", deleteArticlesHandler);
+adminRoutes.post("/", postAdminsHandler);
+adminRoutes.put("/", putAAdminsHandler);
+adminRoutes.delete("/", deleteAdminsHandler);
 
 module.exports = adminRoutes;
