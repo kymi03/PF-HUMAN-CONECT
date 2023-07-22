@@ -1,3 +1,18 @@
+/*
+===============================================================================================================================
+JavaScripFile: getUserController.js
+Objetivo:  Archivo que permite obtener los usuarios registrados
+Autor: Kymi Fernandez
+Creation: 22 de julio de 2023
+==================================================================
+Manifiesto de funciones:
+=============================
+==Metodos:
+=============================
+ getUserController = Funcion que permite Obtener todos los usuarios registrados, al buscarlos por email
+===============================================================================================================================
+*/
+
 const user = require('../../models/user');
 
 
