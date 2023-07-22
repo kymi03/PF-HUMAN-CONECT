@@ -2,7 +2,6 @@ const { Router } = require("express");
 const mainRoute = Router();
 const articleRoutes = require("./articlesRoutes/articlesRoutes")
 const projectRoutes = require ("./projectsRoutes/projectsRoutes")
-const articleRoutes = require("./articlesRoutes/articlesRoutes");
 const documentariesRoutes = require("./docsRoutes/docsRoutes");
 const adminsRoutes = require("./adminsRoutes/adminsRoutes");
 
