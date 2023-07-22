@@ -3,9 +3,9 @@ import Card from '../card/Card.jsx';
 
 function Cards(props) {
   return (
-    <div className="grid gap-4 grid-cols-3 grid-rows-3">
+    <div className="grid grid-cols-3 grid-rows-3 ">
       {props.currentPAD.map((PAD, index) => (
-        <div key={index} className="mr-10 w-60 "> 
+        <div key={index} class=" ml-10"> 
           <Card
             media={PAD.media}
             location={PAD.location}
