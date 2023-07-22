@@ -5,6 +5,8 @@ import Home from "./views/home/Home"
 import FormJoin from './components/form/FormJoin'
 import Projects from './components/projects/Projects'
 import Articles from './components/articles/articles'
+import Detail from './views/detail/Detail';
+
 function App() {
   
 
@@ -17,6 +19,7 @@ function App() {
         <Route path="/projects" element={<Projects />}/>
         <Route path="/articles" element={<Articles />}/>
         <Route path="/documentarys" element={<Projects />}/>
+        <Route path='/detail/:name' element={<Detail />} />  
       </Routes>
     </div>
   )
