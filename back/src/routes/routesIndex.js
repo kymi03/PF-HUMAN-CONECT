@@ -5,4 +5,4 @@ const articleRoutes = require("./articlesRoutes/articlesRoutes")
 
 mainRoute.use("/articles", articleRoutes)
 
-module.exports = articleRoutes;
+module.exports = mainRoute;

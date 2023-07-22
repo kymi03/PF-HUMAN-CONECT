@@ -1,6 +1,6 @@
 const articleModel = require("../../models/article");
 
-const getArticlesHandler = async (req, res) => {
+const getArticlesController = async (req, res) => {
   const { name, id, location, author } = req.query;
   try {
     // En caso de que se reciban parametros por query estos serán utilizados para
@@ -34,4 +34,4 @@ const getArticlesHandler = async (req, res) => {
   }
 };
 
-module.exports = getArticlesHandler;
+module.exports = getArticlesController;
