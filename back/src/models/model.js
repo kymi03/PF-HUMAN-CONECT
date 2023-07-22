@@ -1,21 +1,16 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
-const projectSchema = new Schema({
-  projectId: {
-    type: Number,
-    required: true,
-    unique: true,
-  },
-  projectName: {
+const { articleSchema, documentarySchema, projectSchema } = new Schema({
+  name: {
     type: String,
     required: true,
   },
-  projectAuthor: {
+  author: {
     type: String,
     default: "Anonimo",
   },
-  projectMedia: {
+  media: {
     images: [
       {
         imageName: String,
@@ -29,22 +24,24 @@ const projectSchema = new Schema({
       },
     ],
   },
-  projectBody: {
+  body: {
     type: String,
     required: true,
   },
-  projectBreaf: {
+  breaf: {
     type: String,
     required: true,
   },
-  projectDate: {
+  date: {
     type: Date,
     required: true,
   },
-  projectLocation: {
+  location: {
     type: String,
     required: true,
   },
 });
 
-module.exports = mongoose.model("Project", projectSchema);
+(module.exports = mongoose.model("Article", articleSchema)),
+  (module.exports = mongoose.model("Documentary", documentarySchema)),
+  (module.exports = mongoose.model("Project", projectSchema));
