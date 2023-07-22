@@ -1,16 +1,39 @@
-const user = require('../../models/user');
+/*
+===============================================================================================================================
+JavaScripFile: postUserController.js
+Objetivo:  Archivo que permite creación de usuarios registrados
+Autor: kymi Fernandez
+Creation: 22 de julio de 2023
+==================================================================
+Manifiesto de funciones:
+=============================
+==Metodos:
+=============================
+ postUserController = Funcion que permite agregar un nuevo usuario al modelo RegisteredUsers
+===============================================================================================================================
+*/
 
-const postUserController = async (req, res) =>{
-    try{
-        if(!req.body) throw new Error('Debe proporcionar información del usuario');
+const user = require("../../models/user");
 
-        const createUser = new user(req.body)
-        await createUser.save();
+const postUserController = async (req, res) => {
+  const { name, lastName, email, password, phone } = req.body;
 
-        return res.status(200).json('usuario creado');
-    } catch(error){
-        res.status(500).json('no se puede crear el usuario')
-    }
-}
+  try {
+    const newUser = new user({
+      name,
+      lastName,
+      email,
+      password,
+      phone,
+    });
 
-module.export = postUserController;
+    await newUser.save();
+
+    res.status(201).json(newUser);
+  } catch (error) {
+    console.error("Error al crear el usuario", error);
+    res.status(500).json({ error: "Error al crear el usuario", error });
+  }
+};
+
+module.exports = postUserController;
