@@ -18,8 +18,8 @@ const postArticlesController = async (req, res) => {
 
     res.status(201).json(newArticle);
   } catch (error) {
-    console.error("Error al crear el documental", error);
-    res.status(500).json({ error: "Error al crear el documental", error });
+    console.error("Error al crear el artículo", error);
+    res.status(500).json({ error: "Error al crear el artículo", error });
   }
 };
 

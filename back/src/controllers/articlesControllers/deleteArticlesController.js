@@ -6,17 +6,17 @@ const deleteArticleController = async (req, res) => {
     const deleteResult = await articleModel.deleteOne({ _id: id });
     if (deleteResult.deletedCount > 0) {
       res.status(200).json({
-        message: "El documental ha sido eliminado exitosamente",
+        message: "El artículo ha sido eliminado exitosamente",
       });
     } else {
       res.status(404).json({
-        error: "No se encontró el documental para eliminar",
+        error: "No se encontró el artículo para eliminar",
       });
     }
   } catch (error) {
-    console.error("Error al eliminar el documental", error);
+    console.error("Error al eliminar el artículo", error);
     res.status(500).json({
-      error: "Error al eliminar el documental",
+      error: "Error al eliminar el artículo",
       errorDetails: error,
     });
   }
