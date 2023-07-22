@@ -2,20 +2,15 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const projectSchema = new Schema({
-  projectId: {
-    type: Number,
-    required: true,
-    unique: true,
-  },
-  projectName: {
+  name: {
     type: String,
     required: true,
   },
-  projectAuthor: {
+  author: {
     type: String,
     default: "Anonimo",
   },
-  projectMedia: {
+  media: {
     images: [
       {
         imageName: String,
@@ -29,19 +24,19 @@ const projectSchema = new Schema({
       },
     ],
   },
-  projectBody: {
+  body: {
     type: String,
     required: true,
   },
-  projectBreaf: {
+  breaf: {
     type: String,
     required: true,
   },
-  projectDate: {
+  date: {
     type: Date,
     required: true,
   },
-  projectLocation: {
+  location: {
     type: String,
     required: true,
   },
