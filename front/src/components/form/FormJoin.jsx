@@ -8,12 +8,13 @@ const FormJoin = ({login}) => {
         userName: '',
         userLastName: '',
         userEmail: '',
-        userPhone: '',
+        userPassword: '',
+        userPhone: ''
   });
   const [password, setPassword] = useState('');
   const [userNickName, setUserNickName] = useState('')
 
-const hdrSubmit = (event) =>{
+const hdrLoginSubmit = (event) =>{
   event.preventDefault();
   login(userData);
 }
@@ -39,7 +40,7 @@ const hdrChange = (event) => {
         <div className=" flex flex-row my-5 h-5/6 w-full">
           <div className=" bg-white mx-2 md:w-4/6">
             <h5 className=" pt-5 font-poppins font-semibold">Registrate en un nuestra red</h5>
-            <form onSubmit={hdrSubmit} className=" p-8">
+            <form onSubmit={hdrLoginSubmit} className=" p-8">
               <div className=" flex flex-row">
                 <input type="text" className=" border-2 m-1 w-1/2 h-9" placeholder="Nombre" value={userData.userName} onChange={(event) => event.target.value}/>
                 <input type="text" className=" border-2 m-1 w-1/2 h-9" placeholder="Apellido" value={userData.userLastName} onChange={(event) => event.target.value}/>
@@ -49,7 +50,7 @@ const hdrChange = (event) => {
                 <input type="text" className=" border-2 m-1 h-9" placeholder="Teléfono" value={userData.userPhone} onChange={(event) => event.target.value} />
               </div>
               <div className=" flex flex-row">
-                <input type="text" className=" border-2 m-1 w-1/2 h-9" placeholder="Contraseña" />
+                <input type="password" className=" border-2 m-1 w-1/2 h-9" placeholder="Contraseña" />
                 <input type="text" className=" border-2 m-1 w-1/2 h-9" placeholder="Confirmar contraseña" />
               </div>
               <div className=" flex flex-col">
