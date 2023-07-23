@@ -1,2 +1,3 @@
 export const GET_ALL_PROJECTS = 'GET_ALL_PROJECTS'
 export const GET_BY_INPUT = 'GET_BY_INPUT'
+export const POST_NEW_USER = "POST_NEW_USER"

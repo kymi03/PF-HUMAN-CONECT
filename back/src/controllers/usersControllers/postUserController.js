@@ -14,16 +14,20 @@ Manifiesto de funciones:
 */
 
 const user = require("../../models/user");
+const bcrypt = require('bcryptjs')
 
 const postUserController = async (req, res) => {
   const { name, lastName, email, password, phone } = req.body;
+  const saltRound = 10;
+  const hashedPass = await bcrypt.hash(password, saltRound)
+  console.log(typeof hashedPass);
 
   try {
     const newUser = new user({
       name,
       lastName,
       email,
-      password,
+      password: hashedPass,
       phone,
     });
 
