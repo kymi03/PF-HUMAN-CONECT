@@ -1,15 +1,24 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { getProjectsByInput } from '../../redux/actions'
 import { useDispatch } from 'react-redux'
 import { Dropdown } from 'flowbite-react';
 function LeftInfo() {
     const dispatch = useDispatch()
 
+    const [location, setLocation ] = useState('Filtra Por Lugar');
+
     const handleChange = (event) => {
         dispatch(getProjectsByInput(event.target.value))
         // console.log(event.target.value);
     }
 
+    const locations = [1,2,4,5]
+
+    const handleSelectLocation = (event) => {
+      setLocation('hi')
+      console.log(location);
+      console.log(event.value);
+    }
   return (
 
     <div class="max-w-sm p-3  bg-white border border-gray-200 shadow dark:bg-gray-800 dark:border-gray-700">
@@ -51,8 +60,34 @@ Conoce nuestras acciones contadas por las comunidade </p>
     </div>
 
    
+    <div class="flex sm:justify-center mb-2">    
+    
+    
+    <Dropdown
+      label={location}
+      item={handleSelectLocation}
+    >
+      
+  {/* {locations.map( (loc) => {
+ <Dropdown.Item onClick={()=>setLocation("Dashboard!")} >
+ 
+</Dropdown.Item>
+  })   
+} */}
+
+<Dropdown.Item 
+onClick={()=>setLocation("Valle del Cauca")}
+// onClick={()=>setLocation("Valle del Cauca")} 
+
+>
+Valle del Cauca
+ </Dropdown.Item>
+    </Dropdown>
+    
+    </div>
+   
     <div class="flex sm:justify-center mb-2">    <Dropdown
-      label="Dropdown button"
+      label="Ordena por Fecha"
     >
       <Dropdown.Item>
         Dashboard

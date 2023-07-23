@@ -8,7 +8,7 @@ Creation: 20 de julio 2023
 */
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
-import FooterMoreInfo from '../footer/FooterMoreInfo.jsx';
+import Footer from '../footer/Footer.jsx';
 import Cards from '../cards/Cards.jsx';
 import LeftInfo from '../leftInfo/LeftInfo.jsx';
 import NavBarAle from '../NavBar/NavBar.ale.jsx';
@@ -45,7 +45,7 @@ function Projects() {
 </div>
 
 
-<FooterMoreInfo />
+<Footer />
 
   </div>
   )
