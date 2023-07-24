@@ -1,10 +1,14 @@
 import React from "react";
 import NavBarAle from "../../components/NavBar/NavBar.ale";
+import styles from './AboutUs.module.css'
 
 function AboutUs() {
   return (
-    <>
-      <NavBarAle />
+  <>
+
+    <NavBarAle />
+    
+    <div className={styles.container}>
       <div>
         <h2>HUMAN CONET</h2>
         <p>
@@ -34,7 +38,7 @@ function AboutUs() {
           width={500}
           src="https://humanconet.org/wp-content/uploads/2022/09/Comuna-13-43-1-min-1536x960.webp"
           alt=""
-        />
+          />
       </div>
 
       <div>
@@ -51,9 +55,11 @@ function AboutUs() {
           width={500}
           src="https://humanconet.org/wp-content/uploads/2022/09/making-of-min-1536x1024.webp"
           alt=""
-        />
+          />
       </div>
-    </>
+    </div>
+
+  </>
   );
 }
 
