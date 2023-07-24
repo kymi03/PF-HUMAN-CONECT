@@ -5,7 +5,7 @@ import {
   
   const initialState = {
     allProjects: [],
-    allProjectsSR: [],
+    allProjects2: [],
     allLocations: []
   };
   
@@ -15,7 +15,7 @@ import {
         return {
           ...state,
           allProjects: action.payload,
-          allProjectsSR: action.payload,
+          allProjects2: action.payload,
         };
       case GET_ALL_LOCATION:
         return {
@@ -34,6 +34,7 @@ import {
       
         return validData;
       };
+
       const sortByDateDes = (data) => {
         // Filter out objects without a valid "date" property
         const validData = data.filter((item) => item.date && typeof item.date === "string");
@@ -60,8 +61,7 @@ if(action.payload.PAD === PROJECTS ){
 
   } else if (action.payload.order === "dateAll") {
 
-    orderedProjects = state.allProjectsSR
-
+    orderedProjects = state.allProjects2
 
   } 
   return {

@@ -2,9 +2,8 @@
 
 import { 
   GET_ALL_PROJECTS,
-  GET_ALL_LOCATION
-  ORDER_BY_DATE
-  GET_BY_INPUT,
+  GET_ALL_LOCATION,
+  ORDER_BY_DATE,
   POST_NEW_USER
 } from "./actions-types";
 

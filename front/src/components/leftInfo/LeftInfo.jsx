@@ -44,17 +44,17 @@ function LeftInfo() {
     }
 
 // Function to generate the <option> elements from the locations array
-// const generateOptions = (options) => {
-//   return options.map((option) => (
-//     <option key={option} value={option}>
-//       {option}
-//     </option>
-//   ));
-// };
+const generateOptions = (options) => {
+  return options.map((option) => (
+    <option key={option} value={option}>
+      {option}
+    </option>
+  ));
+};
 
 // Usage in the JSX component
 
-  // const options = generateOptions(locations)
+  const options = generateOptions(locations)
     
   return (
 
@@ -87,7 +87,7 @@ Conoce nuestras acciones contadas por las comunidade </p>
 </form>
 
     <select name="sort" onChange={handleSelectLocation}>
-        {/* {locations} */}
+        {options}
     </select>
 
         <select name="sort" onChange={handleOrder} >
