@@ -5,11 +5,6 @@ import NavBarAle from "../../components/NavBar/NavBar.ale";
 
 
 function Detail() {
-<<<<<<< HEAD
-  return (
-    <div className='font-bold'>Este es el componente detail</div>
-  )
-=======
 
 
 const [PAD, setPAD] = useState([]);
@@ -41,7 +36,6 @@ return (
       </div>
 
   );
->>>>>>> c8d36a6da10ea521c90efda4c22b1826f94698af
 }
 
 export default Detail;

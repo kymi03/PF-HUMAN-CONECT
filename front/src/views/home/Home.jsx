@@ -1,15 +1,4 @@
 import React from 'react';
-<<<<<<< HEAD
-import NavBar from '../../components/NavBar/NavBar';
-
-const Home = () => {
-  return (
-    <div className='bg-amber-200'>
-      <NavBar/>
-    </div>
-    
-  );
-=======
 import NavBarAle from '../../components/NavBar/NavBar.ale';
 import LeftInfo from '../../components/leftInfo/LeftInfo';
 import Footer from '../../components/footer/Footer';
@@ -74,7 +63,6 @@ const Home = () => {
 
 </div>
   )
->>>>>>> c8d36a6da10ea521c90efda4c22b1826f94698af
 };
 
 export default Home;
