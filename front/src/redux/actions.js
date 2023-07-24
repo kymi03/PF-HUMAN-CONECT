@@ -1,4 +1,13 @@
-import { GET_ALL_PROJECTS , GET_ALL_LOCATION ,  ORDER_BY_DATE } from "./actions-types";
+
+
+import { 
+  GET_ALL_PROJECTS,
+  GET_ALL_LOCATION
+  ORDER_BY_DATE
+  GET_BY_INPUT,
+  POST_NEW_USER
+} from "./actions-types";
+
 import axios from "axios";
 export const getAllProjects = ( value , type )=>{
 
@@ -6,13 +15,10 @@ if ((!value && !type) || (value==="Todas")){  return async function  (dispatch){
     try {
       const allProjects = await axios.get('http://localhost:3001/projects')
 
-
-
       return dispatch({
         type:GET_ALL_PROJECTS,
         payload: allProjects.data
       })
-
     } catch (error) {
       console.log(error.message);
     }
@@ -39,6 +45,7 @@ if (value && type ){  return async function  (dispatch){
 export const getAllLocations = ()=>{
   return async function  (dispatch){
       try {
+
         const PAD = await axios.get('http://localhost:3001/projects')
         const DataPAD = PAD.data
   
@@ -89,6 +96,7 @@ export const orderByDate = (order , PAD)=>{
    
         const ordenator = {"order": order , "PAD":PAD}
         // const locationList = getUniqueLocations(locationsProtoList);
+
         return dispatch({
           type:ORDER_BY_DATE,
           payload: ordenator
@@ -100,4 +108,19 @@ export const orderByDate = (order , PAD)=>{
     }
   }
 
+export function postNewUser (payload) {
+  return function(dispatch){
+    try {
+      axios.post('http://localhost:3001/user', payload )
+      .then((data)=>{
+        return dispatch({
+          type: POST_NEW_USER,
+          payload:data
+        })
+      })
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+}
 
