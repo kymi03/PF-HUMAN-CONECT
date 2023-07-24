@@ -1,6 +1,7 @@
 
 export const GET_ALL_PROJECTS = 'GET_ALL_PROJECTS'
 export const GET_ALL_LOCATION = 'GET_ALL_LOCATION'
+export const GET_ARTICLES = 'GET_ARTICLES'
 
 
 export const PROJECTS = 'PROJECTS'

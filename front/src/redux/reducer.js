@@ -1,12 +1,13 @@
 import {
   GET_ALL_PROJECTS , GET_ALL_LOCATION ,  ORDER_BY_DATE,
-  PROJECTS , DOCUMENTARYS , ARTICLES
+  PROJECTS , DOCUMENTARYS , ARTICLES, GET_ARTICLES
   } from "./actions-types";
   
   const initialState = {
     allProjects: [],
     allProjectsSR: [],
-    allLocations: []
+    allLocations: [],
+    allArticles: []
   };
   
   const reducer = (state = initialState, action) => {
@@ -22,6 +23,11 @@ import {
           ...state,
           allLocations: action.payload,
         };
+      case GET_ARTICLES:
+        return{
+          ...state,
+          allArticles:action.payload
+        }
 
       case ORDER_BY_DATE:
 
