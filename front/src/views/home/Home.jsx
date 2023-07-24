@@ -1,6 +1,6 @@
 import React from 'react';
 import NavBarAle from '../../components/NavBar/NavBar.ale';
-import LeftInfo from '../../components/leftInfo/LeftInfo';
+import LeftInfoHome from '../../components/leftInfo/LeftInfoHome';
 import Footer from '../../components/footer/Footer';
 
 import { Carousel } from 'flowbite-react';
@@ -8,7 +8,6 @@ import { Carousel } from 'flowbite-react';
 const Home = () => {
     return (
         <div>
-
             <div>
                 <NavBarAle />
                 <p className="ml-11 mb-5 text-justify text-5xl font-semibold text-gray-900 dark:text-white">JUNTOS SOMOS</p>
