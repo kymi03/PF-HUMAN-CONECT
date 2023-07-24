@@ -8,7 +8,7 @@ function FooterMoreInfo() {
   
       <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
       <div class="sm:flex sm:items-center sm:justify-between">
-          <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2023 <a href="https://flowbite.com/" class="hover:underline">Human Conet</a>. Todos los derechos reservados
+          <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2023 <a href="http://localhost:5173/" class="hover:underline">Human Conet</a>. Todos los derechos reservados
           </span>
           <div class="flex mt-4 space-x-5 sm:justify-center sm:mt-0">
               <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
