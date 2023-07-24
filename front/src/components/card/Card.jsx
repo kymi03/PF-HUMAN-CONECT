@@ -10,9 +10,9 @@ function Card(props) {
 
   <div class="  bg-white border border-gray-200 shadow dark:bg-gray-800 dark:border-gray-700">
    
-    <a href={`/detail/${props._id}`}>
-        <img class="" src={props.media ? props.media.images[0].imageUrl : 'https://humanconet.org/wp-content/uploads/2022/09/Cover-Home-Human-Conet-01-1-1536x780.webp' } alt="" />
-    </a>
+    {/* <a href={`/detail/${props._id}`}>
+        <img class="" src={ props.media.images[0].imageUrl ? props.media.images[0].imageUrl : 'https://humanconet.org/wp-content/uploads/2022/09/Anchincaya-Resiste-HC-01-1024x1024.webp' } alt="" />
+    </a> */}
  
     <div class="p-5">
         <a href={`/detail/${props._id}`}>

@@ -1,24 +1,61 @@
-import React, { useState } from 'react'
-import { getProjectsByInput } from '../../redux/actions'
-import { useDispatch } from 'react-redux'
+import React, { useEffect, useState } from 'react'
+import { getAllLocations, getAllProjects, orderByDate } from '../../redux/actions'
+import { useDispatch, useSelector } from 'react-redux'
 import { Dropdown } from 'flowbite-react';
+import {
+  // GET_ALL_PROJECTS , GET_ALL_LOCATION ,  ORDER_BY_DATE,
+  PROJECTS , DOCUMENTARYS , ARTICLES
+  } from "../../redux/actions-types";
 function LeftInfo() {
+
+
     const dispatch = useDispatch()
 
-    const [location, setLocation ] = useState('Filtra Por Lugar');
+    useEffect(() => {
+      // dispatch(getAllProjects("Todas"));
+      dispatch(getAllLocations());
+    }, []);
+    
+    
+    const [ aux, setAux] = useState(false)
+    const [date, setDate ] = useState('Filtra Por Fecha');
+    
+    const locations = useSelector(state => state.allLocations)
 
-    const handleChange = (event) => {
-        dispatch(getProjectsByInput(event.target.value))
-        // console.log(event.target.value);
-    }
 
-    const locations = [1,2,4,5]
 
     const handleSelectLocation = (event) => {
-      setLocation('hi')
-      console.log(location);
-      console.log(event.value);
+      dispatch(getAllProjects(event.target.value , "location"))
+      aux ? setAux(false) : setAux(true)     
     }
+
+    const handleSearchName = (event) => {
+   if(event.target.value) { dispatch(getAllProjects(event.target.value , "name")) } 
+   if(event.target.value === "") { dispatch(getAllProjects()) } 
+   
+  // aux ? setAux(false) : setAux(true)     
+    }
+
+    const handleOrder = (event) => {
+    
+    dispatch(orderByDate(event.target.value , PROJECTS ))
+    aux ? setAux(false) : setAux(true)  
+  
+    }
+
+// Function to generate the <option> elements from the locations array
+// const generateOptions = (options) => {
+//   return options.map((option) => (
+//     <option key={option} value={option}>
+//       {option}
+//     </option>
+//   ));
+// };
+
+// Usage in the JSX component
+
+  // const options = generateOptions(locations)
+    
   return (
 
     <div class="max-w-sm p-3  bg-white border border-gray-200 shadow dark:bg-gray-800 dark:border-gray-700">
@@ -41,12 +78,23 @@ Conoce nuestras acciones contadas por las comunidade </p>
             </svg>
         </div>
 
-        <input onChange={handleChange} type="search" id="default-search" class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Busca..." required ></input>
+        <input 
+        onInput={handleSearchName} 
+        type="search" id="default-search" class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Busca..." required ></input>
 
 
         </div>
 </form>
 
+    <select name="sort" onChange={handleSelectLocation}>
+        {/* {locations} */}
+    </select>
+
+        <select name="sort" onChange={handleOrder} >
+          <option value="dateAll">Todos</option>
+          <option value="dateAsc">Más Reciente</option>
+          <option value="dateDes">Más Antiguo</option>
+        </select>
     <a href="#">
         <img class="" src={''} alt="" />
     </a>
@@ -59,51 +107,9 @@ Conoce nuestras acciones contadas por las comunidade </p>
 
     </div>
 
-   
-    <div class="flex sm:justify-center mb-2">    
-    
-    
-    <Dropdown
-      label={location}
-      item={handleSelectLocation}
-    >
-      
-  {/* {locations.map( (loc) => {
- <Dropdown.Item onClick={()=>setLocation("Dashboard!")} >
- 
-</Dropdown.Item>
-  })   
-} */}
 
-<Dropdown.Item 
-onClick={()=>setLocation("Valle del Cauca")}
-// onClick={()=>setLocation("Valle del Cauca")} 
-
->
-Valle del Cauca
- </Dropdown.Item>
-    </Dropdown>
-    
-    </div>
    
-    <div class="flex sm:justify-center mb-2">    <Dropdown
-      label="Ordena por Fecha"
-    >
-      <Dropdown.Item>
-        Dashboard
-      </Dropdown.Item>
-      <Dropdown.Item>
-        Settings
-      </Dropdown.Item>
-      <Dropdown.Item>
-        Earnings
-      </Dropdown.Item>
-      <Dropdown.Item>
-        Sign out
-      </Dropdown.Item>
-    </Dropdown>
-    
-    </div>
+
 
         <div class="flex mt-4 space-x-5 sm:justify-center md:mt-0">
             <a href="#" class="text-gray-400 hover:text-gray-900 dark:hover:text-white">
