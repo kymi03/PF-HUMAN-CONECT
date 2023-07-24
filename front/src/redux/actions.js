@@ -1,9 +1,9 @@
-
-
 import { 
   GET_ALL_PROJECTS,
   GET_ALL_LOCATION,
   ORDER_BY_DATE,
+  GET_BY_INPUT,
+  GET_ARTICLES,
   POST_NEW_USER
 } from "./actions-types";
 
@@ -123,3 +123,32 @@ export function postNewUser (payload) {
   }
 }
 
+export function postNewArticle (payload) {
+  return function(dispatch){
+    try {
+      axios.post('http://localhost:3001/articles', payload )
+      .then((data)=>{
+        return dispatch({
+          type: POST_NEW_ARTICLE,
+          payload:data
+        })
+      })
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+}
+
+export function getArticles(){
+  return async function(dispatch){
+    try {
+      var response = await axios.get('http://localhost:3001/articles')
+      return dispatch({
+        type: GET_ARTICLES,
+        payload: response.data
+      })
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+}
