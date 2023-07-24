@@ -6,6 +6,7 @@ import FormJoin from './components/form/FormJoin'
 import Projects from './components/projects/Projects'
 import Articles from './components/articles/articles'
 import Detail from './views/detail/Detail';
+import { PostArticle } from './components/articles/PostArticle'
 
 function App() {
   
@@ -18,6 +19,7 @@ function App() {
         <Route path="/formjoin" element={<FormJoin/>}/>
         <Route path="/projects" element={<Projects />}/>
         <Route path="/articles" element={<Articles />}/>
+        <Route path='/articles/post' element={<PostArticle />} />  
         <Route path="/documentarys" element={<Projects />}/>
         <Route path='/detail/:id' element={<Detail />} />  
       </Routes>

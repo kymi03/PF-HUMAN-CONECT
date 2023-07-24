@@ -1,6 +1,3 @@
-var regexPassword = new RegExp(/^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d][A-Za-z\d!@#$%^&*()_+]{7,19}$/);
-// var regexPassword = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d][A-Za-z\d!@#$%^&*()_+]{7,19}$/;
-
 function validation(userData) {
   const errors = {};
   if (!userData.name) {
@@ -19,7 +16,7 @@ function validation(userData) {
     errors.lastName = "Escriba sin numeros ni simbolos"
   }
   else if (userData.lastName.length < 2 || userData.lastName.length > 40) {
-    errors.lastName = "El apellido debe tener al menos 2 letras y menos de 40"
+    errors.lastName = "El apellido debe tener entre 2 y 40 caracteres"
   }
   else if (!userData.email) {
     errors.email = "Escriba un email"
@@ -28,7 +25,7 @@ function validation(userData) {
     errors.email = 'Debes ingresar una dirección de email válida'
   }
   else if (userData.email.length < 7 || userData.email.length > 50) {
-    errors.email = "El email debe tener al menos 7 letras y menos de 40"
+    errors.email = "El email debe tener entre 7 y 50 caracteres"
   }
   else if (!/^([0-9])*$/.test(userData.phone)) {
     errors.phone = 'Debes ingresar una número de teléfono válido'
