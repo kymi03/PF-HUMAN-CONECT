@@ -2,6 +2,13 @@ const documentaryModel = require("../../models/documentary");
 
 const putDocumentaryHandler = async (req, res) => {
   const { id, name, media, body, author, breaf, date, location } = req.body;
+  if (!media.images)
+  media.images = {
+    imageName:
+      "Manifestantes anti-embalses se protegen de los gases lacrimógenos",
+    imageUrl:
+      "https://humanconet.org/wp-content/uploads/2023/04/Black-Blocks-1.png.webp",
+  };
   try {
     //Guardamos el articulo actualizado en la BD
     const putDocumentary = await documentaryModel.updateOne(
