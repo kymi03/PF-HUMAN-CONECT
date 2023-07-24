@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { postNewUser } from "../../redux/actions";
 import validation from "../validations/validation";
 import Swal from "sweetalert2";
@@ -9,7 +8,6 @@ import Footer from "../footer/Footer"
 
 const FormJoin = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const [errors, setErrors] = useState({});
   const [userData, setUserData] = useState({

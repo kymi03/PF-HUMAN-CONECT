@@ -48,3 +48,19 @@ export function postNewUser (payload) {
     }
   }
 }
+
+export function postNewArticle (payload) {
+  return function(dispatch){
+    try {
+      axios.post('http://localhost:3001/articles', payload )
+      .then((data)=>{
+        return dispatch({
+          type: POST_NEW_ARTICLE,
+          payload:data
+        })
+      })
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+}

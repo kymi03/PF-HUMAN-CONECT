@@ -10,7 +10,8 @@ import React from 'react';
 import FooterMoreInfo from '../footer/FooterMoreInfo.jsx';
 import Cards from '../cards/Cards.jsx';
 import LeftInfo from '../leftInfo/LeftInfo.jsx';
-import NavBar from '../NavBar/NavBar.jsx';
+import { Link } from 'react-router-dom';
+import NavBarAle from '../NavBar/NavBar.ale.jsx';
 function Articles() {
 
   const currentPAD = [
@@ -112,13 +113,14 @@ function Articles() {
     }
   ]
   
-  
-  console.log(currentPAD.length);
 
   return (
     <>
-      <div className="flex" >
-      <NavBar/>
+      <div className="flex flex-col" >
+      <NavBarAle/>
+      <Link to={"/articles/post"} >
+      <button className=' rounded-md bg-blue-600'>Publica un nuevo artículo</button>
+      </Link>
         <div >
           <LeftInfo />
         </div>
