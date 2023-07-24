@@ -6,6 +6,7 @@ import FormJoin from './components/form/FormJoin'
 import Projects from './components/projects/Projects'
 import Articles from './components/articles/articles'
 import Detail from './views/detail/Detail';
+import AboutUs from './views/about/AboutUs.jsx'
 import { PostArticle } from './components/articles/PostArticle'
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
         <Route path='/articles/post' element={<PostArticle />} />  
         <Route path="/documentarys" element={<Projects />}/>
         <Route path='/detail/:id' element={<Detail />} />  
+        <Route path='/aboutUs' element={<AboutUs />} />  
       </Routes>
     </div>
   )
