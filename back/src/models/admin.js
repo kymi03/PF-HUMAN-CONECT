@@ -2,28 +2,23 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const adminSchema = new Schema({
-  adminId: {
-    type: Number,
-    required: true,
-    unique: true,
-  },
-  adminName: {
+  name: {
     type: String,
     required: true,
   },
-  adminLastName: {
+  lastName: {
     type: String,
     required: true,
   },
-  adminEmail: {
+  email: {
     type: String,
     required: true,
   },
-  userPassword: {
+  password: {
     type: String,
     required: true,
   },
-  adminPhone: {
+  phone: {
     type: Number,
     required: true,
   },

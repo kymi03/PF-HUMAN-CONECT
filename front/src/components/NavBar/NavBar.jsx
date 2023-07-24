@@ -6,7 +6,7 @@ export default function NavBar() {
       <div className="container mx-auto flex items-center justify-between">
         <div className="flex items-center">
             <div>
-              <img src='/assets/icons/turtle-turquoise.png' alt="turtle icon" className="w-14 h-14" />
+              <img src='https://humanconet.org/wp-content/uploads/2022/03/Turtle-Turquoise-1-2048x2044.png' alt="turtle icon" className="w-14 h-14" />
             </div>
         </div>
 

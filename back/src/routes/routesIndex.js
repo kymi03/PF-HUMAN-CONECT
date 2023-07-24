@@ -1,10 +1,16 @@
 const { Router } = require("express");
 const mainRoute = Router();
-const getRoutes = require("./getRoutes/getRouterIndex");
-const postRoutes = require("../routes/postRoutes/postRouterIndex")
+const articleRoutes = require("./articlesRoutes/articlesRoutes")
+const projectRoutes = require ("./projectsRoutes/projectsRoutes")
+const documentariesRoutes = require("./docsRoutes/docsRoutes");
+const adminsRoutes = require("./adminsRoutes/adminsRoutes");
+const userRoutes = require('./userRoutes/userRoutes');
 
-mainRoute.use("/get", getRoutes);
 
-mainRoute.use('/post', postRoutes);
+mainRoute.use("/articles", articleRoutes);
+mainRoute.use("/documentaries", documentariesRoutes);
+mainRoute.use("/admins", adminsRoutes);
+mainRoute.use("/projects", projectRoutes)
+mainRoute.use("/user", userRoutes);
 
-module.exports = mainRoute
+module.exports = mainRoute;
