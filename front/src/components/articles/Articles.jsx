@@ -6,11 +6,14 @@ Autor: AlejoC137
 Creation: 20 de julio 2023
 ===============
 */
-import React from 'react';
+import React, { useEffect } from 'react';
 import FooterMoreInfo from '../footer/FooterMoreInfo.jsx';
 import Cards from '../cards/Cards.jsx';
 import LeftInfo from '../leftInfo/LeftInfo.jsx';
-import NavBar from '../NavBar/NavBar.jsx';
+import { Link } from 'react-router-dom';
+import NavBarAle from '../NavBar/NavBar.ale.jsx';
+import { useDispatch, useSelector } from 'react-redux';
+import { getArticles } from '../../redux/actions.js';
 function Articles() {
 
   const currentPAD = [
@@ -111,19 +114,27 @@ function Articles() {
       "date":"a day"
     }
   ]
+
+  const dispatch = useDispatch()
+  const allArticles = useSelector(state=> state.allArticles)
+
+  useEffect(()=>{
+    dispatch(getArticles())
+  },[]) 
   
-  
-  console.log(currentPAD.length);
 
   return (
     <>
-      <div className="flex" >
-      <NavBar/>
+      <div className="flex flex-col" >
+      <NavBarAle/>
+      <Link to={"/articles/post"} >
+      <button className=' rounded-md bg-blue-600'>Publica un nuevo artículo</button>
+      </Link>
         <div >
           <LeftInfo />
         </div>
         <div >
-          <Cards currentPAD={currentPAD} />
+          <Cards currentPAD={allArticles} />
         </div>
         {/* <div className='h-500'>hi</div> */}
       </div>

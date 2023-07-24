@@ -5,7 +5,6 @@ export default {
     extend: {colors:{
       grey: '#e8e5de',
       vividGreen: '#2f8e37',
-      backgroundImage: {'image': "url('./src/assets/BACKGOUDN IMAGE_LANDING.png')"}
     },
     fontFamily: {
       'poppins': ['Poppins', 'sans-serif']},
