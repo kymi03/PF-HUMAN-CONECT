@@ -18,7 +18,7 @@ const getProjectController = async (req, res) => {
       projects
         ? res.status(200).json(projects)
         : res.status(404).json({
-            error: `No se encontró el proyecto con id: ${id}`,proyectos
+            error: `No se encontró el proyecto con id: ${id}`,projects
           });
     } else {
       const projects = await projectModel.find(query);
