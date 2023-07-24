@@ -12,6 +12,7 @@ function Cards(props) {
             date={PAD.date}
             name={PAD.name}
             breaf={PAD.breaf}
+            _id={PAD._id}
           />
         </div>
       ))}
