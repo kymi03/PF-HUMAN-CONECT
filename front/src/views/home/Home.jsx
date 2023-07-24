@@ -1,6 +1,6 @@
 import React from 'react';
 import NavBarAle from '../../components/NavBar/NavBar.ale';
-import LeftInfo from '../../components/leftInfo/LeftInfo';
+import LeftInfoHome from '../../components/leftInfo/LeftInfoHome';
 import Footer from '../../components/footer/Footer';
 
 import { Carousel } from 'flowbite-react';
@@ -14,7 +14,7 @@ const Home = () => {
         <p className="ml-11 mb-5 text-justify text-5xl font-semibold text-gray-900 dark:text-white">JUNTOS SOMOS</p>
       <div classNameName="flex ">
         <div classNameName=' w-1/5 h-3/5  ml-11'>
-          <LeftInfo />
+          <LeftInfoHome />
         </div>
 
         <div id="default-carousel" class="relative  h-3/5 w-3/5" data-carousel="slide">
