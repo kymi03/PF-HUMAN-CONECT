@@ -13,7 +13,7 @@ const Home = () => {
                 <p className="ml-11 mb-5 text-justify text-5xl font-semibold text-gray-900 dark:text-white">JUNTOS SOMOS</p>
                 <div className=" flex ">
                     <div className=' w-1/5 h-3/5  ml-11 mr-11'>
-                        <LeftInfo />
+                        <LeftInfoHome />
                     </div>
                     <div>
                         <img
