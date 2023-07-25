@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import NavBarAle from "../NavBar/NavBar.ale";
 import Swal from "sweetalert2"
 import { useDispatch } from "react-redux";
-import articleValidation from "../validations/articleValidation";
-import { postNewArticle } from "../../redux/actions";
+import PADValidation from "../validations/PADValidation";
+import { postNewPAD } from "../../redux/actions";
 
-export const PostArticle = () => {
+export const PostPAD = () => {
     const dispatch = useDispatch();
     const [errors, setErrors] = useState({});
-    const [artData, setArtData] = useState({
+    const [padData, setPADData] = useState({
         name: "",
         author: "",
         // media: {},
@@ -18,15 +18,15 @@ export const PostArticle = () => {
         location:""
     });
 
-    const hdrPostArtSubmit = (event) => {
+    const hdrPostPADSubmit = (event) => {
         event.preventDefault();
         if (
-            artData?.name == "" ||
-            artData?.author == "" ||
-            artData?.body == "" ||
-            artData?.breaf == "" ||
-            artData?.date == "" ||
-            artData?.location == "" 
+            padData?.name == "" ||
+            padData?.author == "" ||
+            padData?.body == "" ||
+            padData?.breaf == "" ||
+            padData?.date == "" ||
+            padData?.location == "" 
         )
             return Swal.fire("Complete todos los campos");
         if (errors?.name) return Swal.fire(errors.name);
@@ -35,9 +35,9 @@ export const PostArticle = () => {
         if (errors?.breaf) return Swal.fire(errors.breaf);
         if (errors?.date) return Swal.fire(errors.date);
         if (errors?.location) return Swal.fire(errors.location);
-        dispatch(postNewArticle(artData));
+        dispatch(postNewPAD(padData ,'articles' )); //<----Maka, aquí ese articles varia en funcion de lo que le pase el usario por medio de un selector (que se debe crear), asi el usuario controla a donde esta posteando sin necesidad de crear un nuevo form para cada PAD ;) 
         Swal.fire("Post creado exitosamente");
-        setArtData({
+        setPADData({
             name: "",
             author: "",
             // media: {},
@@ -49,13 +49,13 @@ export const PostArticle = () => {
     };
 
     const hdrChange = (event) => {
-        setArtData({
-            ...artData,
+        setPADData({
+            ...padData,
             [event.target.name]: event.target.value,
         });
         setErrors(
-            articleValidation({
-                ...artData,
+            PADValidation({
+                ...padData,
                 [event.target.name]: event.target.value,
             })
         );
@@ -67,12 +67,12 @@ export const PostArticle = () => {
             <div className=" flex flex-col place-items-center">
                 <form 
                 action="submit" 
-                onSubmit={hdrPostArtSubmit}
+                onSubmit={hdrPostPADSubmit}
                 className=" rounded-md bg-gray-100 w-11/12 pt-2 place-items-center">
                     <h6 className=" text-xs font-semibold mb-1 font-poppins">Título</h6>
                     <input 
                     name="name"
-                    value={artData.name}
+                    value={padData.name}
                     onChange={(event) => hdrChange(event)}
                     className=" h-7 rounded-md border-gray-300 w-2/5" 
                     type="text" />
@@ -82,7 +82,7 @@ export const PostArticle = () => {
                             <h6 className=" text-xs font-semibold my-1 font-poppins">Autor</h6>
                             <input 
                             name="author"
-                            value={artData.author}
+                            value={padData.author}
                             onChange={(event) => hdrChange(event)}
                             className=" h-7 rounded-md border-gray-300 w-11/12" 
                             type="text" />
@@ -92,7 +92,7 @@ export const PostArticle = () => {
                             <input 
                             name="date"
                             min="2000-01-01"
-                            value={artData.date}
+                            value={padData.date}
                             onChange={(event) => hdrChange(event)}
                             className=" h-7 rounded-md border-gray-300 w-11/12" 
                             type="date" />
@@ -103,14 +103,14 @@ export const PostArticle = () => {
                     {/* <h6 className=" text-xs font-semibold my-1 font-poppins">Media</h6>
                     <input 
                     name=""
-                    value={artData.media}
+                    value={padData.media}
                     onChange={(event) => hdrChange(event)}
                     className=" h-7 rounded-md border-gray-300 w-2/5" 
                     type="text" /> */}
                     <h6 className=" text-xs font-semibold my-1 font-poppins">Ubicación</h6>
                     <input 
                     name="location"
-                    value={artData.location}
+                    value={padData.location}
                     onChange={(event) => hdrChange(event)}
                     className=" h-7 rounded-md border-gray-300 w-2/5" 
                     type="text" />
@@ -118,7 +118,7 @@ export const PostArticle = () => {
                     <h6 className=" text-xs font-semibold my-1 font-poppins">Descripción</h6>
                     <textarea 
                     name="breaf"
-                    value={artData.breaf}
+                    value={padData.breaf}
                     onChange={(event) => hdrChange(event)}
                     className=" resize-none w-2/5 border-gray-300 rounded-md" 
                     type="text" />
@@ -126,7 +126,7 @@ export const PostArticle = () => {
                     <h6 className=" text-xs font-semibold my-1 font-poppins">Cuerpo del artículo</h6>
                     <textarea 
                     name="body"
-                    value={artData.body}
+                    value={padData.body}
                     onChange={(event) => hdrChange(event)}
                     className=" resize-none h-28 w-2/5 border-gray-300 rounded-md" 
                     type="text" />

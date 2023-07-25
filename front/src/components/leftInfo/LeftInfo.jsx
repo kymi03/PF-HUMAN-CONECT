@@ -1,52 +1,105 @@
 import React, { useEffect, useState } from 'react'
-import { getAllLocations, getAllProjects, orderByDate } from '../../redux/actions'
+import { getAllArticles, getAllLocations, getAllProjects, orderByDate } from '../../redux/actions'
 import { useDispatch, useSelector } from 'react-redux'
 import { Dropdown } from 'flowbite-react';
 import {
   // GET_ALL_PROJECTS , GET_ALL_LOCATION ,  ORDER_BY_DATE,
   PROJECTS , DOCUMENTARYS , ARTICLES
   } from "../../redux/actions-types";
-function LeftInfo() {
+  import { Link } from 'react-router-dom';
+
+function LeftInfo(props) {
 
 
     const dispatch = useDispatch()
 
+
     useEffect(() => {
-      // dispatch(getAllProjects("Todas"));
-      dispatch(getAllLocations());
+      dispatch(getAllLocations(props.PAD));
+      dispatch(getAllArticles(  ));
     }, []);
+    // useEffect(() => {
+    //   // dispatch(getAllLocations(props.PAD));
+    //   // dispatch(getAllArticles( name , location   ));
+    // }, []);
     
+    const [location, setLocation ] = useState('Todas');
+    const [name, setNane ] = useState('');
+    
+    console.log( name , location   );
     
     const [ aux, setAux] = useState(false)
     const [date, setDate ] = useState('Filtra Por Fecha');
+
+
     
     const locations = useSelector(state => state.allLocations)
 
 
 
     const handleSelectLocation = (event) => {
-      dispatch(getAllProjects(event.target.value , "location"))
+
+      setLocation(event.target.value )
+
+      switch (props.PAD) {
+        case PROJECTS:
+          dispatch(getAllProjects(event.target.value , "location" , location ))
+    
+        case ARTICLES:
+              dispatch( getAllArticles( name , location ) )
+    
+    
+        
+     
+      
+        default:
+          break;
+      }
+
+
+
+
+
+
       aux ? setAux(false) : setAux(true)     
     }
 
     const handleSearchName = (event) => {
-   if(event.target.value) { dispatch(getAllProjects(event.target.value , "name")) } 
-   if(event.target.value === "") { dispatch(getAllProjects()) } 
+      setNane(event.target.value)
+
+  switch (props.PAD) {
+    case PROJECTS:
+      if(event.target.value) { dispatch(getAllProjects(event.target.value , "name" , location)) } 
+      if(event.target.value === "") { dispatch(getAllProjects()) } 
+
+     case ARTICLES:
+      // if(event.target.value) { 
+        dispatch( getAllArticles( name , location ) )
+      //  } 
+      // if(event.target.value === "") { dispatch(getAllArticles()) } 
+
+
+    
+ 
+  
+    default:
+      break;
+  }
    
   // aux ? setAux(false) : setAux(true)     
     }
 
     const handleOrder = (event) => {
     
-    dispatch(orderByDate(event.target.value , PROJECTS ))
+    dispatch(orderByDate(event.target.value , props.PAD ))
     aux ? setAux(false) : setAux(true)  
   
     }
 
 // Function to generate the <option> elements from the locations array
 const generateOptions = (options) => {
-  return options.map((option) => (
-    <option key={option} value={option}>
+  return options.map((option , index ) => (
+    <option key={index} value={option}>
       {option}
     </option>
   ));
@@ -60,14 +113,18 @@ const generateOptions = (options) => {
 
     <div class="max-w-sm p-3  bg-white border border-gray-200 shadow dark:bg-gray-800 dark:border-gray-700">
 
-<a href="#">
+        <a href="#">
             <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Esto es Human Conet:</h5>
         </a>
 
 
-<p class="mb-3 font-normal text-gray-700 dark:text-gray-400">De los territorios a las ciudades, visibilizamos las luchas y acompañamos los procesos que protegen la vida en todas sus formas.
-Conoce nuestras acciones contadas por las comunidade </p>
+        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">De los territorios a las ciudades, visibilizamos las luchas y acompañamos los procesos que protegen la vida en todas sus formas.
+        Conoce nuestras acciones contadas por las comunidade </p>
 
+
+      <Link to={"/PAD/post"} >
+      <button className=' rounded-md bg-blue-600'>Publica un nuevo artículo</button>
+      </Link>
 
 <form>   
 <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Buscar</label>
@@ -80,7 +137,7 @@ Conoce nuestras acciones contadas por las comunidade </p>
 
         <input 
         onInput={handleSearchName} 
-        type="search" id="default-search" class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Busca..." required ></input>
+        type="search" id="default-search" class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Busca por nombre..." required ></input>
 
 
         </div>

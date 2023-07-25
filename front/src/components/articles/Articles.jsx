@@ -6,141 +6,58 @@ Autor: AlejoC137
 Creation: 20 de julio 2023
 ===============
 */
-import React, { useEffect } from 'react';
-import FooterMoreInfo from '../footer/FooterMoreInfo.jsx';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+import Footer from '../footer/Footer.jsx';
 import Cards from '../cards/Cards.jsx';
 import LeftInfo from '../leftInfo/LeftInfo.jsx';
-import { Link } from 'react-router-dom';
 import NavBarAle from '../NavBar/NavBar.ale.jsx';
-import { useDispatch, useSelector } from 'react-redux';
-import { getArticles } from '../../redux/actions.js';
+import { getAllArticles } from '../../redux/actions.js';
+import {
+  // GET_ALL_PROJECTS , GET_ALL_LOCATION ,  ORDER_BY_DATE,
+  PROJECTS , DOCUMENTARYS , ARTICLES
+  } from "../../redux/actions-types";
 function Articles() {
 
-  const currentPAD = [
-    {
-      "articleId": 1,
-  
-      "name": "Guerra del Agua.",
-  
-      "author": "Juanito Perez",
-  
-      "media": {
-        "images": [
-          {
-            "imageName": "Foto de persona sonriendo",
-            "imageUrl": "https://humanconet.org/wp-content/uploads/2023/04/Black-Blocks-1.png.webp"
-          },
-          {
-            "imageName": "Foto de persona sonriendo 2",
-            "imageUrl": "https://humanconet.org/wp-content/uploads/2023/04/Black-Blocks-1.png.webp"
-          }
-        ],
-  
-        "videos": [
-          {
-            "videoName": "niños jugando",
-            "videoUrl": "https://humanconet.org/wp-content/uploads/2023/04/Black-Blocks-1.png.webp"
-          }
-        ]
-      },
-  
-      "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ultrices nulla tempus dui interdum, id tempus tortor fringilla. Nullam id dui justo. Proin laoreet elit nec enim bibendum fringilla. Nunc non magna lorem. Cras id velit eget nibh finibus congue. Duis ut augue et turpis iaculis volutpat vitae aliquam massa. Donec aliquam tortor vel felis maximus, id condimentum enim finibus. In convallis ligula erat, non fringilla nisl tincidunt vel. Suspendisse at pulvinar felis, vitae pharetra est. Proin dapibus sodales vehicula. Aliquam auctor dolor id erat ultrices aliquet. Proin sed rutrum erat. Nullam dignissim eros id metus ornare finibus. Sed accumsan velit nec elit consectetur eleifend. Sed condimentum risus ante. Pellentesque feugiat neque eget posuere consequat. Nunc tincidunt posuere eros, porta ultricies nunc feugiat vel. Nunc eget pellentesque libero. Vestibulum interdum massa nec ante viverra, ac fermentum dui aliquam. Duis imperdiet sed neque vel fermentum. Etiam tempus vehicula efficitur.",
-      "breaf":" breaf articles ",
-      "location":"America",
-      "date":"a day"
-    },
-    {
-      "articleId": 2,
-  
-      "name": "Guerra del Agua.",
-  
-      "author": "Juanito Perez",
-  
-      "media": {
-        "images": [
-          {
-            "imageName": "Foto de persona sonriendo",
-            "imageUrl": "https://humanconet.org/wp-content/uploads/2023/04/Black-Blocks-1.png.webp"
-          },
-          {
-            "imageName": "Foto de persona sonriendo 2",
-            "imageUrl": "https://humanconet.org/wp-content/uploads/2023/04/Black-Blocks-1.png.webp"
-          }
-        ],
-  
-        "videos": [
-          {
-            "videoName": "niños jugando",
-            "videoUrl": "https://humanconet.org/wp-content/uploads/2023/04/Black-Blocks-1.png.webp"
-          }
-        ]
-      },
-  
-      "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ultrices nulla tempus dui interdum, id tempus tortor fringilla. Nullam id dui justo. Proin laoreet elit nec enim bibendum fringilla. Nunc non magna lorem. Cras id velit eget nibh finibus congue. Duis ut augue et turpis iaculis volutpat vitae aliquam massa. Donec aliquam tortor vel felis maximus, id condimentum enim finibus. In convallis ligula erat, non fringilla nisl tincidunt vel. Suspendisse at pulvinar felis, vitae pharetra est. Proin dapibus sodales vehicula. Aliquam auctor dolor id erat ultrices aliquet. Proin sed rutrum erat. Nullam dignissim eros id metus ornare finibus. Sed accumsan velit nec elit consectetur eleifend. Sed condimentum risus ante. Pellentesque feugiat neque eget posuere consequat. Nunc tincidunt posuere eros, porta ultricies nunc feugiat vel. Nunc eget pellentesque libero. Vestibulum interdum massa nec ante viverra, ac fermentum dui aliquam. Duis imperdiet sed neque vel fermentum. Etiam tempus vehicula efficitur.",
-      "breaf":" breaf articles ",
-      "location":"America",
-      "date":"a day"
-    },
-    {
-      "articleId": 3,
-  
-      "name": "Guerra del Agua.",
-  
-      "author": "Juanito Perez",
-  
-      "media": {
-        "images": [
-          {
-            "imageName": "Foto de persona sonriendo",
-            "imageUrl": "https://humanconet.org/wp-content/uploads/2023/04/Black-Blocks-1.png.webp"
-          },
-          {
-            "imageName": "Foto de persona sonriendo 2",
-            "imageUrl": "https://humanconet.org/wp-content/uploads/2023/04/Black-Blocks-1.png.webp"
-          }
-        ],
-  
-        "videos": [
-          {
-            "videoName": "niños jugando",
-            "videoUrl": "https://humanconet.org/wp-content/uploads/2023/04/Black-Blocks-1.png.webp"
-          }
-        ]
-      },
-  
-      "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ultrices nulla tempus dui interdum, id tempus tortor fringilla. Nullam id dui justo. Proin laoreet elit nec enim bibendum fringilla. Nunc non magna lorem. Cras id velit eget nibh finibus congue. Duis ut augue et turpis iaculis volutpat vitae aliquam massa. Donec aliquam tortor vel felis maximus, id condimentum enim finibus. In convallis ligula erat, non fringilla nisl tincidunt vel. Suspendisse at pulvinar felis, vitae pharetra est. Proin dapibus sodales vehicula. Aliquam auctor dolor id erat ultrices aliquet. Proin sed rutrum erat. Nullam dignissim eros id metus ornare finibus. Sed accumsan velit nec elit consectetur eleifend. Sed condimentum risus ante. Pellentesque feugiat neque eget posuere consequat. Nunc tincidunt posuere eros, porta ultricies nunc feugiat vel. Nunc eget pellentesque libero. Vestibulum interdum massa nec ante viverra, ac fermentum dui aliquam. Duis imperdiet sed neque vel fermentum. Etiam tempus vehicula efficitur.",
-      "breaf":" breaf articles ",
-      "location":"America",
-      "date":"a day"
-    }
-  ]
-
-  const dispatch = useDispatch()
-  const allArticles = useSelector(state=> state.allArticles)
-
-  useEffect(()=>{
-    dispatch(getArticles())
-  },[]) 
   
 
-  return (
-    <>
-      <div className="flex flex-col" >
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getAllArticles());
+
+
+  }, []);
+  
+  const currentPAD = useSelector(state => state.allArticles)
+
+  
+
+  return (  
+    <div >
       <NavBarAle/>
-      <Link to={"/articles/post"} >
-      <button className=' rounded-md bg-blue-600'>Publica un nuevo artículo</button>
-      </Link>
-        <div >
-          <LeftInfo />
+      <p class="ml-11 mb-5 text-justify text-5xl font-semibold text-gray-900 dark:text-white">ARTICULOS </p>
+      
+      <div className="flex">
+    
+        <div className=' w-1/5 h-3/5  ml-11'>
+        <LeftInfo PAD = {ARTICLES}/>
         </div>
-        <div >
-          <Cards currentPAD={allArticles} />
+    
+        <div className='h-3/5 w-4/5  bg-white border border-gray-200 shadow dark:bg-gray-800 dark:border-gray-700'>
+        <Cards 
+      currentPAD={currentPAD} 
+      PAD =  {ARTICLES}
+        />
         </div>
-        {/* <div className='h-500'>hi</div> */}
+    
       </div>
-      <FooterMoreInfo />
-    </>
-  );
+      
+        <Footer />
+      </div>
+      )
 }
 
 export default Articles;
+
+
