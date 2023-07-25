@@ -1,9 +1,11 @@
 
 export const GET_ALL_PROJECTS = 'GET_ALL_PROJECTS'
+export const GET_ALL_ARTICLES = 'GET_ALL_ARTICLES'
 export const GET_ARTICLES = 'GET_ARTICLES'
 
 export const GET_ALL_LOCATION = 'GET_ALL_LOCATION'
 
+export const SET_GLOBAL_PAD = 'SET_GLOBAL_PAD'
 
 export const PROJECTS = 'PROJECTS'
 export const DOCUMENTARYS = 'DOCUMENTARYS'

@@ -4,10 +4,10 @@ import Landing from "./views/landing/Landing"
 import Home from "./views/home/Home"
 import FormJoin from './components/form/FormJoin'
 import Projects from './components/projects/Projects'
-import Articles from './components/articles/articles'
+import Articles from './components/articles/Articles'
 import Detail from './views/detail/Detail';
 import AboutUs from './views/about/AboutUs.jsx'
-import { PostArticle } from './components/articles/PostArticle'
+import { PostPAD } from './components/articles/PostPAD'
 
 function App() {
   
@@ -20,7 +20,7 @@ function App() {
         <Route path="/formjoin" element={<FormJoin/>}/>
         <Route path="/projects" element={<Projects />}/>
         <Route path="/articles" element={<Articles />}/>
-        <Route path='/articles/post' element={<PostArticle />} />  
+        <Route path='/PAD/post' element={<PostPAD />} />  
         <Route path="/documentarys" element={<Projects />}/>
         <Route path='/detail/:id' element={<Detail />} />  
         <Route path='/aboutUs' element={<AboutUs />} />  
