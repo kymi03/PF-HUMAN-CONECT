@@ -18,8 +18,25 @@ function Detail() {
         window.alert("No hay proyectos con ese ID");
       }
     });
-    return setPAD({});
-  }, []);
+
+    axios.get(`http://localhost:3001/articles?id=${id}`).then(({ data }) => {
+      if (data.name) {
+        setPAD(data);
+      } else {
+        window.alert("No hay artículos con ese ID");
+      }
+    });
+
+    axios
+      .get(`http://localhost:3001/documentaries?id=${id}`)
+      .then(({ data }) => {
+        if (data.name) {
+          setPAD(data);
+        } else {
+          window.alert("No hay documentales con ese ID");
+        }
+      });
+  }, [id]); // nota que [id] se ha movido a este lugar.
 
   // console.log(PAD)
   return (
