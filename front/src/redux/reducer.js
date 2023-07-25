@@ -1,6 +1,6 @@
 import {
-  GET_ALL_PROJECTS , GET_ALL_LOCATION ,  ORDER_BY_DATE,
-  PROJECTS , DOCUMENTARYS , ARTICLES, GET_ARTICLES
+  GET_ALL_PROJECTS , GET_ALL_LOCATION ,  ORDER_BY_DATE, GET_ALL_ARTICLES,
+  PROJECTS , DOCUMENTARYS , ARTICLES, GET_ARTICLES , SET_GLOBAL_PAD
   } from "./actions-types";
   
   const initialState = {
@@ -14,6 +14,7 @@ import {
     allDocumentarys2: [],
 
     allLocations: [],
+
  
   };
   
@@ -25,16 +26,22 @@ import {
           allProjects: action.payload,
           allProjects2: action.payload,
         };
+      case GET_ALL_ARTICLES:
+        return {
+          ...state,
+          allArticles: action.payload,
+          allArticles2: action.payload,
+        };
+        
       case GET_ALL_LOCATION:
         return {
           ...state,
           allLocations: action.payload,
         };
-      case GET_ARTICLES:
-        return{
-          ...state,
-          allArticles:action.payload
-        }
+      
+
+
+ 
 
       case ORDER_BY_DATE:
 
@@ -85,13 +92,36 @@ if(action.payload.PAD === PROJECTS ){
   };
 
 }
-if(action.payload.PAD === ARTICLES ){  console.log('i');
+if(action.payload.PAD === ARTICLES ){  
+  
+  let orderedArticles = [...state.allArticles];
+  if (action.payload.order === "dateAsc") {
+
+    orderedArticles = sortByDateAsc(orderedArticles)
+
+  } else if (action.payload.order === "dateDes") {
+
+    orderedArticles = sortByDateDes(orderedArticles)
+
+
+  } else if (action.payload.order === "dateAll") {
+
+    orderedArticles = state.allArticles
+
+  } 
+  return {
+    ...state,
+    // order: action.payload,
+    allArticles: orderedArticles,
+    // filtered: orderedDogs,
+  };
+
+
 }
 if(action.payload.PAD === DOCUMENTARYS ){  console.log('i');
 }
   
-  // console.log('i');
-  // let orderedProjects  = [...state.alldogs];
+
 
 
         

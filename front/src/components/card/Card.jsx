@@ -6,11 +6,11 @@ function Card(props) {
 
   return (
     <div class="  bg-white border border-gray-200 shadow dark:bg-gray-800 dark:border-gray-700">
-      <a href={`/detail/${props._id}`}>
+      <a href={`/detail/${props.PAD}=${props._id}`}>
         <img
           class=""
           src={
-            props.media.images[0].imageUrl
+            props.media.images[0]
               ? props.media.images[0].imageUrl
               : "https://humanconet.org/wp-content/uploads/2022/09/Anchincaya-Resiste-HC-01-1024x1024.webp"
           }
@@ -19,7 +19,7 @@ function Card(props) {
       </a>
 
       <div class="p-5">
-        <a href={`/detail/${props._id}`}>
+        <a href={`/detail/${props.PAD}=${props._id}`}>
           <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
             {props.name}
           </h5>
@@ -32,7 +32,7 @@ function Card(props) {
         </p>
 
         <a
-          href={`/detail/${props._id}`}
+          href={`/detail/${props.PAD}=${props._id}`}
           class="inline-flex items-center px-2 py-1 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
         >
           Seguir leyendo
