@@ -5,8 +5,8 @@ import { useParams } from "react-router-dom";
 import NavBarAle from "../../components/NavBar/NavBar.ale";
 import FooterMoreInfo from "../../components/footer/FooterMoreInfo";
 import { PROJECTS, ARTICLES, DOCUMENTARYS } from "../../redux/actions-types";
+
 function Detail() {
-  //       <<<<<<<<=============== AlejoC137
   const [PAD, setPAD] = useState([]);
   const { id } = useParams();
   const { images = [], videos = [] } = PAD.media || {};
@@ -28,24 +28,22 @@ function Detail() {
     case DOCUMENTARYS:
       source = "documentaries";
       break;
-
-    default:
-      break;
   }
-  console.log(`http://localhost:3001/${source}?id=${value}`);
+
   useEffect(() => {
-    axios
-      .get(`http://localhost:3001/${source}?id=${value}`)
-      .then(({ data }) => {
-        if (data.name) {
-          setPAD(data);
-        } else {
-          window.alert("No hay proyectos con ese ID");
-        }
-      });
-    return setPAD({});
-  }, []);
-  //       <<<<<<<<=============== AlejoC137
+    if (source !== "") {
+      axios
+        .get(`http://localhost:3001/${source}?id=${value}`)
+        .then(({ data }) => {
+          if (data.name) {
+            setPAD(data);
+          } else {
+            window.alert(`No hay ${source} con ese ID`);
+          }
+        })
+        .catch((error) => console.error(error));
+    }
+  }, [id, source, value]); // Asegúrate de que las dependencias estén aquí para evitar bucles infinitos.
 
   // console.log(PAD)
   return (
