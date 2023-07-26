@@ -1,60 +1,94 @@
 import React from "react";
 import Slider from "react-slick";
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import image1 from "../../assets/human-template1.png";
+import image2 from "../../assets/human-template2.png";
+import image3 from "../../assets/human-template3.png";
+import image4 from "../../assets/human-template4.png";
+import image5 from "../../assets/human-template5.png";
+import image6 from "../../assets/human-template6.png";
+import image7 from "../../assets/human-template7.png";
+// Importa más imágenes aca
 
 const SliderLanding = () => {
-    const [sliderRef, setSliderRef] = useState(null);
-
-  useEffect(() => {
-    sliderRef && sliderRef.slickPlay();
-    return () => sliderRef && sliderRef.slickPause();
-  }, [sliderRef])
-
-  const sliderSettings ={
+  const settings = {
     dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 3,
-    slideToScroll: 1,
-    swipe: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    swipe: false,
     autoplay: true,
     autoplaySpeed: 3000,
     centerMode: true,
-    centerPadding: "25%",
-
+    centerPadding: "150px", 
+    responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+          centerPadding: "50px", 
+        },
+      },
+    ],
   };
-  const handleHover = () => {
-    sliderRef.slickNext();
-  }
-  return (
-    <div className={StyleSheet.sliderContainer}>
-      <Slider {...sliderSettings} ref={(slider) => setSliderRef(slider)}>
-          <div onMouseEnter={handleHover}>
-            <img src="/assets/images/human-template1.png" alt="Imagen 1" className={StyleSheet.sliderImage} />
-          </div>
-          <div onMouseEnter={handleHover}>
-            <img src="/assets/images/human-template2.png" alt="Imagen 2" className={StyleSheet.sliderImage} />
-          </div>
-          <div onMouseEnter={handleHover}>
-            <img src="/assets/images/human-template3.png" alt="Imagen 2" className={StyleSheet.sliderImage} />
-          </div>
-          <div onMouseEnter={handleHover}>
-            <img src="/assets/images/human-template4.png" alt="Imagen 2" className={StyleSheet.sliderImage} />
-          </div>
-          <div onMouseEnter={handleHover}>
-            <img src="/assets/images/human-template5.png" alt="Imagen 2" className={StyleSheet.sliderImage} />
-          </div>
-          <div onMouseEnter={handleHover}>
-            <img src="/assets/images/human-template6.png" alt="Imagen 2" className={StyleSheet.sliderImage} />
-          </div>
-          <div onMouseEnter={handleHover}>
-            <img src="/assets/images/human-template7.png" alt="Imagen 2" className={StyleSheet.sliderImage} />
-          </div>
-      </Slider>
 
+  return (
+    <div className="flex items-center justify-center h-screen bg-gray-400">
+      <Slider {...settings} className="w-3/4">
+        <div className="w-full">
+          <img
+            src={image1}
+            alt="Image 1"
+            className="mx-auto object-contain h-80"
+          />
+        </div>
+        <div className="w-full">
+          <img
+            src={image2}
+            alt="Image 2"
+            className="mx-auto object-contain h-80"
+          />
+        </div>
+        <div className="w-full">
+          <img
+            src={image3}
+            alt="Image 3"
+            className="mx-auto object-contain h-80"
+          />
+        </div>
+        <div className="w-full">
+          <img
+            src={image4}
+            alt="Image 4"
+            className="mx-auto object-contain h-80"
+          />
+        </div>
+        <div className="w-full">
+          <img
+            src={image5}
+            alt="Image 5"
+            className="mx-auto object-contain h-80"
+          />
+        </div>
+        <div className="w-full">
+          <img
+            src={image6}
+            alt="Image 6"
+            className="mx-auto object-contain h-80"
+          />
+        </div>
+        <div className="w-full">
+          <img
+            src={image7}
+            alt="Image 7"
+            className="mx-auto object-contain h-80"
+          />
+        </div>
+        {/* Agrega más imágenes aquí */}
+      </Slider>
     </div>
-  )
-}
+  );
+};
 
 export default SliderLanding;

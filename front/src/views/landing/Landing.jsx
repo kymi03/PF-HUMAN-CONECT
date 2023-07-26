@@ -1,25 +1,26 @@
 import { Link } from "react-router-dom";
-import humanbg from "../../assets/humanbg.png"
+import SliderLanding from "../components/sliders/SliderLanding";
 
-export default function Landing() {  
+export default function Landing() {
   return (
-    <div className="flex flex-col h-screen">
-      <div style={{
-        backgroundImage: `url(${humanbg})`,
-        height: "99vh",
-        objectFit: "cover",
-        backgroundSize: "cover"
-      }}
-        className="">
-        <h1 className=" font-poppins text-zinc-950 font-semibold  mr-4 mt-2 text-5xl text-right text">HUMAN CONET</h1>
+    <div className=" bg-cover bg-center overflow-hidden bg-amber-200">
+      
+      <div className="absolute top-4 left-4 text-black text-7xl font-bold">HUMAN CONET</div>
+
+      <SliderLanding/>
+    
+      <div className="absolute bottom-32 right-4 text-black">
+        <p className="text-7xl font-bold">JUNTOS SOMOS</p>
       </div>
-      <div className="bottom-0 ">
-        <Link to="/home" className=" flex flex-row bg-black pt-2 w-screen justify-evenly">
-          <img src="https://humanconet.org/wp-content/uploads/2022/03/Turtle-Turquoise-1-1024x1022.png" className="h-16" alt="" />
-          <button className=" bg-black text-white h-16 cursor-pointer justify-center font-poppins text-5xl">HAZ CLICK PARA EMPEZAR</button>
-          <img src="https://humanconet.org/wp-content/uploads/2022/03/Turtle-Turquoise-1-1024x1022.png" className="h-16" alt="" />
-        </Link>
-      </div>
+      <footer className="absolute bottom-0 left-0 w-full text-center py-5 bg-gray-800 text-white flex justify-between items-center">
+        <div>
+          <img src='https://humanconet.org/wp-content/uploads/2022/03/Turtle-Turquoise-1-2048x2044.png' alt="turtle icon" className="w-14 h-14" />
+        </div>
+        <Link to="/home" className="no-underline text-3xl">CLICK AQUÍ PARA COMENZAR YA</Link>
+        <div>
+          <img src='https://humanconet.org/wp-content/uploads/2022/03/Turtle-Turquoise-1-2048x2044.png' alt="turtle icon" className="w-14 h-14" />
+        </div>
+      </footer>
     </div>
   );
 }
