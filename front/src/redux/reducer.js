@@ -1,6 +1,8 @@
 import {
-  GET_ALL_PROJECTS , GET_ALL_LOCATION ,  ORDER_BY_DATE, GET_ALL_ARTICLES,
+  
+  GET_ALL_PROJECTS , GET_ALL_LOCATION ,  ORDER_BY_DATE, GET_ALL_ARTICLES, GET_ALL_DOCUMENTARYS,
   PROJECTS , DOCUMENTARYS , ARTICLES, GET_ARTICLES , SET_GLOBAL_PAD, GET_AUTH_USER
+  
   } from "./actions-types";
   
   const initialState = {
@@ -32,6 +34,12 @@ import {
           ...state,
           allArticles: action.payload,
           allArticles2: action.payload,
+        };
+      case GET_ALL_DOCUMENTARYS:
+        return {
+          ...state,
+          allDocumentarys: action.payload,
+          allDocumentarys2: action.payload,
         };
         
       case GET_ALL_LOCATION:

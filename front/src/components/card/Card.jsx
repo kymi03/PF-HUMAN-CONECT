@@ -1,8 +1,7 @@
 import React from "react";
 
 function Card(props) {
-  //   console.log(props.media );
-  //   console.log( );
+  // console.log(props);
 
   return (
     <div class="  bg-white border border-gray-200 shadow dark:bg-gray-800 dark:border-gray-700">
