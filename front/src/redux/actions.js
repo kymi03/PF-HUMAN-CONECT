@@ -18,7 +18,20 @@ import {
 
 import axios from "axios";
 
-
+export const getEmailAuth= ({email, accessToken}) => {
+  return (dispatch)=>{
+    try {
+      const existingEmailDb = axios.get('http://localhost:3001/user', {email, accessToken})
+      return dispatch({
+        type: GET_AUTH_USER,
+        payload: existingEmailDb.data
+      })
+    } catch (error) {
+      console.log(error);
+    }
+    console.log(payload, 'AQUI')
+  }
+}
 
 export const setPADAction = (PAD) => {
   return (dispatch) => {
@@ -31,7 +44,8 @@ export const setPADAction = (PAD) => {
       console.log(error.message);
     }
   };
-};
+}
+
 export const getAllProjects = ( value , type , location)=>{
 
 if ((!value && !type) || (value==="Todas")){  return async function  (dispatch){
