@@ -35,7 +35,7 @@ const postUserController = async (req, res) => {
       subject: "Bienvenido a Human Conet", // Subject line
       html: `
       <h1>Human Conet - Confirmación de usuario.</h1>
-      <p>Hola <b>${name} ${lastName}</b>! tu usuario en Human Conet fue creado exitosamente.</p>
+      <p>Hola <b>${name}</b>! Tu usuario en Human Conet fue creado exitosamente.</p>
       `, // html body
     });
     res.status(201).json(newUser);
