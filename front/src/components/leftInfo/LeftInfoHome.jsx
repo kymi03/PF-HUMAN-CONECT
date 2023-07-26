@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { getAllLocations, getAllProjects, orderByDate } from '../../redux/actions'
+import { getAllLocations, getSearchPADByQuery, orderByDate } from '../../redux/actions'
 import { useDispatch, useSelector } from 'react-redux'
 import { Dropdown } from 'flowbite-react';
 import {
@@ -12,7 +12,7 @@ function LeftInfo() {
     const dispatch = useDispatch()
 
     useEffect(() => {
-      // dispatch(getAllProjects("Todas"));
+      // dispatch(getSearchPADByQuery("Todas"));
       dispatch(getAllLocations());
     }, []);
     
@@ -25,13 +25,13 @@ function LeftInfo() {
 
 
     const handleSelectLocation = (event) => {
-      dispatch(getAllProjects(event.target.value , "location"))
+      dispatch(getSearchPADByQuery(event.target.value , "location"))
       aux ? setAux(false) : setAux(true)     
     }
 
     const handleSearchName = (event) => {
-   if(event.target.value) { dispatch(getAllProjects(event.target.value , "name")) } 
-   if(event.target.value === "") { dispatch(getAllProjects()) } 
+   if(event.target.value) { dispatch(getSearchPADByQuery(event.target.value , "name")) } 
+   if(event.target.value === "") { dispatch(getSearchPADByQuery()) } 
    
   // aux ? setAux(false) : setAux(true)     
     }

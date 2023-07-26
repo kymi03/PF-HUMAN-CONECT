@@ -1,12 +1,16 @@
 import { 
   GET_ALL_PROJECTS,
+  GET_ALL_ARTICLES,
+  GET_ALL_DOCUMENTARYS,
+
   GET_ALL_LOCATION,
+  GET_ARTICLES,
   ORDER_BY_DATE,
   GET_BY_INPUT,
-  GET_ARTICLES,
-  GET_ALL_ARTICLES,
   POST_NEW_USER,
-  SET_GLOBAL_PAD
+  SET_GLOBAL_PAD,
+
+
 
 } from "./actions-types";
 
@@ -20,55 +24,6 @@ import axios from "axios";
 
 
 
-export const getAllProjects = ( value , type , location)=>{
-
-if ((!value && !type) || (value==="Todas")){  return async function  (dispatch){
-    try {
-      const allProjects = await axios.get('http://localhost:3001/projects')
-
-      return dispatch({
-        type:GET_ALL_PROJECTS,
-        payload: allProjects.data
-      })
-    } catch (error) {
-      console.log(error.message);
-    }
-  }}
-if (value && type && location==='Todas'){  return async function  (dispatch){
-    try {
-      const allProjects = await axios.get(`http://localhost:3001/projects?${type}=${value}`)
-
-
-
-      return dispatch({
-        type:GET_ALL_PROJECTS,
-        payload: allProjects.data
-      })
-
-    } catch (error) {
-      console.log(error.message);
-    }
-  }}
-if (value && type && location !=='Todas'){  return async function  (dispatch){
-    try {
-      const allProjects = await axios.get(`http://localhost:3001/projects?${type}=${value}&location=${location}`)
-
-
- 
-
-
-      return dispatch({
-        type:GET_ALL_PROJECTS,
-        payload: allProjects.data
-      })
-
-    } catch (error) {
-      console.log(error.message);
-    }
-  }}
-
-
-}
 
 export const getAllLocations = (PAD)=>{
   return async function  (dispatch){
@@ -199,87 +154,81 @@ export function postNewPAD (payload , PADtype ) {
 //   }
 // }
 
-export const getAllArticles = ( nam , loc )=>{
+export const getSearchPADByQuery = ( nam , loc , PAD)=>{
+  let query = ''
+  if (nam !== '' ) { query = query+nam }
+  if (loc !== '' ) { query = query+'&'}
+  if (loc !== '' ) { query = query+loc }
 
-  // console.log(  nam , loc );
+  // console.log(query);
 
+ switch (PAD) {
+  case PROJECTS:
 
-  // if ( nam === '' && loc === 'Todas' ){  return async function  (dispatch){
-    
-  if ( !nam && !loc  ){  return async function  (dispatch){
-
-
-      try {
-        const allArticles = await axios.get('http://localhost:3001/Articles')
-console.log(allArticles.data);
-
-        return dispatch({
-          type:GET_ALL_ARTICLES,
-          payload: allArticles.data
-        })
-      } catch (error) {
-        console.log(error.message);
-      }
-    }}
-  if ( nam !== '' && loc ==='Todas'){  return async function  (dispatch){
-
-    // console.log(`http://localhost:3001/Articles?name=${nam}`)
-
-    console.log(nam);
-      try {
-        const allArticles = await axios.get(`http://localhost:3001/Articles?name=${nam}`)
-console.log(allArticles.data);
+  return async function  (dispatch){
+    try {
+      const getAllProjects = await axios.get(`http://localhost:3001/projects?${query}`)
+        // console.log(getAllProjects.data);
+      return dispatch({
+        type:GET_ALL_PROJECTS,
+        payload: getAllProjects.data
+      })
   
-  
-        return dispatch({
-          type:GET_ALL_ARTICLES,
-          payload: allArticles.data
-        })
-  
-      } catch (error) {
-        console.log(error.message);
-      }
-    }}
-
-
-  if ( nam === '' && loc !=='Todas'){  return async function  (dispatch){
-// console.log(`http://localhost:3001/Articles?location=${loc}`);
-
-      try {
-        const allArticles = await axios.get(`http://localhost:3001/Articles?location=${loc}`)
-console.log(allArticles.data);
- 
-  
-  
-        return dispatch({
-          type:GET_ALL_ARTICLES,
-          payload: allArticles.data
-        })
-  
-      } catch (error) {
-        console.log(error.message);
-      }
-    }}
-
-
-  if ( nam !== '' && loc !=='Todas'){  return async function  (dispatch){
-console.log(`http://localhost:3001/Articles?name=${nam}&location=${loc}` , ' action ')
-
-      try {
-        const allArticles = await axios.get(`http://localhost:3001/Articles?name=${nam}&location=${loc}`)
-// console.log(allArticles.data);
-  
-  
-        return dispatch({
-          type:GET_ALL_ARTICLES,
-          payload: allArticles.data
-        })
-  
-      } catch (error) {
-        console.log(error.message);
-      }
-    }}
-
-  
-
+    } catch (error) {
+      console.log(error.message);
+    }
   }
+
+    // break;
+  case ARTICLES:
+
+  return async function  (dispatch){
+    try {
+      const getAllArticles = await axios.get(`http://localhost:3001/articles?${query}`)
+        // console.log(getAllArticles.data);
+      return dispatch({
+        type:GET_ALL_ARTICLES,
+        payload: getAllArticles.data
+      })
+  
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+
+
+  
+    // break;
+  case DOCUMENTARYS:
+
+  return async function  (dispatch){
+    try {
+      const getAllDocumentarys = await axios.get(`http://localhost:3001/documentaries?${query}`)
+        // console.log(getAllDocumentarys.data);   
+      return dispatch({
+        type:GET_ALL_DOCUMENTARYS,
+        payload: getAllDocumentarys.data
+      })
+  
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+
+    // break;
+ 
+  default:
+    break;
+ }
+
+
+
+
+}
+
+
+
+
+
+
+

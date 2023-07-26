@@ -22,30 +22,30 @@ function Projects() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getSearchPADByQuery('' , '' , PROJECTS ));
+    dispatch(getSearchPADByQuery('' , '' , DOCUMENTARYS ));
 
 
 
   }, []);
   
-  const currentPAD = useSelector(state => state.allProjects)
+  const currentPAD = useSelector(state => state.allDocumentarys)
 
 
   return (  
 <div >
   <NavBarAle/>
-  <p class="ml-11 mb-5 text-justify text-5xl font-semibold text-gray-900 dark:text-white">PROYECTOS</p>
+  <p class="ml-11 mb-5 text-justify text-5xl font-semibold text-gray-900 dark:text-white">DOCUMENTALES</p>
   
   <div className="flex">
 
     <div className=' w-1/5 h-3/5  ml-11'>
-      <LeftInfo PAD = {PROJECTS}/>
+      <LeftInfo PAD = {DOCUMENTARYS}/>
     </div>
 
     <div className='h-3/5 w-4/5  bg-white border border-gray-200 shadow dark:bg-gray-800 dark:border-gray-700'>
       <Cards 
       currentPAD={currentPAD} 
-      PAD =  {PROJECTS}
+      PAD =  {DOCUMENTARYS}
         />
     </div>
 
