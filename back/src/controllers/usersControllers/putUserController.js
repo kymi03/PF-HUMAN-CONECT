@@ -13,7 +13,7 @@ Manifiesto de funciones:
 ===============================================================================================================================
 */
 const user = require('../../models/user');
-
+const transporter = require("./mailer")
 const putUserController = async (req, res) => {
     const {
         id,
@@ -31,6 +31,15 @@ const putUserController = async (req, res) => {
         if(putUser.nModified === 0) {
             return res.status(404).json({error: "Usuario no encontrado" });
         }
+        await transporter.sendMail({
+            from: `"Human Conet" ${ADMIN_EMAIL}`, // sender address
+            to: email, // list of receivers
+            subject: "Datos actualizados -Human Conet", // Subject line
+            html: `
+            <h1>Human Conet - Confirmación de actualización.</h1>
+            <p>Hola <b>${name} ${lastName}</b>!tu usuario de Human Conet fue actualizado exitosamente.</p>
+            `, // html body
+          });
         res.status(200).json(putUser);
 	} catch (error) {
 		res.status(500).json({ error: 'Error al actualizar el usuario', error });
