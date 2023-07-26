@@ -16,6 +16,7 @@ Manifiesto de funciones:
 const user = require("../../models/user");
 const transporter = require("./mailer");
 const { ADMIN_EMAIL } = process.env;
+
 const postUserController = async (req, res) => {
   const { name, lastName, email, password, phone } = req.body;
 
