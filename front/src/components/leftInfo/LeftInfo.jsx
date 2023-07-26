@@ -13,14 +13,20 @@ function LeftInfo(props) {
 
     const dispatch = useDispatch()
 
-    const [location, setLocation ] = useState('Todas');
-    const [name, setNane ] = useState('');
 
     useEffect(() => {
       dispatch(getAllLocations(props.PAD));
-      dispatch(getAllArticles(  "" , 'Todas' ));
+      dispatch(getAllArticles(  ));
     }, []);
+    // useEffect(() => {
+    //   // dispatch(getAllLocations(props.PAD));
+    //   // dispatch(getAllArticles( name , location   ));
+    // }, []);
     
+    const [location, setLocation ] = useState('Todas');
+    const [name, setNane ] = useState('');
+    
+    console.log( name , location   );
     
     const [ aux, setAux] = useState(false)
     const [date, setDate ] = useState('Filtra Por Fecha');
@@ -92,8 +98,8 @@ function LeftInfo(props) {
 
 // Function to generate the <option> elements from the locations array
 const generateOptions = (options) => {
-  return options.map((option) => (
-    <option key={option} value={option}>
+  return options.map((option , index ) => (
+    <option key={index} value={option}>
       {option}
     </option>
   ));

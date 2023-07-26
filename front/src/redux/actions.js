@@ -227,16 +227,18 @@ export function postNewPAD (payload , PADtype ) {
 
 export const getAllArticles = ( nam , loc )=>{
 
-  console.log(  nam , loc );
+  // console.log(  nam , loc );
 
 
-  if ( nam === '' && loc === 'Todas' ){  return async function  (dispatch){
+  // if ( nam === '' && loc === 'Todas' ){  return async function  (dispatch){
+    
+  if ( !nam && !loc  ){  return async function  (dispatch){
 
-// console.log('http://localhost:3001/Articles')
 
       try {
         const allArticles = await axios.get('http://localhost:3001/Articles')
-  
+console.log(allArticles.data);
+
         return dispatch({
           type:GET_ALL_ARTICLES,
           payload: allArticles.data
@@ -249,9 +251,10 @@ export const getAllArticles = ( nam , loc )=>{
 
     // console.log(`http://localhost:3001/Articles?name=${nam}`)
 
+    console.log(nam);
       try {
         const allArticles = await axios.get(`http://localhost:3001/Articles?name=${nam}`)
-  
+console.log(allArticles.data);
   
   
         return dispatch({
@@ -270,7 +273,8 @@ export const getAllArticles = ( nam , loc )=>{
 
       try {
         const allArticles = await axios.get(`http://localhost:3001/Articles?location=${loc}`)
-  
+console.log(allArticles.data);
+ 
   
   
         return dispatch({
@@ -285,11 +289,11 @@ export const getAllArticles = ( nam , loc )=>{
 
 
   if ( nam !== '' && loc !=='Todas'){  return async function  (dispatch){
-// console.log(`http://localhost:3001/Articles?name=${nam}&location=${loc}`)
+console.log(`http://localhost:3001/Articles?name=${nam}&location=${loc}` , ' action ')
 
       try {
         const allArticles = await axios.get(`http://localhost:3001/Articles?name=${nam}&location=${loc}`)
-  
+// console.log(allArticles.data);
   
   
         return dispatch({
@@ -303,5 +307,5 @@ export const getAllArticles = ( nam , loc )=>{
     }}
 
   
-  
+
   }
