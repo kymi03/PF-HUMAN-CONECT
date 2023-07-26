@@ -5,12 +5,19 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  width: 1400px;  /* Establece un ancho fijo para el contenedor */
+  max-width: 1800px;  /* O establece un ancho máximo */
+  min-width: 1000px;  /* Y/o un ancho mínimo */
 }
 
 .header-section img {
-  width: 50%;
+  width: 40%;
   height: auto;
   border-radius: 5%;
+  padding-right: 150px; /* Añade un margen interior de 20px en el lado derecho del texto */
+  width: 1200px;  /* Establece un ancho fijo para el contenedor */
+  max-width: 100px;  /* O establece un ancho máximo */
+  min-width: 600px;  /* Y/o un ancho mínimo */
 }
 
 .header-section h1 {
@@ -24,39 +31,55 @@
   flex-direction: row;  /* Alineamos los elementos en fila */
   align-items: center;  /* Centramos los elementos verticalmente */
   justify-content: space-around;  /* Añadimos espacio entre los elementos */
+  width: 1200px;  /* Establece un ancho fijo para el contenedor */
+  max-width: 1200px;  /* O establece un ancho máximo */
+  min-width: 800px;  /* Y/o un ancho mínimo */
 }
 
+/* Texto body cuadro*/
 .content-section p {
-  width: 100%;  /* Ajusta esto a lo que necesites */
+  position: relative; /* Esto hace que el párrafo se quede fijo en la posición en la que se encuentre */
+  width: 90%;  /* Ajusta en cuadro del texto */
+  max-height: 500px; /* Ajusta esto a tus necesidades, esto limitará la altura del contenedor de texto y activará la barra de desplazamiento cuando sea necesario */
+  overflow-y: auto; /* Esto activará la barra de desplazamiento vertical cuando el contenido supere la altura máxima establecida */
+/*texto*/
   text-align: justify;
   font-weight: normal; /* Texto normal */
   font-size: 20px; /* Tamaño de fuente para el contenido ajustado a tus preferencias */
-  padding: 5px; /* Añade un margen interior de 20px alrededor del texto */
+  padding: 8px; /* Añade un margen interior de 20px alrededor del texto */
+  width: 1200px;  /* Establece un ancho fijo para el contenedor */
+  max-width: 1200px;  /* O establece un ancho máximo */
+  min-width: 800px;  /* Y/o un ancho mínimo */
 }
 /*esta funcion me sirvio para ajustar el texto body a que abarcara a la mitad*/
 .video-responsive {
-  width: 60%; /* igual que la imagen */
+  width: 70%; /* igual que la imagen */
 }
 
 .video-container {
   position: relative;
   overflow: visible;
-  width: -200%; /* video que se mueva a la izquierda o el tama;o completo del youtube */
-  padding-top: 200%; /* hace que el video sea en cuadrado o rectangulo  */
-  padding-right: 1px; /* Añade un margen interior de 20px en el lado derecho del texto */
-  padding-bottom: 0px; /* Añade un margen interior de 30px en la parte inferior del texto */
-  padding-left: 1px; /* margen interior de 40px en el lado izquierdo del texto */
+  width: 250%; /* video que se mueva a la izquierda o el tama;o completo del youtube */
+  max-width: 1200px;
+  min-width: 200px;
+  padding-top: 56.26%; /* hace que el video sea en cuadrado o rectangulo  */
+  padding-right: 200px; /* Añade un margen interior de 20px en el lado derecho del texto */
+  padding-bottom: -800px; /* Añade un margen interior de 30px en la parte inferior del texto */
+  padding-left: -900px; /* margen interior de 40px en el lado izquierdo del texto */
+
 }
 
 
 
 .video-container-iframe {
-  position: absolute;
-  top: 0;
-  left: 10;
+  position: relative;
+  top: 1000;
+  left: -1000;
   width: 100%; /* hace que el iframe llene el contenedor de video */
   height: 100%;
 }
+
+
 
 
 

@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import NavBarAle from "../../components/NavBar/NavBar.ale";
 import FooterMoreInfo from "../../components/footer/FooterMoreInfo";
-import { PROJECTS , ARTICLES , DOCUMENTARYS } from "../../redux/actions-types";
+import { PROJECTS, ARTICLES, DOCUMENTARYS } from "../../redux/actions-types";
 function Detail() {
   const [PAD, setPAD] = useState([]);
   const { id } = useParams();
@@ -14,29 +14,35 @@ function Detail() {
     const [key, value] = inputString.split("=");
     return { key, value };
   }
-  
+
   const { key, value } = splitString(id);
-let source = ''
+  let source = "";
   switch (key) {
     case PROJECTS:
-      source = 'projects'
+      source = "projects";
       break;
     case ARTICLES:
-      source = 'articles'
+      source = "articles";
       break;
-  
+
     default:
       break;
+
+    case DOCUMENTARYS:
+      source = "projects";
+      break;
   }
-console.log(`http://localhost:3001/${source}?id=${value}`);
+  console.log(`http://localhost:3001/${source}?id=${value}`);
   useEffect(() => {
-    axios.get(`http://localhost:3001/${source}?id=${value}`).then(({ data }) => {
-      if (data.name) {
-        setPAD(data);
-      } else {
-        window.alert("No hay proyectos con ese ID");
-      }
-    });
+    axios
+      .get(`http://localhost:3001/${source}?id=${value}`)
+      .then(({ data }) => {
+        if (data.name) {
+          setPAD(data);
+        } else {
+          window.alert("No hay proyectos con ese ID");
+        }
+      });
 
     axios.get(`http://localhost:3001/articles?id=${id}`).then(({ data }) => {
       if (data.name) {
