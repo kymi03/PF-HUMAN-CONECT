@@ -6,6 +6,9 @@ import NavBarAle from "../../components/NavBar/NavBar.ale";
 import FooterMoreInfo from "../../components/footer/FooterMoreInfo";
 import { PROJECTS , ARTICLES , DOCUMENTARYS } from "../../redux/actions-types";
 function Detail() {
+  
+  
+//       <<<<<<<<=============== AlejoC137 
   const [PAD, setPAD] = useState([]);
   const { id } = useParams();
   const { images = [], videos = [] } = PAD.media || {};
@@ -24,6 +27,9 @@ let source = ''
     case ARTICLES:
       source = 'articles'
       break;
+    case DOCUMENTARYS:
+      source = 'documentaries'
+      break;
   
     default:
       break;
@@ -39,6 +45,9 @@ console.log(`http://localhost:3001/${source}?id=${value}`);
     });
     return setPAD({});
   }, []);
+//       <<<<<<<<=============== AlejoC137 
+
+
 
   // console.log(PAD)
   return (
