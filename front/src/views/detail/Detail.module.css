@@ -53,23 +53,25 @@
 }
 /*esta funcion me sirvio para ajustar el texto body a que abarcara a la mitad*/
 .video-responsive {
-  width: 70%; /* igual que la imagen */
+  width: 50%; /* igual que la imagen */
 }
 
 .video-container {
   position: relative;
   overflow: visible;
-  width: 250%; /* video que se mueva a la izquierda o el tama;o completo del youtube */
+  background-color: rgb(75, 224, 224);
+  width: 50%; /* video que se mueva a la izquierda o el tama;o completo del youtube */
   max-width: 1200px;
   min-width: 200px;
-  padding-top: 56.26%; /* hace que el video sea en cuadrado o rectangulo  */
-  padding-right: 200px; /* Añade un margen interior de 20px en el lado derecho del texto */
-  padding-bottom: -800px; /* Añade un margen interior de 30px en la parte inferior del texto */
-  padding-left: -900px; /* margen interior de 40px en el lado izquierdo del texto */
-
+  height: 30%;
+  display: flex;
+ /* padding-top: 56.26%; /* hace que el video sea en cuadrado o rectangulo  */
+ /* padding-right: 200px; /* Añade un margen interior de 20px en el lado derecho del texto */
+ /* padding-bottom: -800px; /* Añade un margen interior de 30px en la parte inferior del texto */
+ /* padding-left: -900px; /* margen interior de 40px en el lado izquierdo del texto */
+align-items: center;
+justify-content: center;
 }
-
-
 
 .video-container-iframe {
   position: relative;
@@ -78,10 +80,3 @@
   width: 100%; /* hace que el iframe llene el contenedor de video */
   height: 100%;
 }
-
-
-
-
-
-
-
