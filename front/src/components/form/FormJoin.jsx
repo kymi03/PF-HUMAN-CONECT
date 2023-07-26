@@ -66,7 +66,7 @@ const FormJoin = () => {
       <NavBar/>
       <div>
         <div className=" flex flex-row my-5 h-5/6 w-full">
-          <div className=" border-2 rounded-sm border-gray-300 mx-2 md:w-4/6">
+          <div className=" border-2 rounded-sm border-gray-300 mx-2 md:w-3/6">
             <h5 className=" pt-5 font-poppins font-semibold">
               Registrate en un nuestra red
             </h5>
@@ -156,7 +156,7 @@ const FormJoin = () => {
               </button>
               <p>
                 Ya tienes una cuenta?{" "}
-                <a href="#" className=" text-blue-900 underline">
+                <a href="/formlogin" className=" text-blue-900 underline">
                   Iniciar sesión
                 </a>
               </p>
