@@ -36,7 +36,7 @@ export const getAllProjects = ( value , type , location)=>{
 
 if ((!value && !type) || (value==="Todas")){  return async function  (dispatch){
     try {
-      const allProjects = await axios.get('http://localhost:3001/projects')
+      const allProjects = await axios.get('/projects')
 
       return dispatch({
         type:GET_ALL_PROJECTS,
@@ -48,7 +48,7 @@ if ((!value && !type) || (value==="Todas")){  return async function  (dispatch){
   }}
 if (value && type && location==='Todas'){  return async function  (dispatch){
     try {
-      const allProjects = await axios.get(`http://localhost:3001/projects?${type}=${value}`)
+      const allProjects = await axios.get(`/projects?${type}=${value}`)
 
 
 
@@ -63,7 +63,7 @@ if (value && type && location==='Todas'){  return async function  (dispatch){
   }}
 if (value && type && location !=='Todas'){  return async function  (dispatch){
     try {
-      const allProjects = await axios.get(`http://localhost:3001/projects?${type}=${value}&location=${location}`)
+      const allProjects = await axios.get(`/projects?${type}=${value}&location=${location}`)
 
 
  
@@ -89,13 +89,13 @@ export const getAllLocations = (PAD)=>{
 
         switch (PAD) {
           case PROJECTS:
-            PADLocations = await axios.get('http://localhost:3001/projects');
+            PADLocations = await axios.get('/projects');
             break;
           case ARTICLES:
-            PADLocations = await axios.get('http://localhost:3001/articles');
+            PADLocations = await axios.get('/articles');
             break;
           case DOCUMENTARYS:
-            PADLocations = await axios.get('http://localhost:3001/documentaries');
+            PADLocations = await axios.get('/documentaries');
             break;
           default:
             return; // Return early if PAD doesn't match any case
@@ -168,7 +168,7 @@ export const orderByDate = (order , PAD)=>{
 export function postNewUser (payload) {
   return function(dispatch){
     try {
-      axios.post('http://localhost:3001/user', payload )
+      axios.post('/user', payload )
       .then((data)=>{
         return dispatch({
           type: POST_NEW_USER,
@@ -184,7 +184,7 @@ export function postNewUser (payload) {
 export function postNewPAD (payload , PADtype ) {
   return function(dispatch){
     try {
-      axios.post(`http://localhost:3001/${PADtype}`, payload )
+      axios.post(`/${PADtype}`, payload )
       .then((data)=>{
         return dispatch({//<--- no tengo muy claro para que se esta dispatch-eando al reducer , no tiene state ni case asiganos que respondan a este dispath 
           type: POST_NEW_ARTICLE, 
@@ -221,7 +221,7 @@ export const getAllArticles = ( nam , loc )=>{
 // console.log('http://localhost:3001/Articles')
 
       try {
-        const allArticles = await axios.get('http://localhost:3001/Articles')
+        const allArticles = await axios.get('/Articles')
   
         return dispatch({
           type:GET_ALL_ARTICLES,
@@ -236,7 +236,7 @@ export const getAllArticles = ( nam , loc )=>{
     // console.log(`http://localhost:3001/Articles?name=${nam}`)
 
       try {
-        const allArticles = await axios.get(`http://localhost:3001/Articles?name=${nam}`)
+        const allArticles = await axios.get(`/Articles?name=${nam}`)
   
   
   
@@ -255,7 +255,7 @@ export const getAllArticles = ( nam , loc )=>{
 // console.log(`http://localhost:3001/Articles?location=${loc}`);
 
       try {
-        const allArticles = await axios.get(`http://localhost:3001/Articles?location=${loc}`)
+        const allArticles = await axios.get(`/Articles?location=${loc}`)
   
   
   
@@ -274,7 +274,7 @@ export const getAllArticles = ( nam , loc )=>{
 // console.log(`http://localhost:3001/Articles?name=${nam}&location=${loc}`)
 
       try {
-        const allArticles = await axios.get(`http://localhost:3001/Articles?name=${nam}&location=${loc}`)
+        const allArticles = await axios.get(`/Articles?name=${nam}&location=${loc}`)
   
   
   
