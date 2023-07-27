@@ -140,19 +140,6 @@ export function postNewPAD (payload , PADtype ) {
   }
 }
 
-// export function getArticles(){
-//   return async function(dispatch){
-//     try {
-//       var response = await axios.get('http://localhost:3001/articles')
-//       return dispatch({
-//         type: GET_ARTICLES,
-//         payload: response.data
-//       })
-//     } catch (error) {
-//       console.log(error.message);
-//     }
-//   }
-// }
 
 export const getSearchPADByQuery = ( nam , loc , PAD)=>{
   let query = ''
