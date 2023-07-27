@@ -9,6 +9,7 @@ import Documentarys from './components/documentarys/Documentarys'
 import Detail from './views/detail/Detail';
 import AboutUs from './views/about/AboutUs.jsx'
 import { PostPAD } from './components/articles/PostPAD'
+import FormLogin from './components/form/FormLogin'
 
 function App() {
   
@@ -19,6 +20,7 @@ function App() {
         <Route path="/" element={<Landing/>}/>
         <Route path="/home" element={<Home/>}/>
         <Route path="/formjoin" element={<FormJoin/>}/>
+        <Route path="/formlogin" element={<FormLogin/>}/>
         <Route path="/projects" element={<Projects />}/>
         <Route path="/articles" element={<Articles />}/>
         <Route path="/documentarys" element={<Documentarys />}/>

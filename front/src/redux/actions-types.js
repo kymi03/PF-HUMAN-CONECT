@@ -20,3 +20,5 @@ export const ORDER_BY_DATE = 'ORDER_BY_DATE'
 export const GET_BY_INPUT = 'GET_BY_INPUT'
 export const POST_NEW_USER = "POST_NEW_USER"
 export const POST_NEW_ARTICLE = "POST_NEW_ARTICLE"
+
+export const GET_AUTH_USER = "GET_AUTH_USER"
