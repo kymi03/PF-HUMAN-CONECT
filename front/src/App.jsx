@@ -4,9 +4,12 @@ import Landing from "./views/landing/Landing"
 import Home from "./views/home/Home"
 import FormJoin from './components/form/FormJoin'
 import Projects from './components/projects/Projects'
-import Articles from './components/articles/articles'
+import Articles from './components/articles/Articles'
+import Documentarys from './components/documentarys/Documentarys'
 import Detail from './views/detail/Detail';
-import { PostArticle } from './components/articles/PostArticle'
+import AboutUs from './views/about/AboutUs.jsx'
+import { PostPAD } from './components/articles/PostPAD'
+import FormLogin from './components/form/FormLogin'
 
 function App() {
   
@@ -17,11 +20,13 @@ function App() {
         <Route path="/" element={<Landing/>}/>
         <Route path="/home" element={<Home/>}/>
         <Route path="/formjoin" element={<FormJoin/>}/>
+        <Route path="/formlogin" element={<FormLogin/>}/>
         <Route path="/projects" element={<Projects />}/>
         <Route path="/articles" element={<Articles />}/>
-        <Route path='/articles/post' element={<PostArticle />} />  
-        <Route path="/documentarys" element={<Projects />}/>
+        <Route path="/documentarys" element={<Documentarys />}/>
+        <Route path='/PAD/post' element={<PostPAD />} />  
         <Route path='/detail/:id' element={<Detail />} />  
+        <Route path='/aboutUs' element={<AboutUs />} />  
       </Routes>
     </div>
   )

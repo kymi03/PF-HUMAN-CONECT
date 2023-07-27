@@ -1,13 +1,24 @@
 import {
-  GET_ALL_PROJECTS , GET_ALL_LOCATION ,  ORDER_BY_DATE,
-  PROJECTS , DOCUMENTARYS , ARTICLES, GET_ARTICLES
+  
+  GET_ALL_PROJECTS , GET_ALL_LOCATION ,  ORDER_BY_DATE, GET_ALL_ARTICLES, GET_ALL_DOCUMENTARYS,
+  PROJECTS , DOCUMENTARYS , ARTICLES, GET_ARTICLES , SET_GLOBAL_PAD, GET_AUTH_USER
+  
   } from "./actions-types";
   
   const initialState = {
     allProjects: [],
-    allProjectsSR: [],
+    allProjects2: [],
+   
+    allArticles: [],
+    allArticles2: [],
+
+    allDocumentarys: [],
+    allDocumentarys2: [],
+
     allLocations: [],
-    allArticles: []
+
+    userAuth:[]
+ 
   };
   
   const reducer = (state = initialState, action) => {
@@ -16,18 +27,33 @@ import {
         return {
           ...state,
           allProjects: action.payload,
-          allProjectsSR: action.payload,
+          allProjects2: action.payload,
         };
+      case GET_ALL_ARTICLES:
+        return {
+          ...state,
+          allArticles: action.payload,
+          allArticles2: action.payload,
+        };
+      case GET_ALL_DOCUMENTARYS:
+        return {
+          ...state,
+          allDocumentarys: action.payload,
+          allDocumentarys2: action.payload,
+        };
+        
       case GET_ALL_LOCATION:
         return {
           ...state,
           allLocations: action.payload,
         };
-      case GET_ARTICLES:
-        return{
+      
+      case GET_AUTH_USER:
+        return {
           ...state,
-          allArticles:action.payload
+          userAuth: action.payload
         }
+
 
       case ORDER_BY_DATE:
 
@@ -40,6 +66,7 @@ import {
       
         return validData;
       };
+
       const sortByDateDes = (data) => {
         // Filter out objects without a valid "date" property
         const validData = data.filter((item) => item.date && typeof item.date === "string");
@@ -66,8 +93,7 @@ if(action.payload.PAD === PROJECTS ){
 
   } else if (action.payload.order === "dateAll") {
 
-    orderedProjects = state.allProjectsSR
-
+    orderedProjects = state.allProjects2
 
   } 
   return {
@@ -78,13 +104,36 @@ if(action.payload.PAD === PROJECTS ){
   };
 
 }
-if(action.payload.PAD === ARTICLES ){  console.log('i');
+if(action.payload.PAD === ARTICLES ){  
+  
+  let orderedArticles = [...state.allArticles];
+  if (action.payload.order === "dateAsc") {
+
+    orderedArticles = sortByDateAsc(orderedArticles)
+
+  } else if (action.payload.order === "dateDes") {
+
+    orderedArticles = sortByDateDes(orderedArticles)
+
+
+  } else if (action.payload.order === "dateAll") {
+
+    orderedArticles = state.allArticles
+
+  } 
+  return {
+    ...state,
+    // order: action.payload,
+    allArticles: orderedArticles,
+    // filtered: orderedDogs,
+  };
+
+
 }
 if(action.payload.PAD === DOCUMENTARYS ){  console.log('i');
 }
   
-  // console.log('i');
-  // let orderedProjects  = [...state.alldogs];
+
 
 
         

@@ -1,11 +1,14 @@
 import React from 'react';
 import Card from '../card/Card.jsx';
 
+
 function Cards(props) {
+// console.log(props);
   return (
     <div className="grid grid-cols-3 grid-rows-3 ">
-      {props.currentPAD.map((PAD, index) => (
-        <div key={index} class=" ml-10"> 
+      {props.currentPAD.map((PAD) => (
+        <div key={PAD._id} class=" ml-10"> 
+      
           <Card
             media={PAD.media}
             location={PAD.location}
@@ -13,7 +16,9 @@ function Cards(props) {
             name={PAD.name}
             breaf={PAD.breaf}
             _id={PAD._id}
+            PAD =  {props.PAD}
           />
+         
         </div>
       ))}
     </div>

@@ -2,7 +2,8 @@ const articleModel = require("../../models/article");
 
 const postArticlesController = async (req, res) => {
   const { name, media, body, author, breaf, date, location } = req.body;
-  if (!media.images)
+  console.log(media);
+  if (media?.images.length < 1)
     media.images = {
       imageName:
         "Manifestantes anti-embalses se protegen de los gases lacrimógenos",

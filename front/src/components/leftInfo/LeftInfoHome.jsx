@@ -1,69 +1,52 @@
 import React, { useEffect, useState } from 'react'
-import { getSearchPADByQuery, getAllLocations, orderByDate  } from '../../redux/actions'
+import { getAllLocations, getSearchPADByQuery, orderByDate } from '../../redux/actions'
 import { useDispatch, useSelector } from 'react-redux'
 import { Dropdown } from 'flowbite-react';
 import {
   // GET_ALL_PROJECTS , GET_ALL_LOCATION ,  ORDER_BY_DATE,
   PROJECTS , DOCUMENTARYS , ARTICLES
   } from "../../redux/actions-types";
-  import { Link } from 'react-router-dom';
-function LeftInfo(props) {
+function LeftInfo() {
 
 
     const dispatch = useDispatch()
 
-    const [location, setLocation ] = useState('');
-    const [name, setName ] = useState('');
-    const [ aux, setAux] = useState(false)
-
-
-
-   
     useEffect(() => {
-      dispatch(getAllLocations(props.PAD));
-      dispatch(getSearchPADByQuery(name, location, props.PAD)); // Fetch articles on initial mount
-    }, [name, location, props.PAD]);
-
-
+      // dispatch(getSearchPADByQuery("Todas"));
+      dispatch(getAllLocations());
+    }, []);
+    
+    
+    const [ aux, setAux] = useState(false)
+    const [date, setDate ] = useState('Filtra Por Fecha');
+    
     const locations = useSelector(state => state.allLocations)
-    
 
- 
-    
-    
+
+
     const handleSelectLocation = (event) => {
-
-    if (event.target.value !== 'Todas') {
-      setLocation(`location=${event.target.value}`);
-    } else {
-      setLocation('');
-    }
-      dispatch(getSearchPADByQuery(name, location, props.PAD));
-
+      dispatch(getSearchPADByQuery(event.target.value , "location"))
+      aux ? setAux(false) : setAux(true)     
     }
 
     const handleSearchName = (event) => {
-  
-    if (event.target.value !== '') {
-      setName(`name=${event.target.value}`);
-    } else {
-      setName('');
-    }
-      dispatch(getSearchPADByQuery(name, location, props.PAD));
-
+   if(event.target.value) { dispatch(getSearchPADByQuery(event.target.value , "name")) } 
+   if(event.target.value === "") { dispatch(getSearchPADByQuery()) } 
+   
+  // aux ? setAux(false) : setAux(true)     
     }
 
     const handleOrder = (event) => {
     
-    dispatch(orderByDate(event.target.value , props.PAD ))
+    dispatch(orderByDate(event.target.value , PROJECTS ))
     aux ? setAux(false) : setAux(true)  
   
     }
 
 // Function to generate the <option> elements from the locations array
 const generateOptions = (options) => {
-  return options.map((option , index ) => (
-    <option key={index} value={option}>
+  return options.map((option) => (
+    <option key={option} value={option}>
       {option}
     </option>
   ));
@@ -77,49 +60,21 @@ const generateOptions = (options) => {
 
     <div class="max-w-sm p-3  bg-white border border-gray-200 shadow dark:bg-gray-800 dark:border-gray-700">
 
-        <a href="#">
+<a href="#">
             <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Esto es Human Conet:</h5>
         </a>
 
 
-        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">De los territorios a las ciudades, visibilizamos las luchas y acompañamos los procesos que protegen la vida en todas sus formas.
-        Conoce nuestras acciones contadas por las comunidade </p>
+<p class="mb-3 font-normal text-gray-700 dark:text-gray-400">De los territorios a las ciudades, visibilizamos las luchas y acompañamos los procesos que protegen la vida en todas sus formas.
+Conoce nuestras acciones contadas por las comunidade </p>
 
 
-      <Link to={"/PAD/post"} >
-      <button className=' rounded-md bg-blue-600'>Publica un nuevo artículo</button>
-      </Link>
-
-<form>   
-<label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Buscar</label>
-    <div class="relative">
-        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-            <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
-            </svg>
-        </div>
-
-        <input 
-        filter='name'
-        onInput={handleSearchName} 
-        type="search" id="default-search" class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Busca por nombre..." required ></input>
 
 
-        </div>
-</form>
+   
 
-    <select name="sort" onChange={handleSelectLocation}>
-        {options}
-    </select>
 
-        <select name="sort" onChange={handleOrder} >
-          <option value="dateAll">Todos</option>
-          <option value="dateAsc">Más Reciente</option>
-          <option value="dateDes">Más Antiguo</option>
-        </select>
-    <a href="#">
-        <img class="" src={''} alt="" />
-    </a>
+
 
     <div class="flex p-5">
 
