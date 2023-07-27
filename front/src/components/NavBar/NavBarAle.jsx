@@ -6,7 +6,7 @@ export default function NavBarAle() {
   return (
 
     <div>
-      <Link to={'/articles'}>
+      <Link to='/articles'>
         <h1>
           Articles
         </h1>
