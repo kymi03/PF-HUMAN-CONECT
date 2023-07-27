@@ -2,7 +2,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import NavBarAle from "../../components/NavBar/NavBar.ale";
+import NavBarAle from "../../components/NavBar/NavBarAle";
 import FooterMoreInfo from "../../components/footer/FooterMoreInfo";
 import { PROJECTS, ARTICLES, DOCUMENTARYS } from "../../redux/actions-types";
 
