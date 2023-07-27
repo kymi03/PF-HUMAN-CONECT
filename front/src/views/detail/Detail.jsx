@@ -36,7 +36,7 @@ function Detail() {
   useEffect(() => {
     if (source !== "") {
       axios
-        .get(`http://localhost:3001/${source}?id=${value}`)
+        .get(`/${source}?id=${value}`)
         .then(({ data }) => {
           if (data.name) {
             setPAD(data);
