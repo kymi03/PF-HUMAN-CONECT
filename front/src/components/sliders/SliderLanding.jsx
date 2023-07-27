@@ -22,7 +22,7 @@ const SliderLanding = () => {
     autoplay: true,
     autoplaySpeed: 3000,
     centerMode: true,
-    centerPadding: "150px", 
+    centerPadding: "80px", 
     responsive: [
       {
         breakpoint: 768,

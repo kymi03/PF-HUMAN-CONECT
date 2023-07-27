@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import SliderLanding from "../components/sliders/SliderLanding";
+import SliderLanding from "../../components/sliders/SliderLanding";
 
 export default function Landing() {
   return (
