@@ -18,11 +18,11 @@ function App() {
     <div>
       <Routes>
         <Route path="/" element={<Landing/>}/>
-        <Route path="/home" element={<Home/>}/>
+        <Route path="/home" element={<Articles/>}/>
         <Route path="/formjoin" element={<FormJoin/>}/>
         <Route path="/formlogin" element={<FormLogin/>}/>
         <Route path="/projects" element={<Projects />}/>
-        <Route path="/articles" element={<Articles />}/>
+        {/* <Route path="/articles" element={<Articles />}/> */}
         <Route path="/documentarys" element={<Documentarys />}/>
         <Route path='/PAD/post' element={<PostPAD />} />  
         <Route path='/detail/:id' element={<Detail />} />  
