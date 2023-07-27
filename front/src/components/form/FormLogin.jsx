@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import NavBar from "../NavBar/NavBarAle"
+import NavBar from "../NavBar/NavBar.ale"
 import Footer from "../footer/Footer"
 import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
 import { useDispatch } from 'react-redux';

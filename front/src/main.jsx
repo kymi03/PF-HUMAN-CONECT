@@ -10,11 +10,11 @@ import { Provider } from 'react-redux'
 import store from './redux/store.js'
 
 //esto es par trabajar de forma local
-// axios.defaults.baseURL = 'http://localhost:3001'
+axios.defaults.baseURL = 'http://localhost:3001'
 
 
 //esto es para trabajar de forma deployada
-axios.defaults.baseURL = 'https://humanconet.adaptable.app/'
+// axios.defaults.baseURL = 'https://humanconet.adaptable.app/'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider store={store}>

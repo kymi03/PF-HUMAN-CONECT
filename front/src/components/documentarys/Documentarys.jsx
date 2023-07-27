@@ -11,7 +11,7 @@ import { useEffect, useState } from 'react';
 import Footer from '../footer/Footer.jsx';
 import Cards from '../cards/Cards.jsx';
 import LeftInfo from '../leftInfo/LeftInfo.jsx';
-import NavBarAle from '../NavBar/NavBarAle.jsx';
+import NavBarAle from '../NavBar/NavBar.ale.jsx';
 import { getSearchPADByQuery,  } from '../../redux/actions.js';
 import {
   // GET_ALL_PROJECTS , GET_ALL_LOCATION ,  ORDER_BY_DATE,
