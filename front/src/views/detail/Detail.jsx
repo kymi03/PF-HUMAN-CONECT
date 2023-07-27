@@ -1,8 +1,8 @@
-// import styles from "./Detail.module.css";
+import styles from "./Detail.module.css";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import NavBarAle from "../../components/NavBar/NavBarAle";
+import NavBarAle from "../../components/NavBar/NavBar.ale";
 import FooterMoreInfo from "../../components/footer/FooterMoreInfo";
 import { PROJECTS, ARTICLES, DOCUMENTARYS } from "../../redux/actions-types";
 
