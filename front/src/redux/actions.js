@@ -25,7 +25,7 @@ import axios from "axios";
 export const getEmailAuth= ({email, accessToken}) => {
   return (dispatch)=>{
     try {
-      const existingEmailDb = axios.get('http://localhost:3001/user', {email, accessToken})
+      const existingEmailDb = axios.get('/user', {email, accessToken})
       return dispatch({
         type: GET_AUTH_USER,
         payload: existingEmailDb.data
@@ -58,13 +58,13 @@ export const getAllLocations = (PAD)=>{
 
         switch (PAD) {
           case PROJECTS:
-            PADLocations = await axios.get('http://localhost:3001/projects');
+            PADLocations = await axios.get('/projects');
             break;
           case ARTICLES:
-            PADLocations = await axios.get('http://localhost:3001/articles');
+            PADLocations = await axios.get('/articles');
             break;
           case DOCUMENTARYS:
-            PADLocations = await axios.get('http://localhost:3001/documentaries');
+            PADLocations = await axios.get('/documentaries');
             break;
           default:
             return; // Return early if PAD doesn't match any case
@@ -137,7 +137,7 @@ export const orderByDate = (order , PAD)=>{
 export function postNewUser (payload) {
   return function(dispatch){
     try {
-      axios.post('http://localhost:3001/user', payload )
+      axios.post('/user', payload )
       .then((data)=>{
         return dispatch({
           type: POST_NEW_USER,
@@ -153,7 +153,7 @@ export function postNewUser (payload) {
 export function postNewPAD (payload , PADtype ) {
   return function(dispatch){
     try {
-      axios.post(`http://localhost:3001/${PADtype}`, payload )
+      axios.post(`/${PADtype}`, payload )
       .then((data)=>{
         return dispatch({//<--- no tengo muy claro para que se esta dispatch-eando al reducer , no tiene state ni case asiganos que respondan a este dispath 
           type: POST_NEW_ARTICLE, 
@@ -166,6 +166,19 @@ export function postNewPAD (payload , PADtype ) {
   }
 }
 
+// export function getArticles(){
+//   return async function(dispatch){
+//     try {
+//       var response = await axios.get('/articles')
+//       return dispatch({
+//         type: GET_ARTICLES,
+//         payload: response.data
+//       })
+//     } catch (error) {
+//       console.log(error.message);
+//     }
+//   }
+// }
 
 export const getSearchPADByQuery = ( nam , loc , PAD)=>{
   let query = ''
@@ -180,7 +193,7 @@ export const getSearchPADByQuery = ( nam , loc , PAD)=>{
 
   return async function  (dispatch){
     try {
-      const getAllProjects = await axios.get(`http://localhost:3001/projects?${query}`)
+      const getAllProjects = await axios.get(`/projects?${query}`)
         // console.log(getAllProjects.data);
       return dispatch({
         type:GET_ALL_PROJECTS,
@@ -197,7 +210,7 @@ export const getSearchPADByQuery = ( nam , loc , PAD)=>{
 
   return async function  (dispatch){
     try {
-      const getAllArticles = await axios.get(`http://localhost:3001/articles?${query}`)
+      const getAllArticles = await axios.get(`/articles?${query}`)
         // console.log(getAllArticles.data);
       return dispatch({
         type:GET_ALL_ARTICLES,
@@ -216,7 +229,7 @@ export const getSearchPADByQuery = ( nam , loc , PAD)=>{
 
   return async function  (dispatch){
     try {
-      const getAllDocumentarys = await axios.get(`http://localhost:3001/documentaries?${query}`)
+      const getAllDocumentarys = await axios.get(`/documentaries?${query}`)
         // console.log(getAllDocumentarys.data);   
       return dispatch({
         type:GET_ALL_DOCUMENTARYS,
@@ -238,10 +251,3 @@ export const getSearchPADByQuery = ( nam , loc , PAD)=>{
 
 
 }
-
-
-
-
-
-
-
