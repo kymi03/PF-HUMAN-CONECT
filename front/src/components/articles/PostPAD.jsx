@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import NavBarAle from "../NavBar/NavBarAle";
+import NavBarAle from "../NavBar/NavBar.ale";
 import Swal from "sweetalert2"
 import { useDispatch } from "react-redux";
 import PADValidation from "../validations/PADValidation";

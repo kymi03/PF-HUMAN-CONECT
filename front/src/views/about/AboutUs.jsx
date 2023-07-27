@@ -1,5 +1,5 @@
 import React from "react";
-import NavBarAle from "../../components/NavBar/NavBarAle";
+import NavBarAle from "../../components/NavBar/NavBar.ale";
 import styles from './AboutUs.module.css'
 
 function AboutUs() {

@@ -1,5 +1,5 @@
 import React from 'react';
-import NavBarAle from '../../components/NavBar/NavBarAle';
+import NavBarAle from '../../components/NavBar/NavBar.ale';
 import LeftInfoHome from '../../components/leftInfo/LeftInfoHome';
 import Footer from '../../components/footer/Footer';
 
