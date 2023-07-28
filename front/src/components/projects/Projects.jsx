@@ -34,7 +34,7 @@ function Projects() {
   return (  
 <div >
   <NavBarAle/>
-  <p class="ml-11 mb-5 text-justify text-5xl font-semibold text-gray-900 dark:text-white">PROYECTOS</p>
+  <p className="ml-11 mb-5 text-justify text-5xl font-semibold text-gray-900 dark:text-white">PROYECTOS</p>
   
   <div className="flex">
 
@@ -42,7 +42,7 @@ function Projects() {
       <LeftInfo PAD = {PROJECTS}/>
     </div>
 
-    <div className='h-3/5 w-4/5  bg-white border border-gray-200 shadow dark:bg-gray-800 dark:border-gray-700'>
+    <div className='h-3/5 w-4/5  border border-gray-200 shadow dark:bg-gray-800 dark:border-gray-700'>
       <Cards 
       currentPAD={currentPAD} 
       PAD =  {PROJECTS}
