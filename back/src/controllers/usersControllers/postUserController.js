@@ -24,6 +24,8 @@ admin.initializeApp({
     privateKey: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n')
   })
 });
+const transporter = require("./mailer");
+const { ADMIN_EMAIL } = process.env;
 
 const postUserController = async (req, res) => {
   const { name, lastName, email, password, phone, token, uemail } = req.body;
@@ -63,6 +65,15 @@ const postUserController = async (req, res) => {
       phone,
     });
     await newUser.save();
+    await transporter.sendMail({
+      from: `"Human Conet" ${ADMIN_EMAIL}`, // sender address
+      to: email, // list of receivers
+      subject: "Bienvenido a Human Conet", // Subject line
+      html: `
+      <h1>Human Conet - Confirmación de usuario.</h1>
+      <p>Hola <b>${name}</b>! Tu usuario en Human Conet fue creado exitosamente.</p>
+      `, // html body
+    });
     return res.status(201).json(newUser);
   } catch (error) {
     console.error("Error al crear el usuario", error);

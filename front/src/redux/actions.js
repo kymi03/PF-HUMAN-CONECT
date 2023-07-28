@@ -1,15 +1,18 @@
 import { 
   GET_ALL_PROJECTS,
+  GET_ALL_ARTICLES,
+  GET_ALL_DOCUMENTARYS,
+
   GET_ALL_LOCATION,
+  GET_ARTICLES,
   ORDER_BY_DATE,
   GET_BY_INPUT,
-  GET_ARTICLES,
-  GET_ALL_ARTICLES,
   POST_NEW_USER,
   POST_NEW_GOOGLE_USER,
   SET_GLOBAL_PAD,
   GET_GOOGLE_USER,
-  GET_USER
+  GET_USER,
+  SET_GLOBAL_PAD,
 
 } from "./actions-types";
 
@@ -45,7 +48,7 @@ export function getGoogleAuth( {uemail,token} ) {
 export function getEmailAuth( {email,password} ) {
   return async function (dispatch) {
     try {
-      axios.get(`http://localhost:3001/user?email=${email}&password=${password}`)
+      axios.get(`/user?email=${email}&password=${password}`)
       .then((info)=>{
         return dispatch({
           type: GET_USER,
@@ -55,6 +58,10 @@ export function getEmailAuth( {email,password} ) {
       .catch(error=>{
         console.log(error.response)
         Swal.fire(error.response.data.error)
+      const existingEmailDb = axios.get('/user', {email, accessToken})
+      return dispatch({
+        type: GET_AUTH_USER,
+        payload: existingEmailDb.data
       })
     } catch (error) {
       console.log(error);
@@ -75,55 +82,6 @@ export const setPADAction = (PAD) => {
   };
 }
 
-export const getAllProjects = ( value , type , location)=>{
-
-if ((!value && !type) || (value==="Todas")){  return async function  (dispatch){
-    try {
-      const allProjects = await axios.get('http://localhost:3001/projects')
-
-      return dispatch({
-        type:GET_ALL_PROJECTS,
-        payload: allProjects.data
-      })
-    } catch (error) {
-      console.log(error.message);
-    }
-  }}
-if (value && type && location==='Todas'){  return async function  (dispatch){
-    try {
-      const allProjects = await axios.get(`http://localhost:3001/projects?${type}=${value}`)
-
-
-
-      return dispatch({
-        type:GET_ALL_PROJECTS,
-        payload: allProjects.data
-      })
-
-    } catch (error) {
-      console.log(error.message);
-    }
-  }}
-if (value && type && location !=='Todas'){  return async function  (dispatch){
-    try {
-      const allProjects = await axios.get(`http://localhost:3001/projects?${type}=${value}&location=${location}`)
-
-
- 
-
-
-      return dispatch({
-        type:GET_ALL_PROJECTS,
-        payload: allProjects.data
-      })
-
-    } catch (error) {
-      console.log(error.message);
-    }
-  }}
-
-
-}
 
 export const getAllLocations = (PAD)=>{
   return async function  (dispatch){
@@ -132,13 +90,13 @@ export const getAllLocations = (PAD)=>{
 
         switch (PAD) {
           case PROJECTS:
-            PADLocations = await axios.get('http://localhost:3001/projects');
+            PADLocations = await axios.get('/projects');
             break;
           case ARTICLES:
-            PADLocations = await axios.get('http://localhost:3001/articles');
+            PADLocations = await axios.get('/articles');
             break;
           case DOCUMENTARYS:
-            PADLocations = await axios.get('http://localhost:3001/documentaries');
+            PADLocations = await axios.get('/documentaries');
             break;
           default:
             return; // Return early if PAD doesn't match any case
@@ -211,7 +169,7 @@ export const orderByDate = (order , PAD)=>{
 export function postNewUser (payload) {
   return function(dispatch){
     try {
-      axios.post('http://localhost:3001/user', payload )
+      axios.post('/user', payload )
       .then((data)=>{
         Swal.fire("Usuario creado exitosamente")
         return dispatch({
@@ -233,7 +191,7 @@ export function postNewGoogleUser (payload) {
   return function(dispatch){
     try {
       console.log(payload);
-      axios.post('http://localhost:3001/user', payload )
+      axios.post('/user', payload )
       .then((data)=>{
         Swal.fire("Usuario creado exitosamente")
         return dispatch({
@@ -254,7 +212,7 @@ export function postNewGoogleUser (payload) {
 export function postNewPAD (payload , PADtype ) {
   return function(dispatch){
     try {
-      axios.post(`http://localhost:3001/${PADtype}`, payload )
+      axios.post(`/${PADtype}`, payload )
       .then((data)=>{
         return dispatch({//<--- no tengo muy claro para que se esta dispatch-eando al reducer , no tiene state ni case asiganos que respondan a este dispath 
           type: POST_NEW_ARTICLE, 
@@ -270,7 +228,7 @@ export function postNewPAD (payload , PADtype ) {
 // export function getArticles(){
 //   return async function(dispatch){
 //     try {
-//       var response = await axios.get('http://localhost:3001/articles')
+//       var response = await axios.get('/articles')
 //       return dispatch({
 //         type: GET_ARTICLES,
 //         payload: response.data
@@ -281,87 +239,81 @@ export function postNewPAD (payload , PADtype ) {
 //   }
 // }
 
-export const getAllArticles = ( nam , loc )=>{
+export const getSearchPADByQuery = ( nam , loc , PAD)=>{
+  let query = ''
+  if (nam !== '' ) { query = query+nam }
+  if (loc !== '' ) { query = query+'&'}
+  if (loc !== '' ) { query = query+loc }
 
-  // console.log(  nam , loc );
+  // console.log(query);
 
+ switch (PAD) {
+  case PROJECTS:
 
-  // if ( nam === '' && loc === 'Todas' ){  return async function  (dispatch){
-    
-  if ( !nam && !loc  ){  return async function  (dispatch){
-
-
-      try {
-        const allArticles = await axios.get('http://localhost:3001/Articles')
-console.log(allArticles.data);
-
-        return dispatch({
-          type:GET_ALL_ARTICLES,
-          payload: allArticles.data
-        })
-      } catch (error) {
-        console.log(error.message);
-      }
-    }}
-  if ( nam !== '' && loc ==='Todas'){  return async function  (dispatch){
-
-    // console.log(`http://localhost:3001/Articles?name=${nam}`)
-
-    console.log(nam);
-      try {
-        const allArticles = await axios.get(`http://localhost:3001/Articles?name=${nam}`)
-console.log(allArticles.data);
+  return async function  (dispatch){
+    try {
+      const getAllProjects = await axios.get(`/projects?${query}`)
+        // console.log(getAllProjects.data);
+      return dispatch({
+        type:GET_ALL_PROJECTS,
+        payload: getAllProjects.data
+      })
   
-  
-        return dispatch({
-          type:GET_ALL_ARTICLES,
-          payload: allArticles.data
-        })
-  
-      } catch (error) {
-        console.log(error.message);
-      }
-    }}
-
-
-  if ( nam === '' && loc !=='Todas'){  return async function  (dispatch){
-// console.log(`http://localhost:3001/Articles?location=${loc}`);
-
-      try {
-        const allArticles = await axios.get(`http://localhost:3001/Articles?location=${loc}`)
-console.log(allArticles.data);
- 
-  
-  
-        return dispatch({
-          type:GET_ALL_ARTICLES,
-          payload: allArticles.data
-        })
-  
-      } catch (error) {
-        console.log(error.message);
-      }
-    }}
-
-
-  if ( nam !== '' && loc !=='Todas'){  return async function  (dispatch){
-console.log(`http://localhost:3001/Articles?name=${nam}&location=${loc}` , ' action ')
-
-      try {
-        const allArticles = await axios.get(`http://localhost:3001/Articles?name=${nam}&location=${loc}`)
-// console.log(allArticles.data);
-  
-  
-        return dispatch({
-          type:GET_ALL_ARTICLES,
-          payload: allArticles.data
-        })
-  
-      } catch (error) {
-        console.log(error.message);
-      }
-    }}
-
-  
-
+    } catch (error) {
+      console.log(error.message);
+    }
   }
+
+    // break;
+  case ARTICLES:
+
+  return async function  (dispatch){
+    try {
+      const getAllArticles = await axios.get(`/articles?${query}`)
+        // console.log(getAllArticles.data);
+      return dispatch({
+        type:GET_ALL_ARTICLES,
+        payload: getAllArticles.data
+      })
+  
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+
+
+  
+    // break;
+  case DOCUMENTARYS:
+
+  return async function  (dispatch){
+    try {
+      const getAllDocumentarys = await axios.get(`/documentaries?${query}`)
+        // console.log(getAllDocumentarys.data);   
+      return dispatch({
+        type:GET_ALL_DOCUMENTARYS,
+        payload: getAllDocumentarys.data
+      })
+  
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+
+    // break;
+ 
+  default:
+    break;
+ }
+
+
+
+
+}
+
+
+
+
+
+
+

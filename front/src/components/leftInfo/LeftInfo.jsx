@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { getAllArticles, getAllLocations, getAllProjects, orderByDate } from '../../redux/actions'
+import { getSearchPADByQuery, getAllLocations, orderByDate  } from '../../redux/actions'
 import { useDispatch, useSelector } from 'react-redux'
 import { Dropdown } from 'flowbite-react';
 import {
@@ -7,86 +7,50 @@ import {
   PROJECTS , DOCUMENTARYS , ARTICLES
   } from "../../redux/actions-types";
   import { Link } from 'react-router-dom';
-
 function LeftInfo(props) {
 
 
     const dispatch = useDispatch()
 
+    const [location, setLocation ] = useState('');
+    const [name, setName ] = useState('');
+    const [ aux, setAux] = useState(false)
 
+
+
+   
     useEffect(() => {
       dispatch(getAllLocations(props.PAD));
-      dispatch(getAllArticles(  ));
-    }, []);
-    // useEffect(() => {
-    //   // dispatch(getAllLocations(props.PAD));
-    //   // dispatch(getAllArticles( name , location   ));
-    // }, []);
-    
-    const [location, setLocation ] = useState('Todas');
-    const [name, setNane ] = useState('');
-    
-    console.log( name , location   );
-    
-    const [ aux, setAux] = useState(false)
-    const [date, setDate ] = useState('Filtra Por Fecha');
+      dispatch(getSearchPADByQuery(name, location, props.PAD)); // Fetch articles on initial mount
+    }, [name, location, props.PAD]);
 
 
-    
     const locations = useSelector(state => state.allLocations)
+    
 
-
-
+ 
+    
+    
     const handleSelectLocation = (event) => {
 
-      setLocation(event.target.value )
+    if (event.target.value !== 'Todas') {
+      setLocation(`location=${event.target.value}`);
+    } else {
+      setLocation('');
+    }
+      dispatch(getSearchPADByQuery(name, location, props.PAD));
 
-      switch (props.PAD) {
-        case PROJECTS:
-          dispatch(getAllProjects(event.target.value , "location" , location ))
-    
-        case ARTICLES:
-              dispatch( getAllArticles( name , location ) )
-    
-    
-        
-     
-      
-        default:
-          break;
-      }
-
-
-
-
-
-
-      aux ? setAux(false) : setAux(true)     
     }
 
     const handleSearchName = (event) => {
-      setNane(event.target.value)
-
-  switch (props.PAD) {
-    case PROJECTS:
-      if(event.target.value) { dispatch(getAllProjects(event.target.value , "name" , location)) } 
-      if(event.target.value === "") { dispatch(getAllProjects()) } 
-
-     case ARTICLES:
-      // if(event.target.value) { 
-        dispatch( getAllArticles( name , location ) )
-      //  } 
-      // if(event.target.value === "") { dispatch(getAllArticles()) } 
-
-
-    
- 
   
-    default:
-      break;
-  }
-   
-  // aux ? setAux(false) : setAux(true)     
+    if (event.target.value !== '') {
+      setName(`name=${event.target.value}`);
+    } else {
+      setName('');
+    }
+      dispatch(getSearchPADByQuery(name, location, props.PAD));
+
     }
 
     const handleOrder = (event) => {
@@ -136,6 +100,7 @@ const generateOptions = (options) => {
         </div>
 
         <input 
+        filter='name'
         onInput={handleSearchName} 
         type="search" id="default-search" className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Busca por nombre..." required ></input>
 
