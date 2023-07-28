@@ -1,7 +1,9 @@
 import {
   
   GET_ALL_PROJECTS , GET_ALL_LOCATION ,  ORDER_BY_DATE, GET_ALL_ARTICLES, GET_ALL_DOCUMENTARYS,
-  PROJECTS , DOCUMENTARYS , ARTICLES, GET_ARTICLES , SET_GLOBAL_PAD, GET_AUTH_USER , SET_USER_STATE
+
+  PROJECTS , DOCUMENTARYS , ARTICLES, GET_ARTICLES , SET_GLOBAL_PAD, GET_AUTH_USER , SET_USER_STATE , GET_GOOGLE_USER, GET_USER
+
   
   } from "./actions-types";
   
@@ -50,11 +52,12 @@ import {
           allLocations: action.payload,
         };
       
-      case GET_AUTH_USER:
+      case GET_GOOGLE_USER:
         return {
           ...state,
           userAuth: action.payload
         }
+
         
         case SET_USER_STATE:
           return {
@@ -71,6 +74,17 @@ import {
             // Sort the valid data based on the "date" property in ascending order
             validData.sort((a, b) => new Date(a.date) - new Date(b.date));
             
+
+        case GET_USER:
+          return {
+            ...state,
+            userAuth: action.payload
+          }
+
+
+      
+      
+
         return validData;
       };
 

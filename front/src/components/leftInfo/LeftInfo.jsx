@@ -100,7 +100,9 @@ const generateOptions = (options) => {
     <div className="relative">
         <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
             <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+
                 <path stroke="currentColor" strokeLinecap="round" stroke-linejoin="round" strokeWidth="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+
             </svg>
         </div>
 
@@ -136,6 +138,7 @@ const generateOptions = (options) => {
 
         <div className="flex mt-4 space-x-5 sm:justify-center md:mt-0">
 
+
               <a href="https://www.instagram.com/humanconet.es/?hl=fr" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-gray-900 dark:hover:text-white">
                 <svg className="w-7 h-7" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 8 19">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="35px" height="35px">
@@ -161,6 +164,7 @@ const generateOptions = (options) => {
                   </svg>
                 </svg>
                 <span className="sr-only">YouTube page</span>
+
               </a>
 
        </div>

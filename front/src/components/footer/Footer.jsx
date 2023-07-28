@@ -3,10 +3,12 @@ import React from 'react'
 function FooterMoreInfo() {
   return (
     
+
 <footer className=" bg-black dark:bg-gray-900">
     <div className="mx-auto  w-full max-w-screen-xl p-4 py-6 lg:py-8">
     
       <div className="sm:flex h-1 sm:items-center sm:justify-between">
+
           <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2023 <a href="http://localhost:5173/" className="hover:underline">Human Conet</a>. Todos los derechos reservados
           </span>
           <div className="flex mt-4 space-x-5 sm:justify-center sm:mt-0">
