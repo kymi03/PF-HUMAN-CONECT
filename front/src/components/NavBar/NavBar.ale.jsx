@@ -8,10 +8,7 @@ export default function NavBarAle() {
 
 <nav className="bg-bla border-gray-200 dark:bg-gray-900">
     <div
-    className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4" 
-
-    >
-
+    className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
 <Link to={`/`}>
     <a 
     className="flex items-center"
@@ -103,13 +100,8 @@ export default function NavBarAle() {
         </li>
           </Link>
           </ul>
-
     </div>
   </div>
 </nav>
-
-
-
-
   );
 }
