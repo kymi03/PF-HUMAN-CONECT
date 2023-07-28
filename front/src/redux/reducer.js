@@ -73,17 +73,7 @@ import {
             
             // Sort the valid data based on the "date" property in ascending order
             validData.sort((a, b) => new Date(a.date) - new Date(b.date));
-            
-
-        case GET_USER:
-          return {
-            ...state,
-            userAuth: action.payload
-          }
-
-
-      
-      
+               
 
         return validData;
       };
@@ -171,7 +161,11 @@ if(action.payload.PAD === DOCUMENTARYS ){  console.log('i');
 
 
 
-
+        case GET_USER:
+          return {
+            ...state,
+            userAuth: action.payload
+          }
 
 
 
