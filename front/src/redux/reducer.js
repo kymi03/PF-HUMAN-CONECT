@@ -1,7 +1,9 @@
 import {
   
   GET_ALL_PROJECTS , GET_ALL_LOCATION ,  ORDER_BY_DATE, GET_ALL_ARTICLES, GET_ALL_DOCUMENTARYS,
-  PROJECTS , DOCUMENTARYS , ARTICLES, GET_ARTICLES , SET_GLOBAL_PAD, GET_GOOGLE_USER, GET_USER
+
+  PROJECTS , DOCUMENTARYS , ARTICLES, GET_ARTICLES , SET_GLOBAL_PAD, GET_AUTH_USER , SET_USER_STATE , GET_GOOGLE_USER, GET_USER
+
   
   } from "./actions-types";
   
@@ -17,7 +19,9 @@ import {
 
     allLocations: [],
 
-    userAuth:[]
+    userAuth:[],
+
+    userState:false
  
   };
   
@@ -53,6 +57,24 @@ import {
           ...state,
           userAuth: action.payload
         }
+
+        
+        case SET_USER_STATE:
+          return {
+            ...state,
+            userState: action.payload
+          }
+        
+        case ORDER_BY_DATE:
+          
+          const sortByDateAsc = (data) => {
+            // Filter out objects without a valid "date" property
+            const validData = data.filter((item) => item.date && typeof item.date === "string");
+            
+            // Sort the valid data based on the "date" property in ascending order
+            validData.sort((a, b) => new Date(a.date) - new Date(b.date));
+            
+
         case GET_USER:
           return {
             ...state,
@@ -60,15 +82,9 @@ import {
           }
 
 
-      case ORDER_BY_DATE:
+      
+      
 
-      const sortByDateAsc = (data) => {
-        // Filter out objects without a valid "date" property
-        const validData = data.filter((item) => item.date && typeof item.date === "string");
-      
-        // Sort the valid data based on the "date" property in ascending order
-        validData.sort((a, b) => new Date(a.date) - new Date(b.date));
-      
         return validData;
       };
 

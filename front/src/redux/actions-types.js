@@ -22,5 +22,13 @@ export const POST_NEW_USER = "POST_NEW_USER"
 export const POST_NEW_GOOGLE_USER = "POST_NEW_GOOGLE_USER"
 export const POST_NEW_ARTICLE = "POST_NEW_ARTICLE"
 
+
+export const GET_AUTH_USER = "GET_AUTH_USER"
+
+export const SET_USER_STATE = "SET_USER_STATE"
+
+
 export const GET_GOOGLE_USER = "GET_GOOGLE_USER"
+
 export const GET_USER = "GET_USER"
+

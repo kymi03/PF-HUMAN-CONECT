@@ -13,6 +13,9 @@ import {
   GET_GOOGLE_USER,
   GET_USER,
   SET_GLOBAL_PAD,
+  SET_USER_STATE
+
+
 
 } from "./actions-types";
 
@@ -311,9 +314,17 @@ export const getSearchPADByQuery = ( nam , loc , PAD)=>{
 
 }
 
-
-
-
-
-
-
+export const setUserState = (state)=>{
+  return async function  (dispatch){
+      try {
+   
+        return dispatch({
+          type:SET_USER_STATE,
+          payload: state
+        })
+  
+      } catch (error) {
+        console.log(error.message);
+      }
+    }
+  }
