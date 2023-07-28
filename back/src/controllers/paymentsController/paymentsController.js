@@ -17,14 +17,14 @@ const paymentsController = async (req, res) => {
     const result = await mercadopago.preferences.create({
       items: items,
       back_urls: {
-        success: "http://localhost:3001/success",
-        failure: "http://localhost:3001/failure",
-        pending: "http://localhost:3001/pendig",
+        success: "http://localhost:3001/payments/success",
+        failure: "http://localhost:3001/payments/failure",
+        pending: "http://localhost:3001/payments/pendig",
       },
-      notification_url: "http://localhost:3000/webhook",
+      notification_url: "http://localhost:3000/payments/webhook",
     });
     console.log(result.body.init_point);
-    res.status(200).json({ message: "Donativo realizado con exito" });
+    res.status(200).json({ result });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
