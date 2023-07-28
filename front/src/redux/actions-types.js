@@ -22,3 +22,7 @@ export const POST_NEW_USER = "POST_NEW_USER"
 export const POST_NEW_ARTICLE = "POST_NEW_ARTICLE"
 
 export const GET_AUTH_USER = "GET_AUTH_USER"
+
+export const SET_USER_STATE = "SET_USER_STATE"
+
+

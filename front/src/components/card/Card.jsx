@@ -1,11 +1,23 @@
 import React from "react";
 import {Link} from 'react-router-dom'
+import green1 from "../../assets/icons/green1.png"
+import green2 from "../../assets/icons/green2.png"
+import green3 from "../../assets/icons/green3.gif"
+import green4 from "../../assets/icons/green4.gif"
+import gold1 from "../../assets/icons/gold1.png"
+import gold2 from "../../assets/icons/gold2.png"
+
+
+
 
 function Card(props) {
   // console.log(props);
 
   return (
     <div className="  bg-white border border-gray-200 shadow dark:bg-gray-800 dark:border-gray-700">
+
+
+
       <a href={`/detail/${props.PAD}=${props._id}`}>
         <img
           className=""
@@ -19,6 +31,19 @@ function Card(props) {
       </a>
 
       <div className="p-5">
+      <div>
+  <button id="imageButton">
+    <img 
+    className="h-8"
+    src={green1}></img>
+  </button>
+  <button id="imageButton">
+    <img 
+    className="h-8"
+    src={gold1}></img>
+  </button>
+</div>
+
       <Link to={`/detail/${props.PAD}=${props._id}`}>
         <a 
         // href={`/detail/${props.PAD}=${props._id}`}
@@ -28,6 +53,8 @@ function Card(props) {
           </h5>
         </a>
         </Link>
+
+        
         <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
           {props.breaf
             ? props.breaf
@@ -50,7 +77,7 @@ function Card(props) {
               stroke="currentColor"
               strokeLinecap="round"
               strokeLinejoin="round"
-              stroke-width="2"
+              strokeWidth="2"
               d="M1 5h12m0 0L9 1m4 4L9 9"
             />
           </svg>

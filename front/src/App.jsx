@@ -11,12 +11,17 @@ import AboutUs from './views/about/AboutUs.jsx'
 import Donar from './views/donar/Donar'
 import { PostPAD } from './components/articles/PostPAD'
 import FormLogin from './components/form/FormLogin'
-
+import backimg from "./assets/BACKGOUDN_IMAGE_LANDING.png"
 function App() {
   
 
+ 
   return (
-    <div>
+    <div style={{
+      backgroundImage: `url(${backimg})`,
+ 
+      backgroundSize: "cover"
+    }}>
       <Routes>
         <Route path="/" element={<Landing/>}/>
         <Route path="/home" element={<Home/>}/>
