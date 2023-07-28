@@ -6,7 +6,10 @@ import {
   GET_ARTICLES,
   GET_ALL_ARTICLES,
   POST_NEW_USER,
-  SET_GLOBAL_PAD
+  POST_NEW_GOOGLE_USER,
+  SET_GLOBAL_PAD,
+  GET_GOOGLE_USER,
+  GET_USER
 
 } from "./actions-types";
 
@@ -17,19 +20,45 @@ import {
 
 
 import axios from "axios";
+import Swal from "sweetalert2";
 
-export const getEmailAuth= ({email, accessToken}) => {
-  return (dispatch)=>{
+export function getGoogleAuth( {uemail,token} ) {
+  return async function (dispatch) {
     try {
-      const existingEmailDb = axios.get('http://localhost:3001/user', {email, accessToken})
-      return dispatch({
-        type: GET_AUTH_USER,
-        payload: existingEmailDb.data
+      axios.get(`http://localhost:3001/user?uemail=${uemail}&token=${token}`)
+      .then((info)=>{
+        return dispatch({
+          type: GET_GOOGLE_USER,
+          payload: info.data,
+        })
+      })
+      .catch(error=>{
+        console.log(error.response)
+        Swal.fire(error.response.data.error)
+      })        
+    } catch (error) {
+      console.log(error);
+    }
+  }
+}
+
+export function getEmailAuth( {email,password} ) {
+  return async function (dispatch) {
+    try {
+      axios.get(`http://localhost:3001/user?email=${email}&password=${password}`)
+      .then((info)=>{
+        return dispatch({
+          type: GET_USER,
+          payload: info.data,
+        })        
+      })
+      .catch(error=>{
+        console.log(error.response)
+        Swal.fire(error.response.data.error)
       })
     } catch (error) {
       console.log(error);
     }
-    console.log(payload, 'AQUI')
   }
 }
 
@@ -184,13 +213,40 @@ export function postNewUser (payload) {
     try {
       axios.post('http://localhost:3001/user', payload )
       .then((data)=>{
+        Swal.fire("Usuario creado exitosamente")
         return dispatch({
           type: POST_NEW_USER,
           payload:data
         })
       })
+      .catch(error=>{
+        console.log(error.response)
+        Swal.fire(error.response.data.error)
+      })
     } catch (error) {
       console.log(error.message);
+    }
+  }
+}
+
+export function postNewGoogleUser (payload) {
+  return function(dispatch){
+    try {
+      console.log(payload);
+      axios.post('http://localhost:3001/user', payload )
+      .then((data)=>{
+        Swal.fire("Usuario creado exitosamente")
+        return dispatch({
+          type: POST_NEW_GOOGLE_USER,
+          payload:data
+        })
+      })
+      .catch(error=>{
+        console.log(error.response)
+        Swal.fire(error.response.data.error)
+      })
+    } catch (error) {
+      console.log(error);
     }
   }
 }

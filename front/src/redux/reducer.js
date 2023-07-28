@@ -1,6 +1,6 @@
 import {
   GET_ALL_PROJECTS , GET_ALL_LOCATION ,  ORDER_BY_DATE, GET_ALL_ARTICLES,
-  PROJECTS , DOCUMENTARYS , ARTICLES, GET_ARTICLES , SET_GLOBAL_PAD, GET_AUTH_USER
+  PROJECTS , DOCUMENTARYS , ARTICLES, GET_ARTICLES , SET_GLOBAL_PAD, GET_GOOGLE_USER, GET_USER
   } from "./actions-types";
   
   const initialState = {
@@ -40,11 +40,16 @@ import {
           allLocations: action.payload,
         };
       
-      case GET_AUTH_USER:
+      case GET_GOOGLE_USER:
         return {
           ...state,
           userAuth: action.payload
         }
+        case GET_USER:
+          return {
+            ...state,
+            userAuth: action.payload
+          }
 
 
       case ORDER_BY_DATE:
