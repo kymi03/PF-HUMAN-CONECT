@@ -1,330 +1,183 @@
-import { 
-  GET_ALL_PROJECTS,
-  GET_ALL_ARTICLES,
-  GET_ALL_DOCUMENTARYS,
-
-  GET_ALL_LOCATION,
-  GET_ARTICLES,
-  ORDER_BY_DATE,
-  GET_BY_INPUT,
-  POST_NEW_USER,
-  POST_NEW_GOOGLE_USER,
-  SET_GLOBAL_PAD,
-  GET_GOOGLE_USER,
-  GET_USER,
-  SET_GLOBAL_PAD,
-  SET_USER_STATE
-
-
-
-} from "./actions-types";
-
 import {
-  // GET_ALL_PROJECTS , GET_ALL_LOCATION ,  ORDER_BY_DATE,
-  PROJECTS , DOCUMENTARYS , ARTICLES
-  } from "../redux/actions-types";
+  
+  GET_ALL_PROJECTS , GET_ALL_LOCATION ,  ORDER_BY_DATE, GET_ALL_ARTICLES, GET_ALL_DOCUMENTARYS,
 
+  PROJECTS , DOCUMENTARYS , ARTICLES, GET_ARTICLES , SET_GLOBAL_PAD, GET_AUTH_USER , SET_USER_STATE , GET_GOOGLE_USER, GET_USER
 
-import axios from "axios";
-import Swal from "sweetalert2";
+  
+  } from "./actions-types";
+  
+  const initialState = {
+    allProjects: [],
+    allProjects2: [],
+   
+    allArticles: [],
+    allArticles2: [],
 
-export function getGoogleAuth( {uemail,token} ) {
-  return async function (dispatch) {
-    try {
-      axios.get(`http://localhost:3001/user?uemail=${uemail}&token=${token}`)
-      .then((info)=>{
-        return dispatch({
-          type: GET_GOOGLE_USER,
-          payload: info.data,
-        })
-      })
-      .catch(error=>{
-        console.log(error.response)
-        Swal.fire(error.response.data.error)
-      })        
-    } catch (error) {
-      console.log(error);
-    }
-  }
-}
+    allDocumentarys: [],
+    allDocumentarys2: [],
 
-export function getEmailAuth( {email,password} ) {
-  return async function (dispatch) {
-    try {
-      axios.get(`/user?email=${email}&password=${password}`)
-      .then((info)=>{
-        return dispatch({
-          type: GET_USER,
-          payload: info.data,
-        })        
-      })
-      .catch(error=>{
-        console.log(error.response)
-        Swal.fire(error.response.data.error)
-      const existingEmailDb = axios.get('/user', {email, accessToken})
-      return dispatch({
-        type: GET_AUTH_USER,
-        payload: existingEmailDb.data
-      })
-    } catch (error) {
-      console.log(error);
-    }
-  }
-}
+    allLocations: [],
 
-export const setPADAction = (PAD) => {
-  return (dispatch) => {
-    try {
-      dispatch({
-        type: SET_GLOBAL_PAD,
-        payload: PAD,
-      });
-    } catch (error) {
-      console.log(error.message);
-    }
+    userAuth:[],
+
+    userState:false
+ 
   };
-}
-
-
-export const getAllLocations = (PAD)=>{
-  return async function  (dispatch){
-      try {
-        let PADLocations;
-
-        switch (PAD) {
-          case PROJECTS:
-            PADLocations = await axios.get('/projects');
-            break;
-          case ARTICLES:
-            PADLocations = await axios.get('/articles');
-            break;
-          case DOCUMENTARYS:
-            PADLocations = await axios.get('/documentaries');
-            break;
-          default:
-            return; // Return early if PAD doesn't match any case
+  
+  const reducer = (state = initialState, action) => {
+    switch (action.type) {
+      case GET_ALL_PROJECTS:
+        return {
+          ...state,
+          allProjects: action.payload,
+          allProjects2: action.payload,
+        };
+      case GET_ALL_ARTICLES:
+        return {
+          ...state,
+          allArticles: action.payload,
+          allArticles2: action.payload,
+        };
+      case GET_ALL_DOCUMENTARYS:
+        return {
+          ...state,
+          allDocumentarys: action.payload,
+          allDocumentarys2: action.payload,
+        };
+        
+      case GET_ALL_LOCATION:
+        return {
+          ...state,
+          allLocations: action.payload,
+        };
+      
+      case GET_GOOGLE_USER:
+        return {
+          ...state,
+          userAuth: action.payload
         }
-  
-        const DataPAD = PADLocations.data;
-  
-  
+
         
-        const getUniqueLocations = (array) => {
-          const uniqueLocations = [];
-          const uniqueKeys = new Set();
-        
-          for (const loc of array) {
-            const key = loc.trim().toLowerCase(); 
-            if (!uniqueKeys.has(key)) {
-              uniqueKeys.add(key);
-              uniqueLocations.push(
-                loc
-                  .toLowerCase()
-                  .split(' ')
-                  .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-                  .join(' ')
-              );
-            }
+        case SET_USER_STATE:
+          return {
+            ...state,
+            userState: action.payload
           }
         
-          return uniqueLocations;
+        case ORDER_BY_DATE:
+          
+          const sortByDateAsc = (data) => {
+            // Filter out objects without a valid "date" property
+            const validData = data.filter((item) => item.date && typeof item.date === "string");
+            
+            // Sort the valid data based on the "date" property in ascending order
+            validData.sort((a, b) => new Date(a.date) - new Date(b.date));
+               
+
+        return validData;
+      };
+
+      const sortByDateDes = (data) => {
+        // Filter out objects without a valid "date" property
+        const validData = data.filter((item) => item.date && typeof item.date === "string");
+      
+        // Sort the valid data based on the "date" property in ascending order
+        validData.sort((a, b) => new Date(b.date) - new Date(a.date));
+      
+        return validData;
+      };
+
+if(action.payload.PAD === PROJECTS ){ 
+
+
+
+  let orderedProjects = [...state.allProjects];
+  if (action.payload.order === "dateAsc") {
+
+    orderedProjects = sortByDateAsc(orderedProjects)
+
+  } else if (action.payload.order === "dateDes") {
+
+    orderedProjects = sortByDateDes(orderedProjects)
+
+
+  } else if (action.payload.order === "dateAll") {
+
+    orderedProjects = state.allProjects2
+
+  } 
+  return {
+    ...state,
+    // order: action.payload,
+    allProjects: orderedProjects,
+    // filtered: orderedDogs,
+  };
+
+}
+if(action.payload.PAD === ARTICLES ){  
+  
+  let orderedArticles = [...state.allArticles];
+  if (action.payload.order === "dateAsc") {
+
+    orderedArticles = sortByDateAsc(orderedArticles)
+
+  } else if (action.payload.order === "dateDes") {
+
+    orderedArticles = sortByDateDes(orderedArticles)
+
+
+  } else if (action.payload.order === "dateAll") {
+
+    orderedArticles = state.allArticles
+
+  } 
+  return {
+    ...state,
+    // order: action.payload,
+    allArticles: orderedArticles,
+    // filtered: orderedDogs,
+  };
+
+
+}
+if(action.payload.PAD === DOCUMENTARYS ){  console.log('i');
+}
+  
+
+
+
+        
+
+
+        return {
+          ...state,
+          allLocations: action.payload,
         };
-
-
-        const locationsProtoList = ['Todas']
-        DataPAD.forEach(element => {
-          if(element.location) {locationsProtoList.push(element.location); }
-        });
-
-
-
-        const locationList = getUniqueLocations(locationsProtoList);
-        return dispatch({
-          type:GET_ALL_LOCATION,
-          payload: locationsProtoList
-          // payload: locationList
-        })
   
-      } catch (error) {
-        console.log(error.message);
-      }
+
+
+
+
+
+
+        case GET_USER:
+          return {
+            ...state,
+            userAuth: action.payload
+          }
+
+
+
+
+
+
+
+
+      default:
+        return state;
     }
-  }
-
-export const orderByDate = (order , PAD)=>{
-  return async function  (dispatch){
-      try {
-   
-        const ordenator = {"order": order , "PAD":PAD}
-        // const locationList = getUniqueLocations(locationsProtoList);
-
-        return dispatch({
-          type:ORDER_BY_DATE,
-          payload: ordenator
-        })
+  };
   
-      } catch (error) {
-        console.log(error.message);
-      }
-    }
-  }
-
-export function postNewUser (payload) {
-  return function(dispatch){
-    try {
-      axios.post('/user', payload )
-      .then((data)=>{
-        Swal.fire("Usuario creado exitosamente")
-        return dispatch({
-          type: POST_NEW_USER,
-          payload:data
-        })
-      })
-      .catch(error=>{
-        console.log(error.response)
-        Swal.fire(error.response.data.error)
-      })
-    } catch (error) {
-      console.log(error.message);
-    }
-  }
-}
-
-export function postNewGoogleUser (payload) {
-  return function(dispatch){
-    try {
-      console.log(payload);
-      axios.post('/user', payload )
-      .then((data)=>{
-        Swal.fire("Usuario creado exitosamente")
-        return dispatch({
-          type: POST_NEW_GOOGLE_USER,
-          payload:data
-        })
-      })
-      .catch(error=>{
-        console.log(error.response)
-        Swal.fire(error.response.data.error)
-      })
-    } catch (error) {
-      console.log(error);
-    }
-  }
-}
-
-export function postNewPAD (payload , PADtype ) {
-  return function(dispatch){
-    try {
-      axios.post(`/${PADtype}`, payload )
-      .then((data)=>{
-        return dispatch({//<--- no tengo muy claro para que se esta dispatch-eando al reducer , no tiene state ni case asiganos que respondan a este dispath 
-          type: POST_NEW_ARTICLE, 
-          payload:data
-        })
-      })
-    } catch (error) {
-      console.log(error.message);
-    }
-  }
-}
-
-// export function getArticles(){
-//   return async function(dispatch){
-//     try {
-//       var response = await axios.get('/articles')
-//       return dispatch({
-//         type: GET_ARTICLES,
-//         payload: response.data
-//       })
-//     } catch (error) {
-//       console.log(error.message);
-//     }
-//   }
-// }
-
-export const getSearchPADByQuery = ( nam , loc , PAD)=>{
-  let query = ''
-  if (nam !== '' ) { query = query+nam }
-  if (loc !== '' ) { query = query+'&'}
-  if (loc !== '' ) { query = query+loc }
-
-  // console.log(query);
-
- switch (PAD) {
-  case PROJECTS:
-
-  return async function  (dispatch){
-    try {
-      const getAllProjects = await axios.get(`/projects?${query}`)
-        // console.log(getAllProjects.data);
-      return dispatch({
-        type:GET_ALL_PROJECTS,
-        payload: getAllProjects.data
-      })
+  export default reducer;
   
-    } catch (error) {
-      console.log(error.message);
-    }
-  }
-
-    // break;
-  case ARTICLES:
-
-  return async function  (dispatch){
-    try {
-      const getAllArticles = await axios.get(`/articles?${query}`)
-        // console.log(getAllArticles.data);
-      return dispatch({
-        type:GET_ALL_ARTICLES,
-        payload: getAllArticles.data
-      })
-  
-    } catch (error) {
-      console.log(error.message);
-    }
-  }
-
-
-  
-    // break;
-  case DOCUMENTARYS:
-
-  return async function  (dispatch){
-    try {
-      const getAllDocumentarys = await axios.get(`/documentaries?${query}`)
-        // console.log(getAllDocumentarys.data);   
-      return dispatch({
-        type:GET_ALL_DOCUMENTARYS,
-        payload: getAllDocumentarys.data
-      })
-  
-    } catch (error) {
-      console.log(error.message);
-    }
-  }
-
-    // break;
- 
-  default:
-    break;
- }
-
-
-
-
-}
-
-export const setUserState = (state)=>{
-  return async function  (dispatch){
-      try {
-   
-        return dispatch({
-          type:SET_USER_STATE,
-          payload: state
-        })
-  
-      } catch (error) {
-        console.log(error.message);
-      }
-    }
-  }
