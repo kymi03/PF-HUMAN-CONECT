@@ -35,7 +35,7 @@ function Articles() {
   return (  
     <div >
       <NavBarAle/>
-      <p class="ml-11 mb-5 text-justify text-5xl font-semibold text-gray-900 dark:text-white">ARTICULOS </p>
+      <p className="ml-11 mb-5 text-justify text-5xl font-semibold text-gray-900 dark:text-white">ARTICULOS </p>
       
       <div className="flex">
     
