@@ -12,7 +12,10 @@ import {
   SET_GLOBAL_PAD,
   GET_GOOGLE_USER,
   GET_USER,
-  SET_GLOBAL_PAD,
+ 
+  SET_USER_STATE
+
+
 
 } from "./actions-types";
 
@@ -45,29 +48,31 @@ export function getGoogleAuth( {uemail,token} ) {
   }
 }
 
-export function getEmailAuth( {email,password} ) {
+export function getEmailAuth({ email, password }) {
   return async function (dispatch) {
     try {
-      axios.get(`/user?email=${email}&password=${password}`)
-      .then((info)=>{
-        return dispatch({
-          type: GET_USER,
-          payload: info.data,
-        })        
-      })
-      .catch(error=>{
-        console.log(error.response)
-        Swal.fire(error.response.data.error)
-      const existingEmailDb = axios.get('/user', {email, accessToken})
+      const info = await axios.get(`/user?email=${email}&password=${password}`);
       return dispatch({
-        type: GET_AUTH_USER,
-        payload: existingEmailDb.data
-      })
+        type: GET_USER,
+        payload: info.data,
+      });
     } catch (error) {
-      console.log(error);
+      console.log(error.response);
+      Swal.fire(error.response.data.error);
+      try {
+        const existingEmailDb = await axios.get('/user', { email, accessToken });
+        return dispatch({
+          type: GET_AUTH_USER,
+          payload: existingEmailDb.data,
+        });
+      } catch (error) {
+        console.log(error);
+      }
     }
-  }
+  };
 }
+
+
 
 export const setPADAction = (PAD) => {
   return (dispatch) => {
@@ -311,9 +316,17 @@ export const getSearchPADByQuery = ( nam , loc , PAD)=>{
 
 }
 
-
-
-
-
-
-
+export const setUserState = (state)=>{
+  return async function  (dispatch){
+      try {
+   
+        return dispatch({
+          type:SET_USER_STATE,
+          payload: state
+        })
+  
+      } catch (error) {
+        console.log(error.message);
+      }
+    }
+  }
