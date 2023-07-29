@@ -21,9 +21,8 @@ const paymentsController = async (req, res) => {
         failure: "http://localhost:3001/payments/failure",
         pending: "http://localhost:3001/payments/pendig",
       },
-      notification_url: "http://localhost:3000/payments/webhook",
     });
-    console.log(result.body.init_point);
+    console.log(result.body);
     res.status(200).json({ result });
   } catch (error) {
     res.status(500).json({ error: error.message });
