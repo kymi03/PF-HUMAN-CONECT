@@ -1,6 +1,6 @@
 import React from "react";
 import NavBarAle from "../../components/NavBar/NavBar.ale";
-import styles from './AboutUs.module.css'
+import Footer from '../../components/footer/Footer'
 
 function AboutUs() {
   return (
@@ -8,7 +8,7 @@ function AboutUs() {
 
     <NavBarAle />
     
-    <div className={styles.container}>
+    <div >
       <div>
         <h2>HUMAN CONET</h2>
         <p>
@@ -58,7 +58,7 @@ function AboutUs() {
           />
       </div>
     </div>
-
+    <Footer />
   </>
   );
 }

@@ -12,15 +12,30 @@ Manifiesto de funciones:
  getUserController = Funcion que permite Obtener todos los usuarios registrados, al buscarlos por email
 ===============================================================================================================================
 */
-
-
-
 const user = require('../../models/user');
+const admin = require ('firebase-admin')
+
+
 
 const getUserController = async (req, res) => {
     try {
-        const { email, password } = req.query;
+        const { email, password, token, uemail } = req.query;//token y uemail son recibidos del login de google        
         const regexEmail = /^[^@]+@[^@]+\.[a-zA-Z]{2,}$/;
+        
+        if(token!=undefined){
+            const tokenVerifier = await admin.auth().verifyIdToken(token)//se decodifica el token para verificar autenticamente de firebase
+            const userFound = await user.findOne({email: uemail});          
+            // una vez verificado,se chequea si el email coincide con el email del token de firebase
+            if(userFound==undefined){
+                return res.status(404).json({error:"Registre su email para poder loguearse"})
+            }
+            if ( uemail == tokenVerifier.email ) {
+                return res.status(201).json({email: userFound.email, name: userFound.name, lastName: userFound.lastName, phone: userFound.phone, id: userFound._id})
+            }
+        }
+        console.log('AQUI',email);
+        // Buscar al usuario en la base de datos por su correo electrónico
+        const userFound = await user.findOne({ email: email });
 
         // Verificar que se proporcionen el email y password
         if ( !email || !password) {
@@ -32,23 +47,21 @@ const getUserController = async (req, res) => {
             return res.status(400).json({ error: 'Debe proporcionar un correo electrónico válido' });
         }
 
-        // Buscar al usuario en la base de datos por su correo electrónico
-        const userFound = await user.findOne({ email: email });
 
         if (!userFound) {
-            return res.status(404).json({ error: 'Usuario no encontrado' });
+            return res.status(404).json({ error: 'Email o Contraseña incorrecta' });
         }
 
         // Verificar que la contraseña coincida
         if (userFound.password !== password) {
-            return res.status(401).json({ error: 'Contraseña incorrecta' });
+            return res.status(401).json({ error: 'Email o Contraseña incorrecta' });
         }
 
         // Si todo es correcto, devolver el usuario encontrado
-        return res.status(200).json(userFound);
+        return res.status(200).json({_id:userFound._id, name:userFound.name, lastName:userFound.lastName, email:userFound.email, phone:userFound.phone});
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: 'Ha ocurrido un error en el servidor' });
+        return res.status(500).json({ error: 'Ha ocurrido un error en el servidor' });
     }
 };
 
