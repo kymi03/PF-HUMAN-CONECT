@@ -17,9 +17,9 @@ const paymentsController = async (req, res) => {
     const result = await mercadopago.preferences.create({
       items: items,
       back_urls: {
-        success: "http://localhost:3001/payments/success",
-        failure: "http://localhost:3001/payments/failure",
-        pending: "http://localhost:3001/payments/pendig",
+        success: "localhost:3001/payments/success",
+        failure: "localhost:3001/payments/failure",
+        pending: "localhost:3001/payments/pendig",
       },
     });
     console.log(result.body);
