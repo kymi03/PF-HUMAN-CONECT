@@ -32,3 +32,6 @@ export const GET_GOOGLE_USER = "GET_GOOGLE_USER"
 
 export const GET_USER = "GET_USER"
 
+export const GET_USER_OPTION = "GET_USER_OPTION"
+
+

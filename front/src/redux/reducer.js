@@ -1,6 +1,6 @@
 import {
   
-  GET_ALL_PROJECTS , GET_ALL_LOCATION ,  ORDER_BY_DATE, GET_ALL_ARTICLES, GET_ALL_DOCUMENTARYS,
+  GET_ALL_PROJECTS , GET_ALL_LOCATION ,  ORDER_BY_DATE, GET_ALL_ARTICLES, GET_ALL_DOCUMENTARYS, GET_USER_OPTION , 
 
   PROJECTS , DOCUMENTARYS , ARTICLES, GET_ARTICLES , SET_GLOBAL_PAD, GET_AUTH_USER , SET_USER_STATE , GET_GOOGLE_USER, GET_USER
 
@@ -21,7 +21,8 @@ import {
 
     userAuth:[],
 
-    userState:false
+    userState:true,
+    userOption:'NO OPTION'
  
   };
   
@@ -63,6 +64,11 @@ import {
           return {
             ...state,
             userState: action.payload
+          }
+        case GET_USER_OPTION:
+          return {
+            ...state,
+            userOption: action.payload
           }
         
         case ORDER_BY_DATE:
@@ -166,12 +172,6 @@ if(action.payload.PAD === DOCUMENTARYS ){  console.log('i');
             ...state,
             userAuth: action.payload
           }
-
-
-
-
-
-
 
 
       default:

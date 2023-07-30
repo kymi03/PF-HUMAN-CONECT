@@ -58,7 +58,7 @@ const UserDropManu = () => {
   className="absolute  px-2  flex-col mt-2 py-2 bg-white border border-gray-300 rounded shadow"
   >
     <Link
-      to="/route1"
+      to="/useroptions"
       className="block   text-gray-800 hover:text-blue-700"
       onClick={toggleMenu}
     >

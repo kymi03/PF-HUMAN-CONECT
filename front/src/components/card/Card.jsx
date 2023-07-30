@@ -17,8 +17,10 @@ function Card(props) {
     <div className="  bg-white border border-gray-200 shadow dark:bg-gray-800 dark:border-gray-700">
 
 
-
-      <a href={`/detail/${props.PAD}=${props._id}`}>
+<Link to={`/detail/${props.PAD}=${props._id}`}>
+      <a 
+      // href={`/detail/${props.PAD}=${props._id}`}
+      >
         <img
           className=""
           src={
@@ -29,6 +31,7 @@ function Card(props) {
           alt=""
         />
       </a>
+</Link>
 
       <div className="p-5">
       <div>
@@ -60,9 +63,8 @@ function Card(props) {
             ? props.breaf
             : "orem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco labor"}
         </p>
+
         <Link to={`/detail/${props.PAD}=${props._id}`}>
-
-
         <a
           // href={`/detail/${props.PAD}=${props._id}`}
           className="inline-flex items-center px-2 py-1 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
@@ -84,6 +86,7 @@ function Card(props) {
           </svg>
         </a>
         </Link>
+
       </div>
     </div>
   );

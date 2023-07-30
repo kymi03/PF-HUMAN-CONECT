@@ -13,7 +13,8 @@ import {
   GET_GOOGLE_USER,
   GET_USER,
  
-  SET_USER_STATE
+  SET_USER_STATE,
+  GET_USER_OPTION
 
 
 
@@ -330,3 +331,22 @@ export const setUserState = (state)=>{
       }
     }
   }
+
+
+export const getUserOption = (option)=>{
+  return async function  (dispatch){
+      try {
+   console.log(option);
+        return dispatch({
+          type:GET_USER_OPTION,
+          payload: option
+        })
+  
+      } catch (error) {
+        console.log(error.message);
+      }
+    }
+  }
+
+
+
