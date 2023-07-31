@@ -1,7 +1,7 @@
 const documentaryModel = require("../../models/documentary");
 
 const postDocumentaryHandler = async (req, res) => {
-  const { name, media, body, author, breaf, date, location } = req.body;
+  const { name, title, media, body, author, breaf, date, location } = req.body;
   if (!media.images)
   media.images = {
     imageName:
@@ -12,6 +12,7 @@ const postDocumentaryHandler = async (req, res) => {
   try {
     const newDocumentary = new documentaryModel({
       name,
+      title,
       media,
       body,
       author,

@@ -1,7 +1,7 @@
 const projectModel = require("../../models/project");
 
 const postProjectController = async (req, res) => {
-  const { name, media, body, author, breaf, date, location } = req.body;
+  const { name, title, media, body, author, breaf, date, location } = req.body;
   if (!media.images)
   media.images = {
     imageName:
@@ -19,6 +19,7 @@ const postProjectController = async (req, res) => {
   try {
     const newProject = new projectModel({
       name,
+      title,
       media,
       body,
       author,
