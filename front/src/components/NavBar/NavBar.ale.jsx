@@ -5,7 +5,7 @@ import UserDropMenu from '../userDropMenu/UserDropMenu';
 import DefoultUserMenu from '../userDropMenu/DefoultUserMenu';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUserState } from '../../redux/actions';
-
+import CartCount from '../cartCount/CartCount';
 
 export default function NavBarAle() {
  const dispath = useDispatch()
@@ -22,8 +22,6 @@ export default function NavBarAle() {
   useEffect( () => {
 
       window.localStorage.setItem('LOGIN_USER' , JSON.stringify(userState))
-
-
   } , [userState])
 
 
@@ -40,7 +38,7 @@ export default function NavBarAle() {
     
     
 <Link to={`/home`}>
-    <a 
+    <button 
     className="flex items-center"
     >
         <img src="https://humanconet.org/wp-content/uploads/2022/03/Turtle-Turquoise-1-1024x1022.png" 
@@ -52,7 +50,7 @@ export default function NavBarAle() {
 
         
         >HUMAN CONET</span>
-    </a>
+    </button>
 </Link>
 
     <div 
@@ -63,51 +61,51 @@ export default function NavBarAle() {
 
           <Link to={`/aboutUs`}> 
         <li>
-          <a 
+          <button 
             className="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500" aria-current="page"
-            >Quienes somos</a>
+            >Quienes somos</button>
         </li>
           </Link>
      
    
           <Link to={`/articles`}>  
         <li>
-          <a 
+          <button 
             className="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-            >Articles</a>
+            >Articles</button>
         </li>
           </Link>
 
           <Link to={`/projects`}>  
         <li>
-          <a 
+          <button 
             className="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-            >Proyectos</a>
+            >Proyectos</button>
         </li>
           </Link>
 
           <Link to={`/documentarys`}>  
         <li>
-          <a 
+          <button 
             className="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-            >Documentales</a>
+            >Documentales</button>
         </li>
           </Link>
 
           <Link to={`/formjoin`}> 
         <li>
-          <a 
+          <button 
             className="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-            >Unete</a>
+            >Unete</button>
         </li>
           </Link>
 
 
           <Link to={`/donar`}>  
         <li>
-          <a 
+          <button 
             className="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-            >Donar</a>
+            >Donar</button>
         </li>
           </Link>
 
@@ -115,7 +113,7 @@ export default function NavBarAle() {
 
     </div>
 { userState === true ? <UserDropMenu></UserDropMenu> : <DefoultUserMenu></DefoultUserMenu> }
-
+<CartCount></CartCount>
   </div>
 </nav>
 

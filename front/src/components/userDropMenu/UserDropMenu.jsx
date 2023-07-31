@@ -31,6 +31,7 @@ const UserDropManu = () => {
   }, []);
 
   const handleButtonClick = () => {
+    window.localStorage.removeItem(userInfo)
     dispatch(setUserState(false))
   };
 

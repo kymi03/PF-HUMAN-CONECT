@@ -1,22 +1,81 @@
-import React, { useEffect, useState } from "react";
-import NavBarAle from "../../components/NavBar/NavBar.ale";
-import FooterMoreInfo from "../../components/footer/FooterMoreInfo";
 
-function AdminOptions() {
-  
 
-  return (
-    <div>
-      <NavBarAle></NavBarAle>
-      <div 
-      // className={eader-section"]}
-      >
-      
-  <h1>admin info</h1>
-      </div>
-      <FooterMoreInfo></FooterMoreInfo>
-    </div>
-  );
-}
+import React, { useEffect, useState } from 'react';
+import NavBarAle from '../../components/NavBar/NavBar.ale';
+import LeftInfoAdmin from '../../components/leftInfo/LeftInfoAdmin';
+import Footer from '../../components/footer/Footer';
+import { Link } from 'react-router-dom';
+import { Carousel } from 'flowbite-react';
+import { useSelector } from 'react-redux';
 
-export default AdminOptions;
+import Donations from '../../components/useroptions/Donations';
+import Coments from '../../components/useroptions/Coments';
+import Publications from '../../components/useroptions/Publications';
+import SavedContent from '../../components/useroptions/SavedContent';
+import Settings from '../../components/useroptions/Settings';
+import UserSummary from '../../components/useroptions/UserSummary';
+const UserOptions = () => {
+
+
+
+
+    const currentOption = useSelector(state => state.userOption)
+console.log(currentOption);
+
+
+    useEffect( () => {
+
+
+
+    } , [currentOption])
+
+let selectedOption = <></>
+ switch (currentOption) {
+    case "NO OPTION": 
+        selectedOption = <UserSummary/>
+        break;
+    case "DONACIONES": 
+        selectedOption = <Donations/>
+        break;
+    case "COMENTARIOS": 
+        selectedOption = <Coments/>
+        break;
+    case "CONTENIDO GUARDADO": 
+        selectedOption = <Publications/>
+        break;
+    case "PUBLICACIONES": 
+        selectedOption = <SavedContent/>
+        break;
+    case "CONFIGURACION DE USUARIO": 
+        selectedOption = <Settings/>
+        break;
+ 
+    default:
+        break;
+ }
+
+
+
+    return (
+        <div>
+            <div>
+                <NavBarAle />
+                
+                <p className="ml-11 mb-5 text-justify text-5xl font-semibold text-gray-900 dark:text-white">HOLA, MAKARENA</p>
+                <div className=" flex ">
+                    <div className=' w-1/5 h-3/5  ml-11 mr-11'>
+                        <LeftInfoAdmin />
+                    </div>
+                    <div>
+                        {selectedOption}
+                    </div>
+                </div>
+                <Footer />
+            </div>
+
+
+        </div>
+    )
+};
+
+export default UserOptions;

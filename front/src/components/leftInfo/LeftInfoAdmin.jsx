@@ -6,7 +6,7 @@ import {
   PROJECTS , DOCUMENTARYS , ARTICLES
   } from "../../redux/actions-types";
   import { Link } from 'react-router-dom';
-function LeftInfoUser(props) {
+function LeftInfoAdmin(props) {
 
 const dispatch = useDispatch()
 
@@ -31,42 +31,29 @@ const dispatch = useDispatch()
     value='NO OPTION'
     className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium w-44 text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
     onClick={handleUserOption}
-    >RESUMEN</button>
+    >APROBAR / DAR DE BAJA , Publicacion de contenido </button>
 
      <button   
     type="button" 
     value='DONACIONES'
     className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium w-44 text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
     onClick={handleUserOption}
-    >DONACIONES</button>
+    >APROBAR / DAR DE BAJA , usuario </button>
     
      <button   
     type="button" 
     value='COMENTARIOS'
     className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium w-44 text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
     onClick={handleUserOption}
-    >COMENTARIOS</button>
+    >? </button>
 
-     <button   
+     {/* <button   
     type="button" 
     value='CONTENIDO GUARDADO'
     className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium w-44 text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
     onClick={handleUserOption}
-    >CONTENIDO GUARDADO</button>
+    >CONTENIDO GUARDADO</button> */}
 
-     <button   
-    type="button" 
-    value='PUBLICACIONES'
-    className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium w-44 text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-    onClick={handleUserOption}
-    >PUBLICACIONES</button>
-
-     <button   
-    type="button" 
-    value='CONFIGURACION DE USUARIO'
-    className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium w-44 text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-    onClick={handleUserOption}
-    >CONFIGURACION DE USUARIO</button>
 
     </div>
 
@@ -77,4 +64,4 @@ const dispatch = useDispatch()
   )
 }
 
-export default LeftInfoUser
+export default LeftInfoAdmin
