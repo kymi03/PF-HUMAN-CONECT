@@ -69,21 +69,35 @@ function Detail() {
       <NavBarAle></NavBarAle>
       <div className={styles["header-section"]}>
         <h1>{PAD.name}</h1>
-        <img
-          src={
-            uniqueImages.length > 0
-              ? uniqueImages[0]
-              : "https://humanconet.org/wp-content/uploads/2022/09/Cover-Home-Human-Conet-01-1-1536x780.webp"
-          }
-          alt="Cover Image"
-        />
+        {uniqueImages.length === 0 && (
+          <img
+            src={
+              uniqueImages.length > 1
+                ? uniqueImages[0]
+                : "https://humanconet.org/wp-content/uploads/2022/09/Cover-Home-Human-Conet-01-1-1536x780.webp"
+            }
+            alt="Cover Image"
+            style={{
+              objectFit: "cover",
+              width: "50%",
+              height: "50%",
+              right: "50%",
+            }}
+          />
+        )}
         {/* Muestra todas las imágenes */}
-        {uniqueImages.length > 1 ? (
+        {uniqueImages.length > 2 ? (
           uniqueImages.map((imageUrl, index) => (
             <img
               key={index}
               src={imageUrl}
               className={styles["header-section"]}
+              style={{
+                objectFit: "cover",
+                width: "50%",
+                height: "50%",
+                right: "50%",
+              }}
             />
           ))
         ) : uniqueImages.length === 1 ? (
@@ -97,22 +111,22 @@ function Detail() {
         {uniqueVideos.map((videoUrl, index) => (
           <div key={index} className={styles["video-responsive"]}>
             <div className={styles["video-container"]}>
-              {videoUrl.includes("youtube") ? (
+              {videoUrl?.includes("youtube") ? (
                 <iframe
                   className={styles["video-container-iframe"]}
                   src={`https://www.youtube.com/embed/${
-                    videoUrl.split("v=")[1]
+                    videoUrl?.split("v=")[1]
                   }`}
                   title="YouTube video player"
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                 ></iframe>
-              ) : videoUrl.includes("vimeo") ? (
+              ) : videoUrl?.includes("vimeo") ? (
                 <iframe
                   className={styles["video-container-iframe"]}
                   src={`https://player.vimeo.com/video/${
-                    videoUrl.split("/")[3]
+                    videoUrl?.split("/")[3]
                   }`}
                   frameBorder="0"
                   allow="autoplay; fullscreen; picture-in-picture"
