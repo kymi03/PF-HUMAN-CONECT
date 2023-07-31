@@ -3,7 +3,8 @@ import NavBarAle from "../../components/NavBar/NavBar.ale";
 import Footer from "../../components/footer/Footer";
 import axios from "axios";
 import styles from "./Donar.module.css";
-
+import Cards from "../../components/cards/Cards";
+import { useSelector } from "react-redux";
 function Donar() {
   const [unitPrice, setUnitPrice] = useState(500);
   const [chart, setChart] = useState([]);
@@ -22,6 +23,21 @@ function Donar() {
       alert(`No se pudo generar el link de pago. Error: ${error.message}`);
     }
   };
+
+ const donerItems = useSelector(state => state.ItemsDonation )
+
+
+console.log(donerItems);
+
+
+
+
+
+
+
+
+
+
 
   const handleChange = (e) => {
     console.log(chart);
@@ -74,6 +90,10 @@ function Donar() {
         </form>
         <button onClick={() => sendChart(chart)}> DONAR ♥ </button>
       </div>
+      {/* <Cards
+            // currentPAD={currentPAD} 
+            // PAD =  {PROJECTS} //<-- puede que no lo necesite aun 
+      ></Cards> */}
       <Footer />
     </>
   );
