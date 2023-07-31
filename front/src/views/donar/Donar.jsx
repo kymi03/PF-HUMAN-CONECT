@@ -27,7 +27,53 @@ function Donar() {
  const donerItems = useSelector(state => state.ItemsDonation )
 
 
-console.log(donerItems);
+ function splitString(inputString) {
+  const [key, value] = inputString.split("=");
+  return { key, value };
+}
+
+async function fetchData(array) {
+  const resultArray = [];
+
+  for (const item of array) {
+    const { key, value } = splitString(item);
+    let source = "";
+
+    switch (key) {
+      case "PROJECTS":
+        source = "projects";
+        break;
+      case "ARTICLES":
+        source = "articles";
+        break;
+      case "DOCUMENTARYS":
+        source = "documentaries";
+        break;
+      default:
+        break;
+    }
+
+    try {
+      const response = await axios.get(`/${source}?id=${value}`);
+      resultArray.push(response.data);
+    } catch (error) {
+      console.error(`Error fetching data for ${item}:`, error);
+    }
+  }
+
+  return resultArray;
+}
+
+// const dataArray = ["PROJECTS=64b9813b8facd1b25669435b","PROJECTS=64b9813b8facd1b25669435c","DOCUMENTARYS=64c473438330e8fb52102bd0","DOCUMENTARYS=64bf6a35f2755740d3db5899","ARTICLES=64bc2c77b0a5f74dde62c65e"];
+
+fetchData(donerItems)
+  .then((result) => {
+    console.log("Data fetched successfully:", result);
+    // You can work with the result array here
+  })
+  .catch((error) => {
+    console.error("Error fetching data:", error);
+  });
 
 
 
