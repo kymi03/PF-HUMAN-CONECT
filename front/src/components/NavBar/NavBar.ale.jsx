@@ -13,13 +13,13 @@ export default function NavBarAle() {
   const dispath = useDispatch()
   const userAuth = useSelector(state => state.userAuth)
   const [userInfo, setUserInfo ] = useState()
-  
-
+ 
   useEffect(() => {
     const data = window.localStorage.getItem('LOGIN_USER')
     // console.log('data:' , data);
     dispath(setUserState(JSON.parse(data))) //<-- cambiar para demos
   }, [])
+
 
 
   useEffect(() => {
