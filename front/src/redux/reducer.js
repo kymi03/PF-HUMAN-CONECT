@@ -1,6 +1,6 @@
 import {
   
-  GET_ALL_PROJECTS , GET_ALL_LOCATION ,  ORDER_BY_DATE, GET_ALL_ARTICLES, GET_ALL_DOCUMENTARYS,
+  GET_ALL_PROJECTS , GET_ALL_LOCATION ,  ORDER_BY_DATE, GET_ALL_ARTICLES, GET_ALL_DOCUMENTARYS, GET_USER_OPTION ,  SET_DONATION_ITEMS ,
 
   PROJECTS , DOCUMENTARYS , ARTICLES, GET_ARTICLES , SET_GLOBAL_PAD, GET_AUTH_USER , SET_USER_STATE , GET_GOOGLE_USER, GET_USER
 
@@ -21,7 +21,9 @@ import {
 
     userAuth:[],
 
-    userState:false
+    userState:true,
+    userOption:'NO OPTION',
+    ItemsDonation:[]
  
   };
   
@@ -63,6 +65,11 @@ import {
           return {
             ...state,
             userState: action.payload
+          }
+        case GET_USER_OPTION:
+          return {
+            ...state,
+            userOption: action.payload
           }
         
         case ORDER_BY_DATE:
@@ -167,11 +174,35 @@ if(action.payload.PAD === DOCUMENTARYS ){  console.log('i');
             userAuth: action.payload
           }
 
+        case SET_DONATION_ITEMS: 
 
+        
+        function sharedComponent(array1, array2) {
+          // Utilizar un Set para encontrar elementos únicos
+          const setArray1 = new Set(array1);
+          const setArray2 = new Set(array2);
+        
+          // Verificar si hay elementos compartidos
+          for (const element of setArray1) {
+            if (setArray2.has(element)) {
+              return true;
+            }
+          }
+        
+          // Si no se encontraron elementos compartidos, devolver false
+          return false;
+        }
 
+        let exist = sharedComponent( [...state.ItemsDonation] , [...action.payload] )
+         let items=[...state.ItemsDonation];
+        if(exist===false) items = [...new Set([...state.ItemsDonation, ...action.payload])]
+        if(exist===true ){ items =  [...state.ItemsDonation].filter(elemento => ![...action.payload].includes(elemento));       };
+   
 
-
-
+        return {
+            ...state,
+            ItemsDonation:items
+          }
 
 
       default:

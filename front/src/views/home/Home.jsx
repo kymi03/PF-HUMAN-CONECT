@@ -8,7 +8,6 @@ import { useSelector } from 'react-redux';
 
 const Home = () => {
 
-
     const [showBanner , setShowBanner ] = useState(true);
 
     useEffect( () => {
@@ -17,16 +16,11 @@ const Home = () => {
         setShowBanner(JSON.parse(data))//<-- cambiar para demos
     } , [])
 
-
-
     useEffect( () => {
 
         window.localStorage.setItem('WELCOME_BANNER' , JSON.stringify(showBanner))
 
-
     } , [showBanner])
-
-
 
     return (
         <div>

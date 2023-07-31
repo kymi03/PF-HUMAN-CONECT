@@ -13,7 +13,10 @@ import {
   GET_GOOGLE_USER,
   GET_USER,
  
-  SET_USER_STATE
+  SET_USER_STATE,
+  GET_USER_OPTION,
+  GET_ADMIN_OPTION,
+  SET_DONATION_ITEMS
 
 
 
@@ -333,3 +336,50 @@ export const setUserState = (state)=>{
       }
     }
   }
+
+
+export const getUserOption = (option)=>{
+  return async function  (dispatch){
+      try {
+   console.log(option);
+        return dispatch({
+          type:GET_USER_OPTION,
+          payload: option
+        })
+  
+      } catch (error) {
+        console.log(error.message);
+      }
+    }
+  }
+export const setDonationItems = (item)=>{
+  return async function  (dispatch){
+      try {
+  //  console.log(item);
+        return dispatch({
+          type:SET_DONATION_ITEMS,
+          payload: item
+        })
+  
+      } catch (error) {
+        console.log(error.message);
+      }
+    }
+  }
+export const getAdminOption = (option)=>{
+  return async function  (dispatch){
+      try {
+   console.log(option);
+        return dispatch({
+          type:GET_ADMIN_OPTION,
+          payload: option
+        })
+  
+      } catch (error) {
+        console.log(error.message);
+      }
+    }
+  }
+
+
+
