@@ -1,15 +1,19 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { setUserState } from '../../redux/actions';
+import React, { useState, useRef, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { setUserState } from "../../redux/actions";
 
 const UserDropManu = () => {
-
-  const dispatch = useDispatch()
-
-
+  const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
+  const [userData, setUserData] = useState();
   const dropdownRef = useRef(null);
+
+  useEffect(() => {
+    const userInfo = window.localStorage.getItem("userInfo");
+    setUserData(userInfo);
+    console.log(userData);
+  }, []);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -23,19 +27,17 @@ const UserDropManu = () => {
   };
 
   useEffect(() => {
-    document.addEventListener('click', handleOutsideClick);
-
+    document.addEventListener("click", handleOutsideClick);
     return () => {
-      document.removeEventListener('click', handleOutsideClick);
+      document.removeEventListener("click", handleOutsideClick);
     };
   }, []);
 
   const handleButtonClick = () => {
-    window.localStorage.removeItem(userInfo)
-    dispatch(setUserState(false))
+    window.localStorage.removeItem("userInfo");
+    window.location.reload();
+    dispatch(setUserState(false));
   };
-
-
 
   return (
     < div  >
@@ -75,9 +77,9 @@ const UserDropManu = () => {
 
         </div>
       )}
-
     </div>
   );
 };
+
 
 export default UserDropManu;
