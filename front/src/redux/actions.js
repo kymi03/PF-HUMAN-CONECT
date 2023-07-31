@@ -380,6 +380,3 @@ export const getAdminOption = (option)=>{
       }
     }
   }
-
-
-

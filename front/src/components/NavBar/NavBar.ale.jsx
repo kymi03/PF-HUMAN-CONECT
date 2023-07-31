@@ -113,7 +113,7 @@ export default function NavBarAle() {
           </ul>
 
     </div>
-{ userState === true ? <UserDropMenu></UserDropMenu> : <DefoultUserMenu></DefoultUserMenu> }
+    {userInfo != null ? <UserDropMenu /> : <DefoultUserMenu />}
 <CartCount></CartCount>
   </div>
 </nav>
