@@ -45,8 +45,8 @@ function Card(props) {
     className="h-8"
     src={gold1}></img>
   </button>
-  <h4>{props.location}</h4>
-  {/* <h4>{props.date}</h4> */}
+
+ 
 </div>
 
       <Link to={`/detail/${props.PAD}=${props._id}`}>
@@ -60,34 +60,6 @@ function Card(props) {
         </Link>
 
         
-        <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-          {props.breaf
-            ? props.breaf
-            : "orem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco labor"}
-        </p>
-
-        <Link to={`/detail/${props.PAD}=${props._id}`}>
-        <a
-          // href={`/detail/${props.PAD}=${props._id}`}
-          className="inline-flex items-center px-2 py-1 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-        >
-          Seguir leyendo
-          <svg
-            className="w-3.5 h-5 ml-2"
-            aria-hidden="true"
-            fill="none"
-            viewBox="0 0 14 10"
-          >
-            <path
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M1 5h12m0 0L9 1m4 4L9 9"
-            />
-          </svg>
-        </a>
-        </Link>
 
       </div>
     </div>

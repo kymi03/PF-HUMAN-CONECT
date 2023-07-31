@@ -12,6 +12,7 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 import image from '../../assets/icons/google-logo.png'
+import { Link } from "react-router-dom";
 
 
 const FormJoin = () => {
@@ -258,9 +259,13 @@ const FormJoin = () => {
               </button>
               <p>
                 Ya tienes una cuenta?{" "}
-                <a href="/formlogin" className=" text-blue-900 underline">
+                <Link to={"/formlogin"}>
+                <button 
+                // href="/formlogin" 
+                className=" text-blue-900 underline">
                   Iniciar sesión
-                </a>
+                </button>
+                </Link>
               </p>
             </form>
           </div>
