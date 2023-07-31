@@ -1,7 +1,9 @@
 import {
   
-  GET_ALL_PROJECTS , GET_ALL_LOCATION ,  ORDER_BY_DATE, GET_ALL_ARTICLES, GET_ALL_DOCUMENTARYS,
-  PROJECTS , DOCUMENTARYS , ARTICLES, GET_ARTICLES , SET_GLOBAL_PAD, GET_AUTH_USER
+  GET_ALL_PROJECTS , GET_ALL_LOCATION ,  ORDER_BY_DATE, GET_ALL_ARTICLES, GET_ALL_DOCUMENTARYS, GET_USER_OPTION ,  SET_DONATION_ITEMS ,
+
+  PROJECTS , DOCUMENTARYS , ARTICLES, GET_ARTICLES , SET_GLOBAL_PAD, GET_AUTH_USER , SET_USER_STATE , GET_GOOGLE_USER, GET_USER
+
   
   } from "./actions-types";
   
@@ -17,7 +19,11 @@ import {
 
     allLocations: [],
 
-    userAuth:[]
+    userAuth:[],
+
+    userState:true,
+    userOption:'NO OPTION',
+    ItemsDonation:[]
  
   };
   
@@ -48,22 +54,34 @@ import {
           allLocations: action.payload,
         };
       
-      case GET_AUTH_USER:
+      case GET_GOOGLE_USER:
         return {
           ...state,
           userAuth: action.payload
         }
 
+        
+        case SET_USER_STATE:
+          return {
+            ...state,
+            userState: action.payload
+          }
+        case GET_USER_OPTION:
+          return {
+            ...state,
+            userOption: action.payload
+          }
+        
+        case ORDER_BY_DATE:
+          
+          const sortByDateAsc = (data) => {
+            // Filter out objects without a valid "date" property
+            const validData = data.filter((item) => item.date && typeof item.date === "string");
+            
+            // Sort the valid data based on the "date" property in ascending order
+            validData.sort((a, b) => new Date(a.date) - new Date(b.date));
+               
 
-      case ORDER_BY_DATE:
-
-      const sortByDateAsc = (data) => {
-        // Filter out objects without a valid "date" property
-        const validData = data.filter((item) => item.date && typeof item.date === "string");
-      
-        // Sort the valid data based on the "date" property in ascending order
-        validData.sort((a, b) => new Date(a.date) - new Date(b.date));
-      
         return validData;
       };
 
@@ -150,13 +168,41 @@ if(action.payload.PAD === DOCUMENTARYS ){  console.log('i');
 
 
 
+        case GET_USER:
+          return {
+            ...state,
+            userAuth: action.payload
+          }
 
+        case SET_DONATION_ITEMS: 
 
+        
+        function sharedComponent(array1, array2) {
+          // Utilizar un Set para encontrar elementos únicos
+          const setArray1 = new Set(array1);
+          const setArray2 = new Set(array2);
+        
+          // Verificar si hay elementos compartidos
+          for (const element of setArray1) {
+            if (setArray2.has(element)) {
+              return true;
+            }
+          }
+        
+          // Si no se encontraron elementos compartidos, devolver false
+          return false;
+        }
 
+        let exist = sharedComponent( [...state.ItemsDonation] , [...action.payload] )
+         let items=[...state.ItemsDonation];
+        if(exist===false) items = [...new Set([...state.ItemsDonation, ...action.payload])]
+        if(exist===true ){ items =  [...state.ItemsDonation].filter(elemento => ![...action.payload].includes(elemento));       };
+   
 
-
-
-
+        return {
+            ...state,
+            ItemsDonation:items
+          }
 
 
       default:

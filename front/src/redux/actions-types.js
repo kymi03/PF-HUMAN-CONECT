@@ -19,6 +19,23 @@ export const ORDER_BY_DATE = 'ORDER_BY_DATE'
 
 export const GET_BY_INPUT = 'GET_BY_INPUT'
 export const POST_NEW_USER = "POST_NEW_USER"
+export const POST_NEW_GOOGLE_USER = "POST_NEW_GOOGLE_USER"
 export const POST_NEW_ARTICLE = "POST_NEW_ARTICLE"
 
+
 export const GET_AUTH_USER = "GET_AUTH_USER"
+
+export const SET_USER_STATE = "SET_USER_STATE"
+
+
+export const GET_GOOGLE_USER = "GET_GOOGLE_USER"
+
+export const GET_USER = "GET_USER"
+
+export const GET_USER_OPTION = "GET_USER_OPTION"
+
+export const GET_ADMIN_OPTION = "GET_ADMIN_OPTION"
+
+export const SET_DONATION_ITEMS = "SET_DONATION_ITEMS"
+
+

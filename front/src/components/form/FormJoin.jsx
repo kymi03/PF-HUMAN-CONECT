@@ -1,13 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { postNewUser } from "../../redux/actions";
+import { postNewGoogleUser, postNewUser } from "../../redux/actions";
 import validation from "../validations/validation";
 import Swal from "sweetalert2";
-import NavBar from "../NavBar/NavBar.ale"
-import Footer from "../footer/Footer"
+import NavBar from "../NavBar/NavBar.ale";
+import Footer from "../footer/Footer";
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from "firebase/auth";
+import image from '../../assets/icons/google-logo.png'
+
 
 const FormJoin = () => {
   const dispatch = useDispatch();
+  const auth = getAuth();
+  const googleProvider = new GoogleAuthProvider();
 
   const [errors, setErrors] = useState({});
   const [userData, setUserData] = useState({
@@ -16,7 +26,7 @@ const FormJoin = () => {
     email: "",
     password: "",
     confirmPassword: "",
-    phone: ""
+    phone: "",
   });
 
   const hdrJoinSubmit = (event) => {
@@ -27,7 +37,7 @@ const FormJoin = () => {
       userData?.email == "" ||
       userData?.password == "" ||
       userData?.confirmPassword == "" ||
-      userData?.phone == "" 
+      userData?.phone == ""
     )
       return Swal.fire("Complete todos los campos");
     if (errors?.name) return Swal.fire(errors.name);
@@ -37,15 +47,100 @@ const FormJoin = () => {
     if (errors?.phone) return Swal.fire(errors.phone);
     if (errors?.confirmPassword) return Swal.fire(errors.confirmPassword);
     dispatch(postNewUser(userData));
-    Swal.fire("Usuario creado exitosamente");
     setUserData({
       name: "",
       lastName: "",
       email: "",
       password: "",
-      confirmPassword:"",
-      phone: ""
+      confirmPassword: "",
+      phone: "",
     });
+  };
+
+  const loginWithGoogle = () => {
+    signInWithPopup(auth, googleProvider)
+      .then((result) => {
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = auth.currentUser.accessToken;
+        const user = result.user;
+        const uemail = user.email;
+        Swal.fire({
+          title: "Complete los campos para continuar",
+          html:
+            '<input type="text" placeholder="Nombre" id="name" class="swal2-input">' +
+            '<input type="text" placeholder="Apellido" id="lastName" class="swal2-input">' +
+            '<input type="text" placeholder="Telefono" id="phone" class="swal2-input">',
+          confirmButtonText: "Sign in",
+          focusConfirm: false,
+          preConfirm: () => {
+            const name = document.getElementById("name").value;
+            const lastName = document.getElementById("lastName").value;
+            const phone = document.getElementById("phone").value;
+            const email = uemail;
+            const password = token;
+            if (!name || !lastName || !phone) {
+              Swal.showValidationMessage(`Debe ingresar todos los campos`);
+            } else if (!/^[a-zA-Z ]*$/.test(name)) {
+              Swal.showValidationMessage("Escriba sin numeros ni simbolos");
+            } else if (name.length < 2 || name.length > 40) {
+              Swal.showValidationMessage(
+                "El nombre debe tener entre 2 y 40 caracteres"
+              );
+            } else if (!/^[a-zA-Z ]*$/.test(lastName)) {
+              Swal.showValidationMessage("Escriba sin numeros ni simbolos");
+            } else if (lastName.length < 2 || lastName.length > 40) {
+              Swal.showValidationMessage(
+                "El apellido debe tener entre 2 y 40 caracteres"
+              );
+            } else if (!/^([0-9])*$/.test(phone)) {
+              Swal.showValidationMessage(
+                "Ingresar un número de teléfono de 13 digitos, sin espacios ni simbolos"
+              );
+            } else if (phone.length != 13) {
+              Swal.showValidationMessage("El número debe ser de 13 digitos");
+            } else {
+              setUserData({
+                name: name,
+                lastName: lastName,
+                password: password,
+                uemail: email,
+                phone: phone,
+                token: token,
+              });
+            }
+            dispatch(
+              postNewGoogleUser({
+                name,
+                lastName,
+                password,
+                email,
+                phone,
+                token,
+              })
+            );
+            setUserData({
+              name: "",
+              lastName: "",
+              email: "",
+              password: "",
+              confirmPassword: "",
+              phone: "",
+            });
+          },
+        });
+      })
+      .then(() => { })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // const email = error.customData.email;
+        const credential = GoogleAuthProvider.credentialFromError(error);
+      });
+  };
+
+  const hdrJoinGoogleSubmit = (event) => {
+    event.preventDefault();
+    dispatch(loginWithGoogle());
   };
 
   const hdrChange = (event) => {
@@ -63,7 +158,7 @@ const FormJoin = () => {
 
   return (
     <div className=" ">
-      <NavBar/>
+      <NavBar />
       <div>
         <div className=" flex flex-row my-5 h-5/6 w-full">
           <div className=" border-2 rounded-sm border-gray-300 mx-2 md:w-3/6">
@@ -150,9 +245,16 @@ const FormJoin = () => {
               </div>
               <button
                 type="submit"
-                className=" text-white font-medium bg-vividGreen w-full h-10 cursor-pointer rounded-md hover:outline outline-2 outline-offset-2"
+                className=" text-white font-medium bg-vividGreen w-full text-lg py-2 cursor-pointer rounded-xl hover:outline outline-2 outline-offset-2"
               >
                 Registrate
+              </button>
+              <div className="inline-flex items-center justify-center ">
+                <hr className=" h-1 my-8 w-20 bg-gray-400 rounded-lg " />
+                <span className="px-1 font-normal text-gray-900 mx-4">or</span>
+                <hr className=" h-1 my-8 w-20 bg-gray-400 rounded-lg " />
+              </div>
+              <button onClick={hdrJoinGoogleSubmit} className=" bg-white mb-3 border py-2 w-full rounded-xl flex justify-center items-center text-lg" > <img src={image} className=" h-6 w-6" /> Registrarse con Google
               </button>
               <p>
                 Ya tienes una cuenta?{" "}
@@ -170,7 +272,7 @@ const FormJoin = () => {
           </div>
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 };

@@ -8,7 +8,15 @@ import {
   ORDER_BY_DATE,
   GET_BY_INPUT,
   POST_NEW_USER,
+  POST_NEW_GOOGLE_USER,
   SET_GLOBAL_PAD,
+  GET_GOOGLE_USER,
+  GET_USER,
+ 
+  SET_USER_STATE,
+  GET_USER_OPTION,
+  GET_ADMIN_OPTION,
+  SET_DONATION_ITEMS
 
 
 
@@ -21,21 +29,55 @@ import {
 
 
 import axios from "axios";
+import Swal from "sweetalert2";
 
-export const getEmailAuth= ({email, accessToken}) => {
-  return (dispatch)=>{
+
+export function getGoogleAuth( {uemail,token} ) {
+  return async function (dispatch) {
     try {
-      const existingEmailDb = axios.get('/user', {email, accessToken})
-      return dispatch({
-        type: GET_AUTH_USER,
-        payload: existingEmailDb.data
+      axios.get(`/user?uemail=${uemail}&token=${token}`)
+      .then((info)=>{
+        window.localStorage.setItem("userInfo", JSON.stringify(info.data))
+        return dispatch({
+          type: GET_GOOGLE_USER,
+          payload: info.data,
+        })
       })
+      .catch(error=>{
+        console.log(error.response)
+        Swal.fire(error.response.data.error)
+      })        
     } catch (error) {
       console.log(error);
     }
-    console.log(payload, 'AQUI')
   }
 }
+
+export function getEmailAuth({ email, password }) {
+  return async function (dispatch) {
+    try {
+      const info = await axios.get(`/user?email=${email}&password=${password}`);
+      return dispatch({
+        type: GET_USER,
+        payload: info.data,
+      });
+    } catch (error) {
+      console.log(error.response);
+      Swal.fire(error.response.data.error);
+      try {
+        const existingEmailDb = await axios.get('/user', { email, accessToken });
+        return dispatch({
+          type: GET_AUTH_USER,
+          payload: existingEmailDb.data,
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
+}
+
+
 
 export const setPADAction = (PAD) => {
   return (dispatch) => {
@@ -137,15 +179,43 @@ export const orderByDate = (order , PAD)=>{
 export function postNewUser (payload) {
   return function(dispatch){
     try {
+      console.log(payload);
       axios.post('/user', payload )
       .then((data)=>{
+        Swal.fire("Usuario creado exitosamente")
         return dispatch({
           type: POST_NEW_USER,
           payload:data
         })
       })
+      .catch(error=>{        
+        Swal.fire(error.response.data.error)
+      })
     } catch (error) {
       console.log(error.message);
+    }
+  }
+}
+
+export function postNewGoogleUser (payload) {
+  return function(dispatch){
+    try {
+      console.log(payload);
+      axios.post('user', payload )
+      .then((data)=>{
+        console.log(data);
+        Swal.fire("Usuario creado exitosamente")
+        return dispatch({
+          type: POST_NEW_GOOGLE_USER,
+          payload:data
+        })
+      })
+      .catch(error=>{
+        console.log(error.response)
+        Swal.fire(error.response.data.error)
+      })
+    } catch (error) {
+      console.log(error);
     }
   }
 }
@@ -252,9 +322,61 @@ export const getSearchPADByQuery = ( nam , loc , PAD)=>{
 
 }
 
+export const setUserState = (state)=>{
+  return async function  (dispatch){
+      try {
+   
+        return dispatch({
+          type:SET_USER_STATE,
+          payload: state
+        })
+  
+      } catch (error) {
+        console.log(error.message);
+      }
+    }
+  }
 
 
-
-
-
-
+export const getUserOption = (option)=>{
+  return async function  (dispatch){
+      try {
+   console.log(option);
+        return dispatch({
+          type:GET_USER_OPTION,
+          payload: option
+        })
+  
+      } catch (error) {
+        console.log(error.message);
+      }
+    }
+  }
+export const setDonationItems = (item)=>{
+  return async function  (dispatch){
+      try {
+  //  console.log(item);
+        return dispatch({
+          type:SET_DONATION_ITEMS,
+          payload: item
+        })
+  
+      } catch (error) {
+        console.log(error.message);
+      }
+    }
+  }
+export const getAdminOption = (option)=>{
+  return async function  (dispatch){
+      try {
+   console.log(option);
+        return dispatch({
+          type:GET_ADMIN_OPTION,
+          payload: option
+        })
+  
+      } catch (error) {
+        console.log(error.message);
+      }
+    }
+  }
