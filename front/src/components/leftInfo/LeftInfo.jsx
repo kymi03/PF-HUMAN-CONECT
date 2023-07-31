@@ -12,44 +12,63 @@ function LeftInfo(props) {
 
     const dispatch = useDispatch()
 
-    const [location, setLocation ] = useState('');
-    const [name, setName ] = useState('');
+    const [location, setLocation ] = useState(``);
+    const [name, setName ] = useState(``);
     const [ aux, setAux] = useState(false)
 
 
 
-   
+    
     useEffect(() => {
+       dispatch(getSearchPADByQuery(name, location, props.PAD)); // Fetch articles on initial mount
       dispatch(getAllLocations(props.PAD));
-      dispatch(getSearchPADByQuery(name, location, props.PAD)); // Fetch articles on initial mount
-    }, [name, location, props.PAD]);
+    }, [name, location, props.PAD ,]);
+    // useEffect(() => {
+    //   dispatch(getAllLocations(props.PAD));
+    // }, []);
 
 
     const locations = useSelector(state => state.allLocations)
     
 
- 
+ let testLocation =   ``
+ let testname =   ``
     
     
     const handleSelectLocation = (event) => {
-
-    if (event.target.value !== 'Todas') {
-      setLocation(`location=${event.target.value}`);
+    //   if (event.target.value !== 'Todas') {
+    //     testLocation = `location=${event.target.value}`;
+    //     console.log('location: ' , event.target.value);
+    // } else {
+    //   testLocation = ``;
+    // }
+    //   dispatch(getSearchPADByQuery(testname, testLocation, props.PAD));
+      aux ? setAux(false) : setAux(true)  
+      if (event.target.value !== 'Todas') {
+        setLocation(`location=${event.target.value}`);
+        console.log('location: ' , event.target.value);
     } else {
       setLocation('');
     }
-      dispatch(getSearchPADByQuery(name, location, props.PAD));
+      // dispatch(getSearchPADByQuery(name, location, props.PAD));
+      // aux ? setAux(false) : setAux(true)  
 
     }
 
     const handleSearchName = (event) => {
   
+    // if (event.target.value !== '') {
+    //   testname=`name=${event.target.value}`;
+    // } else {
+    //   testname=``;
+    // }
+    //   dispatch(getSearchPADByQuery(testname, testLocation, props.PAD));
     if (event.target.value !== '') {
       setName(`name=${event.target.value}`);
     } else {
       setName('');
     }
-      dispatch(getSearchPADByQuery(name, location, props.PAD));
+      // dispatch(getSearchPADByQuery(name, location, props.PAD));
 
     }
 
@@ -115,12 +134,12 @@ const generateOptions = (options) => {
         </div>
 </form>
 
-    <select name="sort" onChange={handleSelectLocation}  type="select" className="w-44 mt-3 py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
+    <select name="sort" onInput={handleSelectLocation}  type="select" className="w-44 mt-3 py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
         {options}
     </select>
 
-        <select name="sort" onChange={handleOrder} type="select" className=" w-44 mt-3 py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
-          <option value="dateAll">Todos</option>
+        <select name="sort" onInput={handleOrder} type="select" className=" w-44 mt-3 py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
+          {/* <option value="dateAll">Todos</option> */}
           <option value="dateAsc">Más Reciente</option>
           <option value="dateDes">Más Antiguo</option>
         </select>

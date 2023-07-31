@@ -124,9 +124,9 @@ export const getAllLocations = (PAD)=>{
               uniqueKeys.add(key);
               uniqueLocations.push(
                 loc
-                  .toLowerCase()
+                  // .toLowerCase()
                   .split(' ')
-                  .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+                  // .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
                   .join(' ')
               );
             }
@@ -146,8 +146,8 @@ export const getAllLocations = (PAD)=>{
         const locationList = getUniqueLocations(locationsProtoList);
         return dispatch({
           type:GET_ALL_LOCATION,
-          payload: locationsProtoList
-          // payload: locationList
+          // payload: locationsProtoList
+          payload: locationList
         })
   
       } catch (error) {
@@ -253,7 +253,6 @@ export const getSearchPADByQuery = ( nam , loc , PAD)=>{
   if (loc !== '' ) { query = query+'&'}
   if (loc !== '' ) { query = query+loc }
 
-  // console.log(query);
 
  switch (PAD) {
   case PROJECTS:
