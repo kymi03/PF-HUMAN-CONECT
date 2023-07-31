@@ -21,6 +21,7 @@
     "firebase": "^10.1.0",
     "firebase-admin": "^11.10.1",
     "jsonwebtoken": "^9.0.1",
+    "mercadopago": "^1.5.17",
     "mongoose": "^7.4.0",
     "morgan": "^1.10.0",
     "node": "^20.4.0",
