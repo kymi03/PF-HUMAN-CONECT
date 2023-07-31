@@ -28,11 +28,13 @@ import {
 import axios from "axios";
 import Swal from "sweetalert2";
 
+
 export function getGoogleAuth( {uemail,token} ) {
   return async function (dispatch) {
     try {
-      axios.get(`http://localhost:3001/user?uemail=${uemail}&token=${token}`)
+      axios.get(`/user?uemail=${uemail}&token=${token}`)
       .then((info)=>{
+        window.localStorage.setItem("userInfo", JSON.stringify(info.data))
         return dispatch({
           type: GET_GOOGLE_USER,
           payload: info.data,
@@ -174,6 +176,7 @@ export const orderByDate = (order , PAD)=>{
 export function postNewUser (payload) {
   return function(dispatch){
     try {
+      console.log(payload);
       axios.post('/user', payload )
       .then((data)=>{
         Swal.fire("Usuario creado exitosamente")
@@ -182,8 +185,7 @@ export function postNewUser (payload) {
           payload:data
         })
       })
-      .catch(error=>{
-        console.log(error.response)
+      .catch(error=>{        
         Swal.fire(error.response.data.error)
       })
     } catch (error) {
@@ -196,8 +198,9 @@ export function postNewGoogleUser (payload) {
   return function(dispatch){
     try {
       console.log(payload);
-      axios.post('/user', payload )
+      axios.post('user', payload )
       .then((data)=>{
+        console.log(data);
         Swal.fire("Usuario creado exitosamente")
         return dispatch({
           type: POST_NEW_GOOGLE_USER,
