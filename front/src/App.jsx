@@ -12,6 +12,8 @@ import Donar from './views/donar/Donar'
 import { PostPAD } from './components/articles/PostPAD'
 import FormLogin from './components/form/FormLogin'
 import backimg from "./assets/BACKGOUDN_IMAGE_LANDING.png"
+import UserOptions from './views/userOptions/UserOptions'
+import AdminOptions from './views/adminOptions/adminOptions'
 function App() {
   
 
@@ -34,6 +36,8 @@ function App() {
         <Route path='/detail/:id' element={<Detail />} />  
         <Route path='/aboutUs' element={<AboutUs />} />  
         <Route path='/donar' element={<Donar />} />  
+        <Route path='/useroptions' element={<UserOptions />} />  
+        <Route path='/adminoptions' element={<AdminOptions />} />  
       </Routes>
     </div>
   )
