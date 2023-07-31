@@ -21,7 +21,7 @@ import {
 
     userAuth:[],
 
-    userState:true,
+    userState:false,
     userOption:'NO OPTION',
     ItemsDonation:[]
  
@@ -194,7 +194,7 @@ if(action.payload.PAD === DOCUMENTARYS ){  console.log('i');
         }
 
         let exist = sharedComponent( [...state.ItemsDonation] , [...action.payload] )
-         let items=[...state.ItemsDonation];
+        let items=[...state.ItemsDonation];
         if(exist===false) items = [...new Set([...state.ItemsDonation, ...action.payload])]
         if(exist===true ){ items =  [...state.ItemsDonation].filter(elemento => ![...action.payload].includes(elemento));       };
    

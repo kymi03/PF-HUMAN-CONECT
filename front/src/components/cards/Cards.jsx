@@ -1,11 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Card from '../card/Card.jsx';
-import { useSelector } from 'react-redux';
 
 
 function Cards(props) {
-
-
+// console.log(props);
   return (
     <div className="grid grid-cols-3 grid-rows-3 ">
       {props.currentPAD.map((PAD) => (

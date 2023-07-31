@@ -18,6 +18,7 @@ function Card(props) {
 const dispatch = useDispatch()
   const Items = useSelector(state => state.ItemsDonation)
   const [green , setGreen] = useState(green1)
+  
   useEffect( () => {
 
       const data = window.localStorage.getItem('DONATION_CART')
@@ -30,9 +31,15 @@ const dispatch = useDispatch()
    
       window.localStorage.setItem("DONATION_CART", JSON.stringify(Items));
    
+      const resultArray = Items.map(item => item.split('=')[1]);
+      if ( resultArray.includes(props._id)) {
+        setGreen(green2)
+      } else {setGreen(green1)}
+
   } , [ Items ])
 
  
+
 
 
 
@@ -44,24 +51,27 @@ const dispatch = useDispatch()
 
 
     
-    if(  Items.indexOf(value) !== -1 ) {  setGreen(green1) } else {  setGreen(green2) }
-
+    
   };
-
+  
   const handleSaveButton = (event) => {
     const value = event.target.getAttribute('data-value');
     // Do something with the value if needed
   };
 
   return (
-    <div className="  bg-white border border-gray-200 shadow dark:bg-gray-800 dark:border-gray-700">
+    <div className=" 
+    bg-white border border-gray-200 shadow dark:bg-gray-800 dark:border-gray-700 relative"
+     
+     >
 
 
 <Link to={`/detail/${props.PAD}=${props._id}`}>
       <div 
+      className="w-86 h-64"
       >
         <img
-          className=""
+          className="object-cover w-full h-full"
           src={
             props.media.images[0]
               ? props.media.images[0].imageUrl
@@ -73,11 +83,11 @@ const dispatch = useDispatch()
 </Link>
 
       <div className="p-5">
-      <div>
+      <div className="absolute top-2 right-2">
       <button onClick={handleCartButton} id="imageButton">
           <img
             data-value={[`${props.PAD}=${props._id}`]}
-            className="h-8"
+            className="h-8 "
             src={green}
             alt="Add to Cart"
           />
@@ -91,7 +101,6 @@ const dispatch = useDispatch()
             alt="Save"
           />
         </button> */}
-  <h4>{props.location}</h4>
   {/* <h4>{props.date}</h4> */}
 </div>
 
@@ -99,18 +108,23 @@ const dispatch = useDispatch()
         <div 
         // href={`/detail/${props.PAD}=${props._id}`}
         >
-          <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+          <h5 
+          className=" h-20  break-words mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+          >
             {props.name}
           </h5>
         </div>
         </Link>
 
         
-        <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+        <p 
+        className="w-86 h-28  overflow-scroll break-words  mb-3 font-normal text-gray-700 dark:text-gray-400"
+        >
           {props.breaf
             ? props.breaf
             : "orem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco labor"}
         </p>
+            <h4>{props.location}</h4>
 
         <Link to={`/detail/${props.PAD}=${props._id}`}>
         <div
