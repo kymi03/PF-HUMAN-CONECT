@@ -29,10 +29,9 @@ const { ADMIN_EMAIL } = process.env;
 
 const postUserController = async (req, res) => {
   const { name, lastName, email, password, phone, token, uemail } = req.body;
-  if (!name || !lastName || !email || !password || !phone ){
-    return res.status(401).json({error:"Campos obligatorios insuficientes"})
+  if (!name || !lastName || !email || !password || !phone) {
+    return res.status(401).json({ error: "Campos obligatorios insuficientes" })
   }
-  const tokenVerifier = await admin.auth().verifyIdToken(token)//se decodifica el token para verificar autenticamente de firebase
 
 
   try {
@@ -45,16 +44,19 @@ const postUserController = async (req, res) => {
     }
 
     //si no esta en uso se verifica que el token sea autentico y crea el usuario en la db
-    if (tokenVerifier.email) {
-      const newGoogleUser = new user({
-        name,
-        lastName,
-        uemail,
-        password: token,
-        phone,
-      });
-      await newGoogleUser.save()
-      return res.status(201).json(newGoogleUser);
+    if (token != undefined) {
+      const tokenVerifier = await admin.auth().verifyIdToken(token)//se decodifica el token para verificar autenticamente de firebase
+      if (tokenVerifier.email) {
+        const newGoogleUser = new user({
+          name,
+          lastName,
+          email,
+          password: token,
+          phone,
+        });
+        await newGoogleUser.save()
+        return res.status(201).json(newGoogleUser);
+      }
     }
 
     const newUser = new user({
