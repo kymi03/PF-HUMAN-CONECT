@@ -6,6 +6,10 @@ const adminSchema = new Schema({
     type: String,
     required: true,
   },
+  title: {
+    type: String,
+    required: true,
+  },
   lastName: {
     type: String,
     required: true,
