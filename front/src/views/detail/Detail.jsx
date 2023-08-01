@@ -42,7 +42,7 @@ function Detail() {
       axios
         .get(`/${source}?id=${value}`)
         .then(({ data }) => {
-          if (data.name) {
+          if (data.name && data.title) {
             setPAD(data);
           } else {
             window.alert(`No hay ${source} con ese ID`);
@@ -92,7 +92,7 @@ function Detail() {
       <NavBarAle></NavBarAle>
       <div className={styles["header-section"]}>
         {/* Lado izquierdo: Título */}
-        <h1 className={styles["custom-title"]}>{PAD.name}</h1>
+        <h1 className={styles["custom-title"]}>{PAD.title}</h1>
         {/* Lado derecho: Imagen unica */}
         {uniqueImages.length > 0 && (
           <img
