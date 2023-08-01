@@ -21,6 +21,7 @@ export const PostPAD = () => {
   const [secVideoUrl, setSecVideoUrl] = useState("");
   const [padData, setPADData] = useState({
     name: "",
+    title: "",
     author: "",
     media: {
       images: [
@@ -133,6 +134,7 @@ export const PostPAD = () => {
 
       if (
         padData?.name == "" ||
+        padData?.title == "" ||
         padData?.author == "" ||
         padData?.body == "" ||
         padData?.breaf == "" ||
@@ -141,6 +143,7 @@ export const PostPAD = () => {
       )
         return Swal.fire("Complete todos los campos");
       if (errors?.name) return Swal.fire(errors.name);
+      if (errors?.title) return Swal.fire(errors.name);
       if (errors?.author) return Swal.fire(errors.author);
       if (errors?.body) return Swal.fire(errors.body);
       if (errors?.breaf) return Swal.fire(errors.breaf);
@@ -151,6 +154,7 @@ export const PostPAD = () => {
 
       const requestData = {
         name: padData.name,
+        title: padData.title,
         author: padData.author,
         media: {
           images: [
@@ -195,6 +199,7 @@ export const PostPAD = () => {
       Swal.fire("Post creado exitosamente");
       setPADData({
         name: "",
+        title: "",
         author: "",
         media: {
           images: [
@@ -256,7 +261,9 @@ export const PostPAD = () => {
           onSubmit={hdrPostPADSubmit}
           className=" rounded-md bg-gray-100 w-11/12 pt-2 place-items-center"
         >
-          <h6 className=" text-xs font-semibold mb-1 font-poppins">Título</h6>
+          <h6 className=" text-xs font-semibold mb-1 font-poppins">
+            Nombre del artículo, proyecto o documental
+          </h6>
           <input
             name="name"
             value={padData.name}
@@ -265,6 +272,17 @@ export const PostPAD = () => {
             type="text"
           />
           {errors.name && <p>{errors.name}</p>}
+          <h6 className=" text-xs font-semibold my-1 font-poppins">
+            Encabezado de la Página
+          </h6>
+          <textarea
+            name="title"
+            value={padData.title}
+            onChange={(event) => hdrChange(event)}
+            className=" resize-none w-2/5 border-gray-300 rounded-md"
+            type="text"
+          />
+          {errors.title && <p>{errors.title}</p>}
           <div className=" flex flex-row justify-center">
             <div className="mr-2 w-1/5">
               <h6 className=" text-xs font-semibold my-1 font-poppins">
@@ -294,24 +312,17 @@ export const PostPAD = () => {
           </div>
           {errors.author && <p>{errors.author}</p>}
           {errors.date && <p>{errors.date}</p>}
-          {/* <h6 className=" text-xs font-semibold my-1 font-poppins">Media</h6>
-                    <input 
-                    name=""
-                    value={padData.media}
-                    onChange={(event) => hdrChange(event)}
-                    className=" h-7 rounded-md border-gray-300 w-2/5" 
-                    type="text" /> */}
           <div className="flex flex-row justify-center">
             <div className="mr-2 w-1/5">
               <h6 className="text-xs font-semibold my-1 font-poppins">
-                Imagen 1
+                Imagen Principal
               </h6>
               <div
                 {...getMainImageRootProps()}
                 style={{
-                  minHeight: "100px",
+                  minHeight: "50px",
                   border: "2px dashed #9A98FE",
-                  padding: "1rem",
+                  padding: "0.5rem",
                   borderRadius: "10px",
                   cursor: "pointer",
                   margin: "0.5rem",
@@ -333,7 +344,7 @@ export const PostPAD = () => {
                   />
                 ) : (
                   <p style={{ margin: 0 }}>
-                    Drag and drop the First image here, or click to select
+                    Haga clic para seleccionar la imagen
                   </p>
                 )}
               </div>
@@ -372,7 +383,7 @@ export const PostPAD = () => {
                   />
                 ) : (
                   <p style={{ margin: 0 }}>
-                    Drag and drop the Second image here, or click to select
+                    Haga clic para seleccionar la imagen
                   </p>
                 )}
               </div>
@@ -411,7 +422,7 @@ export const PostPAD = () => {
                   />
                 ) : (
                   <p style={{ margin: 0 }}>
-                    Drag and drop the Third image here, or click to select
+                    Haga clic para seleccionar la imagen
                   </p>
                 )}
               </div>
