@@ -58,7 +58,7 @@ const FormJoin = () => {
     });
   };
 
-  const loginWithGoogle = () => {
+  const loginWithGoogle = () => (dispatch) =>{
     signInWithPopup(auth, googleProvider)
       .then((result) => {
         const credential = GoogleAuthProvider.credentialFromResult(result);
