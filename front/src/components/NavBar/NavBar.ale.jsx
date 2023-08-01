@@ -5,26 +5,28 @@ import UserDropMenu from '../userDropMenu/UserDropMenu';
 import DefoultUserMenu from '../userDropMenu/DefoultUserMenu';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUserState } from '../../redux/actions';
+import Home from '../../views/home/Home';
+
 import CartCount from '../cartCount/CartCount';
 
 export default function NavBarAle() {
- const dispath = useDispatch()
-  const userState = useSelector(state => state.userState)
-
-  useEffect( () => {
-      const data = window.localStorage.getItem('LOGIN_USER')
-      // console.log('data:' , data);
-      // dispath(setUserState(JSON.parse(data))) //<-- cambiar para demos
-  } , [])
-
-
-
-  useEffect( () => {
-
-      window.localStorage.setItem('LOGIN_USER' , JSON.stringify(userState))
-  } , [userState])
+  const dispath = useDispatch()
+  const userAuth = useSelector(state => state.userAuth)
+  const [userInfo, setUserInfo ] = useState()
+ 
+  useEffect(() => {
+    const data = window.localStorage.getItem('LOGIN_USER')
+    // console.log('data:' , data);
+    dispath(setUserState(JSON.parse(data))) //<-- cambiar para demos
+  }, [])
 
 
+
+  useEffect(() => {
+    // window.localStorage.setItem('LOGIN_USER', JSON.stringify(userState))
+    const logged = window.localStorage.getItem("userInfo")
+    setUserInfo(logged)
+  }, [userAuth])
 
   return (
 
@@ -46,7 +48,6 @@ export default function NavBarAle() {
         />
         <span 
 
-        className="self-center text-2xl font-semibold whitespace-nowrap text-white"
 
         
         >HUMAN CONET</span>
@@ -112,7 +113,7 @@ export default function NavBarAle() {
           </ul>
 
     </div>
-{ userState === true ? <UserDropMenu></UserDropMenu> : <DefoultUserMenu></DefoultUserMenu> }
+    {userInfo != null ? <UserDropMenu /> : <DefoultUserMenu />}
 <CartCount></CartCount>
   </div>
 </nav>

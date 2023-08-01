@@ -31,11 +31,13 @@ import {
 import axios from "axios";
 import Swal from "sweetalert2";
 
+
 export function getGoogleAuth( {uemail,token} ) {
   return async function (dispatch) {
     try {
-      axios.get(`http://localhost:3001/user?uemail=${uemail}&token=${token}`)
+      axios.get(`/user?uemail=${uemail}&token=${token}`)
       .then((info)=>{
+        window.localStorage.setItem("userInfo", JSON.stringify(info.data))
         return dispatch({
           type: GET_GOOGLE_USER,
           payload: info.data,
@@ -124,9 +126,9 @@ export const getAllLocations = (PAD)=>{
               uniqueKeys.add(key);
               uniqueLocations.push(
                 loc
-                  .toLowerCase()
+                  // .toLowerCase()
                   .split(' ')
-                  .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+                  // .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
                   .join(' ')
               );
             }
@@ -146,8 +148,8 @@ export const getAllLocations = (PAD)=>{
         const locationList = getUniqueLocations(locationsProtoList);
         return dispatch({
           type:GET_ALL_LOCATION,
-          payload: locationsProtoList
-          // payload: locationList
+          // payload: locationsProtoList
+          payload: locationList
         })
   
       } catch (error) {
@@ -177,6 +179,7 @@ export const orderByDate = (order , PAD)=>{
 export function postNewUser (payload) {
   return function(dispatch){
     try {
+      console.log(payload);
       axios.post('/user', payload )
       .then((data)=>{
         Swal.fire("Usuario creado exitosamente")
@@ -185,8 +188,7 @@ export function postNewUser (payload) {
           payload:data
         })
       })
-      .catch(error=>{
-        console.log(error.response)
+      .catch(error=>{        
         Swal.fire(error.response.data.error)
       })
     } catch (error) {
@@ -199,8 +201,9 @@ export function postNewGoogleUser (payload) {
   return function(dispatch){
     try {
       console.log(payload);
-      axios.post('/user', payload )
+      axios.post('user', payload )
       .then((data)=>{
+        console.log(data);
         Swal.fire("Usuario creado exitosamente")
         return dispatch({
           type: POST_NEW_GOOGLE_USER,
@@ -253,7 +256,6 @@ export const getSearchPADByQuery = ( nam , loc , PAD)=>{
   if (loc !== '' ) { query = query+'&'}
   if (loc !== '' ) { query = query+loc }
 
-  // console.log(query);
 
  switch (PAD) {
   case PROJECTS:
@@ -377,6 +379,3 @@ export const getAdminOption = (option)=>{
       }
     }
   }
-
-
-
