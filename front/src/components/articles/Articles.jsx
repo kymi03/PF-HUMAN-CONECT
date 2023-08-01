@@ -23,14 +23,6 @@ function Articles() {
   // const dispatch = useDispatch();
   const currentPAD = useSelector(state => state.allArticles)
 
-
-  // useEffect(() => {
-  //   // dispatch(getSearchPADByQuery('' , '' , ARTICLES ));
-
-
-  // }, []);
-
-
   return (  
     <div >
       <NavBarAle/>
@@ -58,5 +50,4 @@ function Articles() {
 }
 
 export default Articles;
-
 

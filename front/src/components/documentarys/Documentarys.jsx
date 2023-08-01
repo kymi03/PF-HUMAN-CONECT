@@ -20,15 +20,7 @@ import {
 function Documentarys() {
   const dispatch = useDispatch();
 
-  const currentPAD = useSelector(state => state.allProjects)
-  // useEffect(() => {
-  //   dispatch(getSearchPADByQuery('' , '' , PROJECTS ));
-
-
-
-  // }, []);
-  
-
+  const currentPAD = useSelector(state => state.allDocumentarys)
 
   return (  
 <div >
