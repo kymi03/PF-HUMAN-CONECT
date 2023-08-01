@@ -12,14 +12,8 @@ import CartCount from '../cartCount/CartCount';
 export default function NavBarAle() {
   const dispath = useDispatch()
   const userAuth = useSelector(state => state.userAuth)
-<<<<<<< HEAD
-  const [userInfo, setUserInfo] = useState()
-
-
-=======
   const [userInfo, setUserInfo ] = useState()
  
->>>>>>> b5baa6b1eb1658c6b078455d72f23e53b67e37b0
   useEffect(() => {
     const data = window.localStorage.getItem('LOGIN_USER')
     // console.log('data:' , data);
