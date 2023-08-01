@@ -22,6 +22,7 @@ export default function NavBarAle() {
   }, [])
 
 
+
   useEffect(() => {
     // window.localStorage.setItem('LOGIN_USER', JSON.stringify(userState))
     const logged = window.localStorage.getItem("userInfo")
