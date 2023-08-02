@@ -3,14 +3,16 @@ import NavBarAle from "../NavBar/NavBar.ale";
 import Swal from "sweetalert2";
 //import { useDispatch } from "react-redux";
 import PADValidation from "../validations/PADValidation";
-import { postNewPAD } from "../../redux/actions";
 import { useDropzone } from "react-dropzone";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import axios from "axios";
 import { app } from "../../Firebase/firebase-config";
+import { useNavigate } from "react-router-dom";
 
 export const PostPAD = () => {
   //const dispatch = useDispatch();
+  const [padType, setPadType] = useState("articles");
+  const navigate = useNavigate();
   const [errors, setErrors] = useState({});
   const [mainImage, setMainImage] = useState(null);
   const [secondImage, setSecondImage] = useState(null);
@@ -19,6 +21,10 @@ export const PostPAD = () => {
   const [secondVideo, setSecondVideo] = useState(null);
   const [mainVideoUrl, setMainVideoUrl] = useState("");
   const [secVideoUrl, setSecVideoUrl] = useState("");
+  const handlePadTypeChange = (e) => {
+    setPadType(e.target.value);
+  };
+
   const [padData, setPADData] = useState({
     name: "",
     title: "",
@@ -189,10 +195,12 @@ export const PostPAD = () => {
       };
 
       const response = axios.post(
-        "http://localhost:3001/articles",
+        `http://localhost:3001/${padType}`,
         requestData
       );
       console.log("Respuesta del servidor:", response.data);
+
+      navigate(`/${padType}`);
 
       // dispatch(postNewPAD(requestData)); //<----Maka, aquí ese articles varia en funcion de lo que le pase el usario por medio de un selector (que se debe crear), asi el usuario controla a donde esta posteando sin necesidad de crear un nuevo form para cada PAD ;)
 
@@ -321,9 +329,9 @@ export const PostPAD = () => {
                 {...getMainImageRootProps()}
                 style={{
                   minHeight: "50px",
-                  border: "2px dashed #9A98FE",
+                  border: "3px dashed #9A98FE",
                   padding: "0.5rem",
-                  borderRadius: "10px",
+                  borderRadius: "2px",
                   cursor: "pointer",
                   margin: "0.5rem",
                   maxWidth: "15vw",
@@ -359,10 +367,10 @@ export const PostPAD = () => {
               <div
                 {...getSecondImageRootProps()}
                 style={{
-                  minHeight: "100px",
+                  minHeight: "50px",
                   border: "2px dashed #9A98FE",
-                  padding: "1rem",
-                  borderRadius: "10px",
+                  padding: "0.5rem",
+                  borderRadius: "2px",
                   cursor: "pointer",
                   margin: "0.5rem",
                   maxWidth: "15vw",
@@ -398,10 +406,10 @@ export const PostPAD = () => {
               <div
                 {...getThirdImageRootProps()}
                 style={{
-                  minHeight: "100px",
+                  minHeight: "50px",
                   border: "2px dashed #9A98FE",
-                  padding: "1rem",
-                  borderRadius: "10px",
+                  padding: "0.5rem",
+                  borderRadius: "2px",
                   cursor: "pointer",
                   margin: "0.5rem",
                   maxWidth: "15vw",
@@ -428,37 +436,6 @@ export const PostPAD = () => {
               </div>
             </div>
           </div>
-
-          {/* <div
-                                {...getFirstVideoRootProps()}
-                                style={{
-                                    minHeight: "100px",
-                                    border: "2px dashed #9A98FE",
-                                    padding: "1rem",
-                                    borderRadius: "10px",
-                                    cursor: "pointer",
-                                    margin: "0.5rem",
-                                    maxWidth: "15vw",
-                                }}>
-                                
-                                <input {...getFirstVideoInputProps()} />
-                                {firstVideo ? (
-                                    <video
-                                        src={URL.createObjectURL(firstVideo)}
-                                        alt="firstVideo"
-                                        style={{
-                                            margin: "0.5rem",
-                                            maxWidth: "15vw",
-                                            maxHeight: "100px",
-                                        }}
-                                    />
-                                ) : (
-                                    <p style={{ margin: 0 }}>
-                                        Drag and drop the video here, or
-                                        click to select
-                                    </p>
-                                )}
-                            </div> */}
           <h6 className="text-xs font-semibold my-1 font-poppins">
             Video (subir o URL)
           </h6>
@@ -470,37 +447,6 @@ export const PostPAD = () => {
             type="text"
             placeholder="Ingrese la URL del video"
           />
-
-          {/* <div
-                                {...getSecondVideoRootProps()}
-                                style={{
-                                    minHeight: "25px",
-                                    border: "2px dashed #9A98FE",
-                                    padding: "1rem",
-                                    borderRadius: "10px",
-                                    cursor: "pointer",
-                                    margin: "0.5rem",
-                                    maxWidth: "15vw",
-                                }}>
-                                
-                                <input {...getSecondVideoInputProps()} />
-                                {secondVideo ? (
-                                    <img
-                                        src={URL.createObjectURL(secondVideo)}
-                                        alt="secondVideo"
-                                        style={{
-                                            margin: "0.5rem",
-                                            maxWidth: "15vw",
-                                            maxHeight: "100px",
-                                        }}
-                                    />
-                                ) : (
-                                    <p style={{ margin: 0 }}>
-                                        Drag and drop the video here, or
-                                        click to select
-                                    </p>
-                                )}
-                            </div> */}
           <h6 className="text-xs font-semibold my-1 font-poppins">
             Video (subir o URL)
           </h6>
@@ -546,6 +492,13 @@ export const PostPAD = () => {
             type="text"
           />
           {errors.body && <p>{errors.body}</p>}
+          <div>
+            <select name="padType" onChange={handlePadTypeChange}>
+              <option value="articles">Artículos</option>
+              <option value="documentaries">Documentales</option>
+              <option value="projects">Proyectos</option>
+            </select>
+          </div>
           <div>
             <button className=" text-sm font-poppins font-semibold p-1 m-1 bg-vividGreen text-white w-2/5 rounded-md">
               Publicar
