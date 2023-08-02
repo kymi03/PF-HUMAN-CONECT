@@ -12,7 +12,6 @@ const UserDropManu = () => {
   useEffect(() => {
     const userInfo = window.localStorage.getItem("userInfo");
     setUserData(userInfo);
-    console.log(userData);
   }, []);
 
   const toggleMenu = () => {
@@ -39,6 +38,15 @@ const UserDropManu = () => {
     dispatch(setUserState(false));
   };
 
+  let data = ''
+
+  if(userData){
+     data = JSON.parse(userData)
+    console.log(data ? data.name : 'user name' );
+  
+  
+  }
+
   return (
     < div  >
       <div className=" flex items-center justify-self-center" ref={dropdownRef}>
@@ -46,7 +54,7 @@ const UserDropManu = () => {
         <button onClick={toggleMenu} type="select"
 
           className=" h-10 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700" >
-          nombre de usuario
+          {  data ? data.name : 'user name' }
         </button>
 
         <img

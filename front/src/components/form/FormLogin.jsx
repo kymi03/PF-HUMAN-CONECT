@@ -30,7 +30,7 @@ const FormLogin = () => {
       email: "",
       password: "",
     });
-   dispatch(setUserState(true))//<----AlejoC137: MALA MIA ! 
+
   };
 
   useEffect(() => {
@@ -96,7 +96,8 @@ const FormLogin = () => {
             onChange={(event) => hdrChange(event)}/>
             <button type="submit" 
               className=" text-white font-medium bg-vividGreen w-full h-10 cursor-pointer rounded-md hover:outline outline-2 outline-offset-2"
-            >
+              onSubmit={ hdrJoinSubmit }
+           >
               Iniciar sesión
             </button>
             <p>No tienes una cuenta? <a href="/formjoin" className=" text-blue-900 underline">Registrate</a></p>

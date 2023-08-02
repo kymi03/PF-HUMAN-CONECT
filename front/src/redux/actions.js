@@ -336,7 +336,6 @@ export const setUserState = (state)=>{
     }
   }
 
-
 export const getUserOption = (option)=>{
   return async function  (dispatch){
       try {
@@ -351,6 +350,7 @@ export const getUserOption = (option)=>{
       }
     }
   }
+
 export const setDonationItems = (item)=>{
   return async function  (dispatch){
       try {
@@ -365,6 +365,7 @@ export const setDonationItems = (item)=>{
       }
     }
   }
+  
 export const getAdminOption = (option)=>{
   return async function  (dispatch){
       try {
