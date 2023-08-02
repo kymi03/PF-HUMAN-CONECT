@@ -194,7 +194,7 @@ export const PostPAD = () => {
         location: padData.location,
       };
 
-      const response = axios.post(
+      const response = await axios.post(
         `http://localhost:3001/${padType}`,
         requestData
       );
