@@ -15,6 +15,7 @@ function Detail() {
   const [uniqueImages, setUniqueImages] = useState([]);
   const { id } = useParams();
   const { images = [], videos = [] } = PAD.media || {};
+  const [uniqueVideos, setUniqueVideos] = useState([]);
 
   function splitString(inputString) {
     const [key, value] = inputString.split("=");
@@ -42,13 +43,13 @@ function Detail() {
       axios
         .get(`/${source}?id=${value}`)
         .then(({ data }) => {
-          if (data.name && data.title) {
-            setPAD(data);
-          } else {
-            window.alert(`No hay ${source} con ese ID`);
-          }
+          console.log(data);
+          setPAD(data);
         })
-        .catch((error) => console.error(error));
+        .catch((error) => {
+          console.error(error);
+          window.alert(`No hay ${source} con ese ID`);
+        });
     }
   }, [id, source, value]);
 
@@ -66,7 +67,23 @@ function Detail() {
     }
   }, [PAD.media]);
 
-  let uniqueVideos = [...new Set(videos.map((video) => video.videoUrl))];
+  useEffect(() => {
+    if (PAD.media && PAD.media.videos) {
+      const uniqueVideoUrls = [];
+      const renderedVideos = new Set();
+
+      PAD.media.videos.forEach((video) => {
+        if (!renderedVideos.has(video.videoUrl)) {
+          renderedVideos.add(video.videoUrl);
+          uniqueVideoUrls.push(video.videoUrl);
+        }
+      });
+
+      console.log("uniqueVideoUrls:", uniqueVideoUrls);
+
+      setUniqueVideos(uniqueVideoUrls);
+    }
+  }, [PAD.media]);
 
   const dispatch = useDispatch();
   const Items = useSelector((state) => state.ItemsDonation);
@@ -165,6 +182,7 @@ function Detail() {
               allowFullScreen
             ></iframe>
           ) : null}
+          {console.log(videoUrl, "videos")};
         </div>
       ))}
       <FooterMoreInfo />
