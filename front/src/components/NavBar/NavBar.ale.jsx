@@ -43,10 +43,10 @@ export default function NavBarAle() {
     className="flex items-center"
     >
         <img src="https://humanconet.org/wp-content/uploads/2022/03/Turtle-Turquoise-1-1024x1022.png" 
-        className="h-8 mr-3" alt="Flowbite Logo" 
+        className="h-8 mr-3 " alt="Flowbite Logo" 
         />
         <span 
-
+className=' text-white text-2xl'
 
         
         >HUMAN CONET</span>

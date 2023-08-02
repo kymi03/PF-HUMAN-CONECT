@@ -21,14 +21,6 @@ function Projects() {
   const dispatch = useDispatch();
 
   const currentPAD = useSelector(state => state.allProjects)
-  // useEffect(() => {
-  //   dispatch(getSearchPADByQuery('' , '' , PROJECTS ));
-
-
-
-  // }, []);
-  
-
 
   return (  
 <div >
