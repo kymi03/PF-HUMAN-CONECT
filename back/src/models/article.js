@@ -6,6 +6,10 @@ const articleSchema = new Schema({
     type: String,
     required: true,
   },
+  title: {
+    type: String,
+    required: true,
+  },
   author: {
     type: String,
     default: "Anonimo",

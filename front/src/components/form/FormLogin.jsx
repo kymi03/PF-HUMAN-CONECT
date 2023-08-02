@@ -20,6 +20,7 @@ const FormLogin = () => {
 
   const hdrJoinSubmit = (event) => {
     event.preventDefault();
+    console.log('nuevo clg');
     if (
       userData?.email == "" ||
       userData?.password == ""
@@ -33,9 +34,15 @@ const FormLogin = () => {
 
   };
 
+  // useEffect(() => {
+  //   if(localUser.name!=undefined)navigate("/home")
+  // }, [localUser.name!=undefined]);
+
   useEffect(() => {
-    if(localUser.name!=undefined)navigate("/home")
-  }, [localUser.name!=undefined]);
+    if (localUser.name !== undefined) {
+      // navigate("/home");
+    }
+  }, [localUser.name]);
 
   const hdrChange = (event) => {
     setUserData({
@@ -62,16 +69,6 @@ const FormLogin = () => {
       const credential = GoogleAuthProvider.credentialFromError(error);
     })
   }
-
-// <====== AlejoC137
-
-
-
-
-
-
-
-// ======> AlejoC137
 
   return (
     <div className="">

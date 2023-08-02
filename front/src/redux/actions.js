@@ -30,6 +30,7 @@ import {
 
 import axios from "axios";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 
 export function getGoogleAuth( {uemail,token} ) {
@@ -54,25 +55,29 @@ export function getGoogleAuth( {uemail,token} ) {
 }
 
 export function getEmailAuth({ email, password }) {
+  console.log(email, password);
   return async function (dispatch) {
     try {
       const info = await axios.get(`/user?email=${email}&password=${password}`);
+      console.log(info.data, 'AQUIIIIIIII');
+      // window.location.replace("http://localhost:5173/home");
       return dispatch({
         type: GET_USER,
         payload: info.data,
       });
     } catch (error) {
+      console.log(error);
       console.log(error.response);
       Swal.fire(error.response.data.error);
-      try {
-        const existingEmailDb = await axios.get('/user', { email, accessToken });
-        return dispatch({
-          type: GET_AUTH_USER,
-          payload: existingEmailDb.data,
-        });
-      } catch (error) {
-        console.log(error);
-      }
+      // try {
+      //   const existingEmailDb = await axios.get('/user', { email, accessToken });
+      //   return dispatch({
+      //     type: GET_AUTH_USER,
+      //     payload: existingEmailDb.data,
+      //   });
+      // } catch (error) {
+      //   console.log(error);
+      // }
     }
   };
 }

@@ -1,7 +1,7 @@
 const documentaryModel = require("../../models/documentary");
 
 const getDocumentaryHandler = async (req, res) => {
-  const { name, id, location, author } = req.query;
+  const { name, id, location, author, title } = req.query;
   try {
     // En caso de que se reciban parametros por query estos serán utilizados para
     //filtrar la información de la base de datos
@@ -10,6 +10,7 @@ const getDocumentaryHandler = async (req, res) => {
     id && (query.id = id);
     location && (query.location = location);
     author && (query.author = author);
+    title && (query.title = title);
 
     //se realiza la peticion a la base de datos y si todo sale bien se
     //responde con un arreglo de articulos
