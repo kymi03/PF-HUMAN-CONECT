@@ -22,6 +22,17 @@ const getUserController = async (req, res) => {
         const { email, password, token, uemail } = req.query;//token y uemail son recibidos del login de google        
         const regexEmail = /^[^@]+@[^@]+\.[a-zA-Z]{2,}$/;
 
+        const allUsers = await user.find();
+  
+        // Si no se encontraron usuarios, devolver un mensaje apropiado
+        if (allUsers.length === 0) {
+          return res.status(404).json({ error: 'No se encontraron usuarios' });
+        } if(allUsers) {
+             // Devolver la lista de usuarios encontrados
+        return res.status(200).json(allUsers);
+        }
+        
+
         if (allUsers.length === 0) {
             return res.status(404).json({ error: 'No se encontraron usuarios' });
           } if(allUsers) {
