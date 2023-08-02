@@ -20,6 +20,7 @@ const FormLogin = () => {
 
   const hdrJoinSubmit = (event) => {
     event.preventDefault();
+    console.log('nuevo clg');
     if (
       userData?.email == "" ||
       userData?.password == ""
@@ -30,12 +31,18 @@ const FormLogin = () => {
       email: "",
       password: "",
     });
-   dispatch(setUserState(true))//<----AlejoC137: MALA MIA ! 
+
   };
 
+  // useEffect(() => {
+  //   if(localUser.name!=undefined)navigate("/home")
+  // }, [localUser.name!=undefined]);
+
   useEffect(() => {
-    if(localUser.name!=undefined)navigate("/home")
-  }, [localUser.name!=undefined]);
+    if (localUser.name !== undefined) {
+      // navigate("/home");
+    }
+  }, [localUser.name]);
 
   const hdrChange = (event) => {
     setUserData({
@@ -63,16 +70,6 @@ const FormLogin = () => {
     })
   }
 
-// <====== AlejoC137
-
-
-
-
-
-
-
-// ======> AlejoC137
-
   return (
     <div className="">
       <NavBar />
@@ -96,7 +93,8 @@ const FormLogin = () => {
             onChange={(event) => hdrChange(event)}/>
             <button type="submit" 
               className=" text-white font-medium bg-vividGreen w-full h-10 cursor-pointer rounded-md hover:outline outline-2 outline-offset-2"
-            >
+              onSubmit={ hdrJoinSubmit }
+           >
               Iniciar sesión
             </button>
             <p>No tienes una cuenta? <a href="/formjoin" className=" text-blue-900 underline">Registrate</a></p>

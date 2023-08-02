@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import {Link, useLocation} from 'react-router-dom'
 import green1 from "../../assets/icons/green1.png"
@@ -19,28 +20,15 @@ const dispatch = useDispatch()
   const Items = useSelector(state => state.ItemsDonation)
   const [green , setGreen] = useState(green1)
   
-  useEffect( () => {
-
-      const data = window.localStorage.getItem('DONATION_CART')
-
-      dispatch(setDonationItems(JSON.parse(data)))
-
-  } , [])
-
-  useEffect( () => {
-   
-      window.localStorage.setItem("DONATION_CART", JSON.stringify(Items));
-   
-      const resultArray = Items.map(item => item.split('=')[1]);
-      if ( resultArray.includes(props._id)) {
-        setGreen(green2)
-      } else {setGreen(green1)}
-
-  } , [ Items ])
-
  
+  useEffect( () => {
+  
+    const resultArray = Items.map(item => item.split('=')[1]);
+    if ( resultArray.includes(props._id)) {
+      setGreen(green2)
+    } else {setGreen(green1)}
 
-
+} , [ Items ])
 
 
   const handleCartButton = (event) => {
@@ -48,12 +36,8 @@ const dispatch = useDispatch()
     const value = event.target.getAttribute("data-value");
 
     dispatch(setDonationItems([value]))
-
-
-    
     
   };
-  
   const handleSaveButton = (event) => {
     const value = event.target.getAttribute('data-value');
     // Do something with the value if needed
