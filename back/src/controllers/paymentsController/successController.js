@@ -1,10 +1,18 @@
 const transporter = require("../usersControllers/mailer");
+const Donation = require("../../models/donation");
 const { ADMIN_EMAIL } = process.env;
 const successController = async (req, res) => {
+  console.log(req.query);
+  const { preference_id } = req.query;
+  const donation = await Donation.findOne({
+    paymentID: preference_id,
+  }).populate("owner", "email");
+
+  console.log("Donation: ", donation);
 
   //ACA DEBERÍA PODER BUSCAR LA ULTIMA DONACIÓN DEL USUARIO
 
-
+  //preference_id viene por query como id
 
   //EMAIL DE AGRADECIMIENTO CON INFORMACIÓN DE SU PAGO
 
@@ -19,7 +27,7 @@ const successController = async (req, res) => {
   });
   */
 
- //REDIRIGIR AL USUARIO A UNA VENTANA DE AGRADECIMIENTO.
- res.redirect("http://localhost:5173/agradecimiento")
+  //REDIRIGIR AL USUARIO A UNA VENTANA DE AGRADECIMIENTO.
+  res.redirect("http://localhost:5173/agradecimiento");
 };
 module.exports = successController;
