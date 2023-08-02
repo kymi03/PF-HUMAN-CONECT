@@ -16,12 +16,18 @@ import UserOptions from './views/userOptions/UserOptions'
 import AdminOptions from './views/adminOptions/adminOptions'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { setDonationItems } from './redux/actions'
+import { getEmailAuth, setDonationItems, getGoogleAuth , getAuth } from './redux/actions'
+
+
+
+
 function App() {
 
   const dispatch = useDispatch()
 
   const Items = useSelector(state => state.ItemsDonation)
+  const User = useSelector(state => state.userAuth)
+
   useEffect( () => {
 
     const data = window.localStorage.getItem('DONATION_CART')
@@ -34,9 +40,43 @@ useEffect( () => {
  
     window.localStorage.setItem("DONATION_CART", JSON.stringify(Items));
  
-
-
 } , [ Items ])
+
+
+useEffect(() => {
+  // Obtener la información del usuario desde el almacenamiento local
+  const data = window.localStorage.getItem('userInfo');
+ 
+  if (data) {
+    const userInfo = JSON.parse(data);
+    dispatch(getAuth(userInfo));
+  }
+
+}, []);
+
+
+useEffect( () => {
+  // Guardar la información del usuario en el almacenamiento local después de una autenticación exitosa
+  if (User && User.name) {
+    window.localStorage.setItem('userInfo', JSON.stringify(User));
+
+  } else {
+    // Si no hay usuario autenticado, eliminar la información del usuario del almacenamiento local
+    window.localStorage.removeItem('userInfo');
+  }
+
+}, [User]);
+
+
+
+
+
+
+
+
+
+
+
  
   return (
     <div style={{

@@ -4,7 +4,7 @@ import NavBar from "../NavBar/NavBar.ale"
 import Footer from "../footer/Footer"
 import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
 import { useDispatch, useSelector } from 'react-redux';
-import { getEmailAuth, getGoogleAuth, setUserState } from '../../redux/actions';
+import { getEmailAuth, getGoogleAuth } from '../../redux/actions';
 
 const FormLogin = () => {
   const navigate = useNavigate();
@@ -34,15 +34,10 @@ const FormLogin = () => {
 
   };
 
-  // useEffect(() => {
-  //   if(localUser.name!=undefined)navigate("/home")
-  // }, [localUser.name!=undefined]);
 
   useEffect(() => {
-    if (localUser.name !== undefined) {
-      // navigate("/home");
-    }
-  }, [localUser.name]);
+    if(localUser.name!=undefined)navigate("/home")
+  }, [localUser.name!=undefined]);
 
   const hdrChange = (event) => {
     setUserData({
@@ -50,6 +45,22 @@ const FormLogin = () => {
       [event.target.name]: event.target.value,
     })    
   }  
+  // // useEffect(() => {
+  // //   if(localUser.name!=undefined)navigate("/home")
+  // // }, [localUser.name!=undefined]);
+
+  // useEffect(() => {
+  //   if (localUser.name !== undefined) {
+  //     // navigate("/home");
+  //   }
+  // }, [localUser.name]);
+
+  // const hdrChange = (event) => {
+  //   setUserData({
+  //     ...userData,
+  //     [event.target.name]: event.target.value,
+  //   })    
+  // }  
 
   const loginWithGoogle = ()=>{
     signInWithPopup(auth, googleProvider)

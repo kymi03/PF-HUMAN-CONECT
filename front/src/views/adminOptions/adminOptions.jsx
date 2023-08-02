@@ -13,7 +13,7 @@ import Coments from '../../components/useroptions/Coments';
 import Publications from '../../components/useroptions/Publications';
 import SavedContent from '../../components/useroptions/SavedContent';
 import Settings from '../../components/useroptions/Settings';
-import UserSummary from '../../components/useroptions/UserSummary';
+import UserPanel from '../../components/adminoptions/UserPanel';
 const UserOptions = () => {
 
 
@@ -31,8 +31,8 @@ console.log(currentOption);
 
 let selectedOption = <></>
  switch (currentOption) {
-    case "NO OPTION": 
-        selectedOption = <UserSummary/>
+    case "VER USUARIOS": 
+        selectedOption = <UserPanel/>
         break;
     case "DONACIONES": 
         selectedOption = <Donations/>

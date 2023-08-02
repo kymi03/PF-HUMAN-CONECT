@@ -21,7 +21,14 @@ const getUserController = async (req, res) => {
     try {
         const { email, password, token, uemail } = req.query;//token y uemail son recibidos del login de google        
         const regexEmail = /^[^@]+@[^@]+\.[a-zA-Z]{2,}$/;
-        
+
+        if (allUsers.length === 0) {
+            return res.status(404).json({ error: 'No se encontraron usuarios' });
+          } if(allUsers) {
+               // Devolver la lista de usuarios encontrados
+          return res.status(200).json(allUsers);
+          }
+          
         if(token!=undefined){
             const tokenVerifier = await admin.auth().verifyIdToken(token)//se decodifica el token para verificar autenticamente de firebase
             const userFound = await user.findOne({email: uemail});          
