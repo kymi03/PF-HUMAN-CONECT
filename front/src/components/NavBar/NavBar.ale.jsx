@@ -9,23 +9,50 @@ import Home from '../../views/home/Home';
 import CartCount from '../cartCount/CartCount';
 
 export default function NavBarAle() {
-  const dispath = useDispatch()
+  const dispatch = useDispatch()
   const userAuth = useSelector(state => state.userAuth)
-  const [userInfo, setUserInfo ] = useState()
+  const [userInfo, setUserInfo ] = useState(false)
  
+  // useEffect(() => {
+  //   const data = window.localStorage.getItem('userInfo')
+  //   // console.log('data:' , data);
+  //   dispatch(setUserState(JSON.parse(data))) //<-- cambiar para demos
+  // }, [])
+
+
+
+  // useEffect(() => {
+  //   const logged = window.localStorage.getItem("userInfo")
+  //   // window.localStorage.setItem('LOGIN_USER', JSON.stringify(userState))
+  //   setUserInfo(logged)
+  // }, [userAuth])
+
   useEffect(() => {
-    const data = window.localStorage.getItem('LOGIN_USER')
-    // console.log('data:' , data);
-    dispath(setUserState(JSON.parse(data))) //<-- cambiar para demos
-  }, [])
+    // Obtener la información del usuario desde el almacenamiento local
+    const data = window.localStorage.getItem('userInfo');
+   
+    if (data) {
+      const userInfo = JSON.parse(data);
+      // dispatch(setUserState(userInfo));
+      setUserInfo(true)
+    }
+
+  
 
 
+  }, []);
 
-  useEffect(() => {
-    // window.localStorage.setItem('LOGIN_USER', JSON.stringify(userState))
-    const logged = window.localStorage.getItem("userInfo")
-    setUserInfo(logged)
-  }, [userAuth])
+
+  useEffect( () => {
+    // Guardar la información del usuario en el almacenamiento local después de una autenticación exitosa
+    if (userAuth && userAuth.name) {
+      window.localStorage.setItem('userInfo', JSON.stringify(userAuth));
+
+    } else {
+      // Si no hay usuario autenticado, eliminar la información del usuario del almacenamiento local
+      window.localStorage.removeItem('userInfo');
+    }
+  }, [userAuth]);
 
   return (
 
@@ -112,7 +139,7 @@ className=' text-white text-2xl'
           </ul>
 
     </div>
-    {userInfo != null ? <UserDropMenu /> : <DefoultUserMenu />}
+    {userInfo !== false ? <UserDropMenu /> : <DefoultUserMenu />}
 <CartCount></CartCount>
   </div>
 </nav>
