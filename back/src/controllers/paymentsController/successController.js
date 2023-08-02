@@ -2,8 +2,13 @@ const transporter = require("../usersControllers/mailer");
 const { ADMIN_EMAIL } = process.env;
 const successController = async (req, res) => {
 
-  res.redirect("https://google.com.ar")
- /* await transporter.sendMail({
+  //ACA DEBERÍA PODER BUSCAR LA ULTIMA DONACIÓN DEL USUARIO
+
+
+
+  //EMAIL DE AGRADECIMIENTO CON INFORMACIÓN DE SU PAGO
+
+  /* await transporter.sendMail({
     from: `"Human Conet" ${ADMIN_EMAIL}`, // sender address
     to: email, // list of receivers
     subject: "Su donativo fue recibido", // Subject line
@@ -14,5 +19,7 @@ const successController = async (req, res) => {
   });
   */
 
+ //REDIRIGIR AL USUARIO A UNA VENTANA DE AGRADECIMIENTO.
+ res.redirect("http://localhost:5173/agradecimiento")
 };
 module.exports = successController;
