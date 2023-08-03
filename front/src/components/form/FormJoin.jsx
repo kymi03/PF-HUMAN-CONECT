@@ -185,8 +185,8 @@ const FormJoin = () => {
                   onChange={(event) => hdrChange(event)}
                 />
               </div>
-              {errors.name && <p>{errors.name}</p>}
-              {errors.lastName && <p>{errors.lastName}</p>}
+              {errors.name && <p className=" text-red-600">{errors.name}</p>}
+              {errors.lastName && <p className=" text-red-600">{errors.lastName}</p>}
               <div className="flex flex-col">
                 <input
                   type="text"
@@ -196,7 +196,7 @@ const FormJoin = () => {
                   value={userData.email}
                   onChange={(event) => hdrChange(event)}
                 />
-                {errors.email && <p>{errors.email}</p>}
+                {errors.email && <p className=" text-red-600">{errors.email}</p>}
                 <input
                   type="text"
                   className=" border-2 m-1 h-9"
@@ -205,7 +205,7 @@ const FormJoin = () => {
                   value={userData.phone}
                   onChange={(event) => hdrChange(event)}
                 />
-                {errors.phone && <p>{errors.phone}</p>}
+                {errors.phone && <p className=" text-red-600">{errors.phone}</p>}
               </div>
               <div className=" flex flex-row">
                 <input
@@ -225,7 +225,7 @@ const FormJoin = () => {
                   onChange={(event) => hdrChange(event)}
                 />
               </div>
-              {errors.password && <p>{errors.password}</p>}
+              {errors.password && <p className=" text-red-600">{errors.password}</p>}
               {errors.confirmPassword && <p>{errors.confirmPassword}</p>}
               <div className=" flex flex-col">
                 {/* <select name="" id="" className="border-2 m-1 h-9">
