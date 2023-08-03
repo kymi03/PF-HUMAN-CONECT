@@ -25,7 +25,6 @@ import {
 } from "./actions-types";
 
 import {
-  // GET_ALL_PROJECTS , GET_ALL_LOCATION ,  ORDER_BY_DATE,
   PROJECTS , DOCUMENTARYS , ARTICLES
   } from "../redux/actions-types";
 
