@@ -125,7 +125,7 @@ const renderUsers = () => {
 
   
        
-        <TableCell style={{ color: "#111111", fontSize: "15px" }}>
+        <TableCell style={{ color: "#111111", fontSize: "15px"}}>
           {name}
         </TableCell>
 
@@ -171,8 +171,8 @@ return (
     />
     <Table >
       <TableHead>
-        <TableRow>
-          <TableCell style={{ color: "#000000", fontSize: "15px" }}>
+        <TableRow style={{marginLeft:"50px"}}>
+          <TableCell style={{ color: "#000000", fontSize: "15px"}}>
             Eliminar Usuario
           </TableCell>
           <TableCell style={{ color: "#000000", fontSize: "15px" }}>
