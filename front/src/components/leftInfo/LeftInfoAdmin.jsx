@@ -10,52 +10,28 @@ import {
 
 function LeftInfoAdmin(props) {
 const dispatch = useDispatch()
-    const [userList, setUserList] = useState([]); 
-    const [confirmationOpen, setConfirmationOpen] = useState(false); 
-    const [currentUserEmail, setCurrentUserEmail] = useState(""); 
-    const [selectedUserIndex, setSelectedUserIndex] = useState(null);
-
     
-        const usersData = async () => {
-            try {
-                const response = await axios.get("http://localhost:3001/user")
-                const users = response.data; 
-                // console.log('users' );
-
-                dispatch(getUserList()); 
-            
-            } catch (error) {
-                
-            }
-        };
 
 
         function handleUserOption(event) {
 
           dispatch(getUserOption(event.target.value));
-          // console.log(event.target.value);
+          
         }
         
 
   
   return (
 
-    <div className="flex flex-col items-center justify-center min-h-screen">
+    <div className="flex flex-col items-center justify-center min-h-screen" >
 
-<div>
-  {userList.map((user) => (
-    <div key = {user.id} className="mb-2">
-      <p>Name: {user.name}</p>
-      <p>Email: {user.email}</p>
-    </div>
-  ))}
-</div>
 
-<div className="max-w-sm p-3  bg-white border border-gray-200 shadow dark:bg-gray-800 dark:border-gray-700">
+
+<div className="max-w-sm p-3  bg-white border border-gray-200 shadow dark:bg-gray-800 dark:border-gray-700 height 20px" style={{ marginTop: "-270px", height: "650px", borderRadius:"10px", backgroundColor:"#A29F83", borderColor:"grey"}}>
 
     
   <img src="https://humanconet.org/wp-content/uploads/2022/05/Tigre-1024x522.webp" alt="" />
-  <h1>Makarena Nazar</h1>
+  <h1 style={{marginTop: "40px", fontSize:"30px", fontFamily: "fantasy"} }>Makarena Nazar</h1>
 
       <div className=" p-11">
 
