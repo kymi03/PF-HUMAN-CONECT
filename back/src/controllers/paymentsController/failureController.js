@@ -2,11 +2,11 @@ const transporter = require("../usersControllers/mailer");
 const { ADMIN_EMAIL } = process.env;
 const failureController = async (req, res) => {
 
-  //ACA DEBERÍA PODER BUSCAR LA ULTIMA DONACIÓN DEL USUARIO
 
 
+  //ELIMINAR LA DONACIÓN DE LA BASE DE DATOS
 
-  //EMAIL DE AGRADECIMIENTO CON INFORMACIÓN DE SU PAGO
+  //EMAIL DE INFORMAR AL USUARIO DE FALLO DE DONACION
 
   /* await transporter.sendMail({
     from: `"Human Conet" ${ADMIN_EMAIL}`, // sender address
@@ -19,7 +19,7 @@ const failureController = async (req, res) => {
   });
   */
 
- //REDIRIGIR AL USUARIO A UNA VENTANA DE AGRADECIMIENTO.
+  //REDIRIGIR AL USUARIO A UNA PAGINA INFORMATIVA
  res.redirect("http://localhost:5173/rechazado")
 };
 module.exports = failureController;
