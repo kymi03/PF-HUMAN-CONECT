@@ -14,9 +14,29 @@ import FormLogin from './components/form/FormLogin'
 import backimg from "./assets/BACKGOUDN_IMAGE_LANDING.png"
 import UserOptions from './views/userOptions/UserOptions'
 import AdminOptions from './views/adminOptions/adminOptions'
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { setDonationItems } from './redux/actions'
 function App() {
-  
 
+  const dispatch = useDispatch()
+
+  const Items = useSelector(state => state.ItemsDonation)
+  useEffect( () => {
+
+    const data = window.localStorage.getItem('DONATION_CART')
+
+    dispatch(setDonationItems(JSON.parse(data)))
+
+} , [])
+
+useEffect( () => {
+ 
+    window.localStorage.setItem("DONATION_CART", JSON.stringify(Items));
+ 
+
+
+} , [ Items ])
  
   return (
     <div style={{
