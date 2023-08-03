@@ -32,6 +32,14 @@ const articleSchema = new Schema({
     type: String,
     required: true,
   },
+  body2: {
+    type: String,
+    required: true,
+  },
+  body3: {
+    type: String,
+    required: true,
+  },
   breaf: {
     type: String,
     required: true,
@@ -43,6 +51,11 @@ const articleSchema = new Schema({
   location: {
     type: String,
     required: true,
+  },
+  active: {
+    type: Boolean,
+    required: true,
+    default: true,
   },
 });
 
