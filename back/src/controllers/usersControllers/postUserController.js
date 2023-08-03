@@ -15,6 +15,7 @@ Manifiesto de funciones:
 
 const user = require("../../models/user");
 const admin = require('firebase-admin')
+const bcrypt = require('bcryptjs')
 
 //credenciales para poder hacer el decode del token de firebase
 admin.initializeApp({
@@ -29,10 +30,12 @@ const { ADMIN_EMAIL } = process.env;
 
 const postUserController = async (req, res) => {
   const { name, lastName, email, password, phone, token, uemail } = req.body;
-  if (!name || !lastName || !email || !password || !phone ){
-    return res.status(401).json({error:"Campos obligatorios insuficientes"})
+  const saltRound = 10;
+  const hashedPass = await bcrypt.hash(password, saltRound);
+
+  if (!name || !lastName || !email || !password || !phone) {
+    return res.status(401).json({ error: "Campos obligatorios insuficientes" })
   }
-  const tokenVerifier = await admin.auth().verifyIdToken(token)//se decodifica el token para verificar autenticamente de firebase
 
 
   try {
@@ -45,23 +48,26 @@ const postUserController = async (req, res) => {
     }
 
     //si no esta en uso se verifica que el token sea autentico y crea el usuario en la db
-    if (tokenVerifier.email) {
-      const newGoogleUser = new user({
-        name,
-        lastName,
-        uemail,
-        password: token,
-        phone,
-      });
-      await newGoogleUser.save()
-      return res.status(201).json(newGoogleUser);
+    if (token != undefined) {
+      const tokenVerifier = await admin.auth().verifyIdToken(token)//se decodifica el token para verificar autenticamente de firebase
+      if (tokenVerifier.email) {
+        const newGoogleUser = new user({
+          name,
+          lastName,
+          email,
+          password: token,
+          phone,
+        });
+        await newGoogleUser.save()
+        return res.status(201).json(newGoogleUser);
+      }
     }
 
     const newUser = new user({
       name,
       lastName,
       email,
-      password,
+      password: hashedPass,
       phone,
     });
     await newUser.save();

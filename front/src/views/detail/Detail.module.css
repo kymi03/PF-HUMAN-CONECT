@@ -1,82 +1,95 @@
 /* detail.css */
 
+/*division de pantalla*/
 .header-section {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  /* Utilizamos flexbox para dividir en filas (por defecto) */
+  align-items:center;
+  /* Centramos verticalmente los elementos */
+}
+
+/* title */
+.custom-title {
+  font-family: "Arial", sans-serif;
+  font-size: 65px;
+  width: 1000px; /* Define el ancho del botón */
+  height: 400px; /* Define la altura del botón */
+}
+
+
+/* title image*/
+.custom-image {
+  object-fit: fill;
+  width: 900px;
+  /* Cambia 300px al ancho deseado */
+  height: 700px;
+  /* Cambia 200px al alto deseado */
+  margin: 10px;
+}
+/*boton donacion */
+.boton-section {
+  display:grid;
+  justify-content: center;
   align-items: center;
-  width: 1400px;  /* Establece un ancho fijo para el contenedor */
-  max-width: 1800px;  /* O establece un ancho máximo */
-  min-width: 1000px;  /* Y/o un ancho mínimo */
+  width: 700px; /* Define el ancho del botón */
+  height: 100px; /* Define la altura del botón */
 }
 
-.header-section img {
-  width: 40%;
-  height: auto;
-  border-radius: 5%;
-  padding-right: 150px; /* Añade un margen interior de 20px en el lado derecho del texto */
-  width: 1200px;  /* Establece un ancho fijo para el contenedor */
-  max-width: 100px;  /* O establece un ancho máximo */
-  min-width: 600px;  /* Y/o un ancho mínimo */
-}
-
-.header-section h1 {
-  width: 50%;
-  text-align: center;
-  font-size: 60px; /* Tamaño de fuente ajustado para el título */
-}
-
+/* Nivel body resto de image y contenido */
 .content-section {
   display: flex;
-  flex-direction: row;  /* Alineamos los elementos en fila */
-  align-items: center;  /* Centramos los elementos verticalmente */
-  justify-content: space-around;  /* Añadimos espacio entre los elementos */
-  width: 1200px;  /* Establece un ancho fijo para el contenedor */
-  max-width: 1200px;  /* O establece un ancho máximo */
-  min-width: 800px;  /* Y/o un ancho mínimo */
 }
 
-/* Texto body cuadro*/
-.content-section p {
-  position: relative; /* Esto hace que el párrafo se quede fijo en la posición en la que se encuentre */
-  width: 90%;  /* Ajusta en cuadro del texto */
-  max-height: 500px; /* Ajusta esto a tus necesidades, esto limitará la altura del contenedor de texto y activará la barra de desplazamiento cuando sea necesario */
-  overflow-y: auto; /* Esto activará la barra de desplazamiento vertical cuando el contenido supere la altura máxima establecida */
-/*texto*/
-  text-align: justify;
-  font-weight: normal; /* Texto normal */
-  font-size: 20px; /* Tamaño de fuente para el contenido ajustado a tus preferencias */
-  padding: 8px; /* Añade un margen interior de 20px alrededor del texto */
-  width: 1200px;  /* Establece un ancho fijo para el contenedor */
-  max-width: 1200px;  /* O establece un ancho máximo */
-  min-width: 800px;  /* Y/o un ancho mínimo */
-}
-/*esta funcion me sirvio para ajustar el texto body a que abarcara a la mitad*/
-.video-responsive {
-  width: 50%; /* igual que la imagen */
-}
-
-.video-container {
+/* Columna izquierda (texto body) */
+.content-section-left {
+  flex: 100;
+  /* La columna izquierda toma el espacio disponible */
+  padding: 50px;
+  /* Agrega espaciado para separar del borde */
   position: relative;
-  overflow: visible;
-  background-color: aqua;
-  width: 50%; /* video que se mueva a la izquierda o el tama;o completo del youtube */
-  max-width: 1200px;
-  min-width: 200px;
-  height: 30%;
- /* padding-top: 56.26%; /* hace que el video sea en cuadrado o rectangulo  */
- /* padding-right: 200px; /* Añade un margen interior de 20px en el lado derecho del texto */
- /* padding-bottom: -800px; /* Añade un margen interior de 30px en la parte inferior del texto */
- /* padding-left: -900px; /* margen interior de 40px en el lado izquierdo del texto */
-align-items: center;
-justify-content: center;
+  /* Esto hace que el párrafo se quede fijo en la posición en la que se encuentre */
+  width: 100%;
+  /* Ajusta en cuadro del texto */
+  max-height: 1000px;
+  /* esto limitará la altura del contenedor de texto y activará la barra de desplazamiento cuando sea necesario */
+  overflow-y: auto;
+  /* Esto activará la barra de desplazamiento vertical cuando el contenido supere la altura máxima establecida */
+  text-align: justify;
+  font-weight: normal;
+  /* Texto normal */
+  font-size: 20px;
+  /* Tamaño de fuente para el contenido ajustado a tus preferencias */
+  max-width: 750px;
+  /* O establece un ancho máximo */
+  min-width: 700px;
+  /* Y/o un ancho mínimo */
+}
+
+
+
+/*nivel body resto de imagen*/
+.additional-image {
+  object-fit: cover;
+  width: 900px;
+  /* Puedes ajustar el tamaño de las imágenes adicionales aquí */
+  height: 500px;
+  margin: 10px;
+  /* Puedes ajustar los márgenes entre las imágenes aquí */
+  /* Puedes agregar más estilos para las imágenes adicionales aquí */
+
+}
+
+.video-responsive {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* Relación de aspecto 16:9 (dividir 9 entre 16 y multiplicar por 100) */
+  overflow: hidden;
 }
 
 .video-container-iframe {
   position: relative;
-  top: 1000;
-  left: -1000;
-  width: 100%; /* hace que el iframe llene el contenedor de video */
+  top: 0;
+  left: 0;
+  width: 100%;
   height: 100%;
 }
-

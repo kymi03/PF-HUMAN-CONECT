@@ -17,19 +17,10 @@ import {
   // GET_ALL_PROJECTS , GET_ALL_LOCATION ,  ORDER_BY_DATE,
   PROJECTS , DOCUMENTARYS , ARTICLES
   } from "../../redux/actions-types";
-
 function Projects() {
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getSearchPADByQuery('' , '' , PROJECTS ));
-
-
-
-  }, []);
-  
   const currentPAD = useSelector(state => state.allProjects)
-
 
   return (  
 <div >

@@ -1,30 +1,58 @@
-
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import UserDropMenu from '../userDropMenu/UserDropMenu';
 import DefoultUserMenu from '../userDropMenu/DefoultUserMenu';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUserState } from '../../redux/actions';
+import Home from '../../views/home/Home';
+
 import CartCount from '../cartCount/CartCount';
 
 export default function NavBarAle() {
- const dispath = useDispatch()
-  const userState = useSelector(state => state.userState)
+  const dispatch = useDispatch()
+  const userAuth = useSelector(state => state.userAuth)
+  const [userInfo, setUserInfo ] = useState(false)
+ 
+  // useEffect(() => {
+  //   const data = window.localStorage.getItem('userInfo')
+  //   // console.log('data:' , data);
+  //   dispatch(setUserState(JSON.parse(data))) //<-- cambiar para demos
+  // }, [])
+
+
+
+  // useEffect(() => {
+  //   const logged = window.localStorage.getItem("userInfo")
+  //   // window.localStorage.setItem('LOGIN_USER', JSON.stringify(userState))
+  //   setUserInfo(logged)
+  // }, [userAuth])
+
+  useEffect(() => {
+    // Obtener la información del usuario desde el almacenamiento local
+    const data = window.localStorage.getItem('userInfo');
+   
+    if (data) {
+      const userInfo = JSON.parse(data);
+      // dispatch(setUserState(userInfo));
+      setUserInfo(true)
+    }
+
+  
+
+
+  }, []);
+
 
   useEffect( () => {
-      const data = window.localStorage.getItem('LOGIN_USER')
-      // console.log('data:' , data);
-      // dispath(setUserState(JSON.parse(data))) //<-- cambiar para demos
-  } , [])
+    // Guardar la información del usuario en el almacenamiento local después de una autenticación exitosa
+    if (userAuth && userAuth.name) {
+      window.localStorage.setItem('userInfo', JSON.stringify(userAuth));
 
-
-
-  useEffect( () => {
-
-      window.localStorage.setItem('LOGIN_USER' , JSON.stringify(userState))
-  } , [userState])
-
-
+    } else {
+      // Si no hay usuario autenticado, eliminar la información del usuario del almacenamiento local
+      window.localStorage.removeItem('userInfo');
+    }
+  }, [userAuth]);
 
   return (
 
@@ -42,11 +70,10 @@ export default function NavBarAle() {
     className="flex items-center"
     >
         <img src="https://humanconet.org/wp-content/uploads/2022/03/Turtle-Turquoise-1-1024x1022.png" 
-        className="h-8 mr-3" alt="Flowbite Logo" 
+        className="h-8 mr-3 " alt="Flowbite Logo" 
         />
         <span 
-
-        className="self-center text-2xl font-semibold whitespace-nowrap text-white"
+className=' text-white text-2xl'
 
         
         >HUMAN CONET</span>
@@ -112,7 +139,7 @@ export default function NavBarAle() {
           </ul>
 
     </div>
-{ userState === true ? <UserDropMenu></UserDropMenu> : <DefoultUserMenu></DefoultUserMenu> }
+    {userInfo !== false ? <UserDropMenu /> : <DefoultUserMenu />}
 <CartCount></CartCount>
   </div>
 </nav>

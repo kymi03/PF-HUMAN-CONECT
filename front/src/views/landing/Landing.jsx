@@ -7,7 +7,7 @@ export default function Landing() {
       
       <div className="absolute top-4 left-4 text-black text-7xl font-bold">HUMAN CONET</div>
 
-      <SliderLanding/>
+      
     
       <div className="absolute bottom-32 right-4 text-black">
         <p className="text-7xl font-bold">JUNTOS SOMOS</p>
