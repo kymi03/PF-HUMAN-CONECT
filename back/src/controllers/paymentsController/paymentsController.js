@@ -36,7 +36,6 @@ const paymentsController = async (req, res) => {
       date: new Date(),
     });
     await newDonation.save();
-    console.log(result.body.sandbox_init_point);
     res.status(200).json({ result });
   } catch (error) {
     res.status(500).json({ error: error.message });
