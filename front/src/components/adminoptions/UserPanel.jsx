@@ -153,7 +153,7 @@ const totalPages = Math.ceil(userList.length / usersPerPage);
 
 
 return (
-  <div style={{marginLeft:"200px", marginTop:"55px"}}>
+  <div style={{marginLeft:"200px", marginTop:"55px", backgroundColor:"#A29F83", border:"2px solid", borderColor:"grey", borderRadius:"5px"}}>
     <TextField
       id="standard-basic"
       variant="standard"
@@ -169,9 +169,9 @@ return (
       }}
       style={{ marginBottom: "4px", marginLeft: "65%", display: 'flex', justifyContent: 'center'}}
     />
-    <Table >
-      <TableHead>
-        <TableRow style={{marginLeft:"50px"}}>
+    <Table>
+      <TableHead style={{marginTop:"15px", backgroundColor:"#B2AE8C"}}>
+        <TableRow>
           <TableCell style={{ color: "#000000", fontSize: "15px"}}>
             Eliminar Usuario
           </TableCell>
