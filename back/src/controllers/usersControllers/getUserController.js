@@ -18,7 +18,6 @@ const bcrypt = require ('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { JWT_SECRET  } = process.env;
 
-const bcrypt = require ('bcryptjs')
 
 
 const getUserController = async (req, res) => {
