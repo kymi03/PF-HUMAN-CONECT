@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import UserDropMenu from "../userDropMenu/UserDropMenu";
 import DefoultUserMenu from "../userDropMenu/DefoultUserMenu";
 import { useDispatch, useSelector } from "react-redux";
-import { setUserState } from "../../redux/actions";
 import Home from "../../views/home/Home";
 
 import CartCount from "../cartCount/CartCount";
@@ -24,27 +23,6 @@ export default function NavBarAle() {
   //   // window.localStorage.setItem('LOGIN_USER', JSON.stringify(userState))
   //   setUserInfo(logged)
   // }, [userAuth])
-
-  useEffect(() => {
-    // Obtener la información del usuario desde el almacenamiento local
-    const data = window.localStorage.getItem("userInfo");
-
-    if (data) {
-      const userInfo = JSON.parse(data);
-      // dispatch(setUserState(userInfo));
-      setUserInfo(true);
-    }
-  }, []);
-
-  useEffect(() => {
-    // Guardar la información del usuario en el almacenamiento local después de una autenticación exitosa
-    if (userAuth && userAuth.name) {
-      window.localStorage.setItem("userInfo", JSON.stringify(userAuth));
-    } else {
-      // Si no hay usuario autenticado, eliminar la información del usuario del almacenamiento local
-      window.localStorage.removeItem("userInfo");
-    }
-  }, [userAuth]);
 
   return (
     <nav className=" bg-black border-gray-200 dark:bg-gray-900">
@@ -114,7 +92,7 @@ export default function NavBarAle() {
             </Link>
           </ul>
         </div>
-        {userInfo !== false ? <UserDropMenu /> : <DefoultUserMenu />}
+        {userAuth.name ? <UserDropMenu /> : <DefoultUserMenu />}
         <CartCount></CartCount>
       </div>
     </nav>

@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { setUserState } from '../../redux/actions';
 
 const DefoultUserMenu = () => {
   const navigate = useNavigate()
@@ -9,7 +8,6 @@ const DefoultUserMenu = () => {
 
   const logIn = () => {
     dispatch(navigate("/formlogin"))    
-    dispatch(setUserState(true))
   };
 
   return (

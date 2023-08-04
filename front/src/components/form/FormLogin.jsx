@@ -4,7 +4,7 @@ import NavBar from "../NavBar/NavBar.ale"
 import Footer from "../footer/Footer"
 import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
 import { useDispatch, useSelector } from 'react-redux';
-import { getEmailAuth, getGoogleAuth, setUserState } from '../../redux/actions';
+import { getEmailAuth, getGoogleAuth } from '../../redux/actions';
 
 const FormLogin = () => {
   const navigate = useNavigate();
@@ -20,7 +20,6 @@ const FormLogin = () => {
 
   const hdrJoinSubmit = (event) => {
     event.preventDefault();
-    console.log('nuevo clg');
     if (
       userData?.email == "" ||
       userData?.password == ""
@@ -34,15 +33,10 @@ const FormLogin = () => {
 
   };
 
-  // useEffect(() => {
-  //   if(localUser.name!=undefined)navigate("/home")
-  // }, [localUser.name!=undefined]);
 
   useEffect(() => {
-    if (localUser.name !== undefined) {
-      // navigate("/home");
-    }
-  }, [localUser.name]);
+    if(localUser.name!=undefined)navigate("/home")
+  }, [localUser.name!=undefined]);
 
   const hdrChange = (event) => {
     setUserData({
@@ -50,8 +44,26 @@ const FormLogin = () => {
       [event.target.name]: event.target.value,
     })    
   }  
+  // // useEffect(() => {
+  // //   if(localUser.name!=undefined)navigate("/home")
+  // // }, [localUser.name!=undefined]);
+
+  // useEffect(() => {
+  //   if (localUser.name !== undefined) {
+  //     // navigate("/home");
+  //   }
+  // }, [localUser.name]);
+
+  // const hdrChange = (event) => {
+  //   setUserData({
+  //     ...userData,
+  //     [event.target.name]: event.target.value,
+  //   })    
+  // }  
 
   const loginWithGoogle = ()=>{
+    console.log('nuevo clg');
+
     signInWithPopup(auth, googleProvider)
     .then((result)=>{
       const credential = GoogleAuthProvider.credentialFromResult(result)
@@ -76,7 +88,9 @@ const FormLogin = () => {
       <div className=" flex flex-row my-5 h-5/6 w-full">
         <div className=" border-2 rounded-sm bg-white mx-2 md:w-3/6">
           <h5 className=" pt-5 font-poppins font-semibold">Registrate en un nuestra red</h5>
-          <form  className=" p-8 flex flex-col" onSubmit={hdrJoinSubmit}>
+          <form  className=" p-8 flex flex-col" 
+          onSubmit={hdrJoinSubmit}
+          >
             <input 
             type="text" 
             className=" border-2 m-1 h-9" 

@@ -16,21 +16,21 @@ import {
   SET_USER_STATE,
   GET_USER_OPTION,
   GET_ADMIN_OPTION,
-  SET_DONATION_ITEMS
+  SET_DONATION_ITEMS,
+  GET_AUTH,
+  GET_USER_LIST
 
 
 
 } from "./actions-types";
 
 import {
-  // GET_ALL_PROJECTS , GET_ALL_LOCATION ,  ORDER_BY_DATE,
   PROJECTS , DOCUMENTARYS , ARTICLES
   } from "../redux/actions-types";
 
 
 import axios from "axios";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
 
 
 export function getGoogleAuth( {uemail,token} ) {
@@ -38,7 +38,9 @@ export function getGoogleAuth( {uemail,token} ) {
     try {
       axios.get(`/user?uemail=${uemail}&token=${token}`)
       .then((info)=>{
-        window.localStorage.setItem("userInfo", JSON.stringify(info.data))
+        // window.localStorage.setItem("userInfo", JSON.stringify(info.data))
+        console.log('getGoogleAuth: ' , info.data);
+
         return dispatch({
           type: GET_GOOGLE_USER,
           payload: info.data,
@@ -55,33 +57,21 @@ export function getGoogleAuth( {uemail,token} ) {
 }
 
 export function getEmailAuth({ email, password }) {
-  console.log(email, password);
   return async function (dispatch) {
     try {
       const info = await axios.get(`/user?email=${email}&password=${password}`);
-      console.log(info.data, 'AQUIIIIIIII');
-      // window.location.replace("http://localhost:5173/home");
+      console.log('getEmailAuth: ' , info.data);
       return dispatch({
         type: GET_USER,
         payload: info.data,
       });
     } catch (error) {
-      console.log(error);
       console.log(error.response);
       Swal.fire(error.response.data.error);
-      // try {
-      //   const existingEmailDb = await axios.get('/user', { email, accessToken });
-      //   return dispatch({
-      //     type: GET_AUTH_USER,
-      //     payload: existingEmailDb.data,
-      //   });
-      // } catch (error) {
-      //   console.log(error);
-      // }
+
     }
   };
 }
-
 
 
 export const setPADAction = (PAD) => {
@@ -241,19 +231,6 @@ export function postNewPAD (payload , PADtype ) {
   }
 }
 
-// export function getArticles(){
-//   return async function(dispatch){
-//     try {
-//       var response = await axios.get('/articles')
-//       return dispatch({
-//         type: GET_ARTICLES,
-//         payload: response.data
-//       })
-//     } catch (error) {
-//       console.log(error.message);
-//     }
-//   }
-// }
 
 export const getSearchPADByQuery = ( nam , loc , PAD)=>{
   let query = ''
@@ -326,20 +303,6 @@ export const getSearchPADByQuery = ( nam , loc , PAD)=>{
 
 }
 
-export const setUserState = (state)=>{
-  return async function  (dispatch){
-      try {
-   
-        return dispatch({
-          type:SET_USER_STATE,
-          payload: state
-        })
-  
-      } catch (error) {
-        console.log(error.message);
-      }
-    }
-  }
 
 export const getUserOption = (option)=>{
   return async function  (dispatch){
@@ -378,6 +341,35 @@ export const getAdminOption = (option)=>{
         return dispatch({
           type:GET_ADMIN_OPTION,
           payload: option
+        })
+  
+      } catch (error) {
+        console.log(error.message);
+      }
+    }
+  }
+export const getUserList = ()=>{
+  return async function  (dispatch){
+      try {
+        const response = await axios.get("http://localhost:3001/user")
+        console.log(response);
+        return dispatch({
+          type:GET_USER_LIST,
+          payload: response
+        })
+  
+      } catch (error) {
+        console.log(error.message);
+      }
+    }
+  }
+export const getAuth = (auth)=>{
+  return async function  (dispatch){
+      try {
+  //  console.log(auth);
+        return dispatch({
+          type:GET_AUTH,
+          payload: auth
         })
   
       } catch (error) {

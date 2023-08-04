@@ -23,7 +23,7 @@ export const POST_NEW_GOOGLE_USER = "POST_NEW_GOOGLE_USER"
 export const POST_NEW_ARTICLE = "POST_NEW_ARTICLE"
 
 
-export const GET_AUTH_USER = "GET_AUTH_USER"
+export const GET_AUTH = "GET_AUTH"
 
 export const SET_USER_STATE = "SET_USER_STATE"
 
@@ -37,5 +37,7 @@ export const GET_USER_OPTION = "GET_USER_OPTION"
 export const GET_ADMIN_OPTION = "GET_ADMIN_OPTION"
 
 export const SET_DONATION_ITEMS = "SET_DONATION_ITEMS"
+
+export const GET_USER_LIST = "GET_USER_LIST"
 
 
