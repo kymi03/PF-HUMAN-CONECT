@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import ReactStars from "react-rating-stars-component";
 
 const CommentForm = ({ onCommentSubmit }) => {
-  const [name, setName] = useState('');
-  const [comment, setComment] = useState('');
+  const [name, setName] = useState("");
+  const [comment, setComment] = useState("");
+  const [rating, setRating] = useState(0);
 
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -14,15 +16,27 @@ const CommentForm = ({ onCommentSubmit }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onCommentSubmit({ name, comment });
-    setName('');
-    setComment('');
+    onCommentSubmit({ name, comment, rating });
+    setName("");
+    setComment("");
+    setRating(0);
+  };
+
+  const ratingChanged = (newRating) => {
+    console.log(newRating);
+    setRating(newRating);
   };
 
   return (
-    <form onSubmit={handleSubmit} className="w-full max-w-sm mx-auto mt-4 bg-amber-50">
+    <form
+      onSubmit={handleSubmit}
+      className="w-full max-w-sm mx-auto mt-4 bg-amber-50"
+    >
       <div className="mb-4">
-        <label htmlFor="name" className="block text-gray-700 text-sm font-bold mb-2">
+        <label
+          htmlFor="name"
+          className="block text-gray-700 text-sm font-bold mb-2"
+        >
           Nombre y Apellido:
         </label>
         <input
@@ -35,8 +49,27 @@ const CommentForm = ({ onCommentSubmit }) => {
           required
         />
       </div>
+
       <div className="mb-4">
-        <label htmlFor="comment" className="block text-gray-700 text-sm font-bold mb-2">
+        <label
+          htmlFor="comment"
+          className="block text-gray-700 text-sm font-bold mb-2"
+        >
+          Calificación: {rating}{" "}
+        </label>
+        <ReactStars
+          count={5}
+          onChange={ratingChanged}
+          size={24}
+          activeColor="#ffd700"
+        />
+      </div>
+
+      <div className="mb-4">
+        <label
+          htmlFor="comment"
+          className="block text-gray-700 text-sm font-bold mb-2"
+        >
           Comentario:
         </label>
         <textarea
