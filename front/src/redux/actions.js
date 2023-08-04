@@ -38,7 +38,9 @@ export function getGoogleAuth( {uemail,token} ) {
     try {
       axios.get(`/user?uemail=${uemail}&token=${token}`)
       .then((info)=>{
-        window.localStorage.setItem("userInfo", JSON.stringify(info.data))
+        // window.localStorage.setItem("userInfo", JSON.stringify(info.data))
+        console.log('getGoogleAuth: ' , info.data);
+
         return dispatch({
           type: GET_GOOGLE_USER,
           payload: info.data,
@@ -58,6 +60,7 @@ export function getEmailAuth({ email, password }) {
   return async function (dispatch) {
     try {
       const info = await axios.get(`/user?email=${email}&password=${password}`);
+      console.log('getEmailAuth: ' , info.data);
       return dispatch({
         type: GET_USER,
         payload: info.data,
