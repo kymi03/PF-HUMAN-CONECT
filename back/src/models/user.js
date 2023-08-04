@@ -35,7 +35,7 @@ const userSchema = new Schema({
   posts: {
     post: [
       {
-        postId: Number,
+        postId: String,
         body: String,
         createdAt: { type: Date, default: Date.now },
       },
