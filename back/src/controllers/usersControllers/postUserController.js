@@ -15,7 +15,7 @@ Manifiesto de funciones:
 
 const user = require("../../models/user");
 const admin = require('firebase-admin')
-// const bcrypt = require('bcryptjs')
+const bcrypt = require('bcryptjs')
 
 //credenciales para poder hacer el decode del token de firebase
 admin.initializeApp({
@@ -30,8 +30,8 @@ const { ADMIN_EMAIL } = process.env;
 
 const postUserController = async (req, res) => {
   const { name, lastName, email, password, phone, token, uemail } = req.body;
-  // const saltRound = 10;
-  // const hashedPass = await bcrypt.hash(password, saltRound);
+  const saltRound = 10;
+  const hashedPass = await bcrypt.hash(password, saltRound);
 
   if (!name || !lastName || !email || !password || !phone) {
     return res.status(401).json({ error: "Campos obligatorios insuficientes" })
@@ -67,7 +67,7 @@ const postUserController = async (req, res) => {
       name,
       lastName,
       email,
-      password,
+      password: hashedPass,
       phone,
     });
     await newUser.save();

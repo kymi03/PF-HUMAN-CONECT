@@ -14,6 +14,9 @@ Manifiesto de funciones:
 */
 const user = require('../../models/user');
 const admin = require ('firebase-admin')
+const bcrypt = require ('bcryptjs');
+const jwt = require('jsonwebtoken');
+const { JWT_SECRET  } = process.env;
 
 
 
@@ -36,6 +39,9 @@ const getUserController = async (req, res) => {
         console.log('AQUI',email);
         // Buscar al usuario en la base de datos por su correo electrónico
         const userFound = await user.findOne({ email: email });
+        const passwordCorrect = user === null 
+        ? false
+        : await bcrypt.compare(password, userFound.password)
 
         // Verificar que se proporcionen el email y password
         if ( !email || !password) {
@@ -53,16 +59,24 @@ const getUserController = async (req, res) => {
         }
 
         // Verificar que la contraseña coincida
-        if (userFound.password !== password) {
+        if (!passwordCorrect) {
             return res.status(401).json({ error: 'Email o Contraseña incorrecta' });
         }
 
+
+        const userForToken = {
+            email:userFound.email,
+            password: userFound.password 
+        }
+
+        const jwToken = jwt.sign(userForToken, `${JWT_SECRET}`)
+
         // Si todo es correcto, devolver el usuario encontrado
-        return res.status(200).json({_id:userFound._id, name:userFound.name, lastName:userFound.lastName, email:userFound.email, phone:userFound.phone});
+        return res.status(200).json({_id:userFound._id, name:userFound.name, lastName:userFound.lastName, email:userFound.email, phone:userFound.phone, jwToken});
     } catch (error) {
         console.error(error);
         return res.status(500).json({ error: 'Ha ocurrido un error en el servidor' });
     }
 };
 
-module.exports = getUserController;
+module.exports = getUserController; 
