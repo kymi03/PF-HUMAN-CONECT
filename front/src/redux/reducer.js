@@ -2,7 +2,7 @@ import {
   
   GET_ALL_PROJECTS , GET_ALL_LOCATION ,  ORDER_BY_DATE, GET_ALL_ARTICLES, GET_ALL_DOCUMENTARYS, GET_USER_OPTION ,  SET_DONATION_ITEMS ,
 
-  PROJECTS , DOCUMENTARYS , ARTICLES, GET_ARTICLES , SET_GLOBAL_PAD, GET_AUTH_USER , SET_USER_STATE , GET_GOOGLE_USER, GET_USER
+  PROJECTS , DOCUMENTARYS , ARTICLES, GET_ARTICLES , SET_GLOBAL_PAD , SET_USER_STATE , GET_GOOGLE_USER, GET_USER , GET_AUTH , GET_USER_LIST
 
   
   } from "./actions-types";
@@ -20,6 +20,7 @@ import {
     allLocations: [],
 
     userAuth:[],
+    userList:[],
 
     userState:false,
     userOption:'NO OPTION',
@@ -167,6 +168,17 @@ if(action.payload.PAD === DOCUMENTARYS ){  console.log('i');
 
 
 
+
+        case GET_USER_LIST:
+          return {
+            ...state,
+            userList: action.payload
+          }
+        case GET_AUTH:
+          return {
+            ...state,
+            userAuth: action.payload
+          }
 
         case GET_USER:
           return {

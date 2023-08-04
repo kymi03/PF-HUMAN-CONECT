@@ -11,22 +11,20 @@ const donationSchema = new Schema({
     ref: "User",
     required: true,
   },
-  // },
-  // causes: {
-  //   type: Array,
-  //   required: true,
-  // },
-  // amount: {
-  //   type: Number,
-  //   require: true,
-  // },
-  // paymentMethod: {
-  //   type: String,
-  //   required: true,
-  // },
-  // date: {
-  //   type: Date,
-  //   require: true,
-  // },
+  amounts: {
+    type: Object,
+    required: true,
+  },
+  paymentMethod: {
+    type: String,
+  },
+  paid: {
+    type: Boolean,
+    required: true,
+  },
+  date: {
+    type: Date,
+    require: true,
+  },
 });
 module.exports = mongoose.model("Donation", donationSchema);
