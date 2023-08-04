@@ -4,9 +4,6 @@ const postUserController = require('../../controllers/usersControllers/postUserC
 const putUserController = require('../../controllers/usersControllers/putUserController');
 const deleteUserController = require('../../controllers/usersControllers/deleteUserController');
 const getAllUsersController = require ("../../controllers/usersControllers/getAllUsersController")
-const postUserController = require("../../controllers/usersControllers/postUserController");
-const putUserController = require("../../controllers/usersControllers/putUserController");
-const deleteUserController = require("../../controllers/usersControllers/deleteUserController");
 const postUserCommentController = require("../../controllers/usersControllers/postUserCommentController");
 
 const userRoutes = Router();
