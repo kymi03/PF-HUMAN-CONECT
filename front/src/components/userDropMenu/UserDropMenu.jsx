@@ -1,12 +1,13 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { setUserState } from "../../redux/actions";
 
 const UserDropManu = () => {
   const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
   const [userData, setUserData] = useState();
+  const User = useSelector(state => state.userAuth)
+
   const dropdownRef = useRef(null);
 
   useEffect(() => {
@@ -35,17 +36,11 @@ const UserDropManu = () => {
   const handleButtonClick = () => {
     window.localStorage.removeItem("userInfo");
     window.location.reload();
-    dispatch(setUserState(false));
   };
 
-  let data = ''
 
-  if(userData){
-     data = JSON.parse(userData)
-    console.log(data ? data.name : 'user name' );
-  
-  
-  }
+
+
 
   return (
     < div  >
@@ -54,7 +49,7 @@ const UserDropManu = () => {
         <button onClick={toggleMenu} type="select"
 
           className=" h-10 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700" >
-          {  data ? data.name : 'user name' }
+          {  User.name? User.name : 'user name' }
         </button> 
 
         <img

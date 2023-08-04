@@ -14,14 +14,14 @@ Manifiesto de funciones:
 */
 const user = require('../../models/user');
 const admin = require ('firebase-admin')
-
+const bcrypt = require ('bcryptjs')
 
 
 const getUserController = async (req, res) => {
     try {
         const { email, password, token, uemail } = req.query;//token y uemail son recibidos del login de google        
         const regexEmail = /^[^@]+@[^@]+\.[a-zA-Z]{2,}$/;
-        
+         
         if(token!=undefined){
             const tokenVerifier = await admin.auth().verifyIdToken(token)//se decodifica el token para verificar autenticamente de firebase
             const userFound = await user.findOne({email: uemail});          
@@ -37,7 +37,11 @@ const getUserController = async (req, res) => {
         // Buscar al usuario en la base de datos por su correo electrónico
         const userFound = await user.findOne({ email: email });
 
+        const passwordCorrect = user === null
+        ? false
+        : await bcrypt.compare(password, userFound.password)
         // Verificar que se proporcionen el email y password
+
         if ( !email || !password) {
             return res.status(400).json({ error: 'Debe proporcionar email y password' });
         }
@@ -53,7 +57,7 @@ const getUserController = async (req, res) => {
         }
 
         // Verificar que la contraseña coincida
-        if (userFound.password !== password) {
+        if (!passwordCorrect) {
             return res.status(401).json({ error: 'Email o Contraseña incorrecta' });
         }
 
