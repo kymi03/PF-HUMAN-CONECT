@@ -9,11 +9,14 @@ import green1 from "../../assets/icons/green1.png";
 import green2 from "../../assets/icons/green2.png";
 import { useDispatch, useSelector } from "react-redux";
 import { setDonationItems } from "../../redux/actions";
+import CommentForm from "../../components/comments/CommentForm";
+import CommentDisplay from "../../components/comments/CommentDisplay";
 
 function Detail() {
   const [PAD, setPAD] = useState([]);
   const [uniqueImages, setUniqueImages] = useState([]);
   const [uniqueVideos, setUniqueVideos] = useState([]);
+  const [comments, setComments] = useState([]);
   const { id } = useParams();
 
   function splitString(inputString) {
@@ -70,24 +73,20 @@ function Detail() {
     if (PAD.media && PAD.media.videos) {
       const uniqueVideoUrls = [];
       const renderedVideos = new Set();
-
       PAD.media.videos.forEach((video) => {
         if (!renderedVideos.has(video.videoUrl)) {
           renderedVideos.add(video.videoUrl);
           uniqueVideoUrls.push(video.videoUrl);
         }
       });
-
-      console.log("uniqueVideoUrls:", uniqueVideoUrls);
-
       setUniqueVideos(uniqueVideoUrls);
     }
   }, [PAD.media]);
 
+  //Boton de donacion
   const dispatch = useDispatch();
   const Items = useSelector((state) => state.ItemsDonation);
   const [green, setGreen] = useState(green1);
-
   useEffect(() => {
     const resultArray = Items.map((item) => item.split("=")[1]);
     if (resultArray.includes(key, value)) {
@@ -96,11 +95,19 @@ function Detail() {
       setGreen(green1);
     }
   }, [Items]);
-
   const handleCartButton = (event) => {
     const value = event.target.getAttribute("data-value");
-
     dispatch(setDonationItems([value]));
+  };
+
+  // comentarios de usuarios
+  const handleCommentSubmit = (newComment) => {
+    setComments([...comments, newComment]);
+  };
+  const handleDeleteComment = (index) => {
+    const updatedComments = [...comments];
+    updatedComments.splice(index, 1);
+    setComments(updatedComments);
   };
 
   return (
@@ -205,7 +212,13 @@ function Detail() {
               allow="autoplay; fullscreen; picture-in-picture"
               allowFullScreen
             ></iframe>
-          ) : null}
+          ) : (
+            <video
+              className={styles["video-container-iframe"]}
+              src={uniqueVideos[0]}
+              controls
+            ></video>
+          )}
           {console.log(uniqueVideos[0], "video")};
         </div>
       ) : null}
@@ -241,11 +254,31 @@ function Detail() {
               allow="autoplay; fullscreen; picture-in-picture"
               allowFullScreen
             ></iframe>
-          ) : null}
-          {console.log(uniqueVideos[1], "video")};
+          ) : (
+            <video
+              className={styles["video-container-iframe"]}
+              src={uniqueVideos[0]}
+              controls
+            ></video>
+          )}
+          {console.log(uniqueVideos[0], "video")};
         </div>
       ) : null}
-
+      {/* Comentarios de usuarios */}
+      <div className="container mx-auto py-8">
+        <h1 className="text-3xl font-semibold text-center mb-6">Comentarios</h1>
+        <div className="flex flex-col md:flex-row md:space-x-4">
+          <div className="w-full md:w-1/3">
+            <CommentForm onCommentSubmit={handleCommentSubmit} />
+          </div>
+          <div className="w-full md:w-2/3 mt-4 md:mt-0 overflow-hidden whitespace-normal">
+            <CommentDisplay
+              comments={comments}
+              onDeleteComment={handleDeleteComment}
+            />
+          </div>
+        </div>
+      </div>
       <FooterMoreInfo />
     </div>
   );
