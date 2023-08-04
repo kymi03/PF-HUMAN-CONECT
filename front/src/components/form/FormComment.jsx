@@ -1,5 +1,5 @@
 import React from 'react'
-import NavBarAle from '../NavBar/NavBar.ale'
+import NavBarAle from '../NavBar/NavBarAle'
 
 function FormComent() {
   return (

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import NavBarAle from "../NavBar/NavBar.ale";
+import NavBarAle from "../NavBar/NavBarAle";
 import Swal from "sweetalert2";
 import PADValidation from "../validations/PADValidation";
 import { useDropzone } from "react-dropzone";
