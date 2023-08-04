@@ -363,6 +363,7 @@ export const getUserList = ()=>{
       }
     }
   }
+
 export const getAuth = (auth)=>{
   return async function  (dispatch){
       try {
@@ -377,3 +378,17 @@ export const getAuth = (auth)=>{
       }
     }
   }
+// export const deleteContent = (auth)=>{
+//   return async function  (dispatch){
+//       try {
+//   //  console.log(auth);
+//         return dispatch({
+//           type:GET_AUTH,
+//           payload: auth
+//         })
+  
+//       } catch (error) {
+//         console.log(error.message);
+//       }
+//     }
+//   }
