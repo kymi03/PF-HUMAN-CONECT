@@ -17,6 +17,9 @@ import AdminOptions from './views/adminOptions/adminOptions'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setDonationItems } from './redux/actions'
+import ErrorPage from './components/errorPage/ErrorPage';
+
+
 function App() {
 
   const dispatch = useDispatch()
@@ -58,6 +61,7 @@ useEffect( () => {
         <Route path='/donar' element={<Donar />} />  
         <Route path='/useroptions' element={<UserOptions />} />  
         <Route path='/adminoptions' element={<AdminOptions />} />  
+        <Route path='*' element={<ErrorPage />} />  
       </Routes>
     </div>
   )
