@@ -14,7 +14,10 @@ Manifiesto de funciones:
 */
 const user = require('../../models/user');
 const admin = require ('firebase-admin')
-const bcrypt = require ('bcryptjs')
+const bcrypt = require ('bcryptjs');
+const jwt = require('jsonwebtoken');
+const { JWT_SECRET  } = process.env;
+
 
 
 const getUserController = async (req, res) => {
@@ -61,12 +64,20 @@ const getUserController = async (req, res) => {
             return res.status(401).json({ error: 'Email o Contraseña incorrecta' });
         }
 
+
+        const userForToken = {
+            email:userFound.email,
+            password: userFound.password 
+        }
+
+        const jwToken = jwt.sign(userForToken, `${JWT_SECRET}`)
+
         // Si todo es correcto, devolver el usuario encontrado
-        return res.status(200).json({_id:userFound._id, name:userFound.name, lastName:userFound.lastName, email:userFound.email, phone:userFound.phone , admin:userFound.admin , active:userFound.active});
+        return res.status(200).json({_id:userFound._id, name:userFound.name, lastName:userFound.lastName, email:userFound.email, phone:userFound.phone , admin:userFound.admin , active:userFound.active, jwToken});
     } catch (error) {
         console.error(error);
         return res.status(500).json({ error: 'Ha ocurrido un error en el servidor' });
     }
 };
 
-module.exports = getUserController;
+module.exports = getUserController; 
