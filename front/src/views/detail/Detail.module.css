@@ -9,22 +9,24 @@
 }
 
 /* title */
-.custom-title {
+.encabezado {
   font-family: "Arial", sans-serif;
   font-size: 65px;
-  width: 1000px; /* Define el ancho del botón */
+  width: 800px; /* Define el ancho del botón */
   height: 400px; /* Define la altura del botón */
 }
 
 
 /* title image*/
-.custom-image {
-  object-fit: fill;
-  width: 900px;
+.imagen-principal {
+  object-fit: cover;
+  width: 1000px;
   /* Cambia 300px al ancho deseado */
-  height: 700px;
+  height: 600px;
   /* Cambia 200px al alto deseado */
   margin: 10px;
+  min-height: 600px;
+  max-width: 1000px;
 }
 /*boton donacion */
 .boton-section {
@@ -35,8 +37,59 @@
   height: 100px; /* Define la altura del botón */
 }
 
-/* Nivel body resto de image y contenido */
+
+
+/* Nivel body y 2 imagen */
 .content-section {
+  display: flex;
+}
+/* Columna izquierda (texto body) */
+.content-section-left {
+  flex: 100;
+  /* La columna izquierda toma el espacio disponible */
+  padding: 50px;
+  /* Agrega espaciado para separar del borde */
+  position: relative;
+  /* Esto hace que el párrafo se quede fijo en la posición en la que se encuentre */
+  width: 100%;
+  /* Ajusta en cuadro del texto */
+  max-height: 1000px;
+  /* esto limitará la altura del contenedor de texto y activará la barra de desplazamiento cuando sea necesario */
+  /*overflow-y: auto;
+  /* Esto activará la barra de desplazamiento vertical cuando el contenido supere la altura máxima establecida */
+  text-align: justify;
+  font-weight: normal;
+  /* Texto normal */
+  font-size: 20px;
+  /* Tamaño de fuente para el contenido ajustado a tus preferencias */
+  max-width: 750px;
+  /* O establece un ancho máximo */
+  min-width: 700px;
+  /* Y/o un ancho mínimo */
+}
+.content-section-right{
+  display: flex;
+}
+.image-container{
+  margin: 10px;
+}
+.additional-image2 {
+  object-fit: cover;
+  width: 900px;
+  /* Puedes ajustar el tamaño de las imágenes adicionales aquí */
+  height: 500px;
+  margin: 10px;
+  /* Puedes ajustar los márgenes entre las imágenes aquí */
+  /* Puedes agregar más estilos para las imágenes adicionales aquí */
+}
+
+
+
+
+
+
+/* Nivel body2 y 3 imagen */
+.content-section2 {
   display: flex;
 }
 
@@ -50,9 +103,9 @@
   /* Esto hace que el párrafo se quede fijo en la posición en la que se encuentre */
   width: 100%;
   /* Ajusta en cuadro del texto */
-  max-height: 1000px;
+  max-height: 500px;
   /* esto limitará la altura del contenedor de texto y activará la barra de desplazamiento cuando sea necesario */
-  overflow-y: auto;
+  /*overflow-y: auto;
   /* Esto activará la barra de desplazamiento vertical cuando el contenido supere la altura máxima establecida */
   text-align: justify;
   font-weight: normal;
@@ -64,11 +117,14 @@
   min-width: 700px;
   /* Y/o un ancho mínimo */
 }
-
-
-
-/*nivel body resto de imagen*/
-.additional-image {
+.content-section-right{
+  display: flex;
+}
+.image-container{
+  margin: 10px;
+}
+/*nivel body2 y tercera imagen*/
+.additional-image3 {
   object-fit: cover;
   width: 900px;
   /* Puedes ajustar el tamaño de las imágenes adicionales aquí */
@@ -76,20 +132,69 @@
   margin: 10px;
   /* Puedes ajustar los márgenes entre las imágenes aquí */
   /* Puedes agregar más estilos para las imágenes adicionales aquí */
-
 }
 
+
+
+
+/* 1 video, body3 y 2 video */
+
+.video-container1 {
+  display: flex;
+}
 .video-responsive {
   position: relative;
   width: 100%;
   padding-top: 56.25%; /* Relación de aspecto 16:9 (dividir 9 entre 16 y multiplicar por 100) */
   overflow: hidden;
 }
-
 .video-container-iframe {
-  position: relative;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
 }
+
+.content-body3 {
+  display: flex;
+  flex: 100;
+  /* La columna izquierda toma el espacio disponible */
+  padding: 50px;
+  /* Agrega espaciado para separar del borde */
+  position: relative;
+  /* Esto hace que el párrafo se quede fijo en la posición en la que se encuentre */
+  width: 100%;
+  /* Ajusta en cuadro del texto */
+  max-height: 500px;
+  /* esto limitará la altura del contenedor de texto y activará la barra de desplazamiento cuando sea necesario */
+  overflow-y: auto;
+  /* Esto activará la barra de desplazamiento vertical cuando el contenido supere la altura máxima establecida */
+  text-align: justify;
+  font-weight: normal;
+  /* Texto normal */
+  font-size: 20px;
+  /* Tamaño de fuente para el contenido ajustado a tus preferencias */
+  max-width: 1800px;
+  /* O establece un ancho máximo */
+  min-width: 700px;
+  /* Y/o un ancho mínimo */
+}
+
+.video-container2 {
+  display: flex;
+}
+.video-responsive {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* Relación de aspecto 16:9 (dividir 9 entre 16 y multiplicar por 100) */
+  overflow: hidden;
+}
+.video-container-iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
