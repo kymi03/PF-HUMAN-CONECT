@@ -12,20 +12,17 @@ function LeftInfoDonate(props) {
 
     const dispatch = useDispatch()
 
-    useEffect(() => {
-      // dispatch(getSearchPADByQuery("Todas"));
-      dispatch(getAllLocations());
-    }, []);
+const User = useSelector(state => state.userAuth)
+
     
-    const [unitPrice, setUnitPrice] = useState(500);
+  const [unitPrice, setUnitPrice] = useState(500);
   const [chart, setChart] = useState([]);
-  const [items, setItems] = useState([]);
 
   const sendChart = async (chart) => {
     if (unitPrice < 500) return;
     try {
       const data = await axios
-        .post("http://localhost:3001/payments", { items: chart })
+        .post(`http://localhost:3001/payments?userID=${User.id}`, { items: chart })
         .then((res) => {
           return res.data;
         });
@@ -39,7 +36,7 @@ function LeftInfoDonate(props) {
 
 
  const handleChange = (e) => {
-    console.log(chart);
+    // console.log(chart);
     const amount = parseFloat(e.target.value);
     const unitPrice = amount / chart.length;
     setUnitPrice(unitPrice);
@@ -56,7 +53,7 @@ function LeftInfoDonate(props) {
       };
     })
 
-    console.log(anotherArray);
+    // console.log(anotherArray);
 
     setChart(anotherArray);
   };
