@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { postNewGoogleUser, postNewUser } from "../../redux/actions";
 import validation from "../validations/validation";
 import Swal from "sweetalert2";
-import NavBar from "../NavBar/NavBar.ale";
+import NavBar from "../NavBar/NavBarAle";
 import Footer from "../footer/Footer";
 import {
   getAuth,

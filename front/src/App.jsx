@@ -14,6 +14,7 @@ import FormLogin from "./components/form/FormLogin";
 import backimg from "./assets/BACKGOUDN_IMAGE_LANDING.png";
 import UserOptions from "./views/userOptions/UserOptions";
 import AdminOptions from "./views/adminOptions/adminOptions";
+import ErrorPage from "./components/errorPage/ErrorPage";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -81,6 +82,7 @@ function App() {
         <Route path="/donar" element={<Donar />} />
         <Route path="/useroptions" element={<UserOptions />} />
         <Route path="/adminoptions" element={<AdminOptions />} />
+        <Route path="*" element={<ErrorPage />} />
       </Routes>
     </div>
   );

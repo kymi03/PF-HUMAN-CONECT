@@ -1,7 +1,7 @@
 
 
 import React, { useEffect, useState } from 'react';
-import NavBarAle from '../../components/NavBar/NavBar.ale';
+import NavBarAle from '../../components/NavBar/NavBarAle';
 import LeftInfoAdmin from '../../components/leftInfo/LeftInfoAdmin';
 import Footer from '../../components/footer/Footer';
 import { Link } from 'react-router-dom';

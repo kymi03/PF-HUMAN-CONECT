@@ -8,6 +8,7 @@ import {
   } from "../../redux/actions-types";
   import { Link } from 'react-router-dom';
 function LeftInfo(props) {
+    const User = useSelector(state => state.userAuth)
 
 
     const dispatch = useDispatch()
@@ -105,14 +106,14 @@ const generateOptions = (options) => {
         Conoce nuestras acciones contadas por las comunidade </p>
 
 
-      <Link to={"/PAD/post"} >
+{  User.admin === true ?       <Link to={"/PAD/post"} >
       <button 
        type="select" className=" mt-3 py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none 
        bg-white rounded-lg 
        border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
       
-      >Publica un nuevo artículo</button>
-      </Link>
+      >Publica nuevo contenido</button>
+      </Link> : <></>}
 
 <form>   
 <label htmlFor="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Buscar</label>
