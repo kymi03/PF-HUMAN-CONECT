@@ -30,7 +30,7 @@ const getUserController = async (req, res) => {
                 return res.status(404).json({error:"Registre su email para poder loguearse"})
             }
             if ( uemail == tokenVerifier.email ) {
-                return res.status(201).json({email: userFound.email, name: userFound.name, lastName: userFound.lastName, phone: userFound.phone, id: userFound._id})
+                return res.status(201).json({email: userFound.email, name: userFound.name, lastName: userFound.lastName, phone: userFound.phone, id: userFound._id , admin:userFound.admin , active:userFound.active})
             }
         }
         console.log('AQUI',email);
@@ -62,7 +62,7 @@ const getUserController = async (req, res) => {
         }
 
         // Si todo es correcto, devolver el usuario encontrado
-        return res.status(200).json({_id:userFound._id, name:userFound.name, lastName:userFound.lastName, email:userFound.email, phone:userFound.phone});
+        return res.status(200).json({_id:userFound._id, name:userFound.name, lastName:userFound.lastName, email:userFound.email, phone:userFound.phone , admin:userFound.admin , active:userFound.active});
     } catch (error) {
         console.error(error);
         return res.status(500).json({ error: 'Ha ocurrido un error en el servidor' });
