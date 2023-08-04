@@ -67,7 +67,7 @@ const postUserController = async (req, res) => {
       name,
       lastName,
       email,
-      password: hashedPass,
+      password:hashedPass,
       phone,
     });
     await newUser.save();

@@ -13,26 +13,22 @@ import Coments from '../../components/useroptions/Coments';
 import Publications from '../../components/useroptions/Publications';
 import SavedContent from '../../components/useroptions/SavedContent';
 import Settings from '../../components/useroptions/Settings';
-import UserSummary from '../../components/useroptions/UserSummary';
+import UserPanel from '../../components/adminoptions/UserPanel';
+import AdminSummary from '../../components/adminoptions/AdminSummary';
 const UserOptions = () => {
 
-
-
-
     const currentOption = useSelector(state => state.userOption)
-console.log(currentOption);
 
+        console.log(currentOption);
 
     useEffect( () => {
-
-
 
     } , [currentOption])
 
 let selectedOption = <></>
  switch (currentOption) {
-    case "NO OPTION": 
-        selectedOption = <UserSummary/>
+    case "VER USUARIOS": 
+        selectedOption = <UserPanel/>
         break;
     case "DONACIONES": 
         selectedOption = <Donations/>
@@ -48,6 +44,9 @@ let selectedOption = <></>
         break;
     case "CONFIGURACION DE USUARIO": 
         selectedOption = <Settings/>
+        break;
+    case "NO OPTION": 
+        selectedOption = <AdminSummary/>
         break;
  
     default:

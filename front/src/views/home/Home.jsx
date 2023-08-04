@@ -9,7 +9,8 @@ import { useSelector } from 'react-redux';
 const Home = () => {
 
     const [showBanner , setShowBanner ] = useState(true);
-
+    const authAleTest = useSelector(state => state.userAuth)
+    console.log(authAleTest);
     useEffect( () => {
         const data = window.localStorage.getItem('WELCOME_BANNER')
         // console.log('data:' , data);
