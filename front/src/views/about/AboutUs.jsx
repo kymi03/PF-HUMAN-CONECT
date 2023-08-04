@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import NavBarAle from "../../components/NavBar/NavBar.ale";
+import NavBarAle from "../../components/NavBar/NavBarAle";
 import Footer from '../../components/footer/Footer'
 import image1 from '../../assets/icons/Tigre-Azul.png'
 import image2 from '../../assets/icons/Mono-Gris.png'

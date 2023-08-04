@@ -70,6 +70,15 @@ const UserDropManu = () => {
           >
             Opciones de usuario
           </Link>
+
+{   User.admin === true ?       <Link
+            to="/adminoptions"
+            className="block   text-gray-800 hover:text-blue-700"
+            onClick={toggleMenu}
+          >
+            Opciones de Administrador
+          </Link> : <></>}
+
           <br></br>
           <button
             onClick={handleButtonClick}
