@@ -30,7 +30,6 @@ const paymentsController = async (req, res) => {
       paymentID: result.body.id,
       owner: userID,
       amounts,
-      amounts,
       paymentMethod: "",
       paid: false,
       date: new Date(),
