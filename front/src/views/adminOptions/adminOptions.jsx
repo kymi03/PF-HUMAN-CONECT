@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 import { Carousel } from 'flowbite-react';
 import { useSelector } from 'react-redux';
 
-import Donations from '../../components/useroptions/Donations';
+import Donations from '../../components/adminoptions/Donations';
 import Coments from '../../components/useroptions/Coments';
 import Publications from '../../components/useroptions/Publications';
 import SavedContent from '../../components/useroptions/SavedContent';
@@ -30,7 +30,7 @@ let selectedOption = <></>
     case "VER USUARIOS": 
         selectedOption = <UserPanel/>
         break;
-    case "DONACIONES": 
+    case "VER DONACIONES": 
         selectedOption = <Donations/>
         break;
     case "COMENTARIOS": 

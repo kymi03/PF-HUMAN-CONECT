@@ -34,12 +34,12 @@ dispatch(getSearchPADByQuery('' , '' , ARTICLES    ))
   console.log(allDocumentarys.length);
 
   return (
-    <div className=" bg-white mr-10">
-      <h1>Total de proyectos: {allProjects.length}</h1>
-      <h1>Total de articulos: {allArticles.length}</h1>
-      <h1>Total de documentarys: {allDocumentarys.length}</h1>
+     <div className=" bg-white mr-10">
+    {/* //   <h1>Total de proyectos: {allProjects.length}</h1>
+    //   <h1>Total de articulos: {allArticles.length}</h1>
+    //   <h1>Total de documentarys: {allDocumentarys.length}</h1> */}
 
-    </div>
+     </div>
   );
 }
 
