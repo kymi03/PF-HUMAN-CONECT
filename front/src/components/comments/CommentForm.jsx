@@ -1,14 +1,16 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import ReactStars from "react-rating-stars-component";
 import { useSelector } from "react-redux";
 
-const CommentForm = ({ onCommentSubmit }) => {
+const CommentForm = ({ onCommentSubmit, PAD, _id }) => {
+  // Agregado PAD y _id
   const User = useSelector((state) => state.userAuth);
 
   const [name, setName] = useState(User.name);
   const [comment, setComment] = useState("");
   const [rating, setRating] = useState(0);
-  // const User = useSelector(state => state.userAuth)
+
   const handleNameChange = (e) => {
     setName(e.target.value);
   };
@@ -20,7 +22,6 @@ const CommentForm = ({ onCommentSubmit }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     onCommentSubmit({ name, comment, rating });
-    // setName(User.name);
     setComment("");
     setRating(0);
   };
@@ -30,28 +31,16 @@ const CommentForm = ({ onCommentSubmit }) => {
     setRating(newRating);
   };
 
-  return (
+  return User.active ? (
     <form
       onSubmit={handleSubmit}
       className="w-full max-w-sm mx-auto mt-4 bg-amber-50"
     >
-      {/* <div className="mb-4">
-        <label
-          htmlFor="name"
-          className="block text-gray-700 text-sm font-bold mb-2"
-        >
-          Nombre y Apellido:
-        </label>
-        <input
-          type="text"
-          id="name"
-          value={name}
-          onChange={handleNameChange}
-          className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"
-          placeholder="Nombre y Apellido"
-          required
-        />
-      </div> */}
+      <Link
+        to={`/ContentDetail/${PAD}=${_id}`}
+        className="block text-gray-800 hover:text-blue-700"
+      ></Link>
+
       <div className="block text-gray-700 text-m font-bold mb-4">
         {User.name}
       </div>
@@ -95,7 +84,7 @@ const CommentForm = ({ onCommentSubmit }) => {
         Enviar Comentario
       </button>
     </form>
-  );
+  ) : null;
 };
 
 export default CommentForm;
