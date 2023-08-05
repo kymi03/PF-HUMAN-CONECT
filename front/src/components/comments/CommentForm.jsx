@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import ReactStars from "react-rating-stars-component";
+import { useSelector } from "react-redux";
 
 const CommentForm = ({ onCommentSubmit }) => {
-  const [name, setName] = useState("");
+  const User = useSelector((state) => state.userAuth);
+
+  const [name, setName] = useState(User.name);
   const [comment, setComment] = useState("");
   const [rating, setRating] = useState(0);
-
+  // const User = useSelector(state => state.userAuth)
   const handleNameChange = (e) => {
     setName(e.target.value);
   };
@@ -17,7 +20,7 @@ const CommentForm = ({ onCommentSubmit }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     onCommentSubmit({ name, comment, rating });
-    setName("");
+    // setName(User.name);
     setComment("");
     setRating(0);
   };
@@ -32,7 +35,7 @@ const CommentForm = ({ onCommentSubmit }) => {
       onSubmit={handleSubmit}
       className="w-full max-w-sm mx-auto mt-4 bg-amber-50"
     >
-      <div className="mb-4">
+      {/* <div className="mb-4">
         <label
           htmlFor="name"
           className="block text-gray-700 text-sm font-bold mb-2"
@@ -48,6 +51,9 @@ const CommentForm = ({ onCommentSubmit }) => {
           placeholder="Nombre y Apellido"
           required
         />
+      </div> */}
+      <div className="block text-gray-700 text-m font-bold mb-4">
+        {User.name}
       </div>
 
       <div className="mb-4">
