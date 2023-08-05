@@ -4,7 +4,6 @@ import ReactStars from "react-rating-stars-component";
 import { useSelector } from "react-redux";
 
 const CommentForm = ({ onCommentSubmit, PAD, _id }) => {
-  // Agregado PAD y _id
   const User = useSelector((state) => state.userAuth);
 
   const [name, setName] = useState(User.name);
