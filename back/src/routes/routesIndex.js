@@ -8,6 +8,8 @@ const userRoutes = require("./userRoutes/userRoutes");
 const paymentsRoutes = require("./payments/paymentRoutes");
 const donationRoutes = require("./donationsRoutes/donationRoutes");
 
+const commentsRoutes = require("./commentsRoutes/commentsRoutes");
+
 mainRoute.use("/articles", articleRoutes);
 mainRoute.use("/documentaries", documentariesRoutes);
 mainRoute.use("/admins", adminsRoutes);
@@ -15,5 +17,9 @@ mainRoute.use("/projects", projectRoutes);
 mainRoute.use("/user", userRoutes);
 mainRoute.use("/payments", paymentsRoutes);
 mainRoute.use("/donations", donationRoutes);
+
+mainRoute.use("/comments", commentsRoutes);
+
+
 
 module.exports = mainRoute;
