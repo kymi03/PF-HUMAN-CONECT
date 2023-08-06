@@ -264,6 +264,7 @@ function Detail() {
           {console.log(uniqueVideos[0], "video")};
         </div>
       ) : null}
+
       {/* Comentarios de usuarios */}
       <div className="container mx-auto py-8">
         <h1 className="text-3xl font-semibold text-center mb-6">Comentarios</h1>
