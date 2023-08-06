@@ -13,7 +13,7 @@ Manifiesto de funciones:
 ===============================================================================================================================
 */
 const user = require("../../models/user");
-const transporter = require("./mailer");
+const mailer = require("./mailer");
 const { ADMIN_EMAIL } = process.env;
 const deleteUserController = async (req, res) => {
   try {
@@ -31,7 +31,7 @@ const deleteUserController = async (req, res) => {
     if (!deletedUser)
       return res.status(404).json({ error: "Usuario no encontrado" });
 
-    await transporter.sendMail({
+    await mailer.sendMail({
       from: `"Human Conet" ${ADMIN_EMAIL}`, // sender address
       to: email, // list of receivers
       subject: "Usuario eliminado - Human Conet", // Subject line

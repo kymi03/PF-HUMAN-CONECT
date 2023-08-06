@@ -1,4 +1,4 @@
-const transporter = require("../usersControllers/mailer");
+const mailer = require("../usersControllers/mailer");
 const Donation = require("../../models/donation");
 const { ADMIN_EMAIL } = process.env;
 const failureController = async (req, res) => {
@@ -9,7 +9,7 @@ const failureController = async (req, res) => {
   }).populate("owner", "email");
   const { email } = donation.owner;
 
-  await transporter.sendMail({
+  await mailer.sendMail({
     from: `"Human Conet" ${ADMIN_EMAIL}`, // sender address
     to: email, // list of receivers
     subject: "Problemas con su donativo", // Subject line
