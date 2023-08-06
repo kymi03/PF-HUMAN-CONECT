@@ -21,7 +21,7 @@ import {
   Snackbar,
 } from "@mui/material"
 import { TextField, InputAdornment } from "@mui/material";
-import { Search } from "@mui/icons-material";
+import { Home, Search } from "@mui/icons-material";
 
 function ContentDetail() {
 
@@ -35,13 +35,14 @@ function ContentDetail() {
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [confirmationOpen, setConfirmationOpen] = useState(false);
   
-  const [sourcePAD,    setSourcePAD]    = useState('');
   const [content,      setContent]      = useState('');
   const [contentValue, setContentValue] = useState('');
   const [editContent, setEditContent] = useState( {} );
   
   const [PAD, setPAD] = useState([]);
   const { id } = useParams();
+
+
 
   function splitString(inputString) {
     const [key, value] = inputString.split("=");
@@ -63,33 +64,31 @@ function ContentDetail() {
     default:
       break;
   }
-
+  // const [isActive, setIsActive] = useState( PAD.active );
   useEffect(() => {
+
     if (source !== "") {
       axios
         .get(`/${source}?id=${value}`)
         .then(({ data }) => {
           setPAD(data);
+          // setIsActive(data.active)
         })
         .catch((error) => {
           console.error(error);
           window.alert(`No hay ${source} con ese ID`);
-        });
+        }) ;
+        
+      
+        // console.log(PAD.active);
+
     }
-  }, [id, source, value]);
+  // }, [id, source, value]);
+  }, []);
 
-  useEffect(() => {
-    setEditContent(
-      {
-        "id": value ,
-        [content]: contentValue
-        }
-    )
-    
- 
+  console.log(PAD);
 
 
-  }, [ contentValue , content ]);
 
 
   const handleToogle = (index, email) => {
@@ -141,9 +140,35 @@ function ContentDetail() {
       
       const response = await axios.put(`http://localhost:3001/${source}` , editContent)
 
+      // console.log("Respuesta del servidor:", response.data);
+    
+      navigate(`/${source}`);
+
+
+    } catch (error) {
+      
+      console.log("Error al realizar la actualizacion:", error);
+
+    }
+
+
+
+  }
+
+  const handleUpdateActive = async (event) => {
+
+    // isActive === false ? setIsActive(true) :   setIsActive(false)
+
+    try {
+      
+      const response = await axios.put(`http://localhost:3001/${source}` ,       {
+        "id": value ,
+        "active": isActive
+        }
+        )
+
       console.log("Respuesta del servidor:", response.data);
     
-      navigate(`/${padType}`);
 
 
     } catch (error) {
@@ -245,8 +270,8 @@ function ContentDetail() {
         <h3>Estado: {PAD.active === true ?  "activo" : false }</h3>
         
         <Switch
-            checked={PAD.active}
-            onChange={() => handleToogle ()}
+            // checked={isActive}
+            onChange={handleUpdateActive}
             color="primary"
           />
 
