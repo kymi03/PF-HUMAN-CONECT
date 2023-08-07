@@ -15,9 +15,9 @@ function AboutUs() {
     <div className="pt-10 pb-10 bg-white"></div>
     <div className="h-screen" >
       <div className="flex flex-col">
-        <h3 className="text-4xl pt-10 pb-10  text-white font-bold relative"><span className="bg-black inline-block rounded-md p-2">QUIÉNES SOMOS</span></h3>
+        <h3 className="text-4xl pt-10 pb-10 bg-white  text-white font-bold relative"><span className="bg-black inline-block rounded-md p-2">QUIÉNES SOMOS</span></h3>
       </div>
-      <section className="pt-10 pb-10 bg-white">
+      <section className="pt-10 pb-10 bg-white mr-10 ml-10">
         <img src={image4} alt="image4" />
         <div className="pt-14 pb-14"></div>
         <p className="flex flex-col text-4xl">Somos un colectivo franco-colombiano, constituido como asociación francesa, conformado por mujeres y hombres comprometidos con la protección y el reconocimiento de los y las defensoras de los territorios en la lucha contra el cambio climático.</p>
