@@ -8,7 +8,8 @@ export default {
     },
     fontFamily: {
       'poppins': ['Poppins', 'sans-serif'],
-      'gobold': ['Gobold', 'sans-serif']
+      'gobold': ['Gobold', 'sans-serif'],
+      'gilroy': ['Gilroy-Regulrar', 'sans-serif']
     },
     },
   },
