@@ -7,13 +7,14 @@ const successController = async (req, res) => {
   const donation = await Donation.findOne({
     paymentID: preference_id,
   }).populate("owner", "email");
-
+console.log('donation' , donation);
   //Actualizar el estado de la donacion a pagada y el metodo de pago.
   await Donation.updateOne(
     { paymentID: preference_id },
     { paid: true, paymentMethod: payment_type }
   );
   const { email } = donation.owner;
+  console.log('email' , email);
 
   await transporter.sendMail({
     from: `"Human Conet" ${ADMIN_EMAIL}`, // sender address

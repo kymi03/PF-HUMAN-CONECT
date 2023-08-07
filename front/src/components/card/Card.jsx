@@ -20,6 +20,9 @@ const dispatch = useDispatch()
   const Items = useSelector(state => state.ItemsDonation)
   const [green , setGreen] = useState(green1)
   
+
+  const User = useSelector(state => state.userAuth)
+
  
   useEffect( () => {
   
@@ -110,7 +113,9 @@ const dispatch = useDispatch()
         </p>
             <h4>{props.location}</h4>
 
-        <Link to={`/detail/${props.PAD}=${props._id}`}>
+        <Link 
+        to={`/detail/${props.PAD}=${props._id}`}
+        >
         <div
           // href={`/detail/${props.PAD}=${props._id}`}
           className="inline-flex items-center px-2 py-1 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
@@ -132,7 +137,14 @@ const dispatch = useDispatch()
           </svg>
         </div>
         </Link>
-
+        {   User.admin === true ?       <Link
+            // to={`/detail/${props.PAD}=${props._id}`}
+            to={`/ContentDetail/${props.PAD}=${props._id}`}
+            className="block   text-gray-800 hover:text-blue-700"
+            // onClick={toggleMenu}
+          >
+            🛠
+          </Link> : <></>  }
       </div>
     </div>
   );
