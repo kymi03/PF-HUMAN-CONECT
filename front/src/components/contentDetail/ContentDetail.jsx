@@ -1,7 +1,7 @@
 // import styles from "./Detail.module.css";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import NavBarAle from "../NavBar/NavBarAle";
 import FooterMoreInfo from "../footer/FooterMoreInfo";
 import { PROJECTS, ARTICLES, DOCUMENTARYS } from "../../redux/actions-types";
@@ -35,6 +35,7 @@ function ContentDetail() {
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [confirmationOpen, setConfirmationOpen] = useState(false);
   const [isActive, setIsActive] = useState( true );
+  const [comments, setComments] = useState( [] );
 
   const [content,      setContent]      = useState('');
   const [contentValue, setContentValue] = useState('');
@@ -42,7 +43,7 @@ function ContentDetail() {
 
   const [PAD, setPAD] = useState([]);
   const { id } = useParams();
-
+  const navigate = useNavigate();
 
 
   function splitString(inputString) {
@@ -68,6 +69,25 @@ function ContentDetail() {
   }
 
   useEffect(() => {
+  
+
+
+    const getComments = async ( id ) => {
+        try {
+          const response = await axios.get(`http://localhost:3001/comments?author=${id}`);
+          setComments(response.data);
+    
+        } catch (error) {
+          console.log(error.message);
+        }
+      };
+    
+
+      getComments(value)
+
+
+
+
 
 
     if (source !== "") {
@@ -85,12 +105,6 @@ function ContentDetail() {
     }
 
   }, [id, source, value ]);
-  // }, []);
-
-
-  // console.log(isActive);
-
-
 
 
   const handleToogle = (index, email) => {
@@ -100,13 +114,6 @@ function ContentDetail() {
   const handleConfirmationClose = () => {
     setConfirmationOpen(false);
   };
-
-
-
-
-
-
-
 
   const handleConfirmationConfirm = async () => {
     setConfirmationOpen(false);
@@ -138,13 +145,23 @@ function ContentDetail() {
 
   const handleUpdateData = async (event) => {
     
+
+     console.log('content:' , editContent);
+
     try {
       
-      const response = await axios.put(`http://localhost:3001/${source}` , editContent)
+      const response = await axios.put(`http://localhost:3001/${source}` ,   
+      {
+        "id":value ,
+        [content]:contentValue
+        }   
+
+
+      )
 
       // console.log("Respuesta del servidor:", response.data);
     
-      navigate(`/${source}`);
+      navigate(`/adminoptions`);
 
 
     } catch (error) {
@@ -157,7 +174,6 @@ function ContentDetail() {
 
   }
 
-  console.log(isActive);
 
   const handleUpdateActive = async (event) => {
 
@@ -195,7 +211,7 @@ function ContentDetail() {
 
   const handleContent = (event) => {
  
-    console.log(event.target.value)
+    // console.log(event.target.value)
     setContent(event.target.value)
 
   }
@@ -203,7 +219,7 @@ function ContentDetail() {
 
   const handleContentValue = (event) => {
 
-    console.log(event.target.value)
+    // console.log(event.target.value)
     setContentValue(event.target.value)
 
   }
@@ -264,6 +280,11 @@ function ContentDetail() {
         <div className="flex">
           <h2>Localización:</h2>
           <h3>{PAD.location}</h3>
+        </div>
+
+        <div className="flex">
+          <h2>Comentarios:</h2>
+          <h3>{comments.length}</h3>
         </div>
         
 

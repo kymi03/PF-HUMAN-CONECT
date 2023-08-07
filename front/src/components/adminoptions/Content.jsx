@@ -19,7 +19,7 @@ import {
 import { TextField, InputAdornment } from "@mui/material";
 import { Search } from "@mui/icons-material";
 import { useSelector } from 'react-redux';
-import {Link, useLocation} from 'react-router-dom'
+import {Link, useLocation, useNavigate} from 'react-router-dom'
 import { ARTICLES , PROJECTS , DOCUMENTARYS } from '../../redux/actions-types';
 
 
@@ -40,6 +40,7 @@ const Articles     = useSelector(state => state.allArticles2)
 const Projects     = useSelector(state => state.allProjects2)
 const Documentarys = useSelector(state => state.allDocumentarys2)
 
+const navigate = useNavigate()
 
 useEffect(() => {
 
@@ -77,6 +78,8 @@ const renderUsers = () => {
     );
   }
 
+
+
   return currentUsers.map((user, index) => {
     const { name, author, date, location , active ,ContentType ,_id} = user;
 
@@ -100,19 +103,32 @@ const renderUsers = () => {
         break;
     }
 
+
+    const handleConfig =()=> {
+
+      navigate(`/ContentDetail/${ContentType}=${_id}`)
+    }
+  
     return (
       <TableRow key={index} style={{ backgroundColor: rowBackground}}>
 
 
   
        
-        <Link
+        {/* <Link
 
             to={`/ContentDetail/${ContentType}=${_id}`}
             className="block   text-gray-800 hover:text-blue-700"
           >
             🛠
-        </Link> 
+        </Link>  */}
+        <TableCell
+        onClick={handleConfig}
+        className=' cursor-pointer'
+        >
+        🛠
+
+        </TableCell>
 
         <TableCell style={{ color: "#111111", fontSize: "15px", backgroundColor: active ? "green" : "red" }}>
           {active ? "Activo" : "Inactivo"}
