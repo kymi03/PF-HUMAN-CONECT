@@ -1,16 +1,13 @@
 import React from 'react';
 import Card from '../card/Card.jsx';
 
-
 function Cards(props) {
-// console.log(props);
+  const activePADs = props.currentPAD.filter((PAD) => PAD.active === true);
+
   return (
     <div className="grid grid-cols-3 grid-rows-3 ">
-      {props.currentPAD.map((PAD) => (
-
-        <div key={PAD._id} className=" ml-10"> 
-      
-
+      {activePADs.map((PAD) => (
+        <div key={PAD._id} className="ml-10">
           <Card
             media={PAD.media}
             location={PAD.location}
@@ -18,9 +15,9 @@ function Cards(props) {
             name={PAD.name}
             breaf={PAD.breaf}
             _id={PAD._id}
-            PAD =  {props.PAD}
+            PAD={props.PAD}
+            active={props.active}
           />
-         
         </div>
       ))}
     </div>

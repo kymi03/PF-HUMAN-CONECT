@@ -1,43 +1,38 @@
+export const GET_ALL_PROJECTS = "GET_ALL_PROJECTS";
+export const GET_ALL_ARTICLES = "GET_ALL_ARTICLES";
+export const GET_ALL_DOCUMENTARYS = "GET_ALL_DOCUMENTARYS";
 
-export const GET_ALL_PROJECTS = 'GET_ALL_PROJECTS'
-export const GET_ALL_ARTICLES = 'GET_ALL_ARTICLES'
-export const GET_ALL_DOCUMENTARYS = 'GET_ALL_DOCUMENTARYS'
+export const GET_ALL_LOCATION = "GET_ALL_LOCATION";
 
-export const GET_ALL_LOCATION = 'GET_ALL_LOCATION'
+export const GET_ARTICLES = "GET_ARTICLES";
 
+export const SET_GLOBAL_PAD = "SET_GLOBAL_PAD";
 
-export const GET_ARTICLES = 'GET_ARTICLES'
+export const PROJECTS = "PROJECTS";
+export const DOCUMENTARYS = "DOCUMENTARYS";
+export const ARTICLES = "ARTICLES";
 
+export const ORDER_BY_DATE = "ORDER_BY_DATE";
 
-export const SET_GLOBAL_PAD = 'SET_GLOBAL_PAD'
+export const GET_BY_INPUT = "GET_BY_INPUT";
+export const POST_NEW_USER = "POST_NEW_USER";
+export const POST_NEW_GOOGLE_USER = "POST_NEW_GOOGLE_USER";
+export const POST_NEW_ARTICLE = "POST_NEW_ARTICLE";
 
-export const PROJECTS = 'PROJECTS'
-export const DOCUMENTARYS = 'DOCUMENTARYS'
-export const ARTICLES = 'ARTICLES'
+export const GET_AUTH = "GET_AUTH";
 
-export const ORDER_BY_DATE = 'ORDER_BY_DATE'
+export const SET_USER_STATE = "SET_USER_STATE";
 
-export const GET_BY_INPUT = 'GET_BY_INPUT'
-export const POST_NEW_USER = "POST_NEW_USER"
-export const POST_NEW_GOOGLE_USER = "POST_NEW_GOOGLE_USER"
-export const POST_NEW_ARTICLE = "POST_NEW_ARTICLE"
+export const GET_GOOGLE_USER = "GET_GOOGLE_USER";
 
+export const GET_USER = "GET_USER";
 
-export const GET_AUTH = "GET_AUTH"
+export const GET_USER_OPTION = "GET_USER_OPTION";
 
-export const SET_USER_STATE = "SET_USER_STATE"
+export const GET_ADMIN_OPTION = "GET_ADMIN_OPTION";
 
+export const SET_DONATION_ITEMS = "SET_DONATION_ITEMS";
 
-export const GET_GOOGLE_USER = "GET_GOOGLE_USER"
+export const GET_USER_LIST = "GET_USER_LIST";
 
-export const GET_USER = "GET_USER"
-
-export const GET_USER_OPTION = "GET_USER_OPTION"
-
-export const GET_ADMIN_OPTION = "GET_ADMIN_OPTION"
-
-export const SET_DONATION_ITEMS = "SET_DONATION_ITEMS"
-
-export const GET_USER_LIST = "GET_USER_LIST"
-
-
+export const GET_USER_ACTIVE = "GET_USER_ACTIVE";
