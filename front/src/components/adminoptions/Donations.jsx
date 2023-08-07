@@ -40,9 +40,9 @@ function AdminDonations(props) {
   const indexOfLastUser = currentPage * usersPerPage;
   const indexOfFirstUser = indexOfLastUser - usersPerPage; 
   
-  // const filteredDonations = donationList.filter((donation)=> 
-  // donation._id.toLowerCase().includes(searchTerm.toLowerCase())
-  // )
+  const filteredDonations = donationList.filter((donation)=> 
+  donation._id.toLowerCase().includes(searchTerm.toLowerCase())
+  )
 
   
   
@@ -57,14 +57,10 @@ function AdminDonations(props) {
         </TableRow>
       );
     }
-    const arrayCauses = Object.keys(donationList.amounts)
-    console.log(arrayCauses);
-
-    const arrayValores = Object.values(donationList.amounts)
-    console.log(arrayValores);
-    
+   
+   
     return currentDonations.map((donation, index) => {
-      const { _id, paymentID, owner, date } = donation;
+      const { _id, owner, amounts, date } = donation;
   
       const isEvenRow = index % 2 === 0;
       const rowBackground = isEvenRow ? "#E7DDC7" : "#F3F3F7";
@@ -78,20 +74,22 @@ function AdminDonations(props) {
             {_id}
           </TableCell>
   
-          <TableCell style={{ color: "#111111", fontSize: "15px" }}>
+          {/* <TableCell style={{ color: "#111111", fontSize: "15px" }}>
             {paymentID}
-          </TableCell>
+          </TableCell> */}
           
           <TableCell style={{ color: "#111111", fontSize: "15px" }}>
             {owner}
           </TableCell>
-          {/* <TableCell style={{ color: "#111111", fontSize: "15px" }}>
-            {arrayCauses}
-          </TableCell>
 
           <TableCell style={{ color: "#111111", fontSize: "15px" }}>
-            {arrayValores}
-          </TableCell> */}
+            {Object.keys(amounts).map((cause) => (
+              <div key={cause}>
+                <p style={{fontWeight:"bold"}}>{cause}</p>
+                <p>${amounts[cause]}</p>
+              </div>
+            ))}
+          </TableCell>
 
           <TableCell style={{ color: "#111111", fontSize: "15px" }}>
             {date}
@@ -111,11 +109,11 @@ function AdminDonations(props) {
   
   
   return (
-    <div style={{marginLeft:"200px", marginTop:"55px", backgroundColor:"#A29F83", border:"2px solid", borderColor:"grey", borderRadius:"5px"}}>
+    <div style={{marginLeft:"200px", marginTop:"40px", marginBottom:"250px", backgroundColor:"#A29F83", border:"2px solid", borderColor:"grey", borderRadius:"5px"}}>
       <TextField
         id="standard-basic"
         variant="standard"
-        label="Buscar por id de pago"
+        label="Buscar por id de donación"
         value={searchTerm}
         onChange={(event) => setSearchTerm(event.target.value)}
         InputProps={{
@@ -131,24 +129,20 @@ function AdminDonations(props) {
         <TableHead style={{marginTop:"15px", backgroundColor:"#B2AE8C"}}>
           <TableRow>
             <TableCell style={{ color: "#000000", fontSize: "15px" }}>
-              id donación
+              ID Donación
+            </TableCell>
+            {/* <TableCell style={{ color: "#000000", fontSize: "15px" }}>
+              ID Pago
+            </TableCell> */}
+            <TableCell style={{ color: "#000000", fontSize: "15px" }}>
+              Donador
             </TableCell>
             <TableCell style={{ color: "#000000", fontSize: "15px" }}>
-              id pago
-            </TableCell>
-            <TableCell style={{ color: "#000000", fontSize: "15px" }}>
-              donador
-            </TableCell>
-            <TableCell style={{ color: "#000000", fontSize: "15px" }}>
-              causas
-            </TableCell>
-
-            <TableCell style={{ color: "#000000", fontSize: "15px" }}>
-              monto
+              Causas y Montos
             </TableCell>
 
             <TableCell style={{ color: "#000000", fontSize: "15px" }}>
-              fecha de la donación
+              Fecha de la Donación
             </TableCell>
 
           </TableRow>
