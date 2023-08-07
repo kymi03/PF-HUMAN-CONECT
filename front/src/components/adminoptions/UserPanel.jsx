@@ -92,7 +92,7 @@ const handleConfirmationToBlockUser = async (isActive) => {
       const response = await axios.get(`http://localhost:3001/user/all?email=${emailToBlock}`);
       const userToBlock = response.data;
       if (!userToBlock) {
-        showSnackbar("Usuario no encontrado");
+        showSnackbar("Usuario no encontrado.");
         return;
       }
 
