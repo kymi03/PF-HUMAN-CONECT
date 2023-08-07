@@ -34,11 +34,12 @@ function ContentDetail() {
   const [searchTerm, setSearchTerm] = useState("");
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [confirmationOpen, setConfirmationOpen] = useState(false);
-  
+  const [isActive, setIsActive] = useState( true );
+
   const [content,      setContent]      = useState('');
   const [contentValue, setContentValue] = useState('');
   const [editContent, setEditContent] = useState( {} );
-  
+
   const [PAD, setPAD] = useState([]);
   const { id } = useParams();
 
@@ -48,6 +49,7 @@ function ContentDetail() {
     const [key, value] = inputString.split("=");
     return { key, value };
   }
+
 
   const { key, value } = splitString(id);
   let source = "";
@@ -64,29 +66,29 @@ function ContentDetail() {
     default:
       break;
   }
-  // const [isActive, setIsActive] = useState( PAD.active );
+
   useEffect(() => {
+
 
     if (source !== "") {
       axios
         .get(`/${source}?id=${value}`)
         .then(({ data }) => {
+
           setPAD(data);
-          // setIsActive(data.active)
+          setIsActive(data.active)
         })
         .catch((error) => {
           console.error(error);
           window.alert(`No hay ${source} con ese ID`);
         }) ;
-        
-      
-        // console.log(PAD.active);
-
     }
-  // }, [id, source, value]);
-  }, []);
 
-  console.log(PAD);
+  }, [id, source, value ]);
+  // }, []);
+
+
+  // console.log(isActive);
 
 
 
@@ -155,15 +157,16 @@ function ContentDetail() {
 
   }
 
+  console.log(isActive);
+
   const handleUpdateActive = async (event) => {
 
-    // isActive === false ? setIsActive(true) :   setIsActive(false)
-
+    isActive === false ? setIsActive(true) :   setIsActive(false)
     try {
       
       const response = await axios.put(`http://localhost:3001/${source}` ,       {
         "id": value ,
-        "active": isActive
+        "active": isActive === false ? true :  false
         }
         )
 
@@ -176,7 +179,11 @@ function ContentDetail() {
       console.log("Error al realizar la actualizacion:", error);
 
     }
-
+// console.log(`http://localhost:3001/${source}` ,       {
+//   "id": value ,
+//   "active": isActive
+//   }
+//   )
 
 
   }
@@ -210,7 +217,6 @@ function ContentDetail() {
     "body3" ,
     "breaf" ,
     "location" ,
-    "active" ,
   ]
 
   const generateOptions = (options) => {
@@ -230,57 +236,103 @@ function ContentDetail() {
       <div 
       className=" justify-start"
       >
-        <h2>ID:</h2>
-        <h3>{PAD._id}</h3>
-
-        <h3>Autor:{PAD.author}</h3>
-        <h3>Nombre del contenido:{PAD.name}</h3>
-        <h3>Titulo: {PAD.title}</h3>
-
-        <h3>Fecha de creación: {PAD.date}</h3>
-        <h3>Localización: {PAD.location}</h3>
-
-        <h2>Media:</h2>
-        <h3>Cantidad de Imagenes: {PAD.media?.images.length}</h3>
-        <h3>Cantidad de Videos: {PAD.media?.videos.length}</h3>
-
-        <h2>Configurar:</h2>
-        <h3>editar campo: </h3>
         <div className="flex">
+          <h2>ID:</h2>
+          <h3>{PAD._id}</h3>
+        </div>
 
-    <select name="sort" 
-    onInput={handleContent}  
-    type="select" className="w-44 mt-3 py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
-        {options}
-    </select>
+        <div className="flex">
+          <h2>Autor:</h2>
+          <h3>{PAD.author}</h3>
+        </div>
 
- 
+        <div className="flex">
+          <h2>Nombre del contenido:</h2>
+          <h3>{PAD.name}</h3>
+        </div>
 
-    <textarea
-            name="breaf"
-            // value={padData.breaf}
-            onChange={handleContentValue}
-            className=" resize-none w-2/5 mb-5 border-gray-300 rounded-md"
-            type="text"
-          />
-        <Button onClick={handleUpdateData} autoFocus>
-          Actulizar campo
-        </Button>
-      </div>
-        <h3>Estado: {PAD.active === true ?  "activo" : false }</h3>
+        <div className="flex">
+          <h2>Titulo:</h2>
+          <h3>{PAD.title}</h3>
+        </div>
+
+        <div className="flex">
+          <h2>Fecha de creación:</h2>
+          <h3>{PAD.date}</h3>
+        </div>
+
+        <div className="flex">
+          <h2>Localización:</h2>
+          <h3>{PAD.location}</h3>
+        </div>
         
-        <Switch
-            // checked={isActive}
+
+        
+
+
+        <div className="flex-col- ">
+          <h2>Media:</h2>
+          <div className="flex">
+            <h2>Cantidad de Imagenes:</h2>
+            <h3>{PAD.media?.images.length}</h3>
+          </div>
+          <div className="flex">
+            <h2>Cantidad de Videos:</h2>
+            <h3>{PAD.media?.videos.length}</h3>
+          </div>
+        </div>
+        
+        <div className="flex-col- ">
+          <h2>Configurar:</h2>
+          <div className="flex-col">
+            <h3>editar campo: </h3>
+            <div className="flex">
+
+              <select name="sort" 
+                onInput={handleContent}  
+                type="select" className="w-44 mt-3 py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
+                {options}
+              </select>
+
+              <textarea
+                name="breaf"
+                onChange={handleContentValue}
+                className=" resize-none w-2/5 mb-5 border-gray-300 rounded-md"
+                type="text"
+              />
+
+              <Button onClick={handleUpdateData} autoFocus>
+                Actulizar campo
+              </Button>
+        
+            </div>
+          </div>
+
+        </div>
+
+
+        <div className="flex">
+          <h3>Estado: {isActive === true ?  "activo" : "inactivo" }</h3>
+          <Switch
+            checked={isActive}
             onChange={handleUpdateActive}
+            // onChange={()=>{isActive === false ? setIsActive(true) :   setIsActive(false)}}
             color="primary"
           />
+        </div>
 
-
+        
+        
+        <div className="flex">
           <h2>Eliminar:</h2>
           <button
-                      onClick={() => handleToogle ()}
-
+            onClick={() => handleToogle ()}
           >🗑</button>
+        </div>
+
+
+          
+
 
     <Dialog open={confirmationOpen} onClose={handleConfirmationClose}>
       <DialogTitle>Confirmación</DialogTitle>
