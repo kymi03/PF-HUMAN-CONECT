@@ -17,7 +17,7 @@ import {
   Snackbar,
 } from "@mui/material"
 import { TextField, InputAdornment } from "@mui/material";
-import { Search } from "@mui/icons-material";
+import { Search, Troubleshoot } from "@mui/icons-material";
 
 
 
@@ -34,6 +34,8 @@ const [currentUserEmail, setCurrentUserEmail] = useState("");
 const [snackbarMessage, setSnackbarMessage] = useState("");
 const [searchTerm, setSearchTerm] = useState("");
 const [snackbarOpen, setSnackbarOpen] = useState(false);
+const [isActive, setIsActive] = useState (true)
+// const [actionType, setActionType] = useState ("")
 
 useEffect(() => {
   const usersData = async () => {
@@ -50,10 +52,12 @@ useEffect(() => {
   usersData();
 }, []);
 
-const handleToogle = (index, email) => {
+const handleToogle = (index, email, isActive) => {
   setSelectedUserIndex(index);
   setCurrentUserEmail(email)
   setConfirmationOpen(true); 
+  setIsActive (isActive)
+  // setActionType(isActive ? "block" : "delete")
 }; 
 
 const handleConfirmationClose = () => {
@@ -79,6 +83,64 @@ const handleConfirmationConfirm = async () => {
  
 };
 
+const handleConfirmationToBlockUser = async (isActive) => {
+  setConfirmationOpen(false);
+  const emailToBlock = currentUserEmail;
+  try {
+    if (isActive) {
+      // Obtener el ID del usuario que se va a bloquear usando el email
+      const response = await axios.get(`http://localhost:3001/user/all?email=${emailToBlock}`);
+      const userToBlock = response.data;
+      if (!userToBlock) {
+        showSnackbar("Usuario no encontrado.");
+        return;
+      }
+
+      // Realizar la solicitud PUT para bloquear al usuario usando el ID
+      await axios.put(`http://localhost:3001/user`, { active: false, id: userToBlock._id});
+      showSnackbar("Usuario Bloqueado");
+
+      // Actualizar la lista de usuarios con el estado actualizado
+      const updatedUserList = userList.map((user) =>
+        user.email === emailToBlock ? { ...user, active: false } : user
+      );
+      setUserList(updatedUserList);
+    }
+  } catch (error) {
+    showSnackbar("Error bloqueando Usuario");
+  }
+};
+
+// const handleConfirmationToBlockUser = async (isActive) => {
+//     setConfirmationOpen(false)
+//     const emailToBlock = currentUserEmail; 
+//   try {
+    
+//     if(isActive) {
+//       await axios.put(`http://localhost:3001/user/?email=${emailToBlock}`, {active:false});
+//       showSnackbar("Usuario Bloqueado");
+
+//       const updatedUserList = userList.map((user) => user.email === emailToBlock ? {...user, active:false}: user);
+//       console.log("Updated user list:", updatedUserList);
+
+//       setUserList(updatedUserList); 
+//     }
+//   } catch (error) {
+//     showSnackbar("Error bloqueando Usuario")
+//   }
+// }
+
+// const handleConfirmationAction = async () => {
+//   if (actionType === "block") {
+//     await handleConfirmationToBlockUser();
+//   } else if (actionType === "delete") {
+//     await handleConfirmationConfirm();
+//   }
+// }
+
+
+
+
 const showSnackbar = (message) => {
   setSnackbarMessage(message);
   setSnackbarOpen(true);
@@ -92,7 +154,7 @@ const indexOfLastUser = currentPage * usersPerPage;
 const indexOfFirstUser = indexOfLastUser - usersPerPage; 
 
 const filteredUsers = userList.filter((user)=> 
-user.email.toLowerCase().includes(searchTerm.toLowerCase())
+user.email.toLowerCase().includes(searchTerm.toLowerCase()) || user._id.toLowerCase().includes(searchTerm.toLowerCase())
 )
 
 const currentUsers = filteredUsers.slice(indexOfFirstUser, indexOfLastUser); 
@@ -107,13 +169,23 @@ const renderUsers = () => {
   }
 
   return currentUsers.map((user, index) => {
-    const { name, lastName, email, phone } = user;
+    const { _id, name, lastName, email, phone } = user;
 
     const isEvenRow = index % 2 === 0;
     const rowBackground = isEvenRow ? "#E7DDC7" : "#F3F3F7";
 
     return (
       <TableRow key={index} style={{ backgroundColor: rowBackground}}>
+
+        <TableCell>
+          <Switch
+            checked={user.active}
+            onChange={() => handleToogle (index, email, user.active)}
+            color="primary"
+          />
+        </TableCell>
+
+
         <TableCell>
           <Switch
             checked={true}
@@ -122,7 +194,9 @@ const renderUsers = () => {
           />
         </TableCell>
 
-  
+        <TableCell style={{ color: "#111111", fontSize: "15px"}}>
+          {_id}
+        </TableCell>
        
         <TableCell style={{ color: "#111111", fontSize: "15px"}}>
           {name}
@@ -138,6 +212,15 @@ const renderUsers = () => {
         <TableCell style={{ color: "#111111", fontSize: "15px" }}>
           {phone}
         </TableCell>
+
+        {/* <TableCell style={{ color: "#111111", fontSize: "15px" }}>
+            {Object.keys(posts).map((post) => (
+              <div key={post}>
+                <p style={{fontWeight:"bold"}}>{post}</p>
+                <p>{posts[post]}</p>
+              </div>
+            ))}
+          </TableCell> */}
       </TableRow>
     );
   });
@@ -156,7 +239,7 @@ return (
     <TextField
       id="standard-basic"
       variant="standard"
-      label="Buscar por Email"
+      label="Buscar por Email o ID"
       value={searchTerm}
       onChange={(event) => setSearchTerm(event.target.value)}
       InputProps={{
@@ -171,8 +254,14 @@ return (
     <Table>
       <TableHead style={{marginTop:"15px", backgroundColor:"#B2AE8C"}}>
         <TableRow>
+        <TableCell style={{ color: "#000000", fontSize: "15px"}}>
+            Bloquear Usuario
+          </TableCell>
           <TableCell style={{ color: "#000000", fontSize: "15px"}}>
             Eliminar Usuario
+          </TableCell>
+          <TableCell style={{ color: "#000000", fontSize: "15px" }}>
+            ID
           </TableCell>
           <TableCell style={{ color: "#000000", fontSize: "15px" }}>
             Nombre
@@ -199,18 +288,32 @@ return (
       />
     </div>
 
+
     <Dialog open={confirmationOpen} onClose={handleConfirmationClose}>
       <DialogTitle>Confirmación</DialogTitle>
       <DialogContent>
-        ¿Seguro que quieres eliminar el usuario?
+      {isActive ? "¿Seguro quieres bloquear el usuario?" : "¿Seguro quieres eliminar el usuario?"}
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={handleConfirmationClose}>No</Button>
+        <Button onClick={isActive ? handleConfirmationToBlockUser : handleConfirmationConfirm} autoFocus>
+        {isActive ? "Si, bloquear" : "Si, eliminar"}
+        </Button>
+      </DialogActions>
+    </Dialog>
+
+    {/* <Dialog open={confirmationOpen} onClose={handleConfirmationClose}>
+      <DialogTitle>Confirmación</DialogTitle>
+      <DialogContent>
+      ¿Seguro quieres eliminar el usuario?
       </DialogContent>
       <DialogActions>
         <Button onClick={handleConfirmationClose}>No</Button>
         <Button onClick={handleConfirmationConfirm} autoFocus>
-          Si, Borrar
+        Si, Eliminar
         </Button>
       </DialogActions>
-    </Dialog>
+    </Dialog> */}
 
     <Snackbar
       open={snackbarOpen}

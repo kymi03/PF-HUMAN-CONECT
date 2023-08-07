@@ -3,7 +3,7 @@ import Card from './Card';
 
 
 function Cards(props) {
-  console.log(props.currentPAD);
+  // console.log(props.currentPAD);
 
   return (
     <div className=" flex-col ">
