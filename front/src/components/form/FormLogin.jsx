@@ -5,6 +5,7 @@ import Footer from "../footer/Footer"
 import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
 import { useDispatch, useSelector } from 'react-redux';
 import { getEmailAuth, getGoogleAuth } from '../../redux/actions';
+import image from '../../assets/icons/google-logo.png'
 
 const FormLogin = () => {
   const navigate = useNavigate();
@@ -87,35 +88,35 @@ const FormLogin = () => {
       <NavBar />
       <div className=" flex flex-row my-5 h-5/6 w-full">
         <div className=" border-2 rounded-sm bg-white mx-2 md:w-3/6">
-          <h5 className=" pt-5 font-poppins font-semibold">Registrate en un nuestra red</h5>
+          <h5 className=" pt-5 font-poppins font-semibold text-center">Registrate en un nuestra red</h5>
           <form  className=" p-8 flex flex-col" 
           onSubmit={hdrJoinSubmit}
           >
             <input 
             type="text" 
-            className=" border-2 m-1 h-9" 
+            className=" border-2 mb-4 py-2 px-3 w-full rounded" 
             placeholder="Correo electronico"
             name='email'
             value={userData.email} 
             onChange={(event) => hdrChange(event)} />
             <input 
             type="password" 
-            className=" border-2 m-1 h-9" 
+            className=" border-2 mb-4 py-2 px-3 w-full rounded" 
             placeholder="Contraseña"
             name='password'
             value={userData.password}
             onChange={(event) => hdrChange(event)}/>
             <button type="submit" 
-              className=" text-white font-medium bg-vividGreen w-full h-10 cursor-pointer rounded-md hover:outline outline-2 outline-offset-2"
+              className="bg-vividGreen text-white py-2 px-4 rounded-lg hover:bg-green-600"
               onSubmit={ hdrJoinSubmit }
            >
               Iniciar sesión
             </button>
-            <p>No tienes una cuenta? <a href="/formjoin" className=" text-blue-900 underline">Registrate</a></p>
+            <p className=' text-center'>No tienes una cuenta? <a href="/formjoin" className=" text-blue-900 underline">Registrate</a></p>
           </form>
             <button
-              onClick={loginWithGoogle}            
-            > 
+              onClick={loginWithGoogle}  className=" bg-white mb-3 border border-gray-400 py-2 w-96 ml-4 mr-4 rounded-xl flex justify-center items-center text-lg"        
+            >  <img src={image} className=" h-6 w-6" />
               Iniciar sesión con Google
             </button>
         </div>

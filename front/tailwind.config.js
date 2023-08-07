@@ -7,7 +7,9 @@ export default {
       vividGreen: '#2f8e37',
     },
     fontFamily: {
-      'poppins': ['Poppins', 'sans-serif']},
+      'poppins': ['Poppins', 'sans-serif'],
+      'gobold': ['Gobold', 'sans-serif']
+    },
     },
   },
   plugins: [ require('flowbite/plugin')],
