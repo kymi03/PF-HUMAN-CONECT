@@ -19,6 +19,7 @@ import {
 import { TextField, InputAdornment } from "@mui/material";
 import { Home, Search } from "@mui/icons-material";
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function Settings(props) {
   const User = useSelector((state) => state.userAuth);
@@ -37,7 +38,7 @@ function Settings(props) {
   const [confirmationOpen, setConfirmationOpen] = useState(false);
   const [isActive, setIsActive] = useState( true );
   const [comments, setComments] = useState( [] );
-
+  const navigate = useNavigate()
   const handleToogle = (index, email) => {
     setConfirmationOpen(true); 
   }; 
@@ -91,7 +92,7 @@ function Settings(props) {
 
 const handleUpdateData = async (event) => {
     
-
+console.log(User.id);
  try {
       const response = await axios.put(`http://localhost:3001/user` ,   
    {
