@@ -15,6 +15,7 @@ import SavedContent from '../../components/useroptions/SavedContent';
 import Settings from '../../components/useroptions/Settings';
 import UserPanel from '../../components/adminoptions/UserPanel';
 import AdminSummary from '../../components/adminoptions/AdminSummary';
+import Content from '../../components/adminoptions/Content';
 const UserOptions = () => {
 
     const currentOption = useSelector(state => state.userOption)
@@ -47,6 +48,9 @@ let selectedOption = <></>
         break;
     case "NO OPTION": 
         selectedOption = <AdminSummary/>
+        break;
+    case "CONTENIDO": 
+        selectedOption = <Content/>
         break;
  
     default:

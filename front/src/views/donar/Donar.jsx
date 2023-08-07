@@ -80,7 +80,7 @@ const Donar = () => {
         const response = await axios.get(`/${source}?id=${value}`);
         response.data.sourceOf = source
     
-        console.log(response.data);
+        // console.log(response.data);
         resultArray.push(response.data);
 
         } catch (error) {
