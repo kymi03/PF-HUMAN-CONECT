@@ -182,7 +182,7 @@ return (
           </TableCell>
           <TableCell style={{ color: "#000000", fontSize: "15px" }}>
             Autor
-          </TableCell>
+          </TableCell >
           <TableCell style={{ color: "#000000", fontSize: "15px" }}>
             Ubicacion
           </TableCell>
