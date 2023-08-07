@@ -112,23 +112,10 @@ const renderUsers = () => {
     return (
       <TableRow key={index} style={{ backgroundColor: rowBackground}}>
 
-
-  
-       
-        {/* <Link
-
-            to={`/ContentDetail/${ContentType}=${_id}`}
-            className="block   text-gray-800 hover:text-blue-700"
-          >
-            🛠
-        </Link>  */}
         <TableCell
         onClick={handleConfig}
         className=' cursor-pointer'
-        >
-        🛠
-
-        </TableCell>
+        >🛠</TableCell>
 
         <TableCell style={{ color: "#111111", fontSize: "15px", backgroundColor: active ? "green" : "red" }}>
           {active ? "Activo" : "Inactivo"}

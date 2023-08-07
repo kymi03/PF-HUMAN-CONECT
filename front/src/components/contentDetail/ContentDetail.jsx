@@ -70,25 +70,17 @@ function ContentDetail() {
 
   useEffect(() => {
   
-
-
     const getComments = async ( id ) => {
         try {
-          const response = await axios.get(`http://localhost:3001/comments?author=${id}`);
+          const response = await axios.get(`http://localhost:3001/comments?postReference=${id}`);
           setComments(response.data);
     
         } catch (error) {
           console.log(error.message);
         }
       };
-    
 
       getComments(value)
-
-
-
-
-
 
     if (source !== "") {
       axios
