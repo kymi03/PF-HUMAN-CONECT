@@ -24,19 +24,11 @@ import { Home, Search } from "@mui/icons-material";
 import Footer from "../../components/footer/Footer"
 
 function ContentDetail() {
-  // const [currentPage, setCurrentPage] = useState(1);
-  // const usersPerPage = 5;
-  // const [userList, setUserList] = useState([]);
-  // const [selectedUserIndex, setSelectedUserIndex] = useState(null);
-  // const [currentUserEmail, setCurrentUserEmail] = useState("");
-  // const [searchTerm, setSearchTerm] = useState("");
 
   const [snackbarMessage, setSnackbarMessage] = useState("");
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [confirmationOpen, setConfirmationOpen] = useState(false);
-
   const [isActive, setIsActive] = useState(true);
-
   const [comments, setComments] = useState([]);
 
   const [content, setContent] = useState("");

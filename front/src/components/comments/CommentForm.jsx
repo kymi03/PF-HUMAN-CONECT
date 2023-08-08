@@ -1,14 +1,17 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import ReactStars from "react-rating-stars-component";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { postComment } from "../../redux/actions";
 
-const CommentForm = ({ onCommentSubmit, PAD, _id }) => {
+const CommentForm = ({ onCommentSubmit, PAD }) => {
   const User = useSelector((state) => state.userAuth);
-
+  const dispatch = useDispatch();
   const [name, setName] = useState(User.name);
   const [comment, setComment] = useState("");
   const [rating, setRating] = useState(0);
+  const userID = User._id
+  const reference = PAD._id
 
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -20,13 +23,14 @@ const CommentForm = ({ onCommentSubmit, PAD, _id }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    // console.log("formComent");
+    dispatch(postComment({comment, userID, reference}));
     onCommentSubmit({ name, comment, rating });
     setComment("");
     setRating(0);
   };
 
   const ratingChanged = (newRating) => {
-    console.log(newRating);
     setRating(newRating);
   };
 
@@ -36,7 +40,7 @@ const CommentForm = ({ onCommentSubmit, PAD, _id }) => {
       className="w-full max-w-sm mx-auto mt-4 bg-amber-50"
     >
       <Link
-        to={`/ContentDetail/${PAD}=${_id}`}
+        // to={`/ContentDetail/${PAD}=${_id}`}
         className="block text-gray-800 hover:text-blue-700"
       ></Link>
 

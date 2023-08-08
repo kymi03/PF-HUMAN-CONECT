@@ -36,3 +36,9 @@ export const SET_DONATION_ITEMS = "SET_DONATION_ITEMS";
 export const GET_USER_LIST = "GET_USER_LIST";
 
 export const GET_USER_ACTIVE = "GET_USER_ACTIVE";
+
+export const GET_USER_COMMENT = "GET_USER_COMMENT";
+
+export const POST_COMMENT = "POST_COMMENT";
+
+export const GET_COMMENT = "GET_COMMENT";

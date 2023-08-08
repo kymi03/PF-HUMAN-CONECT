@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+    font-family: 'Gilroy';
+    src: url('../public/fonts/Gilroy.woff');
+}
+
+@font-face {
+    font-family: 'Gobold';
+    src: url('../public/fonts/Gobold.woff');
+}
