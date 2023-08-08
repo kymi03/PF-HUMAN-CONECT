@@ -2,9 +2,8 @@ import React, { useState } from 'react';
 import CommentForm from './CommentForm';
 import CommentDisplay from './CommentDisplay';
 
-const Comments = () => {
+const Comments = (PAD) => {
   const [comments, setComments] = useState([]);
-
   const handleCommentSubmit = (newComment) => {
     setComments([...comments, newComment]);
   };

@@ -45,7 +45,7 @@ function Detail() {
       axios
         .get(`/${source}?id=${value}`)
         .then(({ data }) => {
-          console.log(data);
+          // console.log(data);
           setPAD(data);
         })
         .catch((error) => {
@@ -219,7 +219,7 @@ function Detail() {
               controls
             ></video>
           )}
-          {console.log(uniqueVideos[0], "video")};
+          {/* {console.log(uniqueVideos[0], "video")}; */}
         </div>
       ) : null}
 
@@ -261,7 +261,7 @@ function Detail() {
               controls
             ></video>
           )}
-          {console.log(uniqueVideos[0], "video")};
+          {/* {console.log(uniqueVideos[0], "video")}; */}
         </div>
       ) : null}
 
@@ -270,7 +270,7 @@ function Detail() {
         <h1 className="text-3xl font-semibold text-center mb-6">Comentarios</h1>
         <div className="flex flex-col md:flex-row md:space-x-4">
           <div className="w-full md:w-1/3">
-            <CommentForm onCommentSubmit={handleCommentSubmit} />
+            <CommentForm onCommentSubmit={handleCommentSubmit} PAD={PAD} />
           </div>
           <div className="w-full md:w-2/3 mt-4 md:mt-0 overflow-hidden whitespace-normal">
             <CommentDisplay

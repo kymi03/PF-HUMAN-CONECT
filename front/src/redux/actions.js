@@ -19,7 +19,7 @@ import {
   GET_USER_LIST,
   GET_USER_ACTIVE,
   POST_COMMENT,
-  GET_USER_COMMENT,
+  GET_COMMENT,
 } from "./actions-types";
 
 import { PROJECTS, DOCUMENTARYS, ARTICLES } from "../redux/actions-types";
@@ -365,24 +365,38 @@ export const getUserActive = (active) => {
   };
 };
 
-export function postComment(payload) {
+export function postComment({comment, userID, reference}) {
   return function (dispatch) {
     try {
-      console.log(payload);
       axios
-        .post(`/comments?userID=${userID}&${reference}`)
-        .then((data) => {
-          Swal.fire("Comentario creado exitosamente");
-          return dispatch({
-            type: POST_COMMENT,
-            payload: data,
-          });
-        })
-        .catch((error) => {
-          Swal.fire(error.response.data.error);
+      .post(`/comments?userID=${userID}&reference=${reference}`, {comment})
+      .then((data) => {
+        Swal.fire("Comentario creado exitosamente");
+        return dispatch({
+          type: POST_COMMENT,
+          payload: data,
         });
+      })
+      .catch((error) => {
+        Swal.fire(error.response.data.error);
+      });
     } catch (error) {
       console.log(error.message);
     }
   };
 }
+
+export const getComment = () => {
+  return async function (dispatch) {
+    try {
+      const response = await axios.get("http://localhost:3001/comments");
+      console.log(response);
+      return dispatch({
+        type: GET_COMMENT,
+        payload: response,
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+};
