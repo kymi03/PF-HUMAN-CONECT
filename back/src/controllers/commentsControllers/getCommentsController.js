@@ -1,11 +1,11 @@
 const commentModel = require("../../models/comment");
 
 const getCommentsController = async (req, res) => {
-  const { userID, postReference } = req.query;
+  const { userID, reference } = req.query;
   let query = {};
 
   userID && (query.author = userID);
-  postReference && (query.postReference = postReference);
+  reference && (query.reference = reference);
 
   try {
     const comments = await commentModel.find(query);

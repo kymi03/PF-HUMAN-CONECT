@@ -3,15 +3,16 @@ const commentModel = require("../../models/comment");
 const postCommentsController = async (req, res) => {
   const { body } = req.body;
   const { userID, reference } = req.query;
+  console.log("aqui", body, userID);
   if (!userID || !reference)
     return res
       .status(400)
-      .json({ message: "Se requiere ID  del usuario y referncia al post" });
+      .json({ message: "Se requiere ID  del usuario y referencia al post" });
 
   try {
     const newComment = new commentModel({
       author: userID,
-      postReference: reference,
+      reference: reference,
       body,
     });
     await newComment.save();

@@ -51,7 +51,7 @@ function LeftInfoHome() {
     const options = generateOptions(locations)
   return (
     <div className='h-screen overflow-hidden'>
-      <div className="grid grid-cols-10 gap-5 bg-grey h-full pb-48 pt-5 h-screen"> 
+      <div className="grid grid-cols-10 gap-5 bg-grey pb-48 pt-5 h-screen"> 
         <div className="col-span-3 bg-white rounded-2xl shadow-xl mr-20 ml-20"> 
           <h2 className="text-6xl text-center font-bold mb-4">Esto es Human Conet:</h2>
           <br />

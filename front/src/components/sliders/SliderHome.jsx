@@ -34,14 +34,14 @@ const SliderHome = () => {
       </div>
       <div>
         <img
-          src="https://humanconet.org/wp-content/uploads/2022/05/Aliwa-Take-Action-3-01.webp"
+          src="https://humanconet.org/wp-content/uploads/2023/04/DSC_0209-min-2048x1365.jpg.webp"
           alt="Imagen 3"
           className="w-full h-auto object-cover rounded-2xl"
         />
       </div>
       <div>
         <img
-          src="https://humanconet.org/wp-content/uploads/2022/05/Aliwa-Take-Action-3-01.webp"
+          src="https://humanconet.org/wp-content/uploads/2023/04/No-mas-hidroelectricas.jpeg.webp"
           alt="Imagen 4"
           className="w-full h-auto object-cover rounded-2xl"
         />
@@ -53,16 +53,16 @@ const SliderHome = () => {
           className="w-full h-auto object-cover rounded-2xl"
         />
       </div>
-      <div>
+      {/* <div>
         <img
-          src="https://concepto.de/wp-content/uploads/2015/03/paisaje-e1549600034372.jpg"
+          src="https://humanconet.org/wp-content/uploads/2023/04/DSC_0209-min-2048x1365.jpg.webp"
           alt="Imagen 6"
           className="w-full h-auto object-cover rounded-2xl"
         />
-      </div>
+      </div> */}
       <div>
         <img
-          src="https://concepto.de/wp-content/uploads/2015/03/paisaje-e1549600034372.jpg"
+          src="https://humanconet.org/wp-content/uploads/2023/04/MegaBassines-2-1.png.webp"
           alt="Imagen 7"
           className="w-full h-auto object-cover rounded-2xl"
         />
