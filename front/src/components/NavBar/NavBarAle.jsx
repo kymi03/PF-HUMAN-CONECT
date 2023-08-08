@@ -4,6 +4,8 @@ import UserDropMenu from "../userDropMenu/UserDropMenu";
 import DefoultUserMenu from "../userDropMenu/DefoultUserMenu";
 import { useDispatch, useSelector } from "react-redux";
 import Home from "../../views/home/Home";
+import humanConetLogo from '../../assets/Human-conet-b-y.png'
+import turtle from '../../assets/icons/turtle-turquoise.png'
 
 import CartCount from "../cartCount/CartCount";
 
@@ -29,12 +31,14 @@ export default function NavBarAle() {
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <Link to={`/home`}>
           <button className="flex items-center">
+            <div className=" flex items-center">
             <img
-              src="https://humanconet.org/wp-content/uploads/2022/03/Turtle-Turquoise-1-1024x1022.png"
+              src={turtle}
               className="h-8 mr-3 "
               alt="Flowbite Logo"
             />
-            <span className=" text-white text-2xl">HUMAN CONET</span>
+            <img src={humanConetLogo} className=" h-6 mr-3" />
+            </div>
           </button>
         </Link>
 
@@ -43,7 +47,7 @@ export default function NavBarAle() {
             <Link to={`/aboutUs`}>
               <li>
                 <button
-                  className="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500"
+                  className="block py-2 pl-3 pr-4 text-white font-gobold rounded md:bg-transparent md:p-0 dark:text-white md:hover:text-keppel600"
                   aria-current="page"
                 >
                   Quienes somos
@@ -53,7 +57,7 @@ export default function NavBarAle() {
 
             <Link to={`/articles`}>
               <li>
-                <button className="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
+                <button className="block py-2 pl-3 pr-4 text-white rounded font-gobold hover:bg-gray-100 md:hover:bg-transparent md:border-0  md:hover:text-keppel600 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
                   Articulos
                 </button>
               </li>
@@ -61,7 +65,7 @@ export default function NavBarAle() {
 
             <Link to={`/projects`}>
               <li>
-                <button className="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
+                <button className="block py-2 pl-3 pr-4 text-white rounded font-gobold hover:bg-gray-100 md:hover:bg-transparent md:border-0  md:hover:text-keppel600 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
                   Proyectos
                 </button>
               </li>
@@ -69,7 +73,7 @@ export default function NavBarAle() {
 
             <Link to={`/documentaries`}>
               <li>
-                <button className="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
+                <button className="block py-2 pl-3 pr-4 text-white rounded font-gobold hover:bg-gray-100 md:hover:bg-transparent md:border-0  md:hover:text-keppel600 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
                   Documentales
                 </button>
               </li>
@@ -77,7 +81,7 @@ export default function NavBarAle() {
 
             <Link to={`/formjoin`}>
               <li>
-                <button className="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
+                <button className="block py-2 pl-3 pr-4 text-white rounded font-gobold hover:bg-gray-100 md:hover:bg-transparent md:border-0  md:hover:text-keppel600 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
                   Unete
                 </button>
               </li>
@@ -85,7 +89,8 @@ export default function NavBarAle() {
 
             <Link to={`/donar`}>
               <li>
-                <button className="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
+                <button className="block py-2 pl-3 pr-4 text-white rounded font-gobold hover:bg-gray-100 md:hover:bg-transparent md:border-0  md:hover:text-keppel600 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
+
                   Donar
                 </button>
               </li>

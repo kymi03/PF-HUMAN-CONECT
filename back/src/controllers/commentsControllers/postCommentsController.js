@@ -1,9 +1,9 @@
 const commentModel = require("../../models/comment");
 
 const postCommentsController = async (req, res) => {
-  const { body } = req.body;
+  const { comment } = req.body;
   const { userID, reference } = req.query;
-  console.log("aqui", body, userID);
+  console.log("aqui", comment, userID);
   if (!userID || !reference)
     return res
       .status(400)
@@ -13,7 +13,7 @@ const postCommentsController = async (req, res) => {
     const newComment = new commentModel({
       author: userID,
       reference: reference,
-      body,
+      body: comment,
     });
     await newComment.save();
     res.status(201).json(newComment);

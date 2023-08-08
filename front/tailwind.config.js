@@ -5,11 +5,15 @@ export default {
     extend: {colors:{
       grey: '#e8e5de',
       vividGreen: '#2f8e37',
+      corn: '#eec207',
+      keppel: '#2DA5AB',
+      keppel600: '#298791',
+      keppel700: '#276e77',
     },
     fontFamily: {
+      'gilroy': ['Gilroy', 'sans-serif'],
       'poppins': ['Poppins', 'sans-serif'],
       'gobold': ['Gobold', 'sans-serif'],
-      'gilroy': ['Gilroy-Regulrar', 'sans-serif']
     },
     },
   },
