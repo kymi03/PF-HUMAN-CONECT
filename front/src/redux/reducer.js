@@ -17,7 +17,7 @@ import {
   GET_AUTH,
   GET_USER_LIST,
   GET_USER_ACTIVE,
-  GET_USER_COMMENT,
+  GET_COMMENT,
 } from "./actions-types";
 
 const initialState = {
@@ -40,6 +40,7 @@ const initialState = {
   ItemsDonation: [],
 
   userActive: false,
+  commentBody: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -173,6 +174,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         userActive: action.payload,
+      };
+    case GET_COMMENT:
+      return {
+        ...state,
+        commentBody: action.payload,
       };
 
     case SET_DONATION_ITEMS:
