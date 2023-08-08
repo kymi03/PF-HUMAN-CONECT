@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import {Link, useLocation} from 'react-router-dom'
 import green1 from "../../assets/icons/green1.png"
@@ -48,17 +47,17 @@ const dispatch = useDispatch()
 
   return (
     <div className=" 
-    bg-white border border-gray-200 shadow dark:bg-gray-800 dark:border-gray-700 relative"
+    bg-white rounded-xl shadow-2xl hover:shadow-gray-600 relative ml-8 mr-8"
      
      >
 
 
 <Link to={`/detail/${props.PAD}=${props._id}`}>
       <div 
-      className="w-86 h-64"
+      className="w-86 h-44"
       >
         <img
-          className="object-cover w-full h-full"
+          className="object-cover w-full h-full rounded-xl"
           src={
             props.media.images[0]
               ? props.media.images[0].imageUrl
@@ -69,7 +68,7 @@ const dispatch = useDispatch()
       </div>
 </Link>
 
-      <div className="p-5">
+      <div className="pt-10 pb-10 ml-5 mr-5">
       <div className="absolute top-2 right-2">
       <button onClick={handleCartButton} id="imageButton">
           <img
@@ -96,7 +95,7 @@ const dispatch = useDispatch()
         // href={`/detail/${props.PAD}=${props._id}`}
         >
           <h5 
-          className=" h-20  break-words mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+          className=" h-14  break-words text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
           >
             {props.name}
           </h5>
@@ -105,7 +104,7 @@ const dispatch = useDispatch()
 
         
         <p 
-        className="w-86 h-28  overflow-scroll break-words  mb-3 font-normal text-gray-700 dark:text-gray-400"
+        className="w-86 h-28 pt-5  overflow-auto break-words  font-normal text-gray-700 dark:text-gray-400"
         >
           {props.breaf
             ? props.breaf

@@ -25,7 +25,7 @@ function Documentarys() {
   return (  
 <div >
   <NavBarAle/>
-  <p className="ml-11 mb-5 text-justify text-5xl font-semibold text-gray-900 dark:text-white">PROYECTOS</p>
+  <p className="ml-11 mb-5 text-justify text-5xl font-semibold text-gray-900 dark:text-white">DOCUMENTALES</p>
   
   <div className="flex">
 
@@ -33,7 +33,7 @@ function Documentarys() {
       <LeftInfo PAD = {DOCUMENTARYS}/>
     </div>
 
-    <div className='h-3/5 w-4/5  border border-gray-200 shadow dark:bg-gray-800 dark:border-gray-700'>
+    <div className='h-3/5 w-4/5'>
       <Cards 
       currentPAD={currentPAD} 
       PAD =  {DOCUMENTARYS}

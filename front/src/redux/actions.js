@@ -19,7 +19,7 @@ import {
   GET_USER_LIST,
   GET_USER_ACTIVE,
   POST_COMMENT,
-  GET_USER_COMMENT,
+  GET_COMMENT,
 } from "./actions-types";
 
 import { PROJECTS, DOCUMENTARYS, ARTICLES } from "../redux/actions-types";
@@ -385,3 +385,18 @@ export function postComment({comment, userID, reference}) {
     }
   };
 }
+
+export const getComment = () => {
+  return async function (dispatch) {
+    try {
+      const response = await axios.get("http://localhost:3001/comments");
+      console.log(response);
+      return dispatch({
+        type: GET_COMMENT,
+        payload: response,
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+};
