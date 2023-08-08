@@ -52,7 +52,7 @@ const putUserController = async (req, res) => {
             <p>Hola <b>${name}</b>! Te informamos que tu usuario de Human Conet ha sido desbloqueado.</p>
             `,
       });
-      return res.status(200).json({message:"Usuario Desbloquado"})
+      return res.status(200).json({message:"Usuario Desbloqueado"})
     }
 
     await transporter.sendMail({
