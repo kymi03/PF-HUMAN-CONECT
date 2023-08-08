@@ -173,8 +173,8 @@ function ContentDetail() {
     try {
       
       const response = await axios.put(`http://localhost:3001/${source}` ,       {
-        "id": value ,
-        "active": isActive === false ? true :  false
+        id: value ,
+        active: isActive === false ? true :  false
         }
         )
 
