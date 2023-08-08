@@ -52,16 +52,10 @@ function LeftInfoHome() {
     const options = generateOptions(locations)
   return (
     <div className='h-screen overflow-hidden'>
-<<<<<<< HEAD
       <div className="grid grid-cols-10 gap-5 bg-grey h-full pb-48 pt-5"> 
         <div className="col-span-3 bg-white rounded-2xl shadow-xl mr-4 ml-4"> 
           {/* <h2 className="text-6xl text-left px-4 pt-4 font-gilroy font-bold mb-4">Somos </h2> */}
           <img src={humanLogo} className='h-16 mx-auto my-8'/>
-=======
-      <div className="grid grid-cols-10 gap-5 bg-grey pb-48 pt-5 h-screen"> 
-        <div className="col-span-3 bg-white rounded-2xl shadow-xl mr-20 ml-20"> 
-          <h2 className="text-6xl text-center font-bold mb-4">Esto es Human Conet:</h2>
->>>>>>> db1036a0d2529aab606b138124466fdbd078e5d3
           <br />
           <p className=' text-ellipsis text-2xl pb-12 pt-0 px-4 border-none font-gilroy'>
             De los territorios a las ciudades, visibilizamos las luchas y acompañamos los procesos que protegen la vida en todas sus formas.
