@@ -17,14 +17,13 @@ function AdminSummary(props) {
   const allDocumentarys = useSelector(state => state.allDocumentarys)
 
   useEffect( () => {
+
 dispatch(getSearchPADByQuery('' , '' , PROJECTS    ))
 dispatch(getSearchPADByQuery('' , '' , DOCUMENTARYS))
 dispatch(getSearchPADByQuery('' , '' , ARTICLES    ))
 
   } , [ 
-        allProjects     , 
-        allArticles     ,
-        allDocumentarys ,
+
       ])
 
 

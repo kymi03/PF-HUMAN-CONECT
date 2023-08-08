@@ -30,11 +30,12 @@ function Content(props) {
 const [currentPage, setCurrentPage] = useState(1);
 const usersPerPage = 5;
 const [userList, setUserList] = useState([]); 
+const [searchTerm, setSearchTerm] = useState("");
 const [confirmationOpen, setConfirmationOpen] = useState(false);
 const [currentUserEmail, setCurrentUserEmail] = useState("");
 const [snackbarMessage, setSnackbarMessage] = useState("");
-const [searchTerm, setSearchTerm] = useState("");
 const [snackbarOpen, setSnackbarOpen] = useState(false);
+const [activeChange, setActiveChange] = useState(false);
 
 const Articles     = useSelector(state => state.allArticles2)
 const Projects     = useSelector(state => state.allProjects2)
@@ -53,7 +54,11 @@ useEffect(() => {
 
   setUserList(combinedData);
 
-}, [Articles, Projects, Documentarys]);
+}, [ 
+  Articles, 
+  Projects, 
+  Documentarys  
+]);
 
 
 
@@ -82,6 +87,7 @@ const renderUsers = () => {
 
   return currentUsers.map((user, index) => {
     const { name, author, date, location , active ,ContentType ,_id} = user;
+
 
     const isEvenRow = index % 2 === 0;
     const rowBackground = isEvenRow ? "#E7DDC7" : "#F3F3F7";

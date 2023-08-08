@@ -44,7 +44,7 @@ const UserDropManu = () => {
 
   return (
     < div  >
-      <div className=" flex items-center justify-self-center" ref={dropdownRef}>
+      <div className="fixed flex items-center justify-self-center" ref={dropdownRef}>
 
         <button onClick={toggleMenu} type="select"
 
