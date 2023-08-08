@@ -25,15 +25,14 @@ function UserPanel(props) {
   const usersPerPage = 5;
   const [userList, setUserList] = useState([]);
   const [confirmationOpen, setConfirmationOpen] = useState(false);
-  const [confirmationBlockUserOpen, setConfirmationBlockUserOpen] =
-    useState(false);
+  const [confirmationBlockUserOpen, setConfirmationBlockUserOpen] = useState(false);
   const [selectedUserIndex, setSelectedUserIndex] = useState(null);
   const [currentUserEmail, setCurrentUserEmail] = useState("");
   const [snackbarMessage, setSnackbarMessage] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [isActive, setIsActive] = useState(true);
-  // const [actionType, setActionType] = useState ("")
+
 
   useEffect(() => {
     const usersData = async () => {
