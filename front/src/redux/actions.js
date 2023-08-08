@@ -18,6 +18,8 @@ import {
   GET_AUTH,
   GET_USER_LIST,
   GET_USER_ACTIVE,
+  POST_COMMENT,
+  GET_USER_COMMENT,
 } from "./actions-types";
 
 import { PROJECTS, DOCUMENTARYS, ARTICLES } from "../redux/actions-types";
@@ -362,3 +364,25 @@ export const getUserActive = (active) => {
     }
   };
 };
+
+export function postComment(payload) {
+  return function (dispatch) {
+    try {
+      console.log(payload);
+      axios
+        .post(`/comments?userID=${userID}&${reference}`)
+        .then((data) => {
+          Swal.fire("Comentario creado exitosamente");
+          return dispatch({
+            type: POST_COMMENT,
+            payload: data,
+          });
+        })
+        .catch((error) => {
+          Swal.fire(error.response.data.error);
+        });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+}

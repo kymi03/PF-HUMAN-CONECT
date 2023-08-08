@@ -7,7 +7,7 @@ const commentSchema = new Schema({
     ref: "User",
     required: true,
   },
-  postReference: {
+  reference: {
     type: String,
     required: true,
   },

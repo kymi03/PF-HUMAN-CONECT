@@ -278,7 +278,7 @@ export const PostPAD = () => {
           className=" rounded-md bg-gray-100 my-10  w-11/12 pt-2 place-items-center"
         >
           <h6 className=" text-xs font-semibold mb-2 font-poppins">
-            Nombre del Proyecto, Artículo o Documental (PAD)
+            Nombre del Contenido
           </h6>
           <input
             name="name"
@@ -419,7 +419,7 @@ export const PostPAD = () => {
             {/* Body de la Página */}
             <div className="flex flex-col w-1/5">
               <h6 className="text-xs font-semibold mb-5 my-2 font-poppins">
-                Resumen PAD 1
+                Resumen del Contenido 1
               </h6>
               <textarea
                 name="body"
@@ -475,7 +475,7 @@ export const PostPAD = () => {
             {/* Body2 de la Página */}
             <div className="flex flex-col w-1/5">
               <h6 className="text-xs font-semibold mb-5 my-2 font-poppins">
-                Resumen PAD 2
+                Resumen del Contenido 2
               </h6>
               <textarea
                 name="body2"
@@ -550,7 +550,7 @@ export const PostPAD = () => {
             placeholder="Ingrese la URL del video"
           />
           <h6 className=" text-xs font-semibold my-1 font-poppins">
-            Resto del Resumen
+            Resto del Resumen del Contenido
           </h6>
           <textarea
             name="body3"
