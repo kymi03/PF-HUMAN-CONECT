@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import green2 from "../../assets/icons/green2.png"
 import gold2 from "../../assets/icons/gold2.png"
+import donationIcon from '../../assets/icons/donationIcon.png'
 const CartCount = () => {
 
 
@@ -13,7 +14,7 @@ const CartCount = () => {
   >
        <img
             className="h-12"
-            src={green2}
+            src={donationIcon}
             alt="Add to Cart"
           />
    <h1
