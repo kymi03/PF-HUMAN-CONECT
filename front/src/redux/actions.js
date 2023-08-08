@@ -18,7 +18,7 @@ import {
   GET_AUTH,
   GET_USER_LIST,
   GET_USER_ACTIVE,
-  POST_USER_COMMENT,
+  POST_COMMENT,
   GET_USER_COMMENT,
 } from "./actions-types";
 
@@ -365,16 +365,16 @@ export const getUserActive = (active) => {
   };
 };
 
-export function postUserComment(payload) {
+export function postComment(payload) {
   return function (dispatch) {
     try {
       console.log(payload);
       axios
-        .post("/coments", payload)
+        .post(`/comments?userID=${userID}&${reference}`)
         .then((data) => {
           Swal.fire("Comentario creado exitosamente");
           return dispatch({
-            type: POST_USER_COMMENT,
+            type: POST_COMMENT,
             payload: data,
           });
         })

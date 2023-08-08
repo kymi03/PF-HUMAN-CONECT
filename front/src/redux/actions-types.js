@@ -39,4 +39,4 @@ export const GET_USER_ACTIVE = "GET_USER_ACTIVE";
 
 export const GET_USER_COMMENT = "GET_USER_COMMENT";
 
-export const POST_USER_COMMENT = "POST_USER_COMMENT";
+export const POST_COMMENT = "POST_COMMENT";

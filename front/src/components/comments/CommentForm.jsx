@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import ReactStars from "react-rating-stars-component";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { postComment } from "../../redux/actions";
 
 const CommentForm = ({ onCommentSubmit, PAD, _id }) => {
   const User = useSelector((state) => state.userAuth);
-
+  const dispatch = useDispatch();
   const [name, setName] = useState(User.name);
   const [comment, setComment] = useState("");
   const [rating, setRating] = useState(0);
@@ -20,6 +21,8 @@ const CommentForm = ({ onCommentSubmit, PAD, _id }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log("formComent", PAD);
+    dispatch(postComment(comment, User._id, reference));
     onCommentSubmit({ name, comment, rating });
     setComment("");
     setRating(0);

@@ -17,7 +17,6 @@ import {
   GET_AUTH,
   GET_USER_LIST,
   GET_USER_ACTIVE,
-  POST_USER_COMMENT,
   GET_USER_COMMENT,
 } from "./actions-types";
 
