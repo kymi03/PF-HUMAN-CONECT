@@ -5,12 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import NavBarAle from "../NavBar/NavBarAle";
 import { PROJECTS, ARTICLES, DOCUMENTARYS } from "../../redux/actions-types";
 import {
-  Table,
-  TableHead,
-  TableBody,
-  TableRow,
-  TableCell,
-  Pagination,
+
   Switch,
   Dialog,
   DialogTitle,
@@ -19,8 +14,7 @@ import {
   Button,
   Snackbar,
 } from "@mui/material";
-import { TextField, InputAdornment } from "@mui/material";
-import { Home, Search } from "@mui/icons-material";
+
 import Footer from "../../components/footer/Footer"
 
 function ContentDetail() {
