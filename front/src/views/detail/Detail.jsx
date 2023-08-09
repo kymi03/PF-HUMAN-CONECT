@@ -3,7 +3,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import NavBarAle from "../../components/NavBar/NavBarAle";
-import FooterMoreInfo from "../../components/footer/FooterMoreInfo";
+import Footer from "../../components/footer/Footer";
 import { PROJECTS, ARTICLES, DOCUMENTARYS } from "../../redux/actions-types";
 import green1 from "../../assets/icons/green1.png";
 import green2 from "../../assets/icons/green2.png";
@@ -281,7 +281,7 @@ function Detail() {
           </div>
         </div>
       </div>
-      <FooterMoreInfo />
+      <Footer />
     </div>
   );
 }

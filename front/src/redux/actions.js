@@ -368,21 +368,22 @@ export const getUserActive = (active) => {
   };
 };
 
-export function postComment({comment, userID, reference}) {
+export function postComment(payload) {
   return function (dispatch) {
     try {
+      console.log(payload);
       axios
-      .post(`/comments?userID=${userID}&reference=${reference}`, {comment})
-      .then((data) => {
-        Swal.fire("Comentario creado exitosamente");
-        return dispatch({
-          type: POST_COMMENT,
-          payload: data,
+        .post(`/comments?userID=${userID}&${reference}`)
+        .then((data) => {
+          Swal.fire("Comentario creado exitosamente");
+          return dispatch({
+            type: POST_COMMENT,
+            payload: data,
+          });
+        })
+        .catch((error) => {
+          Swal.fire(error.response.data.error);
         });
-      })
-      .catch((error) => {
-        Swal.fire(error.response.data.error);
-      });
     } catch (error) {
       console.log(error.message);
     }
