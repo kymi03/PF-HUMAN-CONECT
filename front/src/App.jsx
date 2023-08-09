@@ -24,6 +24,7 @@ import {
   getGoogleAuth,
   getAuth,
 } from "./redux/actions";
+import FailureDonar from "./components/donarComponents/FailureDonar";
 
 function App() {
   const dispatch = useDispatch();
@@ -84,6 +85,7 @@ function App() {
         <Route path="/useroptions" element={<UserOptions />} />
         <Route path="/adminoptions" element={<AdminOptions />} />
         <Route path="/ContentDetail/:id" element={<ContentDetail />} />
+        <Route path="/rechazado" element={<FailureDonar />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </div>

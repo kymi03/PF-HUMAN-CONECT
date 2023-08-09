@@ -2,38 +2,46 @@ import React, { useEffect } from "react";
 import ReactStars from "react-rating-stars-component";
 import { getCommentById, getCommentByReference, getUserList } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
-
 const CommentDisplay = ({ comments, onDeleteComment, PAD }) => {
   const dispatch = useDispatch();
   const commentsOfPAD = useSelector(state => state.PADComment)
   const userComment = useSelector((state) => state.userComment);
   const allAuthors = useSelector(state => state.userList)
   const user = JSON.parse(window.localStorage.getItem("userInfo"))
+  // const user = useSelector(state => state.userAuth)
   const reference = PAD._id
   // const user = useSelector((state) => state.userAuth)
-  console.log(allAuthors);
+  console.log(user);
 
+  // let userID = ''
+  // if (user._id) {
+  //    userID = user._id
+  // }
+  // else if (user.id) {
+  //    userID = user.id
+  // }
+  
+  // if (user._id) {
+  //  var  userID = user._id
+  // }
+  // else if (user.id) {
+  //   var userID = user.id
+  // }
 
-  if (user._id) {
-    var userID = user._id
-  }
-  else if (user.id) {
-    var userID = user.id
-  }
   // const googleUserID = user.id
 
   // const handleDeleteComment = (index) => {
   //  onDeleteComment(index);
 
   useEffect(() => {
-    dispatch(getCommentById(userID));
+    // dispatch(getCommentById(userID));
     dispatch(getCommentByReference(reference))
     dispatch(getUserList())
   }, [reference]);
   //console.log("aquicomentarios", allComments);
 
   let findAuthors = []
-  const userCommentsList = commentsOfPAD.map((comment) => findAuthors.push({ author: allAuthors.find(author => author._id === comment.author).name, comment: comment.body }))
+  const userCommentsList = commentsOfPAD.map((comment) => findAuthors.push({ author: allAuthors.find(author => author._id  === comment.author).name, comment: comment.body }))
   console.log('AQUI', findAuthors, userCommentsList);
 
   return (
