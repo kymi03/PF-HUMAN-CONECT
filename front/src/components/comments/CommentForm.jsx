@@ -88,7 +88,9 @@ const CommentForm = ({ onCommentSubmit, PAD }) => {
         Enviar Comentario
       </button>
     </form>
-  ) : null;
+  ) : <div className=" w-24 h-24 bg-slate-100"> 
+        <h2> Para comentar debes estar Registrado e Iniciar Sesión </h2>
+     </div>;
 };
 
 export default CommentForm;
