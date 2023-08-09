@@ -9,15 +9,15 @@ function Cards(props) {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5 px-4 ">
         {activePADs.map((PAD) => (
           <Card
-            key={PAD._id}
-            media={PAD.media}
-            location={PAD.location}
-            date={PAD.date}
-            name={PAD.name}
-            breaf={PAD.breaf}
-            _id={PAD._id}
-            PAD={props.PAD}
-            active={props.active}
+            key={PAD?._id}
+            media={PAD?.media}
+            location={PAD?.location}
+            date={PAD?.date}
+            name={PAD?.name}
+            breaf={PAD?.breaf}
+            _id={PAD?._id}
+            PAD={props?.PAD}
+            active={props?.active}
           />
         ))}
       </div>

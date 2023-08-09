@@ -13,15 +13,18 @@ function Card(props) {
   const [green, setGreen] = useState(green1);
 
   useEffect(() => {
-    const resultArray = Items.map(item => item.split('=')[1]);
+    const resultArray = Items.map(item => item?.split('=')[1]);
+
     if (resultArray.includes(props._id)) {
       setGreen(green2);
     } else {
       setGreen(green1);
     }
+    
   }, [Items]);
 
   const handleCartButton = (event) => {
+    // const value = event.target.value
     const value = event.target.getAttribute("data-value");
     dispatch(setDonationItems([value]));
   };
@@ -41,22 +44,27 @@ function Card(props) {
           />
         </div>
       </Link>
+        <div className="
+        flex
+        justify-center   
+        bg-green-700 
+        
+        h-12
+      
+        
+        ">
+            <img 
+            
+            onClick={handleCartButton} 
+          data-value={`${props.PAD}=${props._id}`}
+
+            className="h-8 cursor-pointer 
+            m-2
+            " src={donationIcon} alt="¡Dona a esta causa!" title="¡Dona a esta causa!" />
+
+        </div>
 
       <div className="pt-4">
-        <div className="flex justify-end">
-          <button onClick={handleCartButton} data-value={`${props.PAD}=${props._id}`}>
-            <img className="h-8 cursor-pointer" src={donationIcon} alt="¡Dona a esta causa!" title="¡Dona a esta causa!" />
-          </button>
-          {/* <button onClick={handleSaveButton} id="imageButton">
-              <img
-              data-value={`${props.PAD}=${props._id}`}
-              className="h-8"
-              src={gold1}
-              alt="Save"
-              />
-             </button> */}
-         {/* <h4>{props.date}</h4> */}
-        </div>
 
         <Link to={`/detail/${props.PAD}=${props._id}`}>
           <h5 className="h-14 mt-2 text-xl font-bold font-gobold tracking-tight text-gray-900 dark:text-white">
