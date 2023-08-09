@@ -21,7 +21,7 @@ const Home = () => {
     }, [showBanner]);
 
     return (
-        <div>
+        <div className=' bg-grey'>
             <NavBarAle />
             {showBanner && (
                 <div className="max-w-sm p-3 bg-white border border-gray-200 shadow dark:bg-gray-800 dark:border-gray-700">

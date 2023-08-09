@@ -24,9 +24,9 @@ function Articles() {
   const currentPAD = useSelector(state => state.allArticles)
 
   return (  
-    <div >
+    <div className=' bg-grey'>
       <NavBarAle/>
-      <p className="ml-11 mb-5 mt-2 font-gobold text-justify text-5xl font-semibold text-gray-900 dark:text-white">ARTICULOS</p>
+      <p className="ml-11 mb-5 py-4 mt-2 font-gobold text-justify text-5xl font-semibold text-gray-900 dark:text-white">ARTICULOS</p>
       
       <div className="flex">
     

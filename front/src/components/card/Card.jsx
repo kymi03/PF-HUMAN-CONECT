@@ -44,7 +44,7 @@ function Card(props) {
           />
         </div>
       </Link>
-        <div className="
+        {/* <div className="
         flex
         justify-center   
         bg-green-700 
@@ -62,9 +62,23 @@ function Card(props) {
             m-2
             " src={donationIcon} alt="¡Dona a esta causa!" title="¡Dona a esta causa!" />
 
-        </div>
+        </div> */}
 
       <div className="pt-4">
+        <div className="flex justify-end">
+          <button className=" transition duration-0 ease-in-out hover:bg-vividGreen hover:duration-700 hover:w-full" onClick={handleCartButton} data-value={`${props.PAD}=${props._id}`}>
+            <img className="h-8 cursor-pointer" src={donationIcon} alt="¡Dona a esta causa!" title="¡Dona a esta causa!" />
+          </button>
+          {/* <button onClick={handleSaveButton} id="imageButton">
+              <img
+              data-value={`${props.PAD}=${props._id}`}
+              className="h-8"
+              src={gold1}
+              alt="Save"
+              />
+             </button> */}
+         {/* <h4>{props.date}</h4> */}
+        </div>
 
         <Link to={`/detail/${props.PAD}=${props._id}`}>
           <h5 className="h-14 mt-2 text-xl font-bold font-gobold tracking-tight text-gray-900 dark:text-white">
@@ -80,7 +94,7 @@ function Card(props) {
         <h4 className="font-gobold">{props.location}</h4>
 
         <Link to={`/detail/${props.PAD}=${props._id}`}>
-          <div className="flex justify-center items-center mt-4 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 px-4 py-2 ml-16 mr-16">
+          <div className="flex justify-center items-center mt-4 text-sm font-bold font-gilroy text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 px-4 py-2 ml-16 mr-16">
             Seguir leyendo
             <svg className="w-4 h-5 ml-2" viewBox="0 0 14 10">
               <path
