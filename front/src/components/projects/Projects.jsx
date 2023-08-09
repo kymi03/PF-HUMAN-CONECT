@@ -25,7 +25,7 @@ function Projects() {
   return (  
 <div >
   <NavBarAle/>
-  <p className="ml-11 mb-5 text-justify text-5xl font-semibold text-gray-900 dark:text-white">PROYECTOS</p>
+  <p className="ml-11 mt-2 mb-5 text-justify font-gobold text-5xl font-semibold text-gray-900 dark:text-white">PROYECTOS</p>
   
   <div className="flex">
 

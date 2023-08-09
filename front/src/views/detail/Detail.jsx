@@ -281,7 +281,11 @@ function Detail() {
           </div>
         </div>
       </div>
+<<<<<<< HEAD
       <Footer/>
+=======
+      <Footer />
+>>>>>>> 6f1302a19461498fc0a05ea31a63f59b15ae0a0a
     </div>
   );
 }

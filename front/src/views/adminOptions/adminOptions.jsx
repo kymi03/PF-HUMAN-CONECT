@@ -9,7 +9,7 @@ import { Carousel } from 'flowbite-react';
 import { useSelector } from 'react-redux';
 
 import Donations from '../../components/adminoptions/Donations';
-import Coments from '../../components/useroptions/Coments';
+import Coments  from "../../components/adminoptions/Comentaries"
 import Publications from '../../components/useroptions/Publications';
 import SavedContent from '../../components/useroptions/SavedContent';
 import Settings from '../../components/useroptions/Settings';
@@ -34,7 +34,7 @@ let selectedOption = <></>
     case "VER DONACIONES": 
         selectedOption = <Donations/>
         break;
-    case "COMENTARIOS": 
+    case "VER COMENTARIOS": 
         selectedOption = <Coments/>
         break;
     case "CONTENIDO GUARDADO": 

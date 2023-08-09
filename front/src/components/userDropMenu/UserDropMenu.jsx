@@ -51,11 +51,17 @@ const UserDropManu = () => {
           {User?.name ? `Hola, ${User.name.split(" ")[0]}!` : "Hola, user name!"}
         </button>
 
-        <img
+        {/* <img
           src="https://humanconet.org/wp-content/uploads/2022/09/Anchincaya-Resiste-HC-01-1024x1024.webp"
           alt="Dropdown Menu"
           className="w-16 h-16 rounded-full"
-        />
+        /> */}
+
+<div className="w-14 h-14 rounded-full bg-white flex items-center justify-center overflow-hidden">
+  <h1 className="text-orange-500 font-bold text-7xl mb-4 overflow-hidden whitespace-nowrap">
+    {User.name[0]}
+  </h1>
+</div>
 
       </div>
 
