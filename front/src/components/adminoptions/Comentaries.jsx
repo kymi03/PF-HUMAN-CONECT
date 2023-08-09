@@ -62,7 +62,7 @@ function AdminComentaries(props) {
     try {
       // Eliminación del comentario en la base de datos
       await axios.delete(`http://localhost:3001/comments/?id=${commentId}`);
-      showSnackbar("Comentario eliminado de la base de datos");
+      showSnackbar("Comentario eliminado exitosamente de la base de datos");
       //Actualización de la lista de usuarios
       const updatedComentariesList = comentariesList.filter(
         (comentarie) => comentarie._id !== commentId
