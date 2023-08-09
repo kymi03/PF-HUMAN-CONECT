@@ -37,6 +37,8 @@ const getUserController = async (req, res) => {
             }
         }
         console.log('AQUI',email);
+
+        
         // Buscar al usuario en la base de datos por su correo electrónico
         const userFound = await user.findOne({ email: email });
 

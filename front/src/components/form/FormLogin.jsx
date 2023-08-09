@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import NavBar from "../NavBar/NavBarAle"
 import Footer from "../footer/Footer"
 import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
 import { useDispatch, useSelector } from 'react-redux';
 import { getEmailAuth, getGoogleAuth } from '../../redux/actions';
 import image from '../../assets/icons/google-logo.png'
+import error  from "../../components/errorPage/ErrorPage"
 
 const FormLogin = () => {
   const navigate = useNavigate();
