@@ -276,6 +276,7 @@ function Detail() {
             <CommentDisplay
               comments={comments}
               onDeleteComment={handleDeleteComment}
+              PAD={PAD}
             />
           </div>
         </div>

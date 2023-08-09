@@ -63,71 +63,60 @@ const dispatch = useDispatch()
   };
 
   return (
-    <div className=" 
-   flex h-16 m-3 bg-white border border-gray-200 shadow dark:bg-gray-800 dark:border-gray-700 relative"
+    <div 
+    className=" 
+   flex 
+   h-16 m-3   shadow  relative 
+     text-sm font-medium text-gray-900  bg-white rounded-lg border border-gray-200
+    hover:bg-gray-100 hover:text-blue-700     
+    
+   "
     >
 
 
-<Link to={`/detail/${toActioType}=${props._id}`}>
-      <div 
-      className=" h-16"
-      >
-        <img
-          className="object-cover w-full h-full"
-          src={
+
+
+
+      <Link to={`/detail/${toActioType}=${props._id}`}>
+        <div 
+            className=" h-16"
+            >
+          <img
+            className="object-cover  w-24 h-full rounded-xl "
+            src={
             props.media.images[0]
-              ? props.media.images[0].imageUrl
-              : "https://humanconet.org/wp-content/uploads/2022/09/Anchincaya-Resiste-HC-01-1024x1024.webp"
-          }
-          alt=""
-        />
-      </div>
-</Link>
+            ? props.media.images[0].imageUrl
+            : "https://humanconet.org/wp-content/uploads/2022/09/Anchincaya-Resiste-HC-01-1024x1024.webp"
+            }
+            alt=""
+          />
+        </div>
+      </Link>
 
       <div className="p-5">
-      <div className="absolute top-2 right-2">
-      <button onClick={handleCartButton} id="imageButton">
-          <img
-            data-value={[`${toActioType}=${props._id}`]}
-            className="h-8 "
-            src={green}
-            alt="Add to Cart"
-          />
-        </button>
-
-        {/* <button onClick={handleSaveButton} id="imageButton">
-          <img
-            data-value={`${props.PAD}=${props._id}`}
-            className="h-8"
-            src={gold1}
-            alt="Save"
-          />
-        </button> */}
-  {/* <h4>{props.date}</h4> */}
-</div>
-
-      <Link to={`/detail/${props.PAD}=${props._id}`}>
-        <div 
-        // href={`/detail/${props.PAD}=${props._id}`}
-        >
-          <h5 
-          className=" h-20  break-words mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
-          >
-            {props.name}
-          </h5>
+        <div className="absolute top-2 right-2">
+          <button onClick={handleCartButton} id="imageButton">
+            <img
+              data-value={[`${toActioType}=${props._id}`]}
+              className="h-8 "
+              src={green}
+              alt="Add to Cart"
+            />
+          </button>
         </div>
-        </Link>
-
-        
-
-
-        
-
+        <Link to={`/detail/${toActioType}=${props._id}`}>
+          <div>
+            <h5 
+            className=" h-20  break-words mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+            >
+              {props.name}
+            </h5>
+          </div>
+        </Link>      
+        </div>
+        {/* <h4>{props.location}</h4> */}
+        {/* <h5>{props.breaf}   </h5> */}
       </div>
-            <h4>{props.location}</h4>
-            <h5>{props.breaf}   </h5>
-
-    </div>
   );
 }
 
