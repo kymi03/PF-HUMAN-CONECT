@@ -1,25 +1,24 @@
 const commentModel = require("../../models/comment");
 
 const deleteCommentController = async (req, res) => {
-  const { reference } = req.query;
-
-  if (!reference) {
-    return res
-      .status(400)
-      .json({ message: "Se requiere el ID del comentario." });
-  }
+  const { id } = req.query;
 
   try {
-    const deletedComment = await commentModel.findByIdAndRemove(reference);
-
-    if (!deletedComment) {
-      return res.status(404).json({ message: "Comentario no encontrado." });
+    const deletedComment = await commentModel.deleteOne({ _id: id });
+    if (deletedComment.deletedCount > 0) {
+      res.status(200).json({
+        message: "El comentario ha sido eliminado exitosamente",
+      });
+    } else {
+      res.status(404).json({
+        error: "Comentario no encontrado.",
+      });
     }
-
-    res.status(200).json(deletedComment);
   } catch (error) {
-    console.log(`Error al intentar eliminar el comentario. Error: ${error}`);
-    res.status(500).json({ error });
+    console.error("Error al eliminar el comentario", error);
+    res.status(500).json({
+      error: "Error al eliminar el comentario",
+    });
   }
 };
 
