@@ -19,7 +19,9 @@ import {
   GET_USER_ACTIVE,
   GET_COMMENT_BY_USERID,
   GET_COMMENT_BY_REFERENCE,
-  LOG_OUT_USER_AUTH
+  LOG_OUT_USER_AUTH,
+  GET_CONTENT_BY_COMMENT_REFERENCE
+  
 } from "./actions-types";
 
 const initialState = {
@@ -43,7 +45,9 @@ const initialState = {
 
   userActive: false,
   userComment: [],
-  PADComment: []
+  PADComment: [],
+
+  PADandREFERENCE: []
 };
 
 const reducer = (state = initialState, action) => {
@@ -192,6 +196,12 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         PADComment: action.payload,
+      };
+
+    case GET_CONTENT_BY_COMMENT_REFERENCE:
+      return {
+        ...state,
+        PADandREFERENCE: action.payload,
       };
 
 

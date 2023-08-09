@@ -21,7 +21,8 @@ import {
   POST_COMMENT,
   GET_COMMENT_BY_USERID,
   GET_COMMENT_BY_REFERENCE,
-  LOG_OUT_USER_AUTH
+  LOG_OUT_USER_AUTH,
+  GET_CONTENT_BY_COMMENT_REFERENCE
 } from "./actions-types";
 
 import { PROJECTS, DOCUMENTARYS, ARTICLES } from "../redux/actions-types";
@@ -416,6 +417,57 @@ export const getCommentByReference = (reference) => {
     }
   };
 };
+
+
+
+export const getPadByCommentReference = (references) => {
+  return async function (dispatch) {
+    try {
+      const response1 = await axios.get(`/articles`);
+      const response2 = await axios.get(`/projects`);
+      const response3 = await axios.get(`/documentaries`);
+
+
+      const ArticlesUP = response1.data.map((item) =>         ({ ...item, ContentType: 'ARTICLES'    }));
+      const ProjectsUP = response2.data.map((item) =>         ({ ...item, ContentType: 'PROJECTS'    }));
+      const DocumentarysUP =  response3.data.map((item) => ({ ...item, ContentType: 'DOCUMENTARYS' }));
+    
+
+
+ 
+      const combinedData = [  ...ArticlesUP , ...ProjectsUP , ...DocumentarysUP ];
+      
+      const PADandREFERENCE = []
+
+      references.map(   reference => 
+        PADandREFERENCE.push({
+
+         padInfo : combinedData.find(pad => pad._id === reference.reference),
+        comment: reference
+          
+    })
+
+
+      )
+
+
+      
+      return dispatch({
+
+        type: GET_CONTENT_BY_COMMENT_REFERENCE,
+        payload: PADandREFERENCE,
+
+      });
+    } catch (error) {
+
+      console.log(error.message);
+
+    }
+  };
+};
+
+
+
 
 export const logOutUserAuth = ()=>{
   return async function (dispatch){
