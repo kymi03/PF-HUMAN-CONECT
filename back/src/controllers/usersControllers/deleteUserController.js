@@ -13,8 +13,12 @@ Manifiesto de funciones:
 ===============================================================================================================================
 */
 const user = require("../../models/user");
-const transporter = require("./mailer");
+const mailer = require("./mailer");
 const { ADMIN_EMAIL } = process.env;
+const fs = require('fs');
+const ejs = require('ejs');
+const { errorMonitor } = require("nodemailer/lib/xoauth2");
+
 const deleteUserController = async (req, res) => {
   try {
     const { email } = req.query;
@@ -31,15 +35,26 @@ const deleteUserController = async (req, res) => {
     if (!deletedUser)
       return res.status(404).json({ error: "Usuario no encontrado" });
 
-    await transporter.sendMail({
-      from: `"Human Conet" ${ADMIN_EMAIL}`, // sender address
-      to: email, // list of receivers
-      subject: "Usuario eliminado - Human Conet", // Subject line
-      html: `
-		<h1>Human Conet - Confirmación de eliminación de usuario.</h1>
-		<p>Hola, ${deletedUser.name}. Tu usuario en Human Conet fue eliminado exitosamente.</p>
-		`, // html body
-    });
+
+    fs.readFile(__dirname + 'templateNotifiaction/userDelete.ejs', 'utf8', (err, data) => {
+      if(err) {
+        console.error('Error al leer la plantilla HTML: ', err);
+        return;
+      }
+
+      const template = ejs.render(data, {
+        nombre: deletedUser.name,
+      });
+
+      mailer.sendMail({
+        from: `"Human Conet" ${ADMIN_EMAIL}`, // sender address
+        to: email, // list of receivers
+        subject: "Usuario eliminado - Human Conet", // Subject line
+        html: template, // html body
+      });
+
+    })
+
     return res
       .status(201)
       .json({ status: "Usuario eliminado exitosamente", deletedUser });

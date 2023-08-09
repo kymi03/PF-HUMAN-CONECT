@@ -8,7 +8,7 @@ const UserDropManu = () => {
   const navigate = useNavigate()
   const [isOpen, setIsOpen] = useState(false);
   const [userData, setUserData] = useState();
-  const User = useSelector(state => state.userAuth)
+  const User = useSelector((state) => state.userAuth);
 
   const dropdownRef = useRef(null);
 
@@ -41,10 +41,6 @@ const UserDropManu = () => {
     window.location.reload()
   };
 
-
-
-
-
   return (
     < div className=" z-50" >
       <div className=" flex items-center justify-self-center" ref={dropdownRef}>
@@ -60,12 +56,11 @@ const UserDropManu = () => {
           alt="Dropdown Menu"
           className="w-16 h-16 rounded-full"
         />
+
       </div>
 
       {isOpen && (
-        <div
-          className="absolute  px-2  flex-col mt-2 py-2 bg-white border border-gray-300 rounded shadow"
-        >
+        <div className="absolute  px-2  flex-col mt-2 py-2 bg-white border border-gray-300 rounded shadow">
           <Link
             to="/useroptions"
             className="block   text-gray-800 hover:text-blue-700"
@@ -89,12 +84,10 @@ const UserDropManu = () => {
           >
             Cerrar sesión
           </button>
-
         </div>
       )}
     </div>
   );
 };
-
 
 export default UserDropManu;
