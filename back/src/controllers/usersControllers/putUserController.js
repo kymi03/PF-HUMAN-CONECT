@@ -13,7 +13,7 @@ Manifiesto de funciones:
 ===============================================================================================================================
 */
 const user = require("../../models/user");
-const mailer = require("./mailer");
+const transporter = require("./mailer");
 const { ADMIN_EMAIL } = process.env;
 
 const putUserController = async (req, res) => {
@@ -29,8 +29,7 @@ const putUserController = async (req, res) => {
     }
 
     if (active === false) {
-      
-      await mailer.sendMail({
+      await transporter.sendMail({
         from: `"Human Conet" ${ADMIN_EMAIL}`,
         to: email,
         subject: "Usuario bloqueado - Human Conet",
@@ -39,10 +38,10 @@ const putUserController = async (req, res) => {
             <p>Hola <b>${name}</b>! Lamentamos informarte que tu usuario de Human Conet ha sido bloqueado.</p>
             `,
       });
-      return res.status(200).json({message: "Usuario Bloqueado exitosamente"})
-    }
-    else if (active === true) {
-      
+      return res
+        .status(200)
+        .json({ message: "Usuario Bloqueado exitosamente" });
+    } else if (active === true) {
       await transporter.sendMail({
         from: `"Human Conet" ${ADMIN_EMAIL}`,
         to: email,
@@ -52,7 +51,7 @@ const putUserController = async (req, res) => {
             <p>Hola <b>${name}</b>! Te informamos que tu usuario de Human Conet ha sido desbloqueado.</p>
             `,
       });
-      return res.status(200).json({message:"Usuario Desbloqueado"})
+      return res.status(200).json({ message: "Usuario Desbloqueado" });
     }
 
     await transporter.sendMail({
@@ -66,6 +65,8 @@ const putUserController = async (req, res) => {
     });
     res.status(200).json(putUser);
   } catch (error) {
+    console.log("error", error);
+    console.log("message", error.message);
     res.status(500).json({ error: "Error al actualizar el usuario", error });
   }
 };

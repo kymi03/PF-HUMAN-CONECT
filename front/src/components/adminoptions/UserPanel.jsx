@@ -21,6 +21,7 @@ import { TextField, InputAdornment } from "@mui/material";
 import { Search, Delete } from "@mui/icons-material";
 
 function UserPanel(props) {
+
   const [currentPage, setCurrentPage] = useState(1);
   const usersPerPage = 5;
   const [userList, setUserList] = useState([]);
@@ -69,10 +70,11 @@ function UserPanel(props) {
 
   const handleConfirmationCloseBlockUser = (isActive) => {
     const blockUser = isActive
-      ? setConfirmationBlockUserOpen(false)
-      : setConfirmationBlockUserOpen(true);
+    ? setConfirmationBlockUserOpen(false)
+    : setConfirmationBlockUserOpen(true);
     console.log(blockUser);
     return blockUser;
+    
   };
 
   const handleConfirmationConfirm = async () => {
