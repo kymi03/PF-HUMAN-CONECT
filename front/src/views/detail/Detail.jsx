@@ -113,13 +113,13 @@ function Detail() {
   return (
     <div>
       <NavBarAle></NavBarAle>
-      <div className={styles["header-section"]}>
+      <div className= " flex items-center">
         {/* Lado izquierdo: encabezado */}
-        <h1 className={styles["encabezado"]}>{PAD.title}</h1>
+        <h1 className=" font-gobold text-6xl w-1/2">{PAD.title}</h1>
         {/* Lado derecho: Imagen principal */}
         {uniqueImages.length > 0 && (
           <img
-            className={styles["imagen-principal"]}
+            className=" w-1/2"
             src={
               uniqueImages.length > 1
                 ? uniqueImages[0]
@@ -130,26 +130,15 @@ function Detail() {
         )}
       </div>
 
-      {/* Boton donacion */}
-      <div className={styles["boton-section"]}>
-        <button onClick={handleCartButton} id="imageButton">
-          <img
-            data-value={[id]}
-            className="h-8 "
-            src={green}
-            alt="Add to Cart"
-          />
-        </button>
-      </div>
 
       {/* Texto Body y se muestra la 2 imagen */}
-      <div className={styles["content-section"]}>
+      <div className=" flex flex-row-reverse">
         {/* Columna izquierda (texto) */}
-        <div className={styles["content-section-left"]}>
+        <div className=" font-gilroy w-1/2 px-10 self-center text-justify">
           <p>{PAD.body}</p>
         </div>
         {/* Columna derecha (imágenes adicionales) */}
-        <div className={styles["content-section-right"]}>
+        <div className=" w-1/2">
           {/* Nivel 3: Imágenes adicionales */}
           {uniqueImages.length > 1 && (
             <div className={styles["image-container"]}>
@@ -165,13 +154,13 @@ function Detail() {
       </div>
 
       {/* Texto Body2 y se muestra la 3 imagen */}
-      <div className={styles["content-section2"]}>
+      <div className=" flex">
         {/* Columna izquierda (texto) */}
-        <div className={styles["content-section-left"]}>
+        <div className="font-gilroy w-1/2 px-10 self-center text-justify">
           <p>{PAD.body2}</p>
         </div>
         {/* Columna derecha (imágenes adicionales) */}
-        <div className={styles["content-section-right"]}>
+        <div className=" w-1/2">
           {/* Nivel 3: Imágenes adicionales */}
           {uniqueImages.length > 2 && (
             <div className={styles["image-container"]}>
@@ -187,7 +176,7 @@ function Detail() {
       </div>
 
       {/* Muestra el primer video */}
-      <div className={styles["video-container1"]}></div>
+      <div className=" flex justify-center mt-8"></div>
       {uniqueVideos[0] ? (
         <div className={styles["video-responsive"]}>
           {/* Renderiza el video utilizando <iframe> */}
@@ -224,7 +213,7 @@ function Detail() {
       ) : null}
 
       {/* Body3 */}
-      <div className={styles["content-body3"]}>
+      <div className="font-gilroy px-20 py-20 self-center text-justify">
         <p>{PAD.body3}</p>
       </div>
 
@@ -264,10 +253,21 @@ function Detail() {
           {/* {console.log(uniqueVideos[0], "video")}; */}
         </div>
       ) : null}
+      {/* Boton donacion */}
+      <div className=" font-gobold text-lg border-2 border-vividGreen px-4 py-2 text-white bg-vividGreen rounded hover:bg-white hover:text-vividGreen transition duration-300">
+        <button onClick={handleCartButton} id="imageButton"> DONA A ESTA CAUSA
+          {/* <img
+            data-value={[id]}
+            className="h-8 "
+            src={green}
+            alt="Add to Cart" */}
+          {/* /> */}
+        </button>
+      </div>
 
       {/* Comentarios de usuarios */}
       <div className="container mx-auto py-8">
-        <h1 className="text-3xl font-semibold text-center mb-6">Comentarios</h1>
+        <h1 className="text-3xl font-semibold text-center mb-6 font-gilroy">Comentarios</h1>
         <div className="flex flex-col md:flex-row md:space-x-4">
           <div className="w-full md:w-1/3">
             <CommentForm onCommentSubmit={handleCommentSubmit} PAD={PAD} />

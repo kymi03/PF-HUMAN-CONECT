@@ -163,14 +163,14 @@ const FormJoin = () => {
       <div>
         <div className=" flex justify-center items-center my-5 h-5/6 w-full">
           <div className=" mx-2 md:w-3/6">
-            <h5 className=" pt-5 font-poppins font-semibold text-center">
+            <h5 className=" pt-5 font-gobold text-lg font-semibold text-center">
               Registrate en un nuestra red
             </h5>
             <form onSubmit={hdrJoinSubmit} className=" p-2">
               <div className=" flex flex-row">
                 <input
                   type="text"
-                  className=" border border-gray-300 rounded px-4 py-2 m-1 w-1/2 h-9"
+                  className=" placeholder:font-gilroy border border-gray-300 rounded px-4 py-2 m-1 w-1/2 h-9"
                   placeholder="Nombre"
                   name="name"
                   value={userData.name}
@@ -178,7 +178,7 @@ const FormJoin = () => {
                 />
                 <input
                   type="text"
-                  className=" border border-gray-300 rounded px-4 py-2 m-1 w-1/2 h-9"
+                  className=" border border-gray-300 placeholder:font-gilroy rounded px-4 py-2 m-1 w-1/2 h-9"
                   placeholder="Apellido"
                   name="lastName"
                   value={userData.lastName}
@@ -190,7 +190,7 @@ const FormJoin = () => {
               <div className="flex flex-col">
                 <input
                   type="text"
-                  className=" border border-gray-300 rounded px-4 py-2 m-1 w-100 h-9"
+                  className=" border placeholder:font-gilroy border-gray-300 rounded px-4 py-2 m-1 w-100 h-9"
                   placeholder="Correo electronico"
                   name="email"
                   value={userData.email}
@@ -199,7 +199,7 @@ const FormJoin = () => {
                 {errors.email && <p className=" text-red-600 mb-2">{errors.email}</p>}
                 <input
                   type="text"
-                  className=" border border-gray-300 rounded px-4 py-2 m-1 w-100 h-9"
+                  className=" border placeholder:font-gilroy border-gray-300 rounded px-4 py-2 m-1 w-100 h-9"
                   placeholder="Teléfono"
                   name="phone"
                   value={userData.phone}
@@ -210,7 +210,7 @@ const FormJoin = () => {
               <div className=" flex flex-row">
                 <input
                   type="password"
-                  className=" border border-gray-300 rounded px-4 py-2 m-1 w-1/2 h-9"
+                  className=" border placeholder:font-gilroy border-gray-300 rounded px-4 py-2 m-1 w-1/2 h-9"
                   placeholder="Contraseña"
                   name="password"
                   value={userData.password}
@@ -218,7 +218,7 @@ const FormJoin = () => {
                 />
                 <input
                   type="password"
-                  className=" border border-gray-300 rounded px-4 py-2 m-1 w-1/2 h-9"
+                  className=" border placeholder:font-gilroy border-gray-300 rounded px-4 py-2 m-1 w-1/2 h-9"
                   placeholder="Confirmar contraseña"
                   name="confirmPassword"
                   value={userData.confirmPassword}
@@ -231,19 +231,19 @@ const FormJoin = () => {
               </div>
               <button
                 type="submit"
-                className=" bg-vividGreen text-white font-medium text-lg py-2 px-4 rounded-xl hover:bg-green-600 w-full mt-4"
+                className=" font-gilroy font-medium bg-vividGreen text-white text-lg py-2 px-4 rounded-xl hover:bg-green-600 w-full mt-4"
               >
                 Registrate
               </button>
               <div className="flex items-center justify-center mb-1">
                 <hr className="h-1 my-8 w-20 bg-gray-400 rounded-lg" />
-                <span className="px-1 font-normal text-gray-900 mx-4">or</span>
+                <span className="px-1 font-normal text-gray-900 mx-4">o</span>
                 <hr className="h-1 my-8 w-20 bg-gray-400 rounded-lg" />
               </div>
 
-              <button onClick={hdrJoinGoogleSubmit} className=" bg-white mb-3 border py-2 w-full rounded-xl flex justify-center items-center text-lg mt-1" > <img src={image} className=" h-6 w-6" /> Registrarse con Google
+              <button onClick={hdrJoinGoogleSubmit} className=" font-gilroy bg-white mb-3 border py-2 w-full rounded-xl flex justify-center items-center text-lg mt-1" > <img src={image} className=" h-6 w-6" /> Registrarse con Google
               </button>
-              <p className=" text-center mt-4">
+              <p className=" text-center mt-4 font-gilroy">
                 Ya tienes una cuenta?{" "}
                 <Link to={"/formlogin"} className=" text-blue-900 underline">
                   Iniciar sesión
@@ -253,6 +253,7 @@ const FormJoin = () => {
           </div>
           <div>
             <img
+            className=" rounded-3xl"
               src="https://humanconet.org/wp-content/uploads/2022/09/Cover-Home-Human-Conet-01-1-1536x780.webp"
               alt=""
             />
