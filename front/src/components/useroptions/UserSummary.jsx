@@ -119,7 +119,7 @@ const getComments = async (id) => {
           </div>
         ))}
 
-        <h2>Total donado: {getTotalDonationAmount()}</h2>
+        <h2 >Total donado: {getTotalDonationAmount()}</h2>
     
     </div>
 
