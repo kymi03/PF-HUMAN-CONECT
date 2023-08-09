@@ -53,7 +53,7 @@ function Settings(props) {
     try {
 
        // Eliminación del usuario en la base de datos
-    await axios.delete(`http://localhost:3001/${source}?id=${value}`);
+    await axios.delete(`/${source}?id=${value}`);
     showSnackbar("Contenido eliminado de la base de datos")
 
     navigate(`/${source}`);
@@ -94,7 +94,7 @@ const handleUpdateData = async (event) => {
     
 console.log(User.id);
  try {
-      const response = await axios.put(`http://localhost:3001/user` ,   
+      const response = await axios.put(`/user` ,   
    {
      "id":User.id ,
      [content]:contentValue

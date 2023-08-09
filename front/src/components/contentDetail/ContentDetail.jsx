@@ -69,7 +69,7 @@ function ContentDetail() {
     const getComments = async (id) => {
       try {
         const response = await axios.get(
-          `http://localhost:3001/comments?postReference=${id}`
+          `/comments?postReference=${id}`
         );
         setComments(response.data);
       } catch (error) {
@@ -106,7 +106,7 @@ function ContentDetail() {
     //
     try {
       // Eliminación del usuario en la base de datos
-      await axios.delete(`http://localhost:3001/${source}?id=${value}`);
+      await axios.delete(`/${source}?id=${value}`);
       showSnackbar("Contenido eliminado de la base de datos");
 
       navigate(`/${source}`);
@@ -129,7 +129,7 @@ function ContentDetail() {
     console.log("content:", editContent);
 
     try {
-      const response = await axios.put(`http://localhost:3001/${source}`, {
+      const response = await axios.put(`/${source}`, {
         id: value,
         [content]: contentValue,
       });
@@ -145,7 +145,7 @@ function ContentDetail() {
   const handleUpdateActive = async (event) => {
     isActive === false ? setIsActive(true) : setIsActive(false);
     try {
-      const response = await axios.put(`http://localhost:3001/${source}`, {
+      const response = await axios.put(`/${source}`, {
         id: value,
         active: isActive === false ? true : false,
       });
@@ -154,7 +154,7 @@ function ContentDetail() {
     } catch (error) {
       console.log("Error al realizar la actualizacion:", error);
     }
-    // console.log(`http://localhost:3001/${source}` ,       {
+    // console.log(`/${source}` ,       {
     //   "id": value ,
     //   "active": isActive
     //   }

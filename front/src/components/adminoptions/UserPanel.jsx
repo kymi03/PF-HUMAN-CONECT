@@ -37,7 +37,7 @@ function UserPanel(props) {
   useEffect(() => {
     const usersData = async () => {
       try {
-        const response = await axios.get("http://localhost:3001/user/all");
+        const response = await axios.get("/user/all");
         const users = response.data;
         setUserList(users); // Actualizar el estado userList con los datos obtenidos
         const initialIsActive = users.some((user) => user.active);
@@ -81,7 +81,7 @@ function UserPanel(props) {
 
     try {
       // Eliminación del usuario en la base de datos
-      await axios.delete(`http://localhost:3001/user/?email=${emailToDelete}`);
+      await axios.delete(`/user/?email=${emailToDelete}`);
       showSnackbar("Usuario eliminado de la base de datos");
       // Actualización de la lista de usuarios
       const updatedUserList = userList.filter(
@@ -100,13 +100,13 @@ function UserPanel(props) {
 
     try {
       const response = await axios.get(
-        `http://localhost:3001/user/all?email=${emailToBlock}`
+        `/user/all?email=${emailToBlock}`
       );
       const user = response.data;
       user.active ? setIsActive(false) : setIsActive(true);
       console.log(user.active);
 
-      const updateUserState = await axios.put(`http://localhost:3001/user`, {
+      const updateUserState = await axios.put(`/user`, {
         id: user._id,
         active: !user.active,
         email: user.email,

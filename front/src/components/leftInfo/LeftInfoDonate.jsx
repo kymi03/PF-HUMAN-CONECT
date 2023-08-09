@@ -21,11 +21,11 @@ const User = useSelector(state => state.userAuth)
   const sendChart = async (chart) => {
     if (unitPrice < 500) return;
     try {
-      console.log(`http://localhost:3001/payments?userID=${User._id || User.id }`);
+      console.log(`/payments?userID=${User._id || User.id }`);
       // console.log({ items: chart });
       // console.log( items.chart );
       const data = await axios
-        .post(`http://localhost:3001/payments?userID=${User._id || User.id }`, { items: chart })
+        .post(`/payments?userID=${User._id || User.id }`, { items: chart })
         .then((res) => {
           return res.data;
         });

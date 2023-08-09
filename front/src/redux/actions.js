@@ -327,7 +327,7 @@ export const getAdminOption = (option) => {
 export const getUserList = () => {
   return async function (dispatch) {
     try {
-      const response = await axios.get("http://localhost:3001/user");
+      const response = await axios.get("/user");
       console.log(response);
       return dispatch({
         type: GET_USER_LIST,
@@ -389,7 +389,7 @@ export function postComment({comment, userID, reference}) {
 export const getComment = () => {
   return async function (dispatch) {
     try {
-      const response = await axios.get("http://localhost:3001/comments");
+      const response = await axios.get("/comments");
       console.log(response);
       return dispatch({
         type: GET_COMMENT,
