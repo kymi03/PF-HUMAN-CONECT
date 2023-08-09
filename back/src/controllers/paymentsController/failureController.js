@@ -4,6 +4,7 @@ const { ADMIN_EMAIL } = process.env;
 const fs = require('fs');
 const ejs = require('ejs');
 
+
 const failureController = async (req, res) => {
   //EMAIL DE INFORMAR AL USUARIO DE FALLO DE DONACION
   const { preference_id } = req.query;

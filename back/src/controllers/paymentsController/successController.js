@@ -19,7 +19,7 @@ console.log('donation' , donation);
   const { email } = donation.owner;
   console.log('email' , email);
 
-   fs.readFile(__dirname + '../usersControllers/templateNotification/acceptedPayment.ejs', 'utf8', (err, data) => {
+   fs.readFile(__dirname + 'usersControllers/templateNotification/acceptedPayment.ejs', 'utf8', (err, data) => {
 
       if (err) {
         console.error('Error al leer la plantilla HTML:', err);
