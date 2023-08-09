@@ -56,6 +56,7 @@ const UserDropManu = () => {
           alt="Dropdown Menu"
           className="w-16 h-16 rounded-full"
         />
+
       </div>
 
       {isOpen && (
