@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 function LeftInfoAdmin(props) {
 const dispatch = useDispatch()
+const user = useSelector(state => state.userAuth)
     
 
 
@@ -26,7 +27,7 @@ const dispatch = useDispatch()
 
     
   <img src="https://humanconet.org/wp-content/uploads/2022/05/Tigre-1024x522.webp" alt="" />
-  <h1 style={{marginTop: "40px", fontSize:"30px", fontFamily: "fantasy"} }>Makarena Nazar</h1>
+  <h1 style={{marginTop: "40px", fontSize:"30px", fontFamily: "fantasy"} }>{user.name ? user.name : 'user name'}</h1>
 
       <div className=" p-11">
 
