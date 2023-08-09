@@ -27,7 +27,12 @@ const getUserController = async (req, res) => {
          
         if(token!=undefined){
             const tokenVerifier = await admin.auth().verifyIdToken(token)//se decodifica el token para verificar autenticamente de firebase
-            const userFound = await user.findOne({email: uemail});          
+            const userFound = await user.findOne({email: uemail}); 
+            
+            if (!userFound.active && uemail !== undefined) {
+                return res.status(403).json({ error: 'Usuario bloqueado. No puede iniciar sesión.' });
+            }
+            
             // una vez verificado,se chequea si el email coincide con el email del token de firebase
             if(userFound==undefined){
                 return res.status(404).json({error:"Registre su email para poder loguearse"})
@@ -37,8 +42,18 @@ const getUserController = async (req, res) => {
             }
         }
         console.log('AQUI',email);
+
+        
+        
+        
+        
         // Buscar al usuario en la base de datos por su correo electrónico
         const userFound = await user.findOne({ email: email });
+
+
+        if (!userFound.active && userFound !== undefined) {
+            return res.status(403).json({ error: 'Usuario bloqueado. No puede iniciar sesión.' });
+        }
 
         const passwordCorrect = user === null
         ? false

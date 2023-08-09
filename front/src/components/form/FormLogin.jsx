@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import NavBar from "../NavBar/NavBarAle"
 import Footer from "../footer/Footer"
 import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
 import { useDispatch, useSelector } from 'react-redux';
 import { getEmailAuth, getGoogleAuth } from '../../redux/actions';
 import image from '../../assets/icons/google-logo.png'
+
 
 const FormLogin = () => {
   const navigate = useNavigate();
@@ -19,19 +20,19 @@ const FormLogin = () => {
   const auth = getAuth()
   const googleProvider = new GoogleAuthProvider()
 
-  const hdrJoinSubmit = (event) => {
+  const hdrJoinSubmit = async (event) => {
     event.preventDefault();
     if (
       userData?.email == "" ||
       userData?.password == ""
     )
     return Swal.fire("Complete todos los campos");
-    dispatch(getEmailAuth({email:userData.email, password:userData.password}))
-    setUserData({
-      email: "",
-      password: "",
-    });
-
+      
+      dispatch(getEmailAuth({email:userData.email, password:userData.password}))
+      setUserData({
+        email: "",
+        password: "",
+      });
   };
 
 
@@ -63,8 +64,6 @@ const FormLogin = () => {
   // }  
 
   const loginWithGoogle = ()=>{
-    console.log('nuevo clg');
-
     signInWithPopup(auth, googleProvider)
     .then((result)=>{
       const credential = GoogleAuthProvider.credentialFromResult(result)
@@ -82,6 +81,8 @@ const FormLogin = () => {
       const credential = GoogleAuthProvider.credentialFromError(error);
     })
   }
+
+  
 
   return (
     <div className="">
@@ -129,7 +130,7 @@ const FormLogin = () => {
       </div>
       <Footer />
     </div>
-  )
+  ) 
 }
 
 export default FormLogin

@@ -3,7 +3,7 @@ const commentModel = require("../../models/comment");
 const postCommentsController = async (req, res) => {
   const { comment } = req.body;
   const { userID, reference } = req.query;
-  console.log("aqui", comment, userID);
+  // console.log("aqui", comment, userID);
   if (!userID || !reference)
     return res
       .status(400)

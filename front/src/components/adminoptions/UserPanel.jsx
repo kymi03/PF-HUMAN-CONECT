@@ -21,6 +21,7 @@ import { TextField, InputAdornment } from "@mui/material";
 import { Search, Delete } from "@mui/icons-material";
 
 function UserPanel(props) {
+
   const [currentPage, setCurrentPage] = useState(1);
   const usersPerPage = 5;
   const [userList, setUserList] = useState([]);
@@ -40,8 +41,6 @@ function UserPanel(props) {
         const response = await axios.get("http://localhost:3001/user/all");
         const users = response.data;
         setUserList(users); // Actualizar el estado userList con los datos obtenidos
-        const initialIsActive = users.some((user) => user.active);
-        setIsActive(initialIsActive);
       } catch (error) {
         // Manejo de errores (opcional)
         console.error("Error al obtener los usuarios:", error);
@@ -56,10 +55,11 @@ function UserPanel(props) {
     setCurrentUserEmail(email);
     setConfirmationOpen(true);
   };
-
-  const handleToogleBlockUser = (index, email) => {
+  
+  const handleToogleBlockUser = (index, email, active) => {
+    setIsActive (active)
     setSelectedUserIndex(index);
-    setCurrentUserEmail(email);
+    setCurrentUserEmail(email); 
     setConfirmationBlockUserOpen(true);
   };
 
@@ -69,10 +69,11 @@ function UserPanel(props) {
 
   const handleConfirmationCloseBlockUser = (isActive) => {
     const blockUser = isActive
-      ? setConfirmationBlockUserOpen(false)
-      : setConfirmationBlockUserOpen(true);
+    ? setConfirmationBlockUserOpen(false)
+    : setConfirmationBlockUserOpen(true);
     console.log(blockUser);
     return blockUser;
+    
   };
 
   const handleConfirmationConfirm = async () => {
