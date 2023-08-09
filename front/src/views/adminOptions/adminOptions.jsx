@@ -65,7 +65,7 @@ let selectedOption = <></>
             <div>
                 <NavBarAle />
                 
-                <p className="ml-11 mb-5 text-justify text-5xl font-semibold text-gray-900 dark:text-white">HOLA, {User.name}</p>
+                <p className="ml-11 text-justify text-5xl font-gobold text-gray-900 dark:text-white" style={{marginTop:"15px"}}>Hola, {User.name}</p>
                 <div className=" flex ">
                     <div className=' w-1/5 h-3/5  ml-11 mr-11'>
                         <LeftInfoAdmin />

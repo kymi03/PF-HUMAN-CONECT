@@ -9,6 +9,7 @@ export default {
       keppel: '#2DA5AB',
       keppel600: '#298791',
       keppel700: '#276e77',
+      blueGrey: "#C0C5C8"
     },
     fontFamily: {
       'gilroy': ['Gilroy', 'sans-serif'],

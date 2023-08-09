@@ -113,7 +113,7 @@ function AdminComentaries(props) {
       const { _id, author, body } = comentarie;
 
       const isEvenRow = index % 2 === 0;
-      const rowBackground = isEvenRow ? "#E7DDC7" : "#F3F3F7";
+      const rowBackground = isEvenRow ? "#C0C5C8" : "#F3F3F7";
 
       return (
         <TableRow key={index} style={{ backgroundColor: rowBackground }}>
@@ -148,13 +148,13 @@ function AdminComentaries(props) {
   return (
     <div
       style={{
-        marginLeft: "200px",
-        marginTop: "40px",
-        marginBottom: "250px",
-        backgroundColor: "#A29F83",
+        marginLeft: "15px",
+        marginTop: "75px",
+        marginBottom: "55px",
+        backgroundColor: "#B1B9BF",
         border: "2px solid",
         borderColor: "grey",
-        borderRadius: "5px",
+        borderRadius: "10px",
       }}
     >
       <TextField
@@ -178,7 +178,7 @@ function AdminComentaries(props) {
         }}
       />
       <Table>
-        <TableHead style={{ marginTop: "15px", backgroundColor: "#B2AE8C" }}>
+        <TableHead style={{ marginTop: "15px", backgroundColor: "#F3F3F7" }}>
           <TableRow>
 
           <TableCell style={{ color: "#000000", fontSize: "15px" }}>
