@@ -51,7 +51,7 @@ function LeftInfoHome() {
     //Usage in the JSX component
     const options = generateOptions(locations)
   return (
-    <div className='h-screen overflow-hidden'>
+    <div className=' h-screen mb-4'>
       <div className="grid grid-cols-10 gap-5 bg-grey h-full pb-48 pt-5"> 
         <div className="col-span-3 bg-white rounded-2xl shadow-xl mr-4 ml-4"> 
           {/* <h2 className="text-6xl text-left px-4 pt-4 font-gilroy font-bold mb-4">Somos </h2> */}

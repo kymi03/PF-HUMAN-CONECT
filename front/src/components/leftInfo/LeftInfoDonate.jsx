@@ -8,6 +8,8 @@ import {
   PROJECTS , DOCUMENTARYS , ARTICLES
   } from "../../redux/actions-types";
 import axios from 'axios';
+import { AiFillInstagram, AiFillYoutube } from 'react-icons/ai';
+import { BsTwitter } from 'react-icons/bs';
 function LeftInfoDonate(props) {
 
     const dispatch = useDispatch()
@@ -74,25 +76,26 @@ const User = useSelector(state => state.userAuth)
     
   return (
 
-    <div className="max-w-sm p-3  bg-white border border-gray-200 shadow dark:bg-gray-800 dark:border-gray-700"
+    <div className="max-w-sm p-3 rounded-xl bg-white border border-gray-200 shadow dark:bg-gray-800 dark:border-gray-700"
     >
 
       <form>
-          <h1>Realiza tu donativo.</h1>
+          <h1 className=' font-gilroy font-bold py-1'>Realiza tu donativo.</h1>
 
-          <label> Tu donación: </label>
+          <label className=' font-gilroy'> Tu donación: </label>
+          <div className=' py-1'>
           <input
             type="number"
             min={1500}
-            className=' placeholder:font-gilroy placeholder:italic'
             placeholder="Donacion Minima 1500"
             onChange={handleChange}
-            className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+            className=" placeholder:font-gilroy py-3 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
             />
+          </div>
             {/* <label>$ Pesos colombianos</label> */}
       </form>
         <button 
-            className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+            className="py-2.5 px-5 mr-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-vividGreen focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
         onClick={() => sendChart(chart)}> DONAR ♥ </button>
 
 
@@ -117,7 +120,7 @@ const User = useSelector(state => state.userAuth)
     </div>
     <div className="flex mt-4 space-x-5 sm:justify-center md:mt-0">
           
-          <button href="https://www.instagram.com/humanconet.es/?hl=fr" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-gray-900 dark:hover:text-white">
+          {/* <button href="https://www.instagram.com/humanconet.es/?hl=fr" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-red-700 dark:hover:text-white">
             <svg className="w-7 h-7" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 8 19">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="35px" height="35px">
                 <path d="M 16 3 C 8.8324839 3 3 8.8324839 3 16 L 3 34 C 3 41.167516 8.8324839 47 16 47 L 34 47 C 41.167516 47 47 41.167516 47 34 L 47 16 C 47 8.8324839 41.167516 3 34 3 L 16 3 z M 16 5 L 34 5 C 40.086484 5 45 9.9135161 45 16 L 45 34 C 45 40.086484 40.086484 45 34 45 L 16 45 C 9.9135161 45 5 40.086484 5 34 L 5 16 C 5 9.9135161 9.9135161 5 16 5 z M 37 11 A 2 2 0 0 0 35 13 A 2 2 0 0 0 37 15 A 2 2 0 0 0 39 13 A 2 2 0 0 0 37 11 z M 25 14 C 18.936712 14 14 18.936712 14 25 C 14 31.063288 18.936712 36 25 36 C 31.063288 36 36 31.063288 36 25 C 36 18.936712 31.063288 14 25 14 z M 25 16 C 29.982407 16 34 20.017593 34 25 C 34 29.982407 29.982407 34 25 34 C 20.017593 34 16 29.982407 16 25 C 16 20.017593 20.017593 16 25 16 z" />
@@ -142,7 +145,22 @@ const User = useSelector(state => state.userAuth)
               </svg>
             </svg>
             <span className="sr-only">YouTube page</span>
-          </button>
+          </button> */}
+
+<Link to="https://www.instagram.com/humanconet.es/?hl=fr" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-red-700 dark:hover:text-white">
+              <AiFillInstagram className="w-7 h-7" />
+              <span className="sr-only">Instagram page</span>
+            </Link>
+
+            <Link to="https://twitter.com/Human_Conet" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-red-700 dark:hover:text-white">
+              <BsTwitter className="w-7 h-7" />
+              <span className="sr-only">Twitter page</span>
+           </Link>
+
+           <Link to="https://www.youtube.com/channel/UCUSeWaaZ5-T3NIEIFBiccwA" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-red-700 dark:hover:text-white">
+              <AiFillYoutube className="w-8 h-8" />
+              <span className="sr-only">YouTube page</span>
+           </Link>
 
    </div>
 
