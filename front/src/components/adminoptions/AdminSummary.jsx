@@ -23,7 +23,9 @@ dispatch(getSearchPADByQuery('' , '' , DOCUMENTARYS))
 dispatch(getSearchPADByQuery('' , '' , ARTICLES    ))
 
   } , [ 
-
+        // allProjects     , 
+        // allArticles     ,
+        // allDocumentarys ,
       ])
 
 

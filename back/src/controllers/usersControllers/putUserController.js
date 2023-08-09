@@ -13,7 +13,7 @@ Manifiesto de funciones:
 ===============================================================================================================================
 */
 const user = require("../../models/user");
-const transporter = require("./mailer");
+const mailer = require("./mailer");
 const { ADMIN_EMAIL } = process.env;
 
 const putUserController = async (req, res) => {
@@ -30,7 +30,7 @@ const putUserController = async (req, res) => {
 
     if (active === false) {
       
-      await transporter.sendMail({
+      await mailer.sendMail({
         from: `"Human Conet" ${ADMIN_EMAIL}`,
         to: email,
         subject: "Usuario bloqueado - Human Conet",
@@ -52,7 +52,7 @@ const putUserController = async (req, res) => {
             <p>Hola <b>${name}</b>! Te informamos que tu usuario de Human Conet ha sido desbloqueado.</p>
             `,
       });
-      return res.status(200).json({message:"Usuario Desbloquado"})
+      return res.status(200).json({message:"Usuario Desbloqueado"})
     }
 
     await transporter.sendMail({
