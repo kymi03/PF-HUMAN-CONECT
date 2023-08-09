@@ -10,7 +10,7 @@ const CommentForm = ({ onCommentSubmit, PAD }) => {
   const [name, setName] = useState(User.name);
   const [comment, setComment] = useState("");
   const [rating, setRating] = useState(0);
-  const userID = User._id
+  const userID = User._id || User.id
   const reference = PAD._id
 
   const handleNameChange = (e) => {

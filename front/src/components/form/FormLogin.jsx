@@ -64,8 +64,6 @@ const FormLogin = () => {
   // }  
 
   const loginWithGoogle = ()=>{
-    console.log('nuevo clg');
-
     signInWithPopup(auth, googleProvider)
     .then((result)=>{
       const credential = GoogleAuthProvider.credentialFromResult(result)
