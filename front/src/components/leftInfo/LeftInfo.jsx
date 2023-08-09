@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import {AiFillYoutube, AiFillInstagram } from 'react-icons/ai';
 import {BsTwitter} from 'react-icons/bs';
+import humanLogo from '../../assets/icons/HumanLogoRojo.png'
 import { getSearchPADByQuery, getAllLocations, orderByDate  } from '../../redux/actions'
 import { useDispatch, useSelector } from 'react-redux'
 import { Dropdown } from 'flowbite-react';
@@ -99,12 +100,10 @@ const generateOptions = (options) => {
 
     <div className="max-w-sm p-3 bg-white rounded-xl shadow-xl">
 
-        <button href="#">
-            <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Esto es Human Conet:</h5>
-        </button>
+        <img src={humanLogo} className='h-16 mx-auto my-8'/>
 
 
-        <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">De los territorios a las ciudades, visibilizamos las luchas y acompañamos los procesos que protegen la vida en todas sus formas.
+        <p className="mb-3 font-normal font-gilroy text-gray-700 dark:text-gray-400">De los territorios a las ciudades, visibilizamos las luchas y acompañamos los procesos que protegen la vida en todas sus formas.
         Conoce nuestras acciones contadas por las comunidade </p>
 
 
@@ -137,11 +136,11 @@ const generateOptions = (options) => {
         </div>
 </form>
 
-    <select name="sort" onInput={handleSelectLocation}  type="select" className="w-44 mt-3 py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
+    <select name="sort" onInput={handleSelectLocation}  type="select" className="w-44 mt-3 py-2.5 px-5 text-sm font-medium font-gilroy text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-red-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
         {options}
     </select>
 
-        <select name="sort" onInput={handleOrder} type="select" className=" w-44 mt-3 py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
+        <select name="sort" onInput={handleOrder} type="select" className=" w-44 mt-3 py-2.5 px-5 text-sm font-medium font-gilroy text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-red-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
           {/* <option value="dateAll">Todos</option> */}
           <option value="dateAsc">Más Reciente</option>
           <option value="dateDes">Más Antiguo</option>
@@ -152,28 +151,28 @@ const generateOptions = (options) => {
 
     <div className="flex justify-center p-5">
     <Link to={`/formjoin`}>
-    <button type="button" className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">UNETE</button>
+    <button type="button" className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium font-gobold text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-red-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">UNETE</button>
     </Link>
 
     <Link to={`/donar`}>
-    <button type="button" className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">DONA</button>
+    <button type="button" className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium font-gobold text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-red-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">DONA</button>
     </Link>
     </div>
 
         <div className="flex mt-4 space-x-5 sm:justify-center md:mt-0">
 
 
-            <Link to="https://www.instagram.com/humanconet.es/?hl=fr" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-gray-900 dark:hover:text-white">
+            <Link to="https://www.instagram.com/humanconet.es/?hl=fr" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-red-700 dark:hover:text-white">
               <AiFillInstagram className="w-7 h-7" />
               <span className="sr-only">Instagram page</span>
             </Link>
 
-            <Link to="https://twitter.com/Human_Conet" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-gray-900 dark:hover:text-white">
+            <Link to="https://twitter.com/Human_Conet" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-red-700 dark:hover:text-white">
               <BsTwitter className="w-7 h-7" />
               <span className="sr-only">Twitter page</span>
            </Link>
 
-           <Link to="https://www.youtube.com/channel/UCUSeWaaZ5-T3NIEIFBiccwA" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-gray-900 dark:hover:text-white">
+           <Link to="https://www.youtube.com/channel/UCUSeWaaZ5-T3NIEIFBiccwA" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-red-700 dark:hover:text-white">
               <AiFillYoutube className="w-8 h-8" />
               <span className="sr-only">YouTube page</span>
            </Link>
