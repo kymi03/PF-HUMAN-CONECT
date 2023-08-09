@@ -25,6 +25,7 @@ import {
   getAuth,
 } from "./redux/actions";
 import FailureDonar from "./components/donarComponents/FailureDonar";
+import AgradecimientoDonar from "./components/donarComponents/AgradecimientoDonar";
 
 function App() {
   const dispatch = useDispatch();
@@ -86,6 +87,7 @@ function App() {
         <Route path="/adminoptions" element={<AdminOptions />} />
         <Route path="/ContentDetail/:id" element={<ContentDetail />} />
         <Route path="/rechazado" element={<FailureDonar />} />
+        <Route path="/agradecimiento" element={<AgradecimientoDonar />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </div>

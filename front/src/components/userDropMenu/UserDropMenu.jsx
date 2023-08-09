@@ -58,7 +58,7 @@ const UserDropManu = () => {
         /> */}
 
 <div className="w-14 h-14 rounded-full bg-white flex items-center justify-center overflow-hidden">
-  <h1 className="text-orange-500 font-bold text-7xl mb-4 overflow-hidden whitespace-nowrap">
+  <h1 className="text-orange-500 font-bold text-5xl ">
     {User.name[0]}
   </h1>
 </div>
