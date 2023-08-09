@@ -17,7 +17,9 @@ import {
   GET_AUTH,
   GET_USER_LIST,
   GET_USER_ACTIVE,
-  GET_COMMENT,
+  GET_COMMENT_BY_USERID,
+  GET_COMMENT_BY_REFERENCE,
+  LOG_OUT_USER_AUTH
 } from "./actions-types";
 
 const initialState = {
@@ -40,7 +42,8 @@ const initialState = {
   ItemsDonation: [],
 
   userActive: false,
-  commentBody: [],
+  userComment: [],
+  PADComment: []
 };
 
 const reducer = (state = initialState, action) => {
@@ -86,6 +89,10 @@ const reducer = (state = initialState, action) => {
         ...state,
         userOption: action.payload,
       };
+    case LOG_OUT_USER_AUTH:
+      return{
+        userAuth:[]
+      }
 
     case ORDER_BY_DATE:
       const sortByDateAsc = (data) => {
@@ -175,11 +182,19 @@ const reducer = (state = initialState, action) => {
         ...state,
         userActive: action.payload,
       };
-    case GET_COMMENT:
+    case GET_COMMENT_BY_USERID:
       return {
         ...state,
-        commentBody: action.payload,
+        userComment: action.payload,
       };
+
+    case GET_COMMENT_BY_REFERENCE:
+      return {
+        ...state,
+        PADComment: action.payload,
+      };
+
+
 
     case SET_DONATION_ITEMS:
       function sharedComponent(array1, array2) {

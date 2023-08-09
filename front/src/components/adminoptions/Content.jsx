@@ -8,33 +8,23 @@ import {
   TableRow,
   TableCell,
   Pagination,
-  Switch,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
-  Button,
-  Snackbar,
+
 } from "@mui/material"
 import { TextField, InputAdornment } from "@mui/material";
 import { Search } from "@mui/icons-material";
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {Link, useLocation, useNavigate} from 'react-router-dom'
 import { ARTICLES , PROJECTS , DOCUMENTARYS } from '../../redux/actions-types';
 
-
+import { getSearchPADByQuery } from '../../redux/actions';
 
 
 function Content(props) {
-  
+const dispatch = useDispatch()
 const [currentPage, setCurrentPage] = useState(1);
 const usersPerPage = 5;
-const [userList, setUserList] = useState([]); 
-const [confirmationOpen, setConfirmationOpen] = useState(false);
-const [currentUserEmail, setCurrentUserEmail] = useState("");
-const [snackbarMessage, setSnackbarMessage] = useState("");
+const [contentList, setContentList] = useState([]); 
 const [searchTerm, setSearchTerm] = useState("");
-const [snackbarOpen, setSnackbarOpen] = useState(false);
 
 const Articles     = useSelector(state => state.allArticles2)
 const Projects     = useSelector(state => state.allProjects2)
@@ -42,8 +32,10 @@ const Documentarys = useSelector(state => state.allDocumentarys2)
 
 const navigate = useNavigate()
 
+// dispatch(getSearchPADByQuery( '' , '' , PROJECTS ))
+// dispatch(getSearchPADByQuery( '' , '' , ARTICLES ))
+// dispatch(getSearchPADByQuery( '' , '' , DOCUMENTARYS ))
 useEffect(() => {
-
   const ArticlesUP = Articles.map((item) =>         ({ ...item, ContentType: ARTICLES    }));
   const ProjectsUP = Projects.map((item) =>         ({ ...item, ContentType: PROJECTS    }));
   const DocumentarysUP = Documentarys.map((item) => ({ ...item, ContentType: DOCUMENTARYS }));
@@ -51,9 +43,16 @@ useEffect(() => {
 
   const combinedData = [...ArticlesUP, ...ProjectsUP, ...DocumentarysUP];
 
-  setUserList(combinedData);
 
-}, [Articles, Projects, Documentarys]);
+
+
+  setContentList(combinedData);
+
+}, [ 
+  // Articles, 
+  // Projects, 
+  // Documentarys  
+]);
 
 
 
@@ -64,7 +63,7 @@ useEffect(() => {
 const indexOfLastUser = currentPage * usersPerPage;
 const indexOfFirstUser = indexOfLastUser - usersPerPage; 
 
-const filteredUsers = userList.filter((user)=> 
+const filteredUsers = contentList.filter((user)=> 
 user.name.toLowerCase().includes(searchTerm.toLowerCase())
 )
 
@@ -83,6 +82,7 @@ const renderUsers = () => {
 
   return currentUsers.map((user, index) => {
     const { name, author, date, location , active ,ContentType ,_id} = user;
+
 
     const isEvenRow = index % 2 === 0;
     const rowBackground = isEvenRow ? "#E7DDC7" : "#F3F3F7";
@@ -118,7 +118,7 @@ const renderUsers = () => {
         className=' cursor-pointer'
         >🛠</TableCell>
 
-        <TableCell style={{ color: "#111111", fontSize: "15px", backgroundColor: active ? "green" : "red" }}>
+        <TableCell style={{ color: "#111111", fontSize: "15px", backgroundColor: active ? '#2f8e37' : '#eec207' }}>
           {active ? "Activo" : "Inactivo"}
         </TableCell>
         
@@ -151,7 +151,7 @@ const handlePageChange = (event, newPage) => {
   setCurrentPage(newPage);
 };
 
-const totalPages = Math.ceil(userList.length / usersPerPage);
+const totalPages = Math.ceil(contentList.length / usersPerPage);
 
 
 

@@ -92,7 +92,6 @@ const dispatch = useDispatch()
 
       <Link to={`/detail/${props.PAD}=${props._id}`}>
         <div 
-        // href={`/detail/${props.PAD}=${props._id}`}
         >
           <h5 
           className=" h-14  break-words text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
@@ -137,10 +136,8 @@ const dispatch = useDispatch()
         </div>
         </Link>
         {   User.admin === true ?       <Link
-            // to={`/detail/${props.PAD}=${props._id}`}
             to={`/ContentDetail/${props.PAD}=${props._id}`}
             className="block   text-gray-800 hover:text-blue-700"
-            // onClick={toggleMenu}
           >
             🛠
           </Link> : <></>  }
