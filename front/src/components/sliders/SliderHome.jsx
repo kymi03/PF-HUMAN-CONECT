@@ -3,6 +3,9 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import yukpa from '../../assets/SliderImages/YukpaSlider.png'
+import yurumangui from '../../assets/SliderImages/YurumanguiResiste.png'
+import anchicaya from '../../assets/SliderImages/Anchicaya.png'
+import aliwa from '../../assets/SliderImages/Aliwa.png'
 
 const SliderHome = () => {
   const settings = {
@@ -21,7 +24,7 @@ const SliderHome = () => {
     <Slider {...settings}>
       <div className="w-full h-screen md:h-80 lg:h-96 xl:h-96">
         <img
-          src={"https://humanconet.org/wp-content/uploads/2022/09/Cover-Home-Human-Conet-01-1-scaled.webp"}
+          src={anchicaya}
           alt="Imagen 1"
           className="w-full h-auto object-fit rounded-2xl"
         />
@@ -35,25 +38,25 @@ const SliderHome = () => {
       </div>
       <div>
         <img
-          src="https://humanconet.org/wp-content/uploads/2023/04/DSC_0209-min-2048x1365.jpg.webp"
+          src={yurumangui}
           alt="Imagen 3"
           className="w-full h-auto object-fit rounded-2xl"
         />
       </div>
       <div>
         <img
-          src="https://humanconet.org/wp-content/uploads/2023/04/No-mas-hidroelectricas.jpeg.webp"
+          src={aliwa}
           alt="Imagen 4"
           className="w-full h-auto object-fit rounded-2xl"
         />
       </div>
-      <div>
+      {/* <div>
         <img
           src="https://www.dzoom.org.es/wp-content/uploads/2019/09/paisajes-expresivos-734x489.jpg"
           alt="Imagen 5"
           className="w-full h-auto object-fit rounded-2xl"
         />
-      </div>
+      </div> */}
       {/* <div>
         <img
           src="https://humanconet.org/wp-content/uploads/2023/04/DSC_0209-min-2048x1365.jpg.webp"
@@ -61,13 +64,13 @@ const SliderHome = () => {
           className="w-full h-auto object-fit rounded-2xl"
         />
       </div> */}
-      <div>
+      {/* <div>
         <img
           src="https://humanconet.org/wp-content/uploads/2023/04/MegaBassines-2-1.png.webp"
           alt="Imagen 7"
           className="w-full h-auto object-fit rounded-2xl"
         />
-      </div>
+      </div> */}
       {/* Agrega más imágenes aquí */}
     </Slider>
   );

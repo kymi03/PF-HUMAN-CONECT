@@ -1,9 +1,11 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { logOutUserAuth } from "../../redux/actions";
 
 const UserDropManu = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate()
   const [isOpen, setIsOpen] = useState(false);
   const [userData, setUserData] = useState();
   const User = useSelector(state => state.userAuth)
@@ -34,8 +36,9 @@ const UserDropManu = () => {
   }, []);
 
   const handleButtonClick = () => {
-    window.localStorage.removeItem("userInfo");
-    window.location.reload();
+    window.localStorage.removeItem("userInfo", navigate('/home'));
+    dispatch(logOutUserAuth())
+    window.location.reload()
   };
 
 
@@ -43,14 +46,14 @@ const UserDropManu = () => {
 
 
   return (
-    < div  >
+    < div className=" z-50" >
       <div className=" flex items-center justify-self-center" ref={dropdownRef}>
 
         <button onClick={toggleMenu} type="select"
 
           className=" h-10 px-5 text-sm font-gobold font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-keppel600 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700" >
-          {  User.name?`Hola, ${User.name.split(" ")[0]}!` : "Hola, user name!"}
-        </button> 
+          {User?.name ? `Hola, ${User.name.split(" ")[0]}!` : "Hola, user name!"}
+        </button>
 
         <img
           src="https://humanconet.org/wp-content/uploads/2022/09/Anchincaya-Resiste-HC-01-1024x1024.webp"
@@ -71,7 +74,7 @@ const UserDropManu = () => {
             Opciones de usuario
           </Link>
 
-{   User.admin === true ?       <Link
+          {User.admin === true ? <Link
             to="/adminoptions"
             className="block   text-gray-800 hover:text-blue-700"
             onClick={toggleMenu}
