@@ -59,10 +59,10 @@ const UserDropManu = () => {
       </div>
 
       {isOpen && (
-        <div className="absolute  px-2  flex-col mt-2 py-2 bg-white border border-gray-300 rounded shadow">
+        <div className="absolute px-2 flex-col mt-2 py-2 bg-white border border-gray-300 rounded-xl shadow">
           <Link
             to="/useroptions"
-            className="block   text-gray-800 hover:text-blue-700"
+            className="block   text-gray-800 hover:text-blue-700 font-gilroy"
             onClick={toggleMenu}
           >
             Opciones de usuario
@@ -70,7 +70,7 @@ const UserDropManu = () => {
 
           {User.admin === true ? <Link
             to="/adminoptions"
-            className="block   text-gray-800 hover:text-blue-700"
+            className="block   text-gray-800 hover:text-blue-700 font-gilroy"
             onClick={toggleMenu}
           >
             Opciones de Administrador
@@ -79,7 +79,7 @@ const UserDropManu = () => {
           <br></br>
           <button
             onClick={handleButtonClick}
-            className="block  text-gray-800 hover:text-blue-700 w-full text-left"
+            className="block  text-gray-800 hover:text-blue-700 w-full text-left font-gilroy"
           >
             Cerrar sesión
           </button>

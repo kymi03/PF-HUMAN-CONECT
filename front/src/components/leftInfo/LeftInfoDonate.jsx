@@ -83,6 +83,7 @@ const User = useSelector(state => state.userAuth)
           <input
             type="number"
             min={1500}
+            className=' placeholder:font-gilroy placeholder:italic'
             placeholder="Donacion Minima 1500"
             onChange={handleChange}
             />

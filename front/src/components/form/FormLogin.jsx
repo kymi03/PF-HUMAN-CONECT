@@ -89,20 +89,20 @@ const FormLogin = () => {
       <NavBar />
       <div className=" flex flex-row my-5 h-5/6 w-full">
         <div className=" border-2 rounded-sm bg-white mx-2 md:w-3/6">
-          <h5 className=" pt-5 font-poppins font-semibold text-center">Registrate en un nuestra red</h5>
+          <h5 className=" pt-5 font-gobold text-lg font-semibold text-center">Registrate en un nuestra red</h5>
           <form  className=" p-8 flex flex-col" 
           onSubmit={hdrJoinSubmit}
           >
             <input 
             type="text" 
-            className=" border-2 mb-4 py-2 px-3 w-full rounded" 
+            className=" border-2 mb-4 py-2 px-3 w-full rounded placeholder:font-gilroy" 
             placeholder="Correo electronico"
             name='email'
             value={userData.email} 
             onChange={(event) => hdrChange(event)} />
             <input 
             type="password" 
-            className=" border-2 mb-4 py-2 px-3 w-full rounded" 
+            className=" border-2 mb-4 py-2 px-3 w-full rounded placeholder:font-gilroy" 
             placeholder="Contraseña"
             name='password'
             value={userData.password}

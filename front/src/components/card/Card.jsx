@@ -8,6 +8,7 @@ import gold1 from "../../assets/icons/gold1.png"
 import gold2 from "../../assets/icons/gold2.png"
 import { useDispatch, useSelector } from "react-redux";
 import { setDonationItems } from "../../redux/actions";
+import donationIcon from '../../assets/icons/donationicon.png'
 
 
 
@@ -73,8 +74,8 @@ const dispatch = useDispatch()
       <button onClick={handleCartButton} id="imageButton">
           <img
             data-value={[`${props.PAD}=${props._id}`]}
-            className="h-8 "
-            src={green}
+            className="h-8 w-8 bg-white rounded-full p-1"
+            src={donationIcon}
             alt="Add to Cart"
           />
         </button>
