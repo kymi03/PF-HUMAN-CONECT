@@ -19,7 +19,9 @@ import {
   GET_USER_LIST,
   GET_USER_ACTIVE,
   POST_COMMENT,
-  GET_COMMENT,
+  GET_COMMENT_BY_USERID,
+  GET_COMMENT_BY_REFERENCE,
+  LOG_OUT_USER_AUTH
 } from "./actions-types";
 
 import { PROJECTS, DOCUMENTARYS, ARTICLES } from "../redux/actions-types";
@@ -327,11 +329,11 @@ export const getAdminOption = (option) => {
 export const getUserList = () => {
   return async function (dispatch) {
     try {
-      const response = await axios.get("http://localhost:3001/user");
+      const response = await axios.get("/user/all");
       console.log(response);
       return dispatch({
         type: GET_USER_LIST,
-        payload: response,
+        payload: response.data,
       });
     } catch (error) {
       console.log(error.message);
@@ -386,17 +388,42 @@ export function postComment({comment, userID, reference}) {
   };
 }
 
-export const getComment = () => {
+export const getCommentById = (userID) => {
   return async function (dispatch) {
     try {
-      const response = await axios.get("http://localhost:3001/comments");
-      console.log(response);
+      const response = await axios.get(`/comments?userID=${userID}`);
       return dispatch({
-        type: GET_COMMENT,
-        payload: response,
+        type: GET_COMMENT_BY_USERID,
+        payload: response.data,
       });
     } catch (error) {
       console.log(error.message);
     }
   };
 };
+
+export const getCommentByReference = (reference) => {
+  return async function (dispatch) {
+    try {
+      const response = await axios.get(`/comments?reference=${reference}`);
+      return dispatch({
+        type: GET_COMMENT_BY_REFERENCE,
+        payload: response.data,
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+};
+
+export const logOutUserAuth = ()=>{
+  return async function (dispatch){
+    try {
+      return dispatch({
+        type:LOG_OUT_USER_AUTH
+      })
+    } catch (error) {
+      console.log(error);
+    }
+  }
+}
