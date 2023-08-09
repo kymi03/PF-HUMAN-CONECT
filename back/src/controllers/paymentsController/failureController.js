@@ -1,6 +1,8 @@
 const mailer = require("../usersControllers/mailer");
 const Donation = require("../../models/donation");
 const { ADMIN_EMAIL } = process.env;
+const fs = require('fs');
+const ejs = require('ejs');
 const failureController = async (req, res) => {
   //EMAIL DE INFORMAR AL USUARIO DE FALLO DE DONACION
   const { preference_id } = req.query;
@@ -9,7 +11,7 @@ const failureController = async (req, res) => {
   }).populate("owner", "email");
   const { email } = donation.owner;
 
-  fs.readFile(__dirname + '../usersControllers/templateNotification/acceptedDeclined.ejs', 'utf8', (err, data) => {
+  fs.readFile(__dirname + '/usersControllers/templateNotification/paymentDeclined.ejs', 'utf8', (err, data) => {
 
     if (err) {
       console.error('Error al leer la plantilla HTML:', err);

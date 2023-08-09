@@ -119,44 +119,34 @@ const Donar = () => {
         <div>
             <div>
                 <NavBarAle />
-                
-
-{showBanner && (
-
-
-<div className="max-w-sm p-3  bg-white border border-gray-200 shadow dark:bg-gray-800 dark:border-gray-700" >
-<button onClick={()=>setShowBanner(false)} >❎</button>
-    <div>
-        <h2> bienvenid@ a HUMAN CONET </h2>
-        <p> te invitamos a regristrate para que puedas comentar, guardar articulos y mucho mas !: </p>
-    </div>
-    <Link to={'/formjoin'}>
-<button >Unete</button>
-</Link>
-</div>
-
-)}
+                {showBanner && (
+                <div 
+                className="max-w-sm p-3  bg-white border border-gray-200 shadow dark:bg-gray-800 dark:border-gray-700" 
+                >
+                <button onClick={()=>setShowBanner(false)} >❎</button>
+                    <div>
+                        <h2> bienvenid@ a HUMAN CONET </h2>
+                        <p> te invitamos a regristrate para que puedas comentar, guardar articulos y mucho mas !: </p>
+                    </div>
+                    <Link to={'/formjoin'}>
+                <button >Unete</button>
+                </Link>
+                </div>
+                )}
 
                 <p className="ml-11 mb-5 text-justify text-5xl font-semibold text-gray-900 dark:text-white">DONACIONES</p>
                 <div className=" flex ">
                     <div className=' w-1/5 h-3/5  ml-11 mr-11'>
-                        <LeftInfoDonate
-                            currentPAD={items} 
-                                                     />
+                        <LeftInfoDonate currentPAD={items} />
                     </div>
- 
-
-    <div className='h-3/5 w-4/5  border border-gray-200 shadow dark:bg-gray-800 dark:border-gray-700'>
-      <Cards 
-            currentPAD={items} 
-            // PAD =  {PROJECTS} //<-- puede que no lo necesite aun 
-            />
-    </div>
+                    <div 
+                    className='h-3/5 w-4/5   dark:bg-gray-800 dark:border-gray-700'
+                    >
+                        <Cards currentPAD={items} />
+                    </div>
                 </div>
                 <Footer />
             </div>
-
-
         </div>
     )
 };
