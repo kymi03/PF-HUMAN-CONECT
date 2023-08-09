@@ -46,15 +46,15 @@ const CommentDisplay = ({ comments, onDeleteComment, PAD }) => {
 
   return (
     <div
-      className="max-w-md mx-auto mt-8 overflow-auto"
+      className="max-w-md mx-auto mt-2 overflow-auto"
       style={{ maxHeight: "400px" }}
     >
       {findAuthors.map((author) => (
         <div
           className="border mb-4 p-4 rounded-md bg-blue-200"
         >
-          <p className="text-lg font-semibold">{author.author}</p>
-          <p className="text-gray-700">{author.comment}</p>
+          <p className="text-lg font-semibold font-gilroy">{author.author}</p>
+          <p className="text-gray-700 font-gilroy">{author.comment}</p>
           {/* <ReactStars
             count={5}
             value={comment.rating}

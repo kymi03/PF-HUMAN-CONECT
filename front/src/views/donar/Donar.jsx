@@ -116,7 +116,7 @@ const Donar = () => {
  
 
     return (
-        <div>
+        <div className=' h-screen bg-grey'>
             <div>
                 <NavBarAle />
                 {showBanner && (
@@ -134,7 +134,7 @@ const Donar = () => {
                 </div>
                 )}
 
-                <p className="ml-11 mb-5 text-justify text-5xl font-semibold text-gray-900 dark:text-white">DONACIONES</p>
+                <p className="ml-11 mb-5 text-justify text-5xl font-semibold text-gray-900 dark:text-white font-gobold py-4">DONACIONES</p>
                 <div className=" flex ">
                     <div className=' w-1/5 h-3/5  ml-11 mr-11'>
                         <LeftInfoDonate currentPAD={items} />
@@ -145,8 +145,10 @@ const Donar = () => {
                         <Cards currentPAD={items} />
                     </div>
                 </div>
-                <Footer />
             </div>
+                <div className=' bottom-0 fixed w-screen'>
+                <Footer />
+                </div>
         </div>
     )
 };
