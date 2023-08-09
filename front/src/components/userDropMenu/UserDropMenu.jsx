@@ -40,7 +40,7 @@ const UserDropManu = () => {
 
   return (
     <div>
-      <div className=" flex items-center justify-self-center" ref={dropdownRef}>
+      <div className="  flex items-center justify-self-center" ref={dropdownRef}>
         <button
           onClick={toggleMenu}
           type="select"
@@ -66,7 +66,7 @@ const UserDropManu = () => {
           {User.admin === true ? (
             <Link
               to="/adminoptions"
-              className="block   text-gray-800 hover:text-blue-700"
+              className=" block   text-gray-800 hover:text-blue-700"
               onClick={toggleMenu}
             >
               Opciones de Administrador
