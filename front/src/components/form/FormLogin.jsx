@@ -6,7 +6,7 @@ import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopu
 import { useDispatch, useSelector } from 'react-redux';
 import { getEmailAuth, getGoogleAuth } from '../../redux/actions';
 import image from '../../assets/icons/google-logo.png'
-import error  from "../../components/errorPage/ErrorPage"
+
 
 const FormLogin = () => {
   const navigate = useNavigate();
@@ -20,19 +20,19 @@ const FormLogin = () => {
   const auth = getAuth()
   const googleProvider = new GoogleAuthProvider()
 
-  const hdrJoinSubmit = (event) => {
+  const hdrJoinSubmit = async (event) => {
     event.preventDefault();
     if (
       userData?.email == "" ||
       userData?.password == ""
     )
     return Swal.fire("Complete todos los campos");
-    dispatch(getEmailAuth({email:userData.email, password:userData.password}))
-    setUserData({
-      email: "",
-      password: "",
-    });
-
+      
+      dispatch(getEmailAuth({email:userData.email, password:userData.password}))
+      setUserData({
+        email: "",
+        password: "",
+      });
   };
 
 
@@ -84,6 +84,8 @@ const FormLogin = () => {
     })
   }
 
+  
+
   return (
     <div className="">
       <NavBar />
@@ -130,7 +132,7 @@ const FormLogin = () => {
       </div>
       <Footer />
     </div>
-  )
+  ) 
 }
 
 export default FormLogin

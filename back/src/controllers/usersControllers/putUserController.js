@@ -13,7 +13,7 @@ Manifiesto de funciones:
 ===============================================================================================================================
 */
 const user = require("../../models/user");
-const mailer = require("./mailer");
+const transporter = require("./mailer");
 const { ADMIN_EMAIL } = process.env;
 
 const putUserController = async (req, res) => {
@@ -30,7 +30,7 @@ const putUserController = async (req, res) => {
 
     if (active === false) {
       
-      await mailer.sendMail({
+      await transporter.sendMail({
         from: `"Human Conet" ${ADMIN_EMAIL}`,
         to: email,
         subject: "Usuario bloqueado - Human Conet",
