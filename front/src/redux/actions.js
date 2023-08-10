@@ -26,6 +26,8 @@ import {
   GET_ALL_COMMENT
 } from "./actions-types";
 
+
+
 import { PROJECTS, DOCUMENTARYS, ARTICLES } from "../redux/actions-types";
 
 import axios from "axios";
@@ -370,12 +372,14 @@ export const getUserActive = (active) => {
   };
 };
 
-export function postComment(payload) {
+export function postComment({ comment, userID, reference }) {
+  // console.log('action' , payload);
+
   return function (dispatch) {
     try {
-      console.log(payload);
+      // console.log(payload);
       axios
-        .post(`/comments?userID=${userID}&${reference}`)
+        .post(`/comments?userID=${userID}&reference=${reference}` , {comment})
         .then((data) => {
           Swal.fire("Comentario creado exitosamente");
           return dispatch({

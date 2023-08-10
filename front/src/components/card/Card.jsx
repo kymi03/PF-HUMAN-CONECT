@@ -5,6 +5,7 @@ import { setDonationItems } from "../../redux/actions";
 import green1 from "../../assets/icons/green1.png";
 import green2 from "../../assets/icons/green2.png";
 import donationIcon from '../../assets/icons/donationIcon.png'
+import editPencil from '../../assets/icons/editpencil.png'
 
 function Card(props) {
   const dispatch = useDispatch();
@@ -25,6 +26,7 @@ function Card(props) {
 
   const handleCartButton = (event) => {
     const value = event.target.getAttribute("data-value");
+    // console.log('handle' ,value);
     dispatch(setDonationItems([value]));
   };
 
@@ -65,10 +67,13 @@ function Card(props) {
 
       <div className="pt-4">
         <div className="flex justify-end">
-          <button className=" transition duration-0 ease-in-out hover:bg-vividGreen hover:duration-700 hover:w-full" onClick={handleCartButton} 
-          data-value={`${props.PAD}=${props._id}`}
+          <button className=" rounded-full px-2 py-2 transition duration-0 ease-in-out hover:bg-vividGreen hover:duration-700"  
+          
           >
-            <img className="h-8 cursor-pointer" src={donationIcon} alt="¡Dona a esta causa!" title="¡Dona a esta causa!" />
+            <img 
+            data-value={`${props.PAD}=${props._id}`}
+            onClick={handleCartButton}
+            className="h-8 cursor-pointer" src={donationIcon} alt="¡Dona a esta causa!" title="¡Dona a esta causa!" />
           </button>
           {/* <button onClick={handleSaveButton} id="imageButton">
               <img
@@ -114,7 +119,7 @@ function Card(props) {
             to={`/ContentDetail/${props.PAD}=${props._id}`}
             className="block mt-4 text-gray-800 hover:text-blue-700"
           >
-            🛠
+            <img src={editPencil} className=" h-6 w-6 mx-auto" />
           </Link>
          : <></> }
       </div>

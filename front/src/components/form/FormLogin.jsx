@@ -6,6 +6,7 @@ import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopu
 import { useDispatch, useSelector } from 'react-redux';
 import { getEmailAuth, getGoogleAuth } from '../../redux/actions';
 import image from '../../assets/icons/google-logo.png'
+import Swal from 'sweetalert2';
 
 
 const FormLogin = () => {
@@ -26,7 +27,8 @@ const FormLogin = () => {
       userData?.email == "" ||
       userData?.password == ""
     )
-    return Swal.fire("Complete todos los campos");
+    // return Swal.fire("Complete todos los campos");
+    return console.log("Complete todos los campos");
       
       dispatch(getEmailAuth({email:userData.email, password:userData.password}))
       setUserData({

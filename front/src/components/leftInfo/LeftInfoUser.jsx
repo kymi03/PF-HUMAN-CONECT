@@ -18,7 +18,8 @@ const user = useSelector(state => state.userAuth)
   
   return (
 
-    <div className="max-w-sm p-3  bg-white border border-gray-200 shadow dark:bg-gray-800 dark:border-gray-700">
+    <div className="max-w-sm p-3 
+    rounded-2xl bg-white border border-gray-200 shadow dark:bg-gray-800 dark:border-gray-700">
 
     
 <img src="https://humanconet.org/wp-content/uploads/2022/05/Tigre-1024x522.webp" alt="" />
