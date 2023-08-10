@@ -61,7 +61,7 @@ const getUnique = (array) => {
   const uniques = [];
   const uniqueKeys = new Set();
 
- if(array.length !== 0 ){ for (const loc of array) {
+  for (const loc of array) {
     const key = loc.trim().toLowerCase();
     if (!uniqueKeys.has(key)) {
       uniqueKeys.add(key);
@@ -74,7 +74,7 @@ const getUnique = (array) => {
       );
     }
   }
-}
+
 
 
   return uniques;
