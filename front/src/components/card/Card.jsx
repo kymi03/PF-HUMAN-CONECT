@@ -24,7 +24,6 @@ function Card(props) {
   }, [Items]);
 
   const handleCartButton = (event) => {
-    // const value = event.target.value
     const value = event.target.getAttribute("data-value");
     dispatch(setDonationItems([value]));
   };
@@ -66,7 +65,9 @@ function Card(props) {
 
       <div className="pt-4">
         <div className="flex justify-end">
-          <button className=" transition duration-0 ease-in-out hover:bg-vividGreen hover:duration-700 hover:w-full" onClick={handleCartButton} data-value={`${props.PAD}=${props._id}`}>
+          <button className=" transition duration-0 ease-in-out hover:bg-vividGreen hover:duration-700 hover:w-full" onClick={handleCartButton} 
+          data-value={`${props.PAD}=${props._id}`}
+          >
             <img className="h-8 cursor-pointer" src={donationIcon} alt="¡Dona a esta causa!" title="¡Dona a esta causa!" />
           </button>
           {/* <button onClick={handleSaveButton} id="imageButton">

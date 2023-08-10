@@ -115,8 +115,8 @@ const renderUsers = () => {
 
         <TableCell
         onClick={handleConfig}
-        className=' cursor-pointer'
-        >🛠</TableCell>
+        className=' text-6xl cursor-pointer'
+        >🖉</TableCell>
 
         <TableCell style={{ color: "#111111", fontSize: "15px", backgroundColor: active ? '#2f8e37' : '#eec207' }}>
           {active ? "Activo" : "Inactivo"}

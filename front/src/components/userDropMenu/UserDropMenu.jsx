@@ -36,7 +36,8 @@ const UserDropManu = () => {
   }, []);
 
   const handleButtonClick = () => {
-    window.localStorage.removeItem("userInfo", navigate('/home'));
+    window.localStorage.removeItem( "DONATION_CART" );
+    window.localStorage.removeItem("userInfo" , navigate('/home'));
     dispatch(logOutUserAuth())
     window.location.reload()
   };

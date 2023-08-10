@@ -96,8 +96,7 @@ function Detail() {
     }
   }, [Items]);
   const handleCartButton = (event) => {
-    const value = event.target.getAttribute("data-value");
-    dispatch(setDonationItems([value]));
+    dispatch(setDonationItems([event.target.value]));
   };
 
   // comentarios de usuarios
@@ -255,7 +254,9 @@ function Detail() {
       ) : null}
       {/* Boton donacion */}
       <div className=" font-gobold text-lg border-2 border-vividGreen px-4 py-2 text-white bg-vividGreen rounded hover:bg-white hover:text-vividGreen transition duration-300">
-        <button onClick={handleCartButton} id="imageButton"> DONA A ESTA CAUSA
+        <button 
+        value={[id]}
+        onClick={handleCartButton} id="imageButton"> DONA A ESTA CAUSA
           {/* <img
             data-value={[id]}
             className="h-8 "
