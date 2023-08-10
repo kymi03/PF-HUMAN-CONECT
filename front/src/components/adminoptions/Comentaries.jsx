@@ -33,7 +33,7 @@ function AdminComentaries(props) {
   useEffect(() => {
     const comentariesData = async () => {
       try {
-        const response = await axios.get("http://localhost:3001/comments");
+        const response = await axios.get("/comments");
         const comentaries = response.data;
         setComentariesList(comentaries); // Actualizar el estado userList con los datos obtenidos
       } catch (error) {
@@ -61,7 +61,7 @@ function AdminComentaries(props) {
 
     try {
       // Eliminación del comentario en la base de datos
-      await axios.delete(`http://localhost:3001/comments/?id=${commentId}`);
+      await axios.delete(`/comments/?id=${commentId}`);
       showSnackbar("Comentario eliminado exitosamente de la base de datos");
       //Actualización de la lista de usuarios
       const updatedComentariesList = comentariesList.filter(
