@@ -23,7 +23,7 @@ function AdminSummary(props) {
   const allUsers = useSelector(state => state.userList)
   const donationsData = async () => {
     try {
-      const response = await axios.get("http://localhost:3001/donations");
+      const response = await axios.get("/donations");
       const donations = response.data;
       setDonationList(donations); // Actualizar el estado userList con los datos obtenidos
     } catch (error) {
