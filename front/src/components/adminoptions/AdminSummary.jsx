@@ -62,7 +62,7 @@ const getUnique = (array) => {
   const uniqueKeys = new Set();
 
   for (const loc of array) {
-    const key = loc.trim().toLowerCase();
+    const key = loc.toLowerCase();
     if (!uniqueKeys.has(key)) {
       uniqueKeys.add(key);
       uniques.push(
