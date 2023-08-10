@@ -7,11 +7,13 @@ const CommentDisplay = ({ comments, onDeleteComment, PAD }) => {
   const commentsOfPAD = useSelector(state => state.PADComment)
   const userComment = useSelector((state) => state.userComment);
   const allAuthors = useSelector(state => state.userList)
+  const postedComment = useSelector(state => state.postedComment)
   const user = JSON.parse(window.localStorage.getItem("userInfo"))
+
   // const user = useSelector(state => state.userAuth)
   const reference = PAD._id
   // const user = useSelector((state) => state.userAuth)
-  console.log(user);
+  // console.log(user);
 
   // let userID = ''
   // if (user._id) {
@@ -37,24 +39,25 @@ const CommentDisplay = ({ comments, onDeleteComment, PAD }) => {
     // dispatch(getCommentById(userID));
     dispatch(getCommentByReference(reference))
     dispatch(getUserList())
-  }, [reference]);
+  }, [reference ,postedComment ]);
   //console.log("aquicomentarios", allComments);
 
   let findAuthors = []
   const userCommentsList = commentsOfPAD.map((comment) => findAuthors.push({ author: allAuthors.find(author => author._id  === comment.author).name, comment: comment.body }))
-  console.log('AQUI', findAuthors, userCommentsList);
+  // console.log('AQUI', findAuthors, userCommentsList);
 
   return (
-    <div
-      className="max-w-md mx-auto mt-8 overflow-auto"
+    <div 
+      className="max-w-md mx-auto mt-2 overflow-auto"
       style={{ maxHeight: "400px" }}
     >
-      {findAuthors.map((author) => (
+      {findAuthors.map((author , index) => (
         <div
           className="border mb-4 p-4 rounded-md bg-blue-200"
+          key={index}
         >
-          <p className="text-lg font-semibold">{author.author}</p>
-          <p className="text-gray-700">{author.comment}</p>
+          <p className="text-lg font-semibold font-gilroy">{author.author}</p>
+          <p className="text-gray-700 font-gilroy">{author.comment}</p>
           {/* <ReactStars
             count={5}
             value={comment.rating}

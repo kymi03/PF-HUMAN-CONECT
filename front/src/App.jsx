@@ -25,6 +25,7 @@ import {
   getAuth,
 } from "./redux/actions";
 import FailureDonar from "./components/donarComponents/FailureDonar";
+import AgradecimientoDonar from "./components/donarComponents/AgradecimientoDonar";
 
 function App() {
   const dispatch = useDispatch();
@@ -56,9 +57,9 @@ function App() {
     // Guardar la información del usuario en el almacenamiento local después de una autenticación exitosa
     if (User && User.name) {
       window.localStorage.setItem("userInfo", JSON.stringify(User));
-    } else {
+    // } else {
       // Si no hay usuario autenticado, eliminar la información del usuario del almacenamiento local
-      window.localStorage.removeItem("userInfo");
+      // window.localStorage.removeItem("userInfo");
     }
   }, [User]);
 
@@ -86,6 +87,7 @@ function App() {
         <Route path="/adminoptions" element={<AdminOptions />} />
         <Route path="/ContentDetail/:id" element={<ContentDetail />} />
         <Route path="/rechazado" element={<FailureDonar />} />
+        <Route path="/agradecimiento" element={<AgradecimientoDonar />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </div>

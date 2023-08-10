@@ -157,7 +157,7 @@ function UserPanel(props) {
       const { _id, name, lastName, email, phone } = user;
 
       const isEvenRow = index % 2 === 0;
-      const rowBackground = isEvenRow ? "#E7DDC7" : "#F3F3F7";
+      const rowBackground = isEvenRow ? "#C0C5C8" : "#F3F3F7";
 
       return (
         <TableRow key={index} style={{ backgroundColor: rowBackground }}>
@@ -209,12 +209,13 @@ function UserPanel(props) {
   return (
     <div
       style={{
-        marginLeft: "200px",
+        marginLeft: "15px",
+        marginRight: "20px",
         marginTop: "55px",
-        backgroundColor: "#A29F83",
+        backgroundColor: "#B1B9BF",
         border: "2px solid",
         borderColor: "grey",
-        borderRadius: "5px",
+        borderRadius: "10px",
       }}
     >
       <TextField
@@ -238,7 +239,7 @@ function UserPanel(props) {
         }}
       />
       <Table>
-        <TableHead style={{ marginTop: "15px", backgroundColor: "#B2AE8C" }}>
+        <TableHead style={{ marginTop: "15px", backgroundColor: "#F3F3F7" }}>
           <TableRow>
             <TableCell style={{ color: "#000000", fontSize: "15px" }}>
               Bloquear Usuario

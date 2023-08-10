@@ -157,9 +157,9 @@ const options = generateOptions( editableDataList )
 
 
   return (
-    <div className="flex flex-col p-5  justify-start borde bg-white w-96 h-96
-    border-2
-    rounded-md
+    <div className="flex flex-col p-5  justify-start  bg-white w-96 h-96
+    border
+    rounded-2xl
     border-grey
     ">
                     

@@ -22,8 +22,11 @@ import {
   GET_COMMENT_BY_USERID,
   GET_COMMENT_BY_REFERENCE,
   LOG_OUT_USER_AUTH,
-  GET_CONTENT_BY_COMMENT_REFERENCE
+  GET_CONTENT_BY_COMMENT_REFERENCE,
+  GET_ALL_COMMENT
 } from "./actions-types";
+
+
 
 import { PROJECTS, DOCUMENTARYS, ARTICLES } from "../redux/actions-types";
 
@@ -133,6 +136,7 @@ export const getAllLocations = (PAD) => {
       });
 
       const locationList = getUniqueLocations(locationsProtoList);
+      
       return dispatch({
         type: GET_ALL_LOCATION,
         // payload: locationsProtoList
@@ -368,12 +372,14 @@ export const getUserActive = (active) => {
   };
 };
 
-export function postComment(payload) {
+export function postComment({ comment, userID, reference }) {
+  // console.log('action' , payload);
+
   return function (dispatch) {
     try {
-      console.log(payload);
+      // console.log(payload);
       axios
-        .post(`/comments?userID=${userID}&${reference}`)
+        .post(`/comments?userID=${userID}&reference=${reference}` , {comment})
         .then((data) => {
           Swal.fire("Comentario creado exitosamente");
           return dispatch({
@@ -410,6 +416,19 @@ export const getCommentByReference = (reference) => {
       const response = await axios.get(`/comments?reference=${reference}`);
       return dispatch({
         type: GET_COMMENT_BY_REFERENCE,
+        payload: response.data,
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+};
+export const getAllComments = () => {
+  return async function (dispatch) {
+    try {
+      const response = await axios.get(`/comments`);
+      return dispatch({
+        type: GET_ALL_COMMENT,
         payload: response.data,
       });
     } catch (error) {

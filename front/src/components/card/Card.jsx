@@ -5,6 +5,7 @@ import { setDonationItems } from "../../redux/actions";
 import green1 from "../../assets/icons/green1.png";
 import green2 from "../../assets/icons/green2.png";
 import donationIcon from '../../assets/icons/donationIcon.png'
+import editPencil from '../../assets/icons/editpencil.png'
 
 function Card(props) {
   const dispatch = useDispatch();
@@ -13,16 +14,19 @@ function Card(props) {
   const [green, setGreen] = useState(green1);
 
   useEffect(() => {
-    const resultArray = Items.map(item => item.split('=')[1]);
+    const resultArray = Items.map(item => item?.split('=')[1]);
+
     if (resultArray.includes(props._id)) {
       setGreen(green2);
     } else {
       setGreen(green1);
     }
+    
   }, [Items]);
 
   const handleCartButton = (event) => {
     const value = event.target.getAttribute("data-value");
+    // console.log('handle' ,value);
     dispatch(setDonationItems([value]));
   };
 
@@ -41,11 +45,35 @@ function Card(props) {
           />
         </div>
       </Link>
+        {/* <div className="
+        flex
+        justify-center   
+        bg-green-700 
+        
+        h-12
+      
+        
+        ">
+            <img 
+            
+            onClick={handleCartButton} 
+          data-value={`${props.PAD}=${props._id}`}
+
+            className="h-8 cursor-pointer 
+            m-2
+            " src={donationIcon} alt="¡Dona a esta causa!" title="¡Dona a esta causa!" />
+
+        </div> */}
 
       <div className="pt-4">
         <div className="flex justify-end">
-          <button onClick={handleCartButton} data-value={`${props.PAD}=${props._id}`}>
-            <img className="h-8 cursor-pointer" src={donationIcon} alt="¡Dona a esta causa!" title="¡Dona a esta causa!" />
+          <button className=" rounded-full px-2 py-2 transition duration-0 ease-in-out hover:bg-vividGreen hover:duration-700"  
+          
+          >
+            <img 
+            data-value={`${props.PAD}=${props._id}`}
+            onClick={handleCartButton}
+            className="h-8 cursor-pointer" src={donationIcon} alt="¡Dona a esta causa!" title="¡Dona a esta causa!" />
           </button>
           {/* <button onClick={handleSaveButton} id="imageButton">
               <img
@@ -72,7 +100,7 @@ function Card(props) {
         <h4 className="font-gobold">{props.location}</h4>
 
         <Link to={`/detail/${props.PAD}=${props._id}`}>
-          <div className="flex justify-center items-center mt-4 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 px-4 py-2 ml-16 mr-16">
+          <div className="flex justify-center items-center mt-4 text-sm font-bold font-gilroy text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 px-4 py-2 ml-16 mr-16">
             Seguir leyendo
             <svg className="w-4 h-5 ml-2" viewBox="0 0 14 10">
               <path
@@ -91,7 +119,7 @@ function Card(props) {
             to={`/ContentDetail/${props.PAD}=${props._id}`}
             className="block mt-4 text-gray-800 hover:text-blue-700"
           >
-            🛠
+            <img src={editPencil} className=" h-6 w-6 mx-auto" />
           </Link>
          : <></> }
       </div>
