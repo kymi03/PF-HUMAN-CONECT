@@ -75,45 +75,48 @@ const getComments = async (id) => {
 
   return (
     <div className="flex bg-white mr-10 ">
-    <div className="flex-col border  border-sky-700   m-5     bg-white rounded-md p-0.5">
-          <h2>Tu datos personales</h2>
+    <div className="flex-col border     m-5     bg-white rounded-md p-0.5">
+          <h2
+          className="flex justify-center bg-amber-400 mb-2 text-black w-12/12 font-gilroy font-bold text-lg py-1 px-2 rounded-lg 
+          pointer   " >Tu datos personales</h2>
        <div className="flex border border-grey       bg-white rounded-md mb-1 p-0.5">
-        <h2>Nombre:</h2>
+        <h2 className=" font-gilroy font-bold" >Nombre : </h2>
         <h3>{User.name}</h3>
       </div>
        <div className="flex border border-grey       bg-white rounded-md mb-1 p-0.5">
-        <h2>Apellido:</h2>
+        <h2 className=" font-gilroy font-bold">Apellido : </h2>
         <h3>{User.lastName}</h3>
       </div>
        <div className="flex border border-grey       bg-white rounded-md mb-1 p-0.5">
-        <h2>Email:</h2>
+        <h2 className=" font-gilroy font-bold" >Email : </h2>
         <h3>{User.email}</h3>
       </div>
        <div className="flex border border-grey       bg-white rounded-md mb-1 p-0.5">
-        <h2>Telefono:</h2>
-        <h3>{User.phone}</h3>
+        <h2 className=" font-gilroy font-bold" >Telefono :</h2>
+        <h3> {User.phone}</h3>
       </div>
        <div className="flex border border-grey       bg-white rounded-md mb-1 p-0.5">
-        <h2>Comentarios:</h2>
+        <h2 className=" font-gilroy font-bold" >Comentarios :</h2>
         <h3>{comments.length}</h3>
       </div>
        <div className="flex border border-grey       bg-white rounded-md mb-1 p-0.5">
-        <h2>Estado:</h2>
+        <h2 className=" font-gilroy font-bold" >Estado:</h2>
         <h3>{User.active === true ? "Activo" : "Inactivo"}</h3>
       </div>
       </div>
 
-    <div className="flex-col border  border-sky-700   m-5      bg-white rounded-md p-0.5">
-    <h2>Tu historial de donaciones</h2>
+    <div className="flex-col border     m-5      bg-white rounded-md p-0.5">
+    <h2 className="flex justify-center bg-amber-400 mb-2 text-black w-12/12 font-gilroy font-bold text-lg py-1 px-2 rounded-lg 
+pointer   ">Tu historial de donaciones</h2>
         {donations.map((donation, index) => (
          <div className="flex-col border border-grey       bg-white rounded-md mb-1 p-0.5" key={index} >
 
-            <h2>
-              Donacion {index + 1} - {Object.values(donation.amounts).reduce((sum, value) => sum + value, 0)}
+            <h2 className=" font-gilroy font-bold" > 
+              Donación {index + 1} - {Object.values(donation.amounts).reduce((sum, value) => sum + value, 0)}
             </h2>
             <ul>
               {Object.entries(donation.amounts).map(([key, value]) => (
-                <li key={key}>{key}</li>
+                <li key={key}> - {key}</li>
               ))}
             </ul>
           </div>
@@ -123,8 +126,9 @@ const getComments = async (id) => {
     
     </div>
 
-    <div className="flex-col border  border-sky-700   m-5      bg-white rounded-md p-0.5">
-    <h2>Tu historial de comentarios:</h2>
+    <div className="flex-col border     m-5      bg-white rounded-md p-0.5">
+    <h2  className="flex justify-center bg-amber-400 mb-2 text-black w-12/12 font-gilroy font-bold text-lg py-1 px-2 rounded-lg 
+          pointer   " >Tu historial de comentarios:</h2>
 
 {comentasANDinfo.map( (coment , index )=> 
 
@@ -134,8 +138,12 @@ const getComments = async (id) => {
           
 
 
-  <h2 >Conetenido: {coment.padInfo.name}</h2>
-  <h2>Tu Comentario: {coment.comment.body}</h2>
+  <h2 className=" font-gilroy font-bold">Conetenido: </h2>
+  <h2 > {coment.padInfo.name}</h2>
+  <br></br>
+  <h2 className=" font-gilroy font-bold" >Tu Comentario:</h2>
+  <h2> {coment.comment.body}</h2>
+
   </div>
 </Link>
   )

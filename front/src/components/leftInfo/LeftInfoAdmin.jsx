@@ -27,9 +27,24 @@ const user = useSelector(state => state.userAuth)
 
     
   <img src="https://humanconet.org/wp-content/uploads/2022/05/Tigre-1024x522.webp" alt="" />
-  <h1 style={{marginTop: "10px", fontSize:"30px", fontFamily: "poppins"} }>Administrador: {user.name ? user.name : 'user name'}</h1>
+  <h1  className="  font-gobold" style={{marginTop: "10px", fontSize:"30px" } }>Administrador: {user.name ? user.name : 'user name'}</h1>
 
       <div className=" p-11">
+
+      <button   
+      type="button" 
+      value='NO OPTION'
+      className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium w-44 text-gray-900 focus:outline-none bg-keppel rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 font-gobold" style={{backgroundColor:"#C0C5C8"}}
+      onClick={handleUserOption}
+      >RESUMEN</button>
+
+      <button   
+      type="button" 
+      value='CONTENIDO'
+      className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium w-44 text-gray-900 focus:outline-none bg-keppel rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 font-gobold"style={{backgroundColor:"#C0C5C8"}}
+      onClick={handleUserOption}
+      >CONTENDIO</button>
+
 
       <button   
       type="button" 
@@ -50,22 +65,15 @@ const user = useSelector(state => state.userAuth)
       type="button" 
       value='VER COMENTARIOS'
       className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium w-44 text-gray-900 focus:outline-none bg-keppel rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 font-gobold"
-      onClick={handleUserOption} style={{backgroundColor:"#C0C5C8"}}
+      style={{backgroundColor:"#C0C5C8"}}
+
+      
+      onClick={handleUserOption} 
+      
       > VER COMENTARIOS </button>
 
-      <button   
-      type="button" 
-      value='NO OPTION'
-      className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium w-44 text-gray-900 focus:outline-none bg-keppel rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 font-gobold" style={{backgroundColor:"#C0C5C8"}}
-      onClick={handleUserOption}
-      >SUMMARY</button>
       
-      <button   
-      type="button" 
-      value='CONTENIDO'
-      className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium w-44 text-gray-900 focus:outline-none bg-keppel rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 font-gobold"style={{backgroundColor:"#C0C5C8"}}
-      onClick={handleUserOption}
-      >CONTENDIO</button>
+
 
 
       </div>

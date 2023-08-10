@@ -22,14 +22,17 @@ const user = useSelector(state => state.userAuth)
 
     
 <img src="https://humanconet.org/wp-content/uploads/2022/05/Tigre-1024x522.webp" alt="" />
-<h1>{user.name ? user.name : 'user name'}</h1>
+<h1
+className='text-xl font-bold   font-gobold'
+>Usuario : { user.name ? user.name : 'user name'}</h1>
 
     <div className=" p-5">
 
      <button   
     type="button" 
     value='NO OPTION'
-    className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium w-44 text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+    className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium w-44 text-gray-900 focus:outline-none bg-keppel rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 font-gobold"
+    style={{backgroundColor:"#C0C5C8"}}
     onClick={handleUserOption}
     >RESUMEN</button>
 
@@ -64,7 +67,8 @@ const user = useSelector(state => state.userAuth)
      <button   
     type="button" 
     value='CONFIGURACION DE USUARIO'
-    className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium w-44 text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+    className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium w-44 text-gray-900 focus:outline-none bg-keppel rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 font-gobold"
+    style={{backgroundColor:"#C0C5C8"}}
     onClick={handleUserOption}
     >CONFIGURACION DE USUARIO</button>
 

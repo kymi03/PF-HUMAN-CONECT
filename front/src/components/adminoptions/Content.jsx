@@ -85,7 +85,7 @@ const renderUsers = () => {
 
 
     const isEvenRow = index % 2 === 0;
-    const rowBackground = isEvenRow ? "#E7DDC7" : "#F3F3F7";
+    const rowBackground = isEvenRow ? "#B1B9BF" : "#F3F3F7";
     let source = "";
     let ContentTypeName = "";
 
@@ -156,7 +156,17 @@ const totalPages = Math.ceil(contentList.length / usersPerPage);
 
 
 return (
-  <div style={{marginLeft:"200px", marginTop:"55px", backgroundColor:"#A29F83", border:"2px solid", borderColor:"grey", borderRadius:"5px"}}>
+  <div 
+  style={{
+    marginLeft: "15px",
+    marginRight: "20px",
+    marginTop: "40px",
+    backgroundColor: "#B1B9BF",
+    border: "2px solid",
+    borderColor: "grey",
+    borderRadius: "10px",
+    
+  }}>
     <TextField
       id="standard-basic"
       variant="standard"
@@ -173,7 +183,7 @@ return (
       style={{ marginBottom: "4px", marginLeft: "65%", display: 'flex', justifyContent: 'center'}}
     />
     <Table>
-      <TableHead style={{marginTop:"15px", backgroundColor:"#B2AE8C"}}>
+      <TableHead style={{marginTop:"15px", backgroundColor:"#FFFFFF"}}>
         <TableRow>
           <TableCell style={{ color: "#000000", fontSize: "15px"}}>
             Configurar
