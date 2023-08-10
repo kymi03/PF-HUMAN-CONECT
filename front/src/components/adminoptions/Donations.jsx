@@ -63,7 +63,7 @@ function AdminDonations(props) {
       const { _id, owner, amounts, date } = donation;
   
       const isEvenRow = index % 2 === 0;
-      const rowBackground = isEvenRow ? "#E7DDC7" : "#F3F3F7";
+      const rowBackground = isEvenRow ? "#C0C5C8" : "#F3F3F7";
   
       return (
         <TableRow key={index} style={{ backgroundColor: rowBackground}}>
@@ -73,10 +73,6 @@ function AdminDonations(props) {
           <TableCell style={{ color: "#111111", fontSize: "15px"}}>
             {_id}
           </TableCell>
-  
-          {/* <TableCell style={{ color: "#111111", fontSize: "15px" }}>
-            {paymentID}
-          </TableCell> */}
           
           <TableCell style={{ color: "#111111", fontSize: "15px" }}>
             {owner}
@@ -109,7 +105,17 @@ function AdminDonations(props) {
   
   
   return (
-    <div style={{marginLeft:"200px", marginTop:"40px", marginBottom:"250px", backgroundColor:"#A29F83", border:"2px solid", borderColor:"grey", borderRadius:"5px"}}>
+    <div    
+    style={{
+      marginLeft: "15px",
+      marginRight: "20px",
+      marginTop: "40px",
+      backgroundColor: "#B1B9BF",
+      border: "2px solid",
+      borderColor: "grey",
+      borderRadius: "10px",
+      
+    }}>
       <TextField
         id="standard-basic"
         variant="standard"
@@ -126,7 +132,7 @@ function AdminDonations(props) {
         style={{ marginBottom: "4px", marginLeft: "65%", display: 'flex', justifyContent: 'center'}}
       />
       <Table>
-        <TableHead style={{marginTop:"15px", backgroundColor:"#B2AE8C"}}>
+        <TableHead style={{marginTop:"15px", backgroundColor:"#F3F3F7"}}>
           <TableRow>
             <TableCell style={{ color: "#000000", fontSize: "15px" }}>
               ID Donación
