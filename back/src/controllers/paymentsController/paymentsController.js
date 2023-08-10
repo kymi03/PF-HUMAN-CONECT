@@ -2,6 +2,9 @@ const mercadopago = require("mercadopago");
 const Donation = require("../../models/donation");
 const donation = require("../../models/donation");
 const { ACCESS_TOKEN } = process.env;
+const fs = require('fs');
+const ejs = require('ejs');
+
 const paymentsController = async (req, res) => {
   mercadopago.configure({
     access_token: ACCESS_TOKEN,

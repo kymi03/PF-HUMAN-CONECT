@@ -19,12 +19,11 @@ function UserSummary(props) {
   const comentasANDinfo = useSelector(state => state.PADandREFERENCE)
   const userOption = useSelector(state => state.userOption)
 
-
   const getComments = async (id) => {
     try {
-      const response = await axios.get(`http://localhost:3001/comments?userID=${id}`);
-      setComments(response.data); // Update the comments state
-      dispatch(getPadByCommentReference(response.data)); // Dispatch action with updated comments
+      const response = await axios.get(`/comments?userID=${id}`);
+      setComments(response.data);
+      console.log(response.data);
     } catch (error) {
       console.log(error.message);
     }
@@ -32,7 +31,7 @@ function UserSummary(props) {
 
   const getDonations = async (id) => {
     try {
-      const response = await axios.get(`http://localhost:3001/donations?userID=${id}`);
+      const response = await axios.get(`/donations?userID=${id}`);
       setDonations(response.data);
 
     } catch (error) {

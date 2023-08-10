@@ -201,7 +201,7 @@ export const PostPAD = () => {
       };
 
       const response = await axios.post(
-        `http://localhost:3001/${padType}`,
+        `/${padType}`,
         requestData
       );
       console.log("Respuesta del servidor:", response.data);

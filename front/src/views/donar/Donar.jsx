@@ -17,7 +17,7 @@ const Donar = () => {
       if (unitPrice < 500) return;
       try {
         const data = await axios
-          .post("http://localhost:3001/payments", { items: chart })
+          .post("/payments", { items: chart })
           .then((res) => {
             return res.data;
           });
