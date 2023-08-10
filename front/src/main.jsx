@@ -17,7 +17,7 @@ import store from './redux/store.js'
 
 //esto es para trabajar de forma deployada
   
-axios.defaults.baseURL = 'https://humanconet.adaptable.app'
+axios.defaults.baseURL = 'https://hcback-production.up.railway.app/'
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(

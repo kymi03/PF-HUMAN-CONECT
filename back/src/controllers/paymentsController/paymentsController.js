@@ -16,9 +16,9 @@ const paymentsController = async (req, res) => {
     const result = await mercadopago.preferences.create({
       items: items,
       back_urls: {
-        success: "https://humanconet.adaptable.app/payments/success",
-        failure: "https://humanconet.adaptable.app/payments/failure",
-        pending: "https://humanconet.adaptable.app/payments/pendig",
+        success: "https://hcback-production.up.railway.app//payments/success",
+        failure: "https://hcback-production.up.railway.app//payments/failure",
+        pending: "https://hcback-production.up.railway.app//payments/pendig",
       },
     });
 
