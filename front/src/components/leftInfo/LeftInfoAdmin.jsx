@@ -19,7 +19,8 @@ const user = useSelector(state => state.userAuth)
   
   return (
 
-    <div className="flex flex-col items-center justify-center min-h-screen" >
+    <div className="flex flex-col items-center justify-center min-h-screen border
+    rounded-2xl" >
 
 
 

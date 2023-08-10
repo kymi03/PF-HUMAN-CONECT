@@ -23,7 +23,6 @@ const CommentForm = ({ onCommentSubmit, PAD }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // console.log("formComent");
     dispatch(postComment({ comment, userID, reference }));
     onCommentSubmit({ name, comment, rating });
     setComment("");

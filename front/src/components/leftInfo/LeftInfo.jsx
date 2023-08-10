@@ -98,7 +98,7 @@ function LeftInfo(props) {
 
   return (
 
-    <div className="max-w-sm p-3 bg-white rounded-xl shadow-xl mb-6">
+    <div className="max-w-sm p-3 bg-white rounded-2xl shadow-xl mb-6">
 
       <img src={humanLogo} className='h-16 mx-auto my-8' />
 
