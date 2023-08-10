@@ -88,8 +88,18 @@ const CommentForm = ({ onCommentSubmit, PAD }) => {
         Enviar Comentario
       </button>
     </form>
-  ) : <div className=" w-24 h-24 bg-slate-100"> 
-        <h2> Para comentar debes estar Registrado e Iniciar Sesión </h2>
+  ) : <div className=" w-full h-12 bg-slate-100 font-gilroy rounded-md ">
+
+      <p className=" text-center pt-3 mt-3 font-gilroy">
+                Para comentar debes estar{" "}
+                <Link to={"/formjoin"} className=" text-blue-700 font-bold underline">
+                  registrado
+                </Link>
+                {" e "}
+                <Link to={"/formlogin"} className=" text-blue-700 font-bold underline">
+                  iniciar sesión
+                </Link>
+              </p> 
      </div>;
 };
 
