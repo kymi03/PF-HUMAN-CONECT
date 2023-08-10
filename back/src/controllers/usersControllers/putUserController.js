@@ -17,15 +17,43 @@ const transporter = require("./mailer");
 const { ADMIN_EMAIL } = process.env;
 
 const putUserController = async (req, res) => {
-  const { id, name, lastName, email, phone, password } = req.body;
+  const { id, name, lastName, email, phone, password, active } = req.body;
+  console.log(req.body);
   try {
     const putUser = await user.updateOne(
       { _id: id },
-      { $set: { name, lastName, email, phone, password } }
+      { $set: { name, lastName, email, phone, password, active } }
     );
     if (putUser.nModified === 0) {
       return res.status(404).json({ error: "Usuario no encontrado" });
     }
+
+    if (active === false) {
+      await transporter.sendMail({
+        from: `"Human Conet" ${ADMIN_EMAIL}`,
+        to: email,
+        subject: "Usuario bloqueado - Human Conet",
+        html: `
+            <h1>Human Conet - Usuario bloqueado.</h1>
+            <p>Hola <b>${name}</b>! Lamentamos informarte que tu usuario de Human Conet ha sido bloqueado.</p>
+            `,
+      });
+      return res
+        .status(200)
+        .json({ message: "Usuario Bloqueado exitosamente" });
+    } else if (active === true) {
+      await transporter.sendMail({
+        from: `"Human Conet" ${ADMIN_EMAIL}`,
+        to: email,
+        subject: "Usuario desbloqueado - Human Conet",
+        html: `
+            <h1>Human Conet - Usuario desbloqueado.</h1>
+            <p>Hola <b>${name}</b>! Te informamos que tu usuario de Human Conet ha sido desbloqueado.</p>
+            `,
+      });
+      return res.status(200).json({ message: "Usuario Desbloqueado" });
+    }
+
     await transporter.sendMail({
       from: `"Human Conet" ${ADMIN_EMAIL}`, // sender address
       to: email, // list of receivers
@@ -37,6 +65,8 @@ const putUserController = async (req, res) => {
     });
     res.status(200).json(putUser);
   } catch (error) {
+    console.log("error", error);
+    console.log("message", error.message);
     res.status(500).json({ error: "Error al actualizar el usuario", error });
   }
 };

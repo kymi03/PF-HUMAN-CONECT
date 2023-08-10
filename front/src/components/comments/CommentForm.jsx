@@ -1,8 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import ReactStars from "react-rating-stars-component";
+import { useDispatch, useSelector } from "react-redux";
+import { postComment } from "../../redux/actions";
 
-const CommentForm = ({ onCommentSubmit }) => {
-  const [name, setName] = useState('');
-  const [comment, setComment] = useState('');
+const CommentForm = ({ onCommentSubmit, PAD }) => {
+  const User = useSelector((state) => state.userAuth);
+  const dispatch = useDispatch();
+  const [name, setName] = useState(User.name);
+  const [comment, setComment] = useState("");
+  const [rating, setRating] = useState(0);
+  const userID = User._id || User.id
+  const reference = PAD._id
 
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -14,49 +23,83 @@ const CommentForm = ({ onCommentSubmit }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onCommentSubmit({ name, comment });
-    setName('');
-    setComment('');
+    dispatch(postComment({ comment, userID, reference }));
+    onCommentSubmit({ name, comment, rating });
+    setComment("");
+    setRating(0);
   };
 
-  return (
-    <form onSubmit={handleSubmit} className="w-full max-w-sm mx-auto mt-4 bg-amber-50">
-      <div className="mb-4">
-        <label htmlFor="name" className="block text-gray-700 text-sm font-bold mb-2">
-          Nombre y Apellido:
+  const ratingChanged = (newRating) => {
+    setRating(newRating);
+  };
+
+  return User.active ? (
+    <form
+      onSubmit={handleSubmit}
+      className="w-full max-w-sm mx-auto mt-4 bg-white rounded-md"
+    >
+      <Link
+        // to={`/ContentDetail/${PAD}=${_id}`}
+        className=" text-gray-800 hover:text-blue-700"
+      ></Link>
+
+      <div className=" text-gray-700 text-m font-bold mb-4 font-gilroy py-2">
+        {User.name}
+      </div>
+
+      <div className="mb-4 text-center">
+        <label
+          htmlFor="comment"
+          className=" text-gray-700 text-sm font-bold mb-2 font-gilroy"
+        >
+          Calificación: {rating}{" "}
         </label>
-        <input
-          type="text"
-          id="name"
-          value={name}
-          onChange={handleNameChange}
-          className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"
-          placeholder="Nombre y Apellido"
-          required
+        <ReactStars
+          className=" mx-auto"
+          count={5}
+          onChange={ratingChanged}
+          size={24}
+          activeColor="#ffd700"
         />
       </div>
+
       <div className="mb-4">
-        <label htmlFor="comment" className="block text-gray-700 text-sm font-bold mb-2">
+        <label
+          htmlFor="comment"
+          className="block text-gray-700 text-sm font-bold mb-2 font-gilroy"
+        >
           Comentario:
         </label>
         <textarea
           id="comment"
           value={comment}
           onChange={handleCommentChange}
-          className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"
+          className=" placeholder:font-gilroy placeholder:italic w-80 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"
           rows="4"
-          placeholder="Escribe tu comentario aquí"
+          placeholder="Escribe tu comentario aquí.."
           required
         ></textarea>
       </div>
       <button
         type="submit"
-        className="w-full px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
+        className=" px-24 py-2 mb-4 text-white bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600 font-gilroy font-bold"
       >
         Enviar Comentario
       </button>
     </form>
-  );
+  ) : <div className=" w-full h-12 bg-slate-100 font-gilroy rounded-md ">
+
+      <p className=" text-center pt-3 mt-3 font-gilroy">
+                Para comentar debes estar{" "}
+                <Link to={"/formjoin"} className=" text-blue-700 font-bold underline">
+                  registrado
+                </Link>
+                {" e "}
+                <Link to={"/formlogin"} className=" text-blue-700 font-bold underline">
+                  iniciar sesión
+                </Link>
+              </p> 
+     </div>;
 };
 
 export default CommentForm;

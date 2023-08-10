@@ -22,10 +22,20 @@ const userSchema = new Schema({
     type: Number,
     required: true,
   },
+  admin: {
+    type: Boolean,
+    required: true,
+    default: false,
+  },
+  active: {
+    type: Boolean,
+    required: true,
+    default: true,
+  },
   posts: {
     post: [
       {
-        postId: Number,
+        postId: String,
         body: String,
         createdAt: { type: Date, default: Date.now },
       },

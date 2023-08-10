@@ -1,148 +1,156 @@
-import React, { useState } from "react";
-import NavBarAle from "../../components/NavBar/NavBar.ale";
-import Footer from "../../components/footer/Footer";
+import React, { useEffect, useState } from 'react';
+import NavBarAle from '../../components/NavBar/NavBarAle';
+import LeftInfoDonate from '../../components/leftInfo/LeftInfoDonate';
+import Footer from '../../components/footer/Footer';
+import { Link } from 'react-router-dom';
+import { Carousel } from 'flowbite-react';
+import { useSelector } from 'react-redux';
+import Cards from '../../components/donarComponents/Cards';
 import axios from "axios";
-import styles from "./Donar.module.css";
-import Cards from "../../components/cards/Cards";
-import { useSelector } from "react-redux";
-function Donar() {
-  const [unitPrice, setUnitPrice] = useState(500);
-  const [chart, setChart] = useState([]);
 
-  const sendChart = async (chart) => {
-    if (unitPrice < 500) return;
-    try {
-      const data = await axios
-        .post("http://localhost:3001/payments", { items: chart })
-        .then((res) => {
-          return res.data;
+const Donar = () => {
+    
+    const [unitPrice, setUnitPrice] = useState(500);
+    const [chart, setChart] = useState([]);
+
+    const sendChart = async (chart) => {
+      if (unitPrice < 500) return;
+      try {
+        const data = await axios
+          .post("/payments", { items: chart })
+          .then((res) => {
+            return res.data;
+          });
+        const URL = data.result.body.sandbox_init_point;
+        window.open(URL, "_blank");
+      } catch (error) {
+        alert(`No se pudo generar el link de pago. Error: ${error.message}`);
+      }
+    };
+
+    //<----
+
+    const [showBanner , setShowBanner ] = useState(true);
+
+    useEffect( () => {
+        const data = window.localStorage.getItem('WELCOME_BANNER')
+        // console.log('data:' , data);
+        setShowBanner(JSON.parse(data))//<-- cambiar para demos
+    } , [])
+
+    useEffect( () => {
+
+        window.localStorage.setItem('WELCOME_BANNER' , JSON.stringify(showBanner))
+
+    } , [showBanner])
+
+    //<----
+
+    const [items, setItems] = useState([]);
+
+    const donerItems = useSelector(state => state.ItemsDonation )
+
+    function splitString(inputString) {
+    const [key, value] = inputString.split("=");
+    return { key, value };
+    }
+
+    async function fetchData(array) {
+    const resultArray = [];
+
+    for (const item of array) {
+        const { key, value } = splitString(item);
+        let source = "";
+
+        switch (key) {
+        case "PROJECTS":
+            source = "projects";
+            break;
+        case "ARTICLES":
+            source = "articles";
+            break;
+        case "DOCUMENTARYS":
+            source = "documentaries";
+            break;
+        default:
+            break;
+        }
+
+        try {
+        const response = await axios.get(`/${source}?id=${value}`);
+        response.data.sourceOf = source
+    
+        // console.log(response.data);
+        resultArray.push(response.data);
+
+        } catch (error) {
+        console.error(`Error fetching data for ${item}:`, error);
+        }
+    }
+
+    return resultArray;
+    }
+
+    
+  
+
+    useEffect( () => {
+
+        fetchData(donerItems)
+        .then((result) => {
+    
+        setItems(result)
+        
+        })
+        .catch((error) => {
+        console.error("Error fetching data:", error);
         });
-      const URL = data.result.body.sandbox_init_point;
-      window.open(URL, "_blank");
-    } catch (error) {
-      alert(`No se pudo generar el link de pago. Error: ${error.message}`);
-    }
-  };
 
- const donerItems = useSelector(state => state.ItemsDonation )
+    } , [donerItems])
 
 
- function splitString(inputString) {
-  const [key, value] = inputString.split("=");
-  return { key, value };
-}
-
-async function fetchData(array) {
-  const resultArray = [];
-
-  for (const item of array) {
-    const { key, value } = splitString(item);
-    let source = "";
-
-    switch (key) {
-      case "PROJECTS":
-        source = "projects";
-        break;
-      case "ARTICLES":
-        source = "articles";
-        break;
-      case "DOCUMENTARYS":
-        source = "documentaries";
-        break;
-      default:
-        break;
-    }
-
-    try {
-      const response = await axios.get(`/${source}?id=${value}`);
-      resultArray.push(response.data);
-    } catch (error) {
-      console.error(`Error fetching data for ${item}:`, error);
-    }
-  }
-
-  return resultArray;
-}
-
-// const dataArray = ["PROJECTS=64b9813b8facd1b25669435b","PROJECTS=64b9813b8facd1b25669435c","DOCUMENTARYS=64c473438330e8fb52102bd0","DOCUMENTARYS=64bf6a35f2755740d3db5899","ARTICLES=64bc2c77b0a5f74dde62c65e"];
-
-fetchData(donerItems)
-  .then((result) => {
-    console.log("Data fetched successfully:", result);
-    // You can work with the result array here
-  })
-  .catch((error) => {
-    console.error("Error fetching data:", error);
-  });
+    //<----
 
 
 
+ 
 
+    return (
+        <div className=' h-screen bg-grey'>
+            <div>
+                <NavBarAle />
+                {showBanner && (
+                <div 
+                className="max-w-sm p-3  bg-white border border-gray-200 shadow dark:bg-gray-800 dark:border-gray-700" 
+                >
+                <button onClick={()=>setShowBanner(false)} >❎</button>
+                    <div>
+                        <h2> bienvenid@ a HUMAN CONET </h2>
+                        <p> te invitamos a regristrate para que puedas comentar, guardar articulos y mucho mas !: </p>
+                    </div>
+                    <Link to={'/formjoin'}>
+                <button >Unete</button>
+                </Link>
+                </div>
+                )}
 
-
-
-
-
-
-
-  const handleChange = (e) => {
-    console.log(chart);
-    const amount = parseFloat(e.target.value);
-    const unitPrice = amount / chart.length;
-    setUnitPrice(unitPrice);
-
-    console.log(unitPrice);
-    setChart([
-      {
-        title: "Yurumanguí resiste",
-        unit_price: unitPrice,
-        currency_id: "ARS",
-        quantity: 1,
-      },
-      {
-        title: "Anchicayá resiste",
-        unit_price: unitPrice,
-        currency_id: "ARS",
-        quantity: 1,
-      },
-      {
-        title: "Yukpa resiste",
-        unit_price: unitPrice,
-        currency_id: "ARS",
-        quantity: 1,
-      },
-    ]);
-  };
-
-  return (
-    <>
-      <NavBarAle />
-
-      <div>
-        <h2>Aqui puedes donar , y saber cuanto acada causa</h2>
-      </div>
-
-      <div className={styles["form-donativo"]}>
-        <form>
-          <h1>Realiza tu donativo.</h1>
-
-          <label> Voy a donar: $</label>
-          <input
-            type="number"
-            min={1500}
-            placeholder="1500"
-            onChange={handleChange}
-          />
-        </form>
-        <button onClick={() => sendChart(chart)}> DONAR ♥ </button>
-      </div>
-      {/* <Cards
-            // currentPAD={currentPAD} 
-            // PAD =  {PROJECTS} //<-- puede que no lo necesite aun 
-      ></Cards> */}
-      <Footer />
-    </>
-  );
-}
+                <p className="ml-11 mb-5 text-justify text-5xl font-semibold text-gray-900 dark:text-white font-gobold py-4">DONACIONES</p>
+                <div className=" flex ">
+                    <div className=' w-1/5 h-3/5  ml-11 mr-11'>
+                        <LeftInfoDonate currentPAD={items} />
+                    </div>
+                    <div 
+                    className='h-3/5 w-4/5   dark:bg-gray-800 dark:border-gray-700'
+                    >
+                        <Cards currentPAD={items} />
+                    </div>
+                </div>
+            </div>
+                <div className=' bottom-0 fixed w-screen'>
+                <Footer />
+                </div>
+        </div>
+    )
+};
 
 export default Donar;

@@ -2,15 +2,22 @@ import styles from "./Detail.module.css";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import NavBarAle from "../../components/NavBar/NavBar.ale";
-import FooterMoreInfo from "../../components/footer/FooterMoreInfo";
+import NavBarAle from "../../components/NavBar/NavBarAle";
+import Footer from "../../components/footer/Footer";
 import { PROJECTS, ARTICLES, DOCUMENTARYS } from "../../redux/actions-types";
+import green1 from "../../assets/icons/green1.png";
+import green2 from "../../assets/icons/green2.png";
+import { useDispatch, useSelector } from "react-redux";
+import { setDonationItems } from "../../redux/actions";
+import CommentForm from "../../components/comments/CommentForm";
+import CommentDisplay from "../../components/comments/CommentDisplay";
 
 function Detail() {
   const [PAD, setPAD] = useState([]);
   const [uniqueImages, setUniqueImages] = useState([]);
+  const [uniqueVideos, setUniqueVideos] = useState([]);
+  const [comments, setComments] = useState([]);
   const { id } = useParams();
-  const { images = [], videos = [] } = PAD.media || {};
 
   function splitString(inputString) {
     const [key, value] = inputString.split("=");
@@ -38,13 +45,13 @@ function Detail() {
       axios
         .get(`/${source}?id=${value}`)
         .then(({ data }) => {
-          if (data.name) {
-            setPAD(data);
-          } else {
-            window.alert(`No hay ${source} con ese ID`);
-          }
+          // console.log(data);
+          setPAD(data);
         })
-        .catch((error) => console.error(error));
+        .catch((error) => {
+          console.error(error);
+          window.alert(`No hay ${source} con ese ID`);
+        });
     }
   }, [id, source, value]);
 
@@ -62,82 +69,220 @@ function Detail() {
     }
   }, [PAD.media]);
 
-  let uniqueVideos = [...new Set(videos.map((video) => video.videoUrl))];
+  useEffect(() => {
+    if (PAD.media && PAD.media.videos) {
+      const uniqueVideoUrls = [];
+      const renderedVideos = new Set();
+      PAD.media.videos.forEach((video) => {
+        if (!renderedVideos.has(video.videoUrl)) {
+          renderedVideos.add(video.videoUrl);
+          uniqueVideoUrls.push(video.videoUrl);
+        }
+      });
+      setUniqueVideos(uniqueVideoUrls);
+    }
+  }, [PAD.media]);
+
+  //Boton de donacion
+  const dispatch = useDispatch();
+  const Items = useSelector((state) => state.ItemsDonation);
+  const [green, setGreen] = useState(green1);
+  useEffect(() => {
+    const resultArray = Items.map((item) => item.split("=")[1]);
+    if (resultArray.includes(key, value)) {
+      setGreen(green2);
+    } else {
+      setGreen(green1);
+    }
+  }, [Items]);
+  const handleCartButton = (event) => {
+    dispatch(setDonationItems([event.target.value]));
+  };
+
+  // comentarios de usuarios
+  const handleCommentSubmit = (newComment) => {
+    setComments([...comments, newComment]);
+  };
+  const handleDeleteComment = (index) => {
+    const updatedComments = [...comments];
+    updatedComments.splice(index, 1);
+    setComments(updatedComments);
+  };
 
   return (
     <div>
       <NavBarAle></NavBarAle>
-      <div className={styles["header-section"]}>
-        <h1>{PAD.name}</h1>
-        {uniqueImages.length === 0 && (
+      <div className= " flex items-center">
+        {/* Lado izquierdo: encabezado */}
+        <h1 className=" font-gobold text-6xl w-1/2">{PAD.title}</h1>
+        {/* Lado derecho: Imagen principal */}
+        {uniqueImages.length > 0 && (
           <img
+            className=" w-1/2"
             src={
               uniqueImages.length > 1
                 ? uniqueImages[0]
                 : "https://humanconet.org/wp-content/uploads/2022/09/Cover-Home-Human-Conet-01-1-1536x780.webp"
             }
             alt="Cover Image"
-            style={{
-              objectFit: "cover",
-              width: "50%",
-              height: "50%",
-              right: "50%",
-            }}
           />
         )}
-        {/* Muestra todas las imágenes */}
-        {uniqueImages.length > 2 ? (
-          uniqueImages.map((imageUrl, index) => (
-            <img
-              key={index}
-              src={imageUrl}
-              className={styles["header-section"]}
-              style={{
-                objectFit: "cover",
-                width: "50%",
-                height: "50%",
-                right: "50%",
-              }}
-            />
-          ))
-        ) : uniqueImages.length === 1 ? (
-          <img src={uniqueImages[0]} className={styles["header-section"]} />
-        ) : null}
       </div>
-      {/* Texto */}
-      <div className={styles["content-section"]}>
-        <p>{PAD.body}</p>
-        {/* Muestra todos los videos */}
-        {uniqueVideos.map((videoUrl, index) => (
-          <div key={index} className={styles["video-responsive"]}>
-            <div className={styles["video-container"]}>
-              {videoUrl?.includes("youtube") ? (
-                <iframe
-                  className={styles["video-container-iframe"]}
-                  src={`https://www.youtube.com/embed/${
-                    videoUrl?.split("v=")[1]
-                  }`}
-                  title="YouTube video player"
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                ></iframe>
-              ) : videoUrl?.includes("vimeo") ? (
-                <iframe
-                  className={styles["video-container-iframe"]}
-                  src={`https://player.vimeo.com/video/${
-                    videoUrl?.split("/")[3]
-                  }`}
-                  frameBorder="0"
-                  allow="autoplay; fullscreen; picture-in-picture"
-                  allowFullScreen
-                ></iframe>
-              ) : null}
+
+
+      {/* Texto Body y se muestra la 2 imagen */}
+      <div className=" flex flex-row-reverse">
+        {/* Columna izquierda (texto) */}
+        <div className=" font-gilroy w-1/2 px-10 self-center text-justify">
+          <p>{PAD.body}</p>
+        </div>
+        {/* Columna derecha (imágenes adicionales) */}
+        <div className=" w-1/2">
+          {/* Nivel 3: Imágenes adicionales */}
+          {uniqueImages.length > 1 && (
+            <div className={styles["image-container"]}>
+              {/* Mostrar solo la segunda imagen */}
+              <img
+                src={uniqueImages[1]} // Segunda imagen (índice 1)
+                className={styles["additional-image2"]}
+                alt={`Additional Image 2`} // Se establece el nombre como "Additional Image 2" para la segunda imagen
+              />
             </div>
-          </div>
-        ))}
+          )}
+        </div>
       </div>
-      <FooterMoreInfo></FooterMoreInfo>
+
+      {/* Texto Body2 y se muestra la 3 imagen */}
+      <div className=" flex">
+        {/* Columna izquierda (texto) */}
+        <div className="font-gilroy w-1/2 px-10 self-center text-justify">
+          <p>{PAD.body2}</p>
+        </div>
+        {/* Columna derecha (imágenes adicionales) */}
+        <div className=" w-1/2">
+          {/* Nivel 3: Imágenes adicionales */}
+          {uniqueImages.length > 2 && (
+            <div className={styles["image-container"]}>
+              {/* Mostrar solo la tercera imagen */}
+              <img
+                src={uniqueImages[2]} // Tercera imagen (índice 2)
+                className={styles["additional-image3"]}
+                alt={`Additional Image 3`} // Se establece el nombre como "Additional Image 3" para la tercera imagen
+              />
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Muestra el primer video */}
+      <div className=" flex justify-center mt-8"></div>
+      {uniqueVideos[0] ? (
+        <div className={styles["video-responsive"]}>
+          {/* Renderiza el video utilizando <iframe> */}
+          {uniqueVideos[0]?.includes("youtube") ? (
+            <iframe
+              className={styles["video-container-iframe"]}
+              src={`https://www.youtube.com/embed/${
+                uniqueVideos[0]?.split("v=")[1]
+              }`}
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
+          ) : uniqueVideos[0]?.includes("vimeo") ? (
+            <iframe
+              className={styles["video-container-iframe"]}
+              src={`https://player.vimeo.com/video/${
+                uniqueVideos[0]?.split("/")[3]
+              }`}
+              frameBorder="0"
+              allow="autoplay; fullscreen; picture-in-picture"
+              allowFullScreen
+            ></iframe>
+          ) : (
+            <video
+              className={styles["video-container-iframe"]}
+              src={uniqueVideos[0]}
+              controls
+            ></video>
+          )}
+          {/* {console.log(uniqueVideos[0], "video")}; */}
+        </div>
+      ) : null}
+
+      {/* Body3 */}
+      <div className="font-gilroy px-20 py-20 self-center text-justify">
+        <p>{PAD.body3}</p>
+      </div>
+
+      {/* Muestra el segundo video */}
+      <div className={styles["video-container2"]}></div>
+      {uniqueVideos[1] ? (
+        <div className={styles["video-responsive"]}>
+          {/* Renderiza el video utilizando <iframe> */}
+          {uniqueVideos[1]?.includes("youtube") ? (
+            <iframe
+              className={styles["video-container-iframe"]}
+              src={`https://www.youtube.com/embed/${
+                uniqueVideos[1]?.split("v=")[1]
+              }`}
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
+          ) : uniqueVideos[1]?.includes("vimeo") ? (
+            <iframe
+              className={styles["video-container-iframe"]}
+              src={`https://player.vimeo.com/video/${
+                uniqueVideos[1]?.split("/")[3]
+              }`}
+              frameBorder="0"
+              allow="autoplay; fullscreen; picture-in-picture"
+              allowFullScreen
+            ></iframe>
+          ) : (
+            <video
+              className={styles["video-container-iframe"]}
+              src={uniqueVideos[0]}
+              controls
+            ></video>
+          )}
+          {/* {console.log(uniqueVideos[0], "video")}; */}
+        </div>
+      ) : null}
+      {/* Boton donacion */}
+      <div className=" font-gobold text-lg border-2 border-vividGreen px-4 py-2 text-white bg-vividGreen rounded hover:bg-white hover:text-vividGreen transition duration-300">
+        <button 
+        value={[id]}
+        onClick={handleCartButton} id="imageButton"> DONA A ESTA CAUSA
+          {/* <img
+            data-value={[id]}
+            className="h-8 "
+            src={green}
+            alt="Add to Cart" */}
+          {/* /> */}
+        </button>
+      </div>
+
+      {/* Comentarios de usuarios */}
+      <div className="container mx-auto py-8">
+        <h1 className="text-3xl font-semibold text-center mb-6 font-gilroy">Comentarios</h1>
+        <div className="flex flex-col md:flex-row md:space-x-4">
+          <div className="w-full md:w-1/3">
+            <CommentForm onCommentSubmit={handleCommentSubmit} PAD={PAD} />
+          </div>
+          <div className="w-full md:w-2/3 mt-4 md:mt-0 overflow-hidden whitespace-normal">
+            <CommentDisplay
+              comments={comments}
+              onDeleteComment={handleDeleteComment}
+              PAD={PAD}
+            />
+          </div>
+        </div>
+      </div>
+      <Footer />
     </div>
   );
 }
